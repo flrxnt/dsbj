@@ -20,7 +20,7 @@ import DocsCard from '@docs/components/DocsCard.vue'
       margin-bottom: var(--bj-spacing-2v);
     "
   >
-    Bibliothèque de 41 composants HTML/CSS du Design Système du Bénin :
+    Bibliothèque de 42 composants HTML/CSS du Design Système du Bénin :
     navigation, formulaires, contenu, éléments interactifs et blocs
     réglementaires. Chaque fiche détaille les variantes, les classes et
     les bonnes pratiques d’accessibilité.
@@ -293,6 +293,12 @@ import DocsCard from '@docs/components/DocsCard.vue'
       icon="ri-article-line"
       title="Contenu éditorial"
       description="Typographie et blocs pour articles et pages."
+    />
+    <DocsCard
+      to="/composants/banner"
+      icon="ri-slideshow-line"
+      title="Bannière"
+      description="Section hero avec image de fond, titre et appel à l'action."
     />
   </div>
 

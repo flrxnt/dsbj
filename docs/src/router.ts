@@ -288,6 +288,11 @@ export const routes: RouteRecordRaw[] = [
     meta: { layout: 'docs', section: 'composants', title: 'Galerie d\'images - DSBJ', breadcrumb: [{ label: 'Composants', to: '/composants' }, { label: 'Galerie d\'images' }] },
   },
   {
+    path: '/composants/banner',
+    component: () => import('./pages/composants/BannerPage.vue'),
+    meta: { layout: 'docs', section: 'composants', title: 'Bannière - DSBJ', breadcrumb: [{ label: 'Composants', to: '/composants' }, { label: 'Bannière' }] },
+  },
+  {
     path: '/composants/consent',
     component: () => import('./pages/composants/ConsentPage.vue'),
     meta: { layout: 'docs', section: 'composants', title: 'Consentement - DSBJ', breadcrumb: [{ label: 'Composants', to: '/composants' }, { label: 'Consentement' }] },

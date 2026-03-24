@@ -1,11 +1,25 @@
-# DSBJ - Design Système du Bénin
+<p align="center">
+  <img src="./assets/images/readme-banner.png" alt="DSBJ - Design Système du Bénin" width="100%" />
+</p>
 
-Système de design gouvernemental de la République du Bénin. Composants, styles et règles pour construire des interfaces numériques cohérentes, accessibles et conformes à l'identité visuelle de l'État béninois.
+<p align="center">
+  <a href="https://www.npmjs.com/package/@flrxnt/dsbj"><img src="https://img.shields.io/npm/v/@flrxnt/dsbj?color=006A4E&label=version" alt="Version NPM" /></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/licence-MIT-006A4E" alt="Licence MIT" /></a>
+  <img src="https://img.shields.io/badge/WCAG-2.1%20AA-006A4E" alt="Conformité WCAG 2.1 AA" />
+</p>
+
+# DSBJ — Design Système du Bénin
+
+Le **Design Système du Bénin (DSBJ)** est l'outil destiné à produire les interfaces officielles des services publics numériques. Il regroupe un ensemble de règles et de composants réutilisables pour fournir des services numériques simples, accessibles et reconnaissables.
+
+> Construit avec SCSS · TypeScript · Vite · Vitest
+
+---
 
 ## Installation
 
 ```bash
-npm install @flrxnt/dsbj
+bun add @flrxnt/dsbj
 ```
 
 ### Import ES Module
@@ -37,8 +51,8 @@ import '@flrxnt/dsbj/css';
 ### CDN
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@flrxnt/dsbj@1.0.0/dist/dsbj.css">
-<script src="https://unpkg.com/@flrxnt/dsbj@1.0.0/dist/dsbj.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@flrxnt/dsbj@1.1.0/dist/dsbj.css">
+<script src="https://unpkg.com/@flrxnt/dsbj@1.1.0/dist/dsbj.umd.js"></script>
 ```
 
 ## Développement

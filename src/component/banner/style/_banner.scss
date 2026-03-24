@@ -1,0 +1,135 @@
+.bj-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 20rem;
+  overflow: hidden;
+}
+
+.bj-banner__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.bj-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+}
+
+.bj-banner__body {
+  position: relative;
+  z-index: 1;
+  max-width: 42rem;
+  padding: var(--bj-spacing-10v) var(--bj-spacing-8v);
+  color: #fff;
+}
+
+.bj-banner__title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: var(--bj-fw-bold);
+  line-height: 1.15;
+  margin-bottom: var(--bj-spacing-3v);
+}
+
+.bj-banner__text {
+  font-size: var(--bj-fs-lg);
+  line-height: var(--bj-lh-normal);
+  opacity: 0.9;
+}
+
+.bj-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bj-spacing-3v);
+  margin-top: var(--bj-spacing-6v);
+}
+
+// ---------------------------------------------------------------------------
+// Tailles
+// ---------------------------------------------------------------------------
+
+.bj-banner--sm { min-height: 14rem; }
+.bj-banner--lg { min-height: 28rem; }
+
+// ---------------------------------------------------------------------------
+// Alignement du contenu
+// ---------------------------------------------------------------------------
+
+.bj-banner--center {
+  justify-content: center;
+  text-align: center;
+
+  .bj-banner__body { margin-inline: auto; }
+}
+
+.bj-banner--right {
+  justify-content: flex-end;
+
+  .bj-banner__body { margin-left: auto; }
+
+  .bj-banner__overlay {
+    background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0.65) 0%,
+      rgba(0, 0, 0, 0.25) 100%
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Teinte de l'overlay
+// ---------------------------------------------------------------------------
+
+.bj-banner--light .bj-banner__overlay {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+}
+
+.bj-banner--light .bj-banner__body {
+  color: var(--bj-text-default);
+}
+
+.bj-banner--dark .bj-banner__overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+// ---------------------------------------------------------------------------
+// Couleurs nationales (accent bordure basse)
+// ---------------------------------------------------------------------------
+
+.bj-banner--green  { border-bottom: 4px solid var(--bj-color-vert-benin-main-491); }
+.bj-banner--yellow { border-bottom: 4px solid var(--bj-color-jaune-benin-main-822); }
+.bj-banner--red    { border-bottom: 4px solid var(--bj-color-rouge-benin-main-472); }
+
+// ---------------------------------------------------------------------------
+// Sans image (couleur de fond unie)
+// ---------------------------------------------------------------------------
+
+.bj-banner--plain {
+  background-color: var(--bj-action-high);
+
+  .bj-banner__overlay { display: none; }
+}
+
+// ---------------------------------------------------------------------------
+// Responsive
+// ---------------------------------------------------------------------------
+
+@media (max-width: 47.99em) {
+  .bj-banner       { min-height: 14rem; }
+  .bj-banner--lg   { min-height: 20rem; }
+  .bj-banner__body { padding: var(--bj-spacing-6v) var(--bj-spacing-4v); }
+}
