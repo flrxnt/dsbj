@@ -1,4 +1,4 @@
-/*! DSBJ v1.1.0 | Design Système du Bénin | MIT License */
+/*! DSBJ v1.2.0 | Design Système du Bénin | MIT License */
 
 // ============================================================================
 // FONDAMENTAUX
@@ -61,3 +61,6 @@
 @use 'component/marquee/style/marquee';
 @use 'component/gallery/style/gallery';
 @use 'component/banner/style/banner';
+@use 'component/skeleton/style/skeleton';
+@use 'component/avatar/style/avatar';
+@use 'component/treeview/style/treeview';

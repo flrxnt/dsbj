@@ -73,6 +73,7 @@ export const sidebars: Record<string, SidebarGroup[]> = {
         { label: 'Lien', to: '/composants/link', i18nKey: 'link.link' },
         { label: 'Badge', to: '/composants/badge', i18nKey: 'link.badge' },
         { label: 'Tag', to: '/composants/tag', i18nKey: 'link.tag' },
+        { label: 'Avatar', to: '/composants/avatar', i18nKey: 'link.avatar' },
       ],
     },
     {
@@ -102,6 +103,7 @@ export const sidebars: Record<string, SidebarGroup[]> = {
         { label: 'Tuile', to: '/composants/tile', i18nKey: 'link.tile' },
         { label: 'Tableau', to: '/composants/table', i18nKey: 'link.table' },
         { label: 'Contenu éditorial', to: '/composants/content', i18nKey: 'link.editorial-content' },
+        { label: 'Skeleton', to: '/composants/skeleton', i18nKey: 'link.skeleton' },
       ],
     },
     {
@@ -117,6 +119,7 @@ export const sidebars: Record<string, SidebarGroup[]> = {
         { label: 'Menu déroulant', to: '/composants/dropdown', i18nKey: 'link.dropdown' },
         { label: 'Bandeau défilant', to: '/composants/marquee', i18nKey: 'link.marquee' },
         { label: 'Galerie d\'images', to: '/composants/gallery', i18nKey: 'link.gallery' },
+        { label: 'Arborescence', to: '/composants/treeview', i18nKey: 'link.treeview' },
       ],
     },
     {

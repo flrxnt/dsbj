@@ -4,6 +4,27 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.2.0] - 2026-03-24
+
+### Ajouté
+
+- Composant **Skeleton** (`bj-skeleton`) : placeholder animé avec shimmer pour indiquer le chargement d'un contenu.
+  - Variantes de forme : `--text`, `--heading`, `--circle`, `--rect`.
+  - Variantes de taille : `--sm`, `--lg`.
+  - Conteneur de groupe : `bj-skeleton-group`.
+- Composant **Avatar** (`bj-avatar`) : représentation visuelle d'un utilisateur (photo, initiales ou icône).
+  - Tailles : `--sm`, `--lg`, `--xl`.
+  - Variante carrée : `--square`.
+  - Éléments : `__img`, `__initials`, `__icon`.
+  - Indicateur de statut : `__status` avec `--online`, `--away`, `--busy`, `--offline`.
+  - Groupe d'avatars superposés : `bj-avatar-group`.
+- Composant **Arborescence** (`bj-tree`) : structure hiérarchique dépliable avec nœuds, branches et feuilles.
+  - Bouton expand/collapse avec `data-bj-tree-toggle` et `aria-expanded`.
+  - Variante avec cases à cocher : `bj-tree--checkbox` avec propagation tri-état (checked / indeterminate / unchecked).
+  - Variante compacte : `--compact`.
+  - Module TypeScript `initTreeview` avec enregistrement automatique.
+- Pages de documentation pour les composants Skeleton, Avatar et Arborescence.
+
 ## [1.1.0] - 2026-03-24
 
 ### Ajouté

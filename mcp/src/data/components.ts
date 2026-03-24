@@ -593,6 +593,61 @@ export const COMPONENTS: ComponentData[] = [
 </div>`,
   },
   {
+    name: 'Skeleton',
+    slug: 'skeleton',
+    category: 'Contenu',
+    description: 'Placeholder animé indiquant le chargement d\'un contenu avec animation shimmer.',
+    classes: ['bj-skeleton', 'bj-skeleton--text', 'bj-skeleton--heading', 'bj-skeleton--circle', 'bj-skeleton--rect', 'bj-skeleton--sm', 'bj-skeleton--lg', 'bj-skeleton-group'],
+    aria: ['aria-busy="true" (sur le conteneur)', 'aria-hidden="true" (sur les skeletons)'],
+    jsHooks: [],
+    markup: `<div class="bj-skeleton-group" aria-busy="true" aria-hidden="true">
+  <div class="bj-skeleton bj-skeleton--rect"></div>
+  <div class="bj-skeleton bj-skeleton--heading"></div>
+  <div class="bj-skeleton bj-skeleton--text"></div>
+  <div class="bj-skeleton bj-skeleton--text" style="width: 80%"></div>
+</div>`,
+  },
+  {
+    name: 'Avatar',
+    slug: 'avatar',
+    category: 'Base',
+    description: 'Représentation visuelle d\'un utilisateur : photo, initiales ou icône, avec statut et regroupement.',
+    classes: ['bj-avatar', 'bj-avatar--sm', 'bj-avatar--lg', 'bj-avatar--xl', 'bj-avatar--square', 'bj-avatar__img', 'bj-avatar__initials', 'bj-avatar__icon', 'bj-avatar__status', 'bj-avatar__status--online', 'bj-avatar__status--away', 'bj-avatar__status--busy', 'bj-avatar__status--offline', 'bj-avatar-group'],
+    aria: ['alt (sur img)', 'aria-hidden="true" (avatar décoratif)'],
+    jsHooks: [],
+    markup: `<div class="bj-avatar">
+  <img class="bj-avatar__img" src="photo.jpg" alt="Nom de la personne" />
+  <span class="bj-avatar__status bj-avatar__status--online"></span>
+</div>`,
+  },
+  {
+    name: 'Arborescence',
+    slug: 'treeview',
+    category: 'Interactifs',
+    description: 'Structure hiérarchique dépliable avec nœuds, branches et feuilles. Supporte les cases à cocher avec propagation tri-état.',
+    classes: ['bj-tree', 'bj-tree__item', 'bj-tree__item-content', 'bj-tree__branch', 'bj-tree__toggle', 'bj-tree__toggle-spacer', 'bj-tree__label', 'bj-tree__icon', 'bj-tree__checkbox', 'bj-tree--checkbox', 'bj-tree--compact'],
+    aria: ['role="tree"', 'role="treeitem"', 'role="group"', 'aria-expanded'],
+    jsHooks: ['data-bj-tree-toggle'],
+    markup: `<ul class="bj-tree" role="tree">
+  <li class="bj-tree__item" role="treeitem">
+    <div class="bj-tree__item-content">
+      <button type="button" class="bj-tree__toggle" data-bj-tree-toggle aria-expanded="true">
+        <i class="ri-arrow-right-s-line" aria-hidden="true"></i>
+      </button>
+      <span class="bj-tree__label">Dossier</span>
+    </div>
+    <ul class="bj-tree__branch" role="group">
+      <li class="bj-tree__item" role="treeitem">
+        <div class="bj-tree__item-content">
+          <span class="bj-tree__toggle-spacer"></span>
+          <span class="bj-tree__label">Fichier</span>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>`,
+  },
+  {
     name: 'Consentement',
     slug: 'consent',
     category: 'Réglementaire',

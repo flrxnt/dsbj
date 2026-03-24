@@ -14,6 +14,7 @@ export { toast, initToast } from './js/toast';
 export { initDropdown } from './js/dropdown';
 export { initMarquee } from './js/marquee';
 export { initGallery } from './js/gallery';
+export { initTreeview } from './js/treeview';
 
 import { boot } from './js/core';
 import './js/accordion';
@@ -29,6 +30,7 @@ import './js/toast';
 import './js/dropdown';
 import './js/marquee';
 import './js/gallery';
+import './js/treeview';
 
 export function initDSBJ(): void {
   boot();

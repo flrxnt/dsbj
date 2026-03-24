@@ -293,6 +293,21 @@ export const routes: RouteRecordRaw[] = [
     meta: { layout: 'docs', section: 'composants', titleKey: 'route.banner', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.banner' }] },
   },
   {
+    path: '/composants/skeleton',
+    component: () => import('./pages/composants/SkeletonPage.vue'),
+    meta: { layout: 'docs', section: 'composants', titleKey: 'route.skeleton', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.skeleton' }] },
+  },
+  {
+    path: '/composants/avatar',
+    component: () => import('./pages/composants/AvatarPage.vue'),
+    meta: { layout: 'docs', section: 'composants', titleKey: 'route.avatar', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.avatar' }] },
+  },
+  {
+    path: '/composants/treeview',
+    component: () => import('./pages/composants/TreeviewPage.vue'),
+    meta: { layout: 'docs', section: 'composants', titleKey: 'route.treeview', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.treeview' }] },
+  },
+  {
     path: '/composants/consent',
     component: () => import('./pages/composants/ConsentPage.vue'),
     meta: { layout: 'docs', section: 'composants', titleKey: 'route.consent', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.consent' }] },
