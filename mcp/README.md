@@ -34,12 +34,12 @@ Redémarrez Cursor. Le serveur MCP sera automatiquement lancé.
 
 | Outil | Description | Paramètres |
 |-------|-------------|------------|
-| `list-components` | Liste les 40 composants groupés par catégorie | — |
+| `list-components` | Liste les 40 composants groupés par catégorie | - |
 | `get-component` | Documentation complète d'un composant (classes, ARIA, markup) | `componentName` |
 | `search-components` | Recherche par mot-clé dans les noms, descriptions et classes | `query` |
-| `list-foundations` | Liste les fondamentaux (couleurs, typo, grille…) | — |
+| `list-foundations` | Liste les fondamentaux (couleurs, typo, grille…) | - |
 | `get-foundation` | Documentation d'un fondamental avec variables CSS | `foundationName` |
-| `get-design-tokens` | Retourne tous les design tokens groupés par catégorie | — |
+| `get-design-tokens` | Retourne tous les design tokens groupés par catégorie | - |
 | `generate-markup` | Génère du HTML accessible pour un composant | `componentName`, `variant?`, `content?` |
 | `check-accessibility` | Vérifie un snippet HTML contre les règles WCAG du DSBJ | `html` |
 
@@ -56,7 +56,7 @@ Redémarrez Cursor. Le serveur MCP sera automatiquement lancé.
 
 | Prompt | Description | Paramètres |
 |--------|-------------|------------|
-| `page-gouvernementale` | Génère une page d'accueil de service public | — |
+| `page-gouvernementale` | Génère une page d'accueil de service public | - |
 | `formulaire-accessible` | Génère un formulaire accessible | `purpose` |
 | `composant-dsbj` | Génère l'intégration d'un composant spécifique | `componentName` |
 
@@ -75,7 +75,7 @@ echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":
 ```
 mcp/
 ├── src/
-│   ├── index.ts              # Point d'entrée — outils, ressources, prompts
+│   ├── index.ts              # Point d'entrée - outils, ressources, prompts
 │   └── data/
 │       ├── components.ts      # Catalogue des 40 composants
 │       └── foundations.ts     # Catalogue des 10 fondamentaux

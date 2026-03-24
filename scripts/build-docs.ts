@@ -16,7 +16,7 @@ const pkg: { version: string } = JSON.parse(
   readFileSync(resolve(root, 'package.json'), 'utf-8'),
 )
 
-console.log(`\n📦  DSBJ Docs — build v${pkg.version}\n`)
+console.log(`\n📦  DSBJ Docs - build v${pkg.version}\n`)
 
 console.log('▶  Build de la librairie (dist/)…')
 execSync('bun run build', { cwd: root, stdio: 'inherit' })

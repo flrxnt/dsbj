@@ -83,7 +83,7 @@
       obtenir une alternative accessible.
     </p>
     <ul>
-      <li><strong>E-mail :</strong> accessibilite@gouv.bj</li>
+      <li><strong>E-mail :</strong> accessibilite@gouv.example</li>
       <li><strong>Adresse :</strong> ASSI, Cotonou, République du Bénin</li>
     </ul>
 

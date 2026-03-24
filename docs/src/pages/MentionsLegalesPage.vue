@@ -13,7 +13,7 @@
     <ul>
       <li><strong>Adresse :</strong> Cotonou, République du Bénin</li>
       <li><strong>Téléphone :</strong> +229 21 XX XX XX</li>
-      <li><strong>E-mail :</strong> contact@gouv.bj</li>
+      <li><strong>E-mail :</strong> contact@gouv.example</li>
     </ul>
 
     <h2>Directeur de la publication</h2>

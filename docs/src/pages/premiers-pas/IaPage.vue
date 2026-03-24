@@ -469,7 +469,7 @@
               >
             </td>
             <td>Génère une page d'accueil de service public</td>
-            <td>—</td>
+            <td>-</td>
           </tr>
           <tr>
             <td>

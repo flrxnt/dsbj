@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/WCAG-2.1%20AA-006A4E" alt="Conformité WCAG 2.1 AA" />
 </p>
 
-# DSBJ — Design Système du Bénin
+# DSBJ - Design Système du Bénin
 
 Le **Design Système du Bénin (DSBJ)** est l'outil destiné à produire les interfaces officielles des services publics numériques. Il regroupe un ensemble de règles et de composants réutilisables pour fournir des services numériques simples, accessibles et reconnaissables.
 

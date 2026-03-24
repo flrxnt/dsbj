@@ -21,7 +21,7 @@ function readDocsFile(filename: string): string {
 const server = new McpServer({
   name: 'dsbj',
   version: '1.0.0',
-  description: 'Serveur MCP du Design Système du Bénin — composants, fondamentaux, génération de markup et vérification d\'accessibilité.',
+  description: 'Serveur MCP du Design Système du Bénin - composants, fondamentaux, génération de markup et vérification d\'accessibilité.',
 });
 
 // ---------------------------------------------------------------------------
@@ -165,7 +165,7 @@ server.tool(
       return { content: [{ type: 'text', text: `Aucun composant trouvé pour "${query}". Essayez un autre terme.` }] };
     }
     const text = results.map(c =>
-      `- **${c.name}** (\`${c.slug}\`) — ${c.category} — ${c.description}`,
+      `- **${c.name}** (\`${c.slug}\`) - ${c.category} - ${c.description}`,
     ).join('\n');
     return { content: [{ type: 'text', text: `## ${results.length} résultat(s) pour "${query}"\n\n${text}` }] };
   },
