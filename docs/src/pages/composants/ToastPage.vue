@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import DocsA11yNote from '@docs/components/DocsA11yNote.vue'
-import DocsCode from '@docs/components/DocsCode.vue'
-import DocsPreview from '@docs/components/DocsPreview.vue'
-import DocsPropsTable from '@docs/components/DocsPropsTable.vue'
-import DocsSection from '@docs/components/DocsSection.vue'
+import DocsA11yNote from "@docs/components/DocsA11yNote.vue";
+import DocsCode from "@docs/components/DocsCode.vue";
+import DocsPreview from "@docs/components/DocsPreview.vue";
+import DocsPropsTable from "@docs/components/DocsPropsTable.vue";
+import DocsSection from "@docs/components/DocsSection.vue";
 
 const codeDeclarative = `<button data-bj-toast-trigger
         data-bj-toast-type="success"
         data-bj-toast-title="Succès"
         data-bj-toast-text="Opération terminée.">
   Valider
-</button>`
+</button>`;
 
-const codeProgrammatic = `import { toast } from '@gouvbj/dsbj';
+const codeProgrammatic = `import { toast } from '@flrxnt/dsbj';
 
 toast({
   title: 'Succès',
@@ -20,28 +20,28 @@ toast({
   type: 'success',
   duration: 5000,
   position: 'top-right',
-});`
+});`;
 
 const propsRows = [
   {
-    name: 'bj-toast-container',
-    description: 'Conteneur fixe empilant les toasts.',
+    name: "bj-toast-container",
+    description: "Conteneur fixe empilant les toasts.",
   },
-  { name: 'bj-toast', description: 'Notification individuelle.' },
+  { name: "bj-toast", description: "Notification individuelle." },
   {
-    name: 'bj-toast--info/success/warning/error',
-    description: 'Variante sémantique.',
+    name: "bj-toast--info/success/warning/error",
+    description: "Variante sémantique.",
   },
-  { name: 'bj-toast__progress', description: 'Barre de progression du délai.' },
+  { name: "bj-toast__progress", description: "Barre de progression du délai." },
   {
-    name: 'bj-toast-container--top-left',
-    description: 'Position coin supérieur gauche.',
+    name: "bj-toast-container--top-left",
+    description: "Position coin supérieur gauche.",
   },
   {
-    name: 'bj-toast-container--bottom-right',
-    description: 'Position coin inférieur droit.',
+    name: "bj-toast-container--bottom-right",
+    description: "Position coin inférieur droit.",
   },
-]
+];
 </script>
 
 <template>

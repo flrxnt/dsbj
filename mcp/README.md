@@ -1,4 +1,4 @@
-# @gouvbj/dsbj-mcp
+# @flrxnt/dsbj-mcp
 
 Serveur [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) pour le **Design Système du Bénin (DSBJ)**. Il expose les composants, fondamentaux et règles d'accessibilité du DSBJ aux assistants IA (Cursor, Claude, etc.).
 

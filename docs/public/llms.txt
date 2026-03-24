@@ -1,9 +1,9 @@
 # DSBJ - Design Système du Bénin
 
-> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 40 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@gouvbj/dsbj`.
+> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 40 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
 
 Informations clés :
-- Package npm : `@gouvbj/dsbj` (ES module + UMD + CSS)
+- Package npm : `@flrxnt/dsbj` (ES module + UMD + CSS)
 - Préfixe CSS : `bj-` (ex: `bj-btn`, `bj-card`, `bj-header`)
 - Variables CSS : `--bj-*` (ex: `--bj-color-vert-benin-main-491`, `--bj-spacing-4v`)
 - Thème sombre : attribut `data-bj-theme="dark"` sur `<html>`
@@ -15,7 +15,7 @@ Informations clés :
 
 ## Installation
 
-- [Guide d'installation](https://design.gouv.bj/docs/premiers-pas/installation.html): npm install @gouvbj/dsbj, CDN unpkg, import SCSS
+- [Guide d'installation](https://design.gouv.bj/docs/premiers-pas/installation.html): npm install @flrxnt/dsbj, CDN unpkg, import SCSS
 - [Guide d'utilisation](https://design.gouv.bj/docs/premiers-pas/utilisation.html): Structure de page HTML, thèmes, initialisation JS
 
 ## Fondamentaux

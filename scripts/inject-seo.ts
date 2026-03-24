@@ -24,7 +24,7 @@ interface PageMeta {
 const PAGE_DESCRIPTIONS: Record<string, PageMeta> = {
   'index.html': { description: 'DSBJ - Le Design Système officiel de la République du Bénin. 40 composants HTML/CSS/JS accessibles pour construire des interfaces numériques gouvernementales.', priority: '1.0' },
   'premiers-pas/index.html': { description: 'Premiers pas avec le DSBJ : présentation du Design Système du Bénin, guide de démarrage pour les équipes de développement.', priority: '0.8' },
-  'premiers-pas/installation.html': { description: 'Installer le DSBJ via npm, CDN ou téléchargement. Paquet @gouvbj/dsbj avec CSS, JS ES module et UMD.', priority: '0.8' },
+  'premiers-pas/installation.html': { description: 'Installer le DSBJ via npm, CDN ou téléchargement. Paquet @flrxnt/dsbj avec CSS, JS ES module et UMD.', priority: '0.8' },
   'premiers-pas/utilisation.html': { description: 'Guide d\'utilisation du DSBJ : structure HTML de base, préfixe CSS bj-, thème sombre, initialisation JavaScript.', priority: '0.8' },
   'premiers-pas/ia.html': { description: 'Utiliser le DSBJ avec l\'IA : fichier llms.txt, règles Cursor, serveur MCP et prompts pour générer du code conforme.', priority: '0.7' },
   'fondamentaux/index.html': { description: 'Fondamentaux du DSBJ : couleurs, typographie, grille, espacement, icônes et principes du Design Système du Bénin.', priority: '0.8' },

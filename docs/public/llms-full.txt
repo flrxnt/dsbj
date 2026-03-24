@@ -1,13 +1,13 @@
 # DSBJ - Design Système du Bénin - Documentation complète
 
-> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 40 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@gouvbj/dsbj`.
+> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 40 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
 
 ## Informations générales
 
-- **Package** : `@gouvbj/dsbj` v1.0.0
-- **Installation** : `npm install @gouvbj/dsbj` ou `bun add @gouvbj/dsbj`
-- **CDN** : `https://unpkg.com/@gouvbj/dsbj@1.0.0/dist/dsbj.css` + `dsbj.umd.js`
-- **Imports** : `import '@gouvbj/dsbj'` (auto-init) ou `import '@gouvbj/dsbj/css'` (CSS seul) ou `@use '@gouvbj/dsbj/scss'` (SCSS)
+- **Package** : `@flrxnt/dsbj` v1.0.0
+- **Installation** : `npm install @flrxnt/dsbj` ou `bun add @flrxnt/dsbj`
+- **CDN** : `https://unpkg.com/@flrxnt/dsbj@1.0.0/dist/dsbj.css` + `dsbj.umd.js`
+- **Imports** : `import '@flrxnt/dsbj'` (auto-init) ou `import '@flrxnt/dsbj/css'` (CSS seul) ou `@use '@flrxnt/dsbj/scss'` (SCSS)
 - **Préfixe CSS** : toutes les classes utilisent `bj-`, toutes les variables `--bj-*`
 - **Thème sombre** : `<html data-bj-theme="dark">` ou automatique via `prefers-color-scheme`
 - **Polices** : Open Sans (400, 500, 600, 700) pour le corps, Spectral (400, 600) pour titres éditoriaux

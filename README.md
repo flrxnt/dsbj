@@ -5,13 +5,13 @@ Système de design gouvernemental de la République du Bénin. Composants, style
 ## Installation
 
 ```bash
-npm install @gouvbj/dsbj
+npm install @flrxnt/dsbj
 ```
 
 ### Import ES Module
 
 ```js
-import '@gouvbj/dsbj';
+import '@flrxnt/dsbj';
 ```
 
 Le module importe automatiquement les styles CSS et initialise les composants JavaScript au chargement du DOM.
@@ -19,26 +19,26 @@ Le module importe automatiquement les styles CSS et initialise les composants Ja
 ### Import CSS seul
 
 ```html
-<link rel="stylesheet" href="node_modules/@gouvbj/dsbj/dist/dsbj.css">
+<link rel="stylesheet" href="node_modules/@flrxnt/dsbj/dist/dsbj.css">
 ```
 
 Ou via le point d'export :
 
 ```js
-import '@gouvbj/dsbj/css';
+import '@flrxnt/dsbj/css';
 ```
 
 ### Import SCSS (personnalisation avancée)
 
 ```scss
-@use '@gouvbj/dsbj/scss' as *;
+@use '@flrxnt/dsbj/scss' as *;
 ```
 
 ### CDN
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@gouvbj/dsbj@1.0.0/dist/dsbj.css">
-<script src="https://unpkg.com/@gouvbj/dsbj@1.0.0/dist/dsbj.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@flrxnt/dsbj@1.0.0/dist/dsbj.css">
+<script src="https://unpkg.com/@flrxnt/dsbj@1.0.0/dist/dsbj.umd.js"></script>
 ```
 
 ## Développement
