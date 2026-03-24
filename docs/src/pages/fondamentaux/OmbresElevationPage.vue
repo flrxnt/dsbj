@@ -2,19 +2,58 @@
 import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Ombres et élévation',
+      desc:
+        'Jetons d’ombre, de rayon et de transition pour hiérarchiser l’interface sans excès.',
+      'section-ombres': 'Ombres',
+      'section-rayons': 'Rayons de bordure',
+      thToken: 'Jeton',
+      'section-transitions': 'Transitions',
+      thValue: 'Valeur',
+      thUsage: 'Usage',
+      usageFast: 'Hover, focus légers',
+      usageNormal: 'Ouvertures, panneaux',
+      usageSlow: 'Transitions plus visibles',
+      usageEasing: 'Courbe standard matérielle',
+      'radius-row':
+        '{xs} à {xl}, {full}, {pill}',
+    },
+    en: {
+      title: 'Shadows and elevation',
+      desc:
+        'Shadow, radius, and transition tokens to layer the UI without excess.',
+      'section-ombres': 'Shadows',
+      'section-rayons': 'Border radii',
+      thToken: 'Token',
+      'section-transitions': 'Transitions',
+      thValue: 'Value',
+      thUsage: 'Usage',
+      usageFast: 'Light hover and focus',
+      usageNormal: 'Open states, panels',
+      usageSlow: 'More noticeable transitions',
+      usageEasing: 'Standard material easing curve',
+      'radius-row':
+        '{xs} to {xl}, {full}, {pill}',
+    },
+  },
+})
 
 const codeTransition =
   'transition: color var(--bj-duration-fast) var(--bj-easing);'
 </script>
 
 <template>
-  <h1 class="bj-h1">Ombres et élévation</h1>
+  <h1 class="bj-h1">{{ t('title') }}</h1>
   <p class="bj-text-md bj-text-alt">
-    Jetons d’ombre, de rayon et de transition pour hiérarchiser
-    l’interface sans excès.
+    {{ t('desc') }}
   </p>
 
-  <DocsSection id="ombres" title="Ombres">
+  <DocsSection id="ombres" :title="t('section-ombres')">
     <DocsPreview>
       <div class="bj-grid-row bj-grid-row--gutters">
         <div class="bj-col-12 bj-col-sm-6 bj-col-lg-4">
@@ -81,7 +120,7 @@ const codeTransition =
     </DocsPreview>
   </DocsSection>
 
-  <DocsSection id="rayons-bordure" title="Rayons de bordure">
+  <DocsSection id="rayons-bordure" :title="t('section-rayons')">
     <DocsPreview
       class="bj-d-flex bj-flex-wrap bj-gap-4v bj-items-end"
     >
@@ -173,50 +212,61 @@ const codeTransition =
     <table class="docs-props">
       <thead>
         <tr>
-          <th>Jeton</th>
+          <th>{{ t('thToken') }}</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>
-            <code>--bj-radius-xs</code> à <code>--bj-radius-xl</code>,
-            <code>--bj-radius-full</code>,
-            <code>--bj-radius-pill</code>
+            <i18n-t keypath="radius-row">
+              <template #xs>
+                <code>--bj-radius-xs</code>
+              </template>
+              <template #xl>
+                <code>--bj-radius-xl</code>
+              </template>
+              <template #full>
+                <code>--bj-radius-full</code>
+              </template>
+              <template #pill>
+                <code>--bj-radius-pill</code>
+              </template>
+            </i18n-t>
           </td>
         </tr>
       </tbody>
     </table>
   </DocsSection>
 
-  <DocsSection id="transitions" title="Transitions">
+  <DocsSection id="transitions" :title="t('section-transitions')">
     <table class="docs-props">
       <thead>
         <tr>
-          <th>Jeton</th>
-          <th>Valeur</th>
-          <th>Usage</th>
+          <th>{{ t('thToken') }}</th>
+          <th>{{ t('thValue') }}</th>
+          <th>{{ t('thUsage') }}</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><code>--bj-duration-fast</code></td>
           <td>150&nbsp;ms</td>
-          <td>Hover, focus légers</td>
+          <td>{{ t('usageFast') }}</td>
         </tr>
         <tr>
           <td><code>--bj-duration-normal</code></td>
           <td>250&nbsp;ms</td>
-          <td>Ouvertures, panneaux</td>
+          <td>{{ t('usageNormal') }}</td>
         </tr>
         <tr>
           <td><code>--bj-duration-slow</code></td>
           <td>400&nbsp;ms</td>
-          <td>Transitions plus visibles</td>
+          <td>{{ t('usageSlow') }}</td>
         </tr>
         <tr>
           <td><code>--bj-easing</code></td>
           <td><code>cubic-bezier(0.4, 0, 0.2, 1)</code></td>
-          <td>Courbe standard matérielle</td>
+          <td>{{ t('usageEasing') }}</td>
         </tr>
       </tbody>
     </table>

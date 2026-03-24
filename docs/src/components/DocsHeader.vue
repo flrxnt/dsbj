@@ -62,8 +62,8 @@ onUnmounted(() => {
       <div class="bj-header__body">
         <RouterLink to="/" class="bj-header__brand">
           <div class="bj-logo">
-            <p>République<br />du Bénin</p>
-            <span class="bj-logo__motto">Fraternité, Justice, Travail</span>
+            <p>{{ t('header.republic') }}</p>
+            <span class="bj-logo__motto">{{ t('header.motto') }}</span>
           </div>
           <div class="bj-header__service">
             <span class="bj-header__service-title">DSBJ</span>
@@ -112,7 +112,7 @@ onUnmounted(() => {
             :aria-expanded="menuOpen"
             @click="toggleMenu"
           >
-            <i class="ri-menu-line" aria-hidden="true"></i> Menu
+            <i class="ri-menu-line" aria-hidden="true"></i> {{ t('header.menu') }}
           </button>
         </div>
       </div>
@@ -120,7 +120,7 @@ onUnmounted(() => {
         class="bj-header__nav"
         id="header-nav"
         role="navigation"
-        aria-label="Navigation principale"
+        :aria-label="t('header.main-nav')"
         v-bind="menuOpen ? { 'data-bj-expanded': '' } : {}"
       >
         <ul class="bj-header__nav-list">

@@ -2,6 +2,32 @@
 import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Icônes',
+      desc:
+        'Les icônes proviennent de {link}, chargées via CDN. Combinez les classes Remix ({ri}) avec {bjIcon} pour les tailles et couleurs du DSBJ.',
+      'section-sizes': 'Tailles',
+      'section-colors': 'Variantes de couleur',
+      'section-examples': 'Exemples de pictogrammes',
+      thPreview: 'Aperçu',
+      thRemixClass: 'Classe Remix',
+    },
+    en: {
+      title: 'Icons',
+      desc:
+        'Icons come from {link}, loaded via CDN. Combine Remix classes ({ri}) with {bjIcon} for DSBJ sizes and colors.',
+      'section-sizes': 'Sizes',
+      'section-colors': 'Color variants',
+      'section-examples': 'Pictogram examples',
+      thPreview: 'Preview',
+      thRemixClass: 'Remix class',
+    },
+  },
+})
 
 const codeIcon =
   '<i class="ri-home-line bj-icon bj-icon--md"></i>'
@@ -11,15 +37,22 @@ const codeIconColor =
 </script>
 
 <template>
-  <h1 class="bj-h1">Icônes</h1>
+  <h1 class="bj-h1">{{ t('title') }}</h1>
   <p class="bj-text-md bj-text-alt">
-    Les icônes proviennent de
-    <a href="https://remixicon.com/" class="bj-link">Remix Icon</a>,
-    chargées via CDN. Combinez les classes Remix (<code>ri-*</code>)
-    avec <code>bj-icon</code> pour les tailles et couleurs du DSBJ.
+    <i18n-t keypath="desc">
+      <template #link>
+        <a href="https://remixicon.com/" class="bj-link">Remix Icon</a>
+      </template>
+      <template #ri>
+        <code>ri-*</code>
+      </template>
+      <template #bjIcon>
+        <code>bj-icon</code>
+      </template>
+    </i18n-t>
   </p>
 
-  <DocsSection id="tailles-icones" title="Tailles">
+  <DocsSection id="tailles-icones" :title="t('section-sizes')">
     <DocsPreview
       class="bj-d-flex bj-items-center bj-gap-6v bj-flex-wrap"
     >
@@ -43,7 +76,7 @@ const codeIconColor =
     <DocsCode :code="codeIcon" />
   </DocsSection>
 
-  <DocsSection id="variantes-couleur" title="Variantes de couleur">
+  <DocsSection id="variantes-couleur" :title="t('section-colors')">
     <DocsPreview
       class="bj-d-flex bj-items-center bj-gap-6v bj-flex-wrap"
     >
@@ -71,12 +104,12 @@ const codeIconColor =
     <DocsCode :code="codeIconColor" />
   </DocsSection>
 
-  <DocsSection id="exemples-pictogrammes" title="Exemples de pictogrammes">
+  <DocsSection id="exemples-pictogrammes" :title="t('section-examples')">
     <table class="docs-props">
       <thead>
         <tr>
-          <th>Aperçu</th>
-          <th>Classe Remix</th>
+          <th>{{ t('thPreview') }}</th>
+          <th>{{ t('thRemixClass') }}</th>
         </tr>
       </thead>
       <tbody>

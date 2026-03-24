@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 export interface PropRow {
   name: string
   description: string
@@ -8,14 +10,16 @@ defineProps<{
   headers?: [string, string]
   rows: PropRow[]
 }>()
+
+const { t } = useI18n()
 </script>
 
 <template>
   <table class="docs-props">
     <thead>
       <tr>
-        <th>{{ headers?.[0] ?? 'Classe' }}</th>
-        <th>{{ headers?.[1] ?? 'Description' }}</th>
+        <th>{{ headers?.[0] ?? t('common.class') }}</th>
+        <th>{{ headers?.[1] ?? t('common.description') }}</th>
       </tr>
     </thead>
     <tbody>

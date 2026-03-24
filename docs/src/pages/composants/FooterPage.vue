@@ -1,9 +1,90 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
 import DocsA11yNote from '@docs/components/DocsA11yNote.vue'
 import DocsPropsTable from '@docs/components/DocsPropsTable.vue'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Pied de page',
+      desc:
+        'Liens d\'information, partenaires et mentions légales ; bande tricolore en bas.',
+      'sec-minimal': 'Footer minimal',
+      'sec-minimal-p':
+        'Version la plus simple : uniquement les liens légaux obligatoires et la mention de copyright. Idéal pour les applications internes ou les pages simples.',
+      'sec-2-col': 'Footer avec 2 colonnes',
+      'sec-2-col-p':
+        'Ajout de la zone supérieure avec deux colonnes de liens de navigation. La grille passe d\'une colonne sur mobile à deux colonnes sur tablette.',
+      'sec-4-col': 'Footer avec 4 colonnes',
+      'sec-4-col-p':
+        'Grille complète à quatre colonnes pour les portails riches en contenus. Passe à 2 colonnes sur tablette et 1 colonne sur mobile.',
+      'sec-partenaires': 'Footer avec partenaires',
+      'sec-partenaires-p':
+        'Le bloc partenaires est optionnel. Il s\'insère entre les colonnes de liens et la barre inférieure. Les logos sont centrés et redimensionnés à 3 rem de hauteur.',
+      'sec-complet': 'Footer complet',
+      'sec-complet-p':
+        'Combinaison de toutes les sections : 4 colonnes de liens, bloc partenaires et barre inférieure avec liens légaux détaillés. Convient aux portails institutionnels majeurs.',
+      'section-classes-css': 'Classes CSS',
+      'section-accessibilite': 'Accessibilité',
+      'a11y-note':
+        '<ul style="margin: 0; padding-left: 1.25rem;"><li>Utilisez <code>role="contentinfo"</code> sur l\'élément <code>&lt;footer&gt;</code>.</li><li>Chaque logo partenaire doit avoir un attribut <code>alt</code> explicite décrivant l\'organisme.</li><li>Les liens doivent être suffisamment descriptifs (éviter « cliquez ici »).</li><li>Utilisez une liste <code>&lt;ul&gt;</code> pour les liens légaux afin de faciliter la navigation au lecteur d\'écran.</li></ul>',
+      'prop-footer': 'Conteneur principal du pied de page. Affiche la bande tricolore via ::after.',
+      'prop-footer-top': 'Zone supérieure contenant les colonnes de liens. Séparée par une bordure basse.',
+      'prop-footer-top-row': 'Grille responsive des colonnes (1 col mobile, 2 col tablette, 4 col desktop).',
+      'prop-footer-col-title': 'Titre de colonne en majuscules avec graisse bold.',
+      'prop-footer-list': 'Liste verticale de liens dans une colonne.',
+      'prop-footer-link': 'Lien de navigation dans une colonne. Change de couleur au survol.',
+      'prop-footer-partners': 'Bloc optionnel pour les logos des partenaires. Séparé par une bordure basse.',
+      'prop-footer-partners-title': 'Titre centré du bloc partenaires.',
+      'prop-footer-partners-logos': 'Conteneur flex centré pour les logos (images hauteur 3rem).',
+      'prop-footer-bottom': 'Barre inférieure avec liens légaux et copyright.',
+      'prop-footer-bottom-list': 'Liste flex des liens légaux, centrée et avec retour à la ligne.',
+      'prop-footer-bottom-link': 'Lien légal en taille xs.',
+      'prop-footer-copy': 'Mention de copyright centrée.',
+    },
+    en: {
+      title: 'Footer',
+      desc:
+        'Information links, partners and legal notices; tricolor band at the bottom.',
+      'sec-minimal': 'Minimal footer',
+      'sec-minimal-p':
+        'Simplest version: only mandatory legal links and copyright. Ideal for internal apps or simple pages.',
+      'sec-2-col': 'Footer with 2 columns',
+      'sec-2-col-p':
+        'Adds the upper area with two columns of navigation links. The grid goes from one column on mobile to two on tablet.',
+      'sec-4-col': 'Footer with 4 columns',
+      'sec-4-col-p':
+        'Full four-column grid for content-rich portals. Two columns on tablet, one on mobile.',
+      'sec-partenaires': 'Footer with partners',
+      'sec-partenaires-p':
+        'The partners block is optional. It sits between the link columns and the bottom bar. Logos are centered and sized to 3 rem height.',
+      'sec-complet': 'Complete footer',
+      'sec-complet-p':
+        'Combines all sections: four link columns, partners block and bottom bar with detailed legal links. Suited to major institutional portals.',
+      'section-classes-css': 'CSS classes',
+      'section-accessibilite': 'Accessibility',
+      'a11y-note':
+        '<ul style="margin: 0; padding-left: 1.25rem;"><li>Use <code>role="contentinfo"</code> on the <code>&lt;footer&gt;</code> element.</li><li>Each partner logo needs an explicit <code>alt</code> describing the organization.</li><li>Links should be descriptive (avoid “click here”).</li><li>Use a <code>&lt;ul&gt;</code> for legal links to help screen reader navigation.</li></ul>',
+      'prop-footer': 'Main footer container. Shows the tricolor band via ::after.',
+      'prop-footer-top': 'Upper area with link columns. Separated by a bottom border.',
+      'prop-footer-top-row': 'Responsive column grid (1 col mobile, 2 tablet, 4 desktop).',
+      'prop-footer-col-title': 'Column title in uppercase with bold weight.',
+      'prop-footer-list': 'Vertical list of links in a column.',
+      'prop-footer-link': 'Column nav link. Color changes on hover.',
+      'prop-footer-partners': 'Optional partner logos block. Separated by a bottom border.',
+      'prop-footer-partners-title': 'Centered partners block title.',
+      'prop-footer-partners-logos': 'Centered flex container for logos (3rem image height).',
+      'prop-footer-bottom': 'Bottom bar with legal links and copyright.',
+      'prop-footer-bottom-list': 'Flex list of legal links, centered with wrapping.',
+      'prop-footer-bottom-link': 'Legal link in xs size.',
+      'prop-footer-copy': 'Centered copyright line.',
+    },
+  },
+})
 
 const codeMinimal = `<footer class="bj-footer" role="contentinfo">
   <div class="bj-container">
@@ -194,41 +275,49 @@ const codeComplet = `<footer class="bj-footer" role="contentinfo">
   </div>
 </footer>`
 
-const propsRows = [
-  { name: 'bj-footer', description: 'Conteneur principal du pied de page. Affiche la bande tricolore via ::after.' },
-  { name: 'bj-footer__top', description: 'Zone supérieure contenant les colonnes de liens. Séparée par une bordure basse.' },
-  { name: 'bj-footer__top-row', description: 'Grille responsive des colonnes (1 col mobile, 2 col tablette, 4 col desktop).' },
-  { name: 'bj-footer__col-title', description: 'Titre de colonne en majuscules avec graisse bold.' },
-  { name: 'bj-footer__list', description: 'Liste verticale de liens dans une colonne.' },
-  { name: 'bj-footer__link', description: 'Lien de navigation dans une colonne. Change de couleur au survol.' },
-  { name: 'bj-footer__partners', description: 'Bloc optionnel pour les logos des partenaires. Séparé par une bordure basse.' },
-  { name: 'bj-footer__partners-title', description: 'Titre centré du bloc partenaires.' },
-  { name: 'bj-footer__partners-logos', description: 'Conteneur flex centré pour les logos (images hauteur 3rem).' },
-  { name: 'bj-footer__bottom', description: 'Barre inférieure avec liens légaux et copyright.' },
-  { name: 'bj-footer__bottom-list', description: 'Liste flex des liens légaux, centrée et avec retour à la ligne.' },
-  { name: 'bj-footer__bottom-link', description: 'Lien légal en taille xs.' },
-  { name: 'bj-footer__copy', description: 'Mention de copyright centrée.' },
-]
+const propsRows = computed(() => [
+  { name: 'bj-footer', description: t('prop-footer') },
+  { name: 'bj-footer__top', description: t('prop-footer-top') },
+  { name: 'bj-footer__top-row', description: t('prop-footer-top-row') },
+  { name: 'bj-footer__col-title', description: t('prop-footer-col-title') },
+  { name: 'bj-footer__list', description: t('prop-footer-list') },
+  { name: 'bj-footer__link', description: t('prop-footer-link') },
+  { name: 'bj-footer__partners', description: t('prop-footer-partners') },
+  {
+    name: 'bj-footer__partners-title',
+    description: t('prop-footer-partners-title'),
+  },
+  {
+    name: 'bj-footer__partners-logos',
+    description: t('prop-footer-partners-logos'),
+  },
+  { name: 'bj-footer__bottom', description: t('prop-footer-bottom') },
+  {
+    name: 'bj-footer__bottom-list',
+    description: t('prop-footer-bottom-list'),
+  },
+  {
+    name: 'bj-footer__bottom-link',
+    description: t('prop-footer-bottom-link'),
+  },
+  { name: 'bj-footer__copy', description: t('prop-footer-copy') },
+])
 </script>
 
 <template>
   <h1 class="bj-h1" style="margin-top: var(--bj-spacing-4v)">
-    Pied de page
+    {{ t('title') }}
   </h1>
   <p
     class="bj-text-lg"
     style="max-width: 44rem; color: var(--bj-text-alt)"
   >
-    Liens d'information, partenaires et mentions légales ; bande
-    tricolore en bas.
+    {{ t('desc') }}
   </p>
 
-  <!-- Exemple 1 : Minimal -->
-  <DocsSection id="sec-minimal" title="Footer minimal">
+  <DocsSection id="sec-minimal" :title="t('sec-minimal')">
     <p class="bj-text-md" style="color: var(--bj-text-alt)">
-      Version la plus simple : uniquement les liens légaux obligatoires
-      et la mention de copyright. Idéal pour les applications internes
-      ou les pages simples.
+      {{ t('sec-minimal-p') }}
     </p>
     <DocsPreview style="padding: 0; overflow: hidden">
       <footer class="bj-footer" role="contentinfo">
@@ -247,12 +336,9 @@ const propsRows = [
     <DocsCode :code="codeMinimal" />
   </DocsSection>
 
-  <!-- Exemple 2 : 2 colonnes -->
-  <DocsSection id="sec-2-colonnes" title="Footer avec 2 colonnes">
+  <DocsSection id="sec-2-colonnes" :title="t('sec-2-col')">
     <p class="bj-text-md" style="color: var(--bj-text-alt)">
-      Ajout de la zone supérieure avec deux colonnes de liens de
-      navigation. La grille passe d'une colonne sur mobile à deux
-      colonnes sur tablette.
+      {{ t('sec-2-col-p') }}
     </p>
     <DocsPreview style="padding: 0; overflow: hidden">
       <footer class="bj-footer" role="contentinfo">
@@ -288,12 +374,9 @@ const propsRows = [
     <DocsCode :code="code2Colonnes" />
   </DocsSection>
 
-  <!-- Exemple 3 : 4 colonnes -->
-  <DocsSection id="sec-4-colonnes" title="Footer avec 4 colonnes">
+  <DocsSection id="sec-4-colonnes" :title="t('sec-4-col')">
     <p class="bj-text-md" style="color: var(--bj-text-alt)">
-      Grille complète à quatre colonnes pour les portails riches en
-      contenus. Passe à 2 colonnes sur tablette et 1 colonne sur
-      mobile.
+      {{ t('sec-4-col-p') }}
     </p>
     <DocsPreview style="padding: 0; overflow: hidden">
       <footer class="bj-footer" role="contentinfo">
@@ -349,12 +432,9 @@ const propsRows = [
     <DocsCode :code="code4Colonnes" />
   </DocsSection>
 
-  <!-- Exemple 4 : Avec partenaires -->
-  <DocsSection id="sec-partenaires" title="Footer avec partenaires">
+  <DocsSection id="sec-partenaires" :title="t('sec-partenaires')">
     <p class="bj-text-md" style="color: var(--bj-text-alt)">
-      Le bloc partenaires est optionnel. Il s'insère entre les colonnes
-      de liens et la barre inférieure. Les logos sont centrés et
-      redimensionnés à 3 rem de hauteur.
+      {{ t('sec-partenaires-p') }}
     </p>
     <DocsPreview style="padding: 0; overflow: hidden">
       <footer class="bj-footer" role="contentinfo">
@@ -398,12 +478,9 @@ const propsRows = [
     <DocsCode :code="codePartenaires" />
   </DocsSection>
 
-  <!-- Exemple 5 : Complet -->
-  <DocsSection id="sec-complet" title="Footer complet">
+  <DocsSection id="sec-complet" :title="t('sec-complet')">
     <p class="bj-text-md" style="color: var(--bj-text-alt)">
-      Combinaison de toutes les sections : 4 colonnes de liens, bloc
-      partenaires et barre inférieure avec liens légaux détaillés.
-      Convient aux portails institutionnels majeurs.
+      {{ t('sec-complet-p') }}
     </p>
     <DocsPreview style="padding: 0; overflow: hidden">
       <footer class="bj-footer" role="contentinfo">
@@ -467,18 +544,13 @@ const propsRows = [
     <DocsCode :code="codeComplet" />
   </DocsSection>
 
-  <DocsSection id="sec-classes-css" title="Classes CSS">
+  <DocsSection id="sec-classes-css" :title="t('section-classes-css')">
     <DocsPropsTable :rows="propsRows" />
   </DocsSection>
 
-  <DocsSection id="sec-accessibilité" title="Accessibilité">
+  <DocsSection id="sec-accessibilité" :title="t('section-accessibilite')">
     <DocsA11yNote>
-      <ul style="margin: 0; padding-left: 1.25rem;">
-        <li>Utilisez <code>role="contentinfo"</code> sur l'élément <code>&lt;footer&gt;</code>.</li>
-        <li>Chaque logo partenaire doit avoir un attribut <code>alt</code> explicite décrivant l'organisme.</li>
-        <li>Les liens doivent être suffisamment descriptifs (éviter « cliquez ici »).</li>
-        <li>Utilisez une liste <code>&lt;ul&gt;</code> pour les liens légaux afin de faciliter la navigation au lecteur d'écran.</li>
-      </ul>
+      <div v-html="t('a11y-note')" />
     </DocsA11yNote>
   </DocsSection>
 </template>

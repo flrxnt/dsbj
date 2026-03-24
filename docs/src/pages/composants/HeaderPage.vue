@@ -1,42 +1,88 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
 import DocsA11yNote from '@docs/components/DocsA11yNote.vue'
 import DocsPropsTable from '@docs/components/DocsPropsTable.vue'
 
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'En-tête de page',
+      desc:
+        'Identité de l’État, service ou portail, raccourcis et navigation ; bande tricolore en haut.',
+      'section-exemple': 'Exemple',
+      'section-variantes': 'Variantes',
+      'section-classes-css': 'Classes CSS',
+      'section-accessibilite': 'Accessibilité',
+      'variantes-desc':
+        'Sur mobile, <code>data-bj-header-menu</code> avec <code>aria-controls</code> vers l’<code>id</code> du <code>nav</code> ouvre le menu (<code>data-bj-expanded</code> sur le nav).',
+      'prop-bj-header': 'En-tête (bande tricolore).',
+      'prop-bj-header__body': 'Ligne marque / outils.',
+      'prop-bj-header__brand': 'Lien d’accueil.',
+      'prop-bj-header__service': 'Bloc titre service.',
+      'prop-bj-header__tools': 'Raccourcis.',
+      'prop-bj-header__menu-btn': 'Menu mobile.',
+      'prop-bj-header__nav': 'Navigation.',
+      'a11y-note':
+        'Synchronisez <code>aria-expanded</code> du bouton burger avec l’ouverture du panneau.',
+    },
+    en: {
+      title: 'Page header',
+      desc:
+        'Institutional identity, service or portal, shortcuts and navigation; tricolor band at the top.',
+      'section-exemple': 'Example',
+      'section-variantes': 'Variants',
+      'section-classes-css': 'CSS classes',
+      'section-accessibilite': 'Accessibility',
+      'variantes-desc':
+        'On mobile, <code>data-bj-header-menu</code> with <code>aria-controls</code> pointing to the <code>nav</code> <code>id</code> opens the menu (<code>data-bj-expanded</code> on the nav).',
+      'prop-bj-header': 'Header (tricolor band).',
+      'prop-bj-header__body': 'Brand / tools row.',
+      'prop-bj-header__brand': 'Home link.',
+      'prop-bj-header__service': 'Service title block.',
+      'prop-bj-header__tools': 'Shortcuts.',
+      'prop-bj-header__menu-btn': 'Mobile menu.',
+      'prop-bj-header__nav': 'Navigation.',
+      'a11y-note':
+        'Keep the burger button’s <code>aria-expanded</code> in sync with the panel open state.',
+    },
+  },
+})
+
 const codeExemple = `<header class="bj-header" role="banner">…</header>`
 
-const propsRows = [
-  { name: 'bj-header', description: 'En-tête (bande tricolore).' },
-  { name: 'bj-header__body', description: 'Ligne marque / outils.' },
-  { name: 'bj-header__brand', description: 'Lien d’accueil.' },
-  { name: 'bj-header__service', description: 'Bloc titre service.' },
+const propsRows = computed(() => [
+  { name: 'bj-header', description: t('prop-bj-header') },
+  { name: 'bj-header__body', description: t('prop-bj-header__body') },
+  { name: 'bj-header__brand', description: t('prop-bj-header__brand') },
+  { name: 'bj-header__service', description: t('prop-bj-header__service') },
   {
     name: 'bj-header__tools / bj-header__tools-link',
-    description: 'Raccourcis.',
+    description: t('prop-bj-header__tools'),
   },
-  { name: 'bj-header__menu-btn', description: 'Menu mobile.' },
+  { name: 'bj-header__menu-btn', description: t('prop-bj-header__menu-btn') },
   {
     name: 'bj-header__nav / bj-header__nav-list / bj-header__nav-link',
-    description: 'Navigation.',
+    description: t('prop-bj-header__nav'),
   },
-]
+])
 </script>
 
 <template>
   <h1 class="bj-h1" style="margin-top: var(--bj-spacing-4v)">
-    En-tête de page
+    {{ t('title') }}
   </h1>
   <p
     class="bj-text-lg"
     style="max-width: 44rem; color: var(--bj-text-alt)"
   >
-    Identité de l’État, service ou portail, raccourcis et navigation ;
-    bande tricolore en haut.
+    {{ t('desc') }}
   </p>
 
-  <DocsSection id="sec-exemple" title="Exemple">
+  <DocsSection id="sec-exemple" :title="t('section-exemple')">
     <DocsPreview style="padding: 0; overflow: hidden">
       <header class="bj-header" role="banner">
         <div class="bj-container">
@@ -97,23 +143,21 @@ const propsRows = [
     <DocsCode :code="codeExemple" />
   </DocsSection>
 
-  <DocsSection id="sec-variantes" title="Variantes">
-    <p class="bj-text-md" style="color: var(--bj-text-alt)">
-      Sur mobile, <code>data-bj-header-menu</code> avec
-      <code>aria-controls</code> vers l’<code>id</code> du
-      <code>nav</code> ouvre le menu (<code>data-bj-expanded</code>
-      sur le nav).
-    </p>
+  <DocsSection id="sec-variantes" :title="t('section-variantes')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('variantes-desc')"
+    />
   </DocsSection>
 
-  <DocsSection id="sec-classes-css" title="Classes CSS">
+  <DocsSection id="sec-classes-css" :title="t('section-classes-css')">
     <DocsPropsTable :rows="propsRows" />
   </DocsSection>
 
-  <DocsSection id="sec-accessibilité" title="Accessibilité">
+  <DocsSection id="sec-accessibilité" :title="t('section-accessibilite')">
     <DocsA11yNote>
-      Synchronisez <code>aria-expanded</code> du bouton burger avec
-      l’ouverture du panneau.
+      <span v-html="t('a11y-note')" />
     </DocsA11yNote>
   </DocsSection>
 </template>

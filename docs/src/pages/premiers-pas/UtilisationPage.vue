@@ -1,30 +1,25 @@
 <template>
   <h1 class="bj-h1" style="margin-bottom: var(--bj-spacing-6v)">
-    Utilisation
+    {{ t('title') }}
   </h1>
 
-  <DocsSection id="structure-html" title="Structure HTML de base">
+  <DocsSection id="structure-html" :title="t('section-structure-html')">
     <p style="margin-bottom: var(--bj-spacing-3v); max-width: 40rem">
-      Une page conforme au DSBJ repose sur une hiérarchie sémantique
-      claire : en-tête de service, contenu principal identifiable, pied
-      de page institutionnel. Les polices recommandées et les icônes
-      peuvent être chargées depuis des réseaux de confiance, comme dans
-      l’exemple ci-dessous.
+      {{ t('structure-html-intro') }}
     </p>
     <DocsCode :code="structureHtmlSnippet" />
   </DocsSection>
 
-  <DocsSection id="prefixe-css" title="Préfixe CSS">
+  <DocsSection id="prefixe-css" :title="t('section-prefix')">
     <p style="margin-bottom: var(--bj-spacing-3v); max-width: 40rem">
-      Toutes les classes livrées par le DSBJ sont préfixées par
+      {{ t('prefix-a') }}
       <code
         style="
           font-family: var(--bj-font-mono);
           font-size: var(--bj-fs-sm);
         "
         >bj-</code
-      >
-      (par exemple
+      >{{ t('prefix-b') }}
       <code
         style="
           font-family: var(--bj-font-mono);
@@ -45,105 +40,91 @@
           font-size: var(--bj-fs-sm);
         "
         >bj-header</code
-      >). Cette convention limite les collisions avec les feuilles de
-      style existantes et facilite l’audit de conformité. Les variables
-      de thème suivent le préfixe
+      >{{ t('prefix-c') }}
       <code
         style="
           font-family: var(--bj-font-mono);
           font-size: var(--bj-fs-sm);
         "
         >--bj-</code
-      >.
+      >{{ t('prefix-d') }}
     </p>
   </DocsSection>
 
-  <DocsSection id="theme-sombre" title="Thème sombre">
+  <DocsSection id="theme-sombre" :title="t('section-theme')">
     <p style="margin-bottom: var(--bj-spacing-3v); max-width: 40rem">
-      Le jeu de couleurs sombre s’active en positionnant l’attribut
+      {{ t('theme-a') }}
       <code
         style="
           font-family: var(--bj-font-mono);
           font-size: var(--bj-fs-sm);
         "
         >data-bj-theme</code
-      >
-      sur l’élément racine
+      >{{ t('theme-b') }}
       <code
         style="
           font-family: var(--bj-font-mono);
           font-size: var(--bj-fs-sm);
         "
         >&lt;html&gt;</code
-      >. Vous pouvez l’aligner sur la préférence système de
-      l’utilisateur au moyen d’une requête média CSS.
+      >{{ t('theme-c') }}
     </p>
     <DocsCode code='<html lang="fr" data-bj-theme="dark">' />
     <p style="margin-bottom: var(--bj-spacing-3v); max-width: 40rem">
-      Pour suivre la préférence « thème sombre » du système (<code
+      {{ t('theme-pref-a') }}<code
         style="
           font-family: var(--bj-font-mono);
           font-size: var(--bj-fs-sm);
         "
         >prefers-color-scheme: dark</code
-      >), adaptez l’attribut lors du chargement et lors des changements
-      de préférence, par exemple :
+      >{{ t('theme-pref-b') }}
     </p>
     <DocsCode :code="themeOsSnippet" />
     <p style="margin-top: var(--bj-spacing-4v); max-width: 40rem">
-      Lorsque l’utilisateur impose un mode dans les paramètres du site,
-      conservez sa valeur (par exemple
+      {{ t('theme-user-a') }}
       <code
         style="
           font-family: var(--bj-font-mono);
           font-size: var(--bj-fs-sm);
         "
         >data-bj-theme="light"</code
-      >) et n’écrasez pas ce choix avec la détection système.
+      >{{ t('theme-user-b') }}
     </p>
   </DocsSection>
 
-  <DocsSection id="init-js" title="Initialisation JavaScript">
+  <DocsSection id="init-js" :title="t('section-init')">
     <p style="margin-bottom: var(--bj-spacing-3v); max-width: 40rem">
-      Lorsque le module
+      {{ t('init-a') }}
       <code
         style="
           font-family: var(--bj-font-mono);
           font-size: var(--bj-fs-sm);
         "
         >dsbj.es.js</code
-      >
-      est chargé dans le navigateur, le script enregistre les
-      comportements interactifs et exécute une initialisation globale au
-      moment du
+      >{{ t('init-b') }}
       <code
         style="
           font-family: var(--bj-font-mono);
           font-size: var(--bj-fs-sm);
         "
         >DOMContentLoaded</code
-      >
-      (ou immédiatement si le document est déjà prêt). Les composants
-      concernés s’appuient sur des attributs
+      >{{ t('init-c') }}
       <code
         style="
           font-family: var(--bj-font-mono);
           font-size: var(--bj-fs-sm);
         "
         >data-bj-*</code
-      >
-      pour relier le balisage aux gestionnaires d’événements.
+      >{{ t('init-d') }}
     </p>
     <p style="margin-bottom: var(--bj-spacing-3v); max-width: 40rem">
-      Exemples d’attributs :
-      <code
+      {{ t('init-label') }}<code
         style="
           font-family: var(--bj-font-mono);
           font-size: var(--bj-fs-sm);
         "
         >data-bj-header-menu</code
-      >
-      (menu mobile de l’en-tête),
+      >{{ t('init-header-hint') }},
       <code
         style="
           font-family: var(--bj-font-mono);
@@ -171,37 +152,124 @@
           font-size: var(--bj-fs-sm);
         "
         >data-bj-toggle</code
-      >. Référez-vous à la documentation des composants pour la liste
-      exhaustive et les valeurs attendues.
+      >{{ t('init-tail') }}
     </p>
   </DocsSection>
 
-  <DocsSection id="personnalisation" title="Personnalisation">
+  <DocsSection id="personnalisation" :title="t('section-custom')">
     <p style="margin-bottom: var(--bj-spacing-3v); max-width: 40rem">
-      Les couleurs, espacements et typographies sont exposés sous forme
-      de variables CSS. Vous pouvez les redéfinir après l’import de
+      {{ t('custom-a') }}
       <code
         style="
           font-family: var(--bj-font-mono);
           font-size: var(--bj-fs-sm);
         "
         >dsbj.css</code
-      >
-      pour adapter l’apparence tout en conservant la structure des
-      composants.
+      >{{ t('custom-b') }}
     </p>
     <DocsCode :code="customCssSnippet" />
     <p style="margin-top: var(--bj-spacing-4v); max-width: 40rem">
-      Pour des ajustements systématiques à la charte d’un ministère, la
-      compilation depuis les sources SCSS et la surcharge des jetons en
-      amont restent les approches recommandées.
+      {{ t('custom-note') }}
     </p>
   </DocsSection>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import DocsCode from '@docs/components/DocsCode.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Utilisation',
+      'section-structure-html': 'Structure HTML de base',
+      'structure-html-intro':
+        'Une page conforme au DSBJ repose sur une hiérarchie sémantique claire : en-tête de service, contenu principal identifiable, pied de page institutionnel. Les polices recommandées et les icônes peuvent être chargées depuis des réseaux de confiance, comme dans l’exemple ci-dessous.',
+      'section-prefix': 'Préfixe CSS',
+      'prefix-a': 'Toutes les classes livrées par le DSBJ sont préfixées par ',
+      'prefix-b': ' (par exemple ',
+      'prefix-c':
+        '). Cette convention limite les collisions avec les feuilles de style existantes et facilite l’audit de conformité. Les variables de thème suivent le préfixe ',
+      'prefix-d': '.',
+      'section-theme': 'Thème sombre',
+      'theme-a': 'Le jeu de couleurs sombre s’active en positionnant l’attribut ',
+      'theme-b': ' sur l’élément racine ',
+      'theme-c':
+        '. Vous pouvez l’aligner sur la préférence système de l’utilisateur au moyen d’une requête média CSS.',
+      'theme-pref-a':
+        'Pour suivre la préférence « thème sombre » du système (',
+      'theme-pref-b':
+        '), adaptez l’attribut lors du chargement et lors des changements de préférence, par exemple :',
+      'theme-user-a':
+        'Lorsque l’utilisateur impose un mode dans les paramètres du site, conservez sa valeur (par exemple ',
+      'theme-user-b':
+        ') et n’écrasez pas ce choix avec la détection système.',
+      'section-init': 'Initialisation JavaScript',
+      'init-a': 'Lorsque le module ',
+      'init-b':
+        ' est chargé dans le navigateur, le script enregistre les comportements interactifs et exécute une initialisation globale au moment du ',
+      'init-c':
+        ' (ou immédiatement si le document est déjà prêt). Les composants concernés s’appuient sur des attributs ',
+      'init-d':
+        ' pour relier le balisage aux gestionnaires d’événements.',
+      'init-label': 'Exemples d’attributs : ',
+      'init-header-hint': ' (menu mobile de l’en-tête)',
+      'init-tail':
+        '. Référez-vous à la documentation des composants pour la liste exhaustive et les valeurs attendues.',
+      'section-custom': 'Personnalisation',
+      'custom-a':
+        'Les couleurs, espacements et typographies sont exposés sous forme de variables CSS. Vous pouvez les redéfinir après l’import de ',
+      'custom-b':
+        ' pour adapter l’apparence tout en conservant la structure des composants.',
+      'custom-note':
+        'Pour des ajustements systématiques à la charte d’un ministère, la compilation depuis les sources SCSS et la surcharge des jetons en amont restent les approches recommandées.',
+    },
+    en: {
+      title: 'Usage',
+      'section-structure-html': 'Basic HTML structure',
+      'structure-html-intro':
+        'A DSBJ-compliant page relies on clear semantic hierarchy: a service header, identifiable main content, and an institutional footer. Recommended fonts and icons can be loaded from trusted networks, as in the example below.',
+      'section-prefix': 'CSS prefix',
+      'prefix-a': 'All classes shipped by DSBJ are prefixed with ',
+      'prefix-b': ' (for example ',
+      'prefix-c':
+        '). This limits collisions with existing stylesheets and makes compliance audits easier. Theme variables use the ',
+      'prefix-d': ' prefix.',
+      'section-theme': 'Dark theme',
+      'theme-a': 'The dark palette is enabled by setting the ',
+      'theme-b': ' attribute on the root ',
+      'theme-c':
+        ' element. You can align it with the user’s system preference using a CSS media query.',
+      'theme-pref-a': 'To follow the system’s “dark theme” preference (',
+      'theme-pref-b':
+        '), update the attribute on load and whenever the preference changes, for example:',
+      'theme-user-a':
+        'When the user sets a mode in site settings, keep that value (for example ',
+      'theme-user-b':
+        ') and do not override it with system detection.',
+      'section-init': 'JavaScript initialization',
+      'init-a': 'When the ',
+      'init-b':
+        ' module loads in the browser, the script registers interactive behaviors and runs a global initialization at ',
+      'init-c':
+        ' (or immediately if the document is already ready). Components rely on ',
+      'init-d':
+        ' attributes to connect markup to event handlers.',
+      'init-label': 'Example attributes: ',
+      'init-header-hint': ' (mobile header menu)',
+      'init-tail':
+        '. See each component’s docs for the full list and expected values.',
+      'section-custom': 'Customization',
+      'custom-a':
+        'Colors, spacing, and typography are exposed as CSS variables. You can override them after importing ',
+      'custom-b':
+        ' to adjust look and feel while keeping component structure.',
+      'custom-note':
+        'For systematic adjustments to a ministry’s brand guidelines, compiling from SCSS sources and overriding tokens upstream remain the recommended approaches.',
+    },
+  },
+})
 
 const structureHtmlSnippet = `<!DOCTYPE html>
 <html lang="fr" data-bj-theme="light">

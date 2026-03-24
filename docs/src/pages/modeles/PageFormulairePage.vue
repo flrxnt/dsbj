@@ -1,60 +1,117 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import { pageFormulaireCode } from './snippets/pageFormulaireCode'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Modèle de page formulaire',
+      'intro-1':
+        'Les démarches administratives en ligne s’appuient sur des formulaires clairs, étape par étape lorsque la procédure est longue. Le composant ',
+      'intro-2':
+        ' matérialise la progression ; les champs sont regroupés par groupes accessibles (',
+      'intro-3':
+        ') et les actions principales sont regroupées dans un ',
+      'intro-4': '.',
+      'section-structure': 'Structure des sections',
+      'struct-li-1-strong': 'En-tête et fil d’Ariane',
+      'struct-li-1': 'Repères constants pour l’usager.',
+      'struct-li-2-strong': 'Indicateur d’étapes',
+      'struct-li-2-after': ' pour les formulaires multi-écrans.',
+      'struct-li-3-strong': 'Titre et introduction',
+      'struct-li-3':
+        'Objet de la démarche, délais et documents requis.',
+      'struct-li-4-strong': 'Champs',
+      'struct-li-4':
+        'Saisie texte, liste déroulante, cases à cocher, boutons radio, pièce jointe.',
+      'struct-li-5-strong': 'Actions',
+      'struct-li-5': 'Soumission, enregistrement brouillon, annulation.',
+      'struct-li-6-strong': 'Pied de page',
+      'struct-li-6': 'Liens d’aide et mentions légales.',
+      'section-preview': 'Aperçu du gabarit',
+    },
+    en: {
+      title: 'Form page template',
+      'intro-1':
+        'Online administrative procedures rely on clear forms, step by step when the process is long. The ',
+      'intro-2':
+        ' component shows progress; fields are grouped in accessible groups (',
+      'intro-3':
+        ') and primary actions are grouped in a ',
+      'intro-4': '.',
+      'section-structure': 'Section structure',
+      'struct-li-1-strong': 'Header and breadcrumb',
+      'struct-li-1': 'Consistent landmarks for the user.',
+      'struct-li-2-strong': 'Step indicator',
+      'struct-li-2-after': ' for multi-screen forms.',
+      'struct-li-3-strong': 'Title and introduction',
+      'struct-li-3':
+        'Purpose of the procedure, deadlines and required documents.',
+      'struct-li-4-strong': 'Fields',
+      'struct-li-4':
+        'Text input, dropdown, checkboxes, radio buttons, attachment.',
+      'struct-li-5-strong': 'Actions',
+      'struct-li-5': 'Submit, save draft, cancel.',
+      'struct-li-6-strong': 'Footer',
+      'struct-li-6': 'Help links and legal notices.',
+      'section-preview': 'Template preview',
+    },
+  },
+})
 </script>
 
 <template>
   <h1 class="bj-h1" style="margin-bottom: var(--bj-spacing-4v)">
-    Modèle de page formulaire
+    {{ t('title') }}
   </h1>
   <p
     class="bj-text-lg"
     style="margin-bottom: var(--bj-spacing-6v); max-width: 40rem"
   >
-    Les démarches administratives en ligne s’appuient sur des formulaires
-    clairs, étape par étape lorsque la procédure est longue. Le composant
-    <code>bj-stepper</code> matérialise la progression ; les champs sont
-    regroupés par groupes accessibles (<code>bj-input-group</code>,
-    <code>bj-select-group</code>, <code>bj-checkbox-group</code>,
-    <code>bj-radio-group</code>, <code>bj-upload-group</code>) et les actions
-    principales sont regroupées dans un <code>bj-btn-group</code>.
+    {{ t('intro-1') }}<code>bj-stepper</code>{{ t('intro-2')
+    }}<code>bj-input-group</code>, <code>bj-select-group</code>,
+    <code>bj-checkbox-group</code>, <code>bj-radio-group</code>,
+    <code>bj-upload-group</code>{{ t('intro-3')
+    }}<code>bj-btn-group</code>{{ t('intro-4') }}
   </p>
 
   <h2 class="bj-h3" style="margin-bottom: var(--bj-spacing-3v)">
-    Structure des sections
+    {{ t('section-structure') }}
   </h2>
   <ul
     class="bj-content"
     style="margin-bottom: var(--bj-spacing-6v); max-width: 40rem"
   >
     <li>
-      <strong>En-tête et fil d’Ariane</strong> - Repères constants pour
-      l’usager.
+      <strong>{{ t('struct-li-1-strong') }}</strong> -
+      {{ t('struct-li-1') }}
     </li>
     <li>
-      <strong>Indicateur d’étapes</strong> - <code>bj-stepper</code> pour les
-      formulaires multi-écrans.
+      <strong>{{ t('struct-li-2-strong') }}</strong> -
+      <code>bj-stepper</code>{{ t('struct-li-2-after') }}
     </li>
     <li>
-      <strong>Titre et introduction</strong> - Objet de la démarche, délais et
-      documents requis.
+      <strong>{{ t('struct-li-3-strong') }}</strong> -
+      {{ t('struct-li-3') }}
     </li>
     <li>
-      <strong>Champs</strong> - Saisie texte, liste déroulante, cases à cocher,
-      boutons radio, pièce jointe.
+      <strong>{{ t('struct-li-4-strong') }}</strong> -
+      {{ t('struct-li-4') }}
     </li>
     <li>
-      <strong>Actions</strong> - Soumission, enregistrement brouillon,
-      annulation.
+      <strong>{{ t('struct-li-5-strong') }}</strong> -
+      {{ t('struct-li-5') }}
     </li>
     <li>
-      <strong>Pied de page</strong> - Liens d’aide et mentions légales.
+      <strong>{{ t('struct-li-6-strong') }}</strong> -
+      {{ t('struct-li-6') }}
     </li>
   </ul>
 
   <h2 class="bj-h3" style="margin-bottom: var(--bj-spacing-3v)">
-    Aperçu du gabarit
+    {{ t('section-preview') }}
   </h2>
   <DocsPreview style="padding: var(--bj-spacing-4v)">
     <nav

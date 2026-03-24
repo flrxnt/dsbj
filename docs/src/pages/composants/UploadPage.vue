@@ -4,6 +4,55 @@ import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import DocsPropsTable from '@docs/components/DocsPropsTable.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Téléversement',
+      desc: 'Zone d’invitation au dépôt de fichiers avec états d’erreur et rappel du fichier choisi.',
+      'section-example': 'Exemple',
+      'section-variants': 'Variantes',
+      'section-variants-body':
+        '<code>bj-upload-group--error</code>, <code>bj-upload__file</code>, <code>bj-upload__file-remove</code>.',
+      'section-css': 'Classes CSS',
+      'section-a11y': 'Accessibilité',
+      'prop-upload-group': 'Groupe.',
+      'prop-upload-group-error': 'Erreur.',
+      'prop-upload':
+        'Zone (conteneur position:relative).',
+      'prop-upload-drag-over': 'Survol actif.',
+      'prop-upload-content':
+        'Contenu.',
+      'prop-upload-file':
+        'Fichier choisi.',
+      'a11y-note':
+        'Reliez l’input à une étiquette (<code>aria-labelledby</code> ou <code>label</code>). Décrivez formats et tailles dans le texte visible.',
+    },
+    en: {
+      title: 'File upload',
+      desc: 'Drop zone for files with error states and display of the chosen file.',
+      'section-example': 'Example',
+      'section-variants': 'Variants',
+      'section-variants-body':
+        '<code>bj-upload-group--error</code>, <code>bj-upload__file</code>, <code>bj-upload__file-remove</code>.',
+      'section-css': 'CSS classes',
+      'section-a11y': 'Accessibility',
+      'prop-upload-group': 'Group.',
+      'prop-upload-group-error': 'Error state.',
+      'prop-upload':
+        'Zone (wrapper with position:relative).',
+      'prop-upload-drag-over': 'Active drag-over state.',
+      'prop-upload-content':
+        'Content.',
+      'prop-upload-file':
+        'Chosen file.',
+      'a11y-note':
+        'Link the input to a label (<code>aria-labelledby</code> or <code>label</code>). Describe allowed formats and sizes in visible text.',
+    },
+  },
+})
 
 const codeExample = `<div class="bj-upload-group">
   <label class="bj-upload" style="position:relative;">
@@ -11,38 +60,40 @@ const codeExample = `<div class="bj-upload-group">
   </label>
 </div>`
 
-const propsRows = [
-  { name: 'bj-upload-group', description: 'Groupe.' },
-  { name: 'bj-upload-group--error', description: 'Erreur.' },
+const propsRows = computed(() => [
+  { name: 'bj-upload-group', description: t('prop-upload-group') },
+  {
+    name: 'bj-upload-group--error',
+    description: t('prop-upload-group-error'),
+  },
   {
     name: 'bj-upload',
-    description: 'Zone (conteneur position:relative).',
+    description: t('prop-upload'),
   },
-  { name: 'bj-upload--drag-over', description: 'Survol actif.' },
+  { name: 'bj-upload--drag-over', description: t('prop-upload-drag-over') },
   {
     name: 'bj-upload__text / bj-upload__hint / bj-upload__icon',
-    description: 'Contenu.',
+    description: t('prop-upload-content'),
   },
   {
     name: 'bj-upload__file / bj-upload__file-remove',
-    description: 'Fichier choisi.',
+    description: t('prop-upload-file'),
   },
-]
+])
 </script>
 
 <template>
   <h1 class="bj-h1" style="margin-top: var(--bj-spacing-4v)">
-    Téléversement
+    {{ t('title') }}
   </h1>
   <p
     class="bj-text-lg"
     style="max-width: 44rem; color: var(--bj-text-alt)"
   >
-    Zone d’invitation au dépôt de fichiers avec états d’erreur et
-    rappel du fichier choisi.
+    {{ t('desc') }}
   </p>
 
-  <DocsSection id="sec-exemple" title="Exemple">
+  <DocsSection id="sec-exemple" :title="t('section-example')">
     <DocsPreview>
       <div class="bj-upload-group">
         <span id="ex-ul1" class="bj-label">Justificatif</span>
@@ -114,23 +165,21 @@ const propsRows = [
     <DocsCode :code="codeExample" />
   </DocsSection>
 
-  <DocsSection id="sec-variantes" title="Variantes">
-    <p class="bj-text-md" style="color: var(--bj-text-alt)">
-      <code>bj-upload-group--error</code>,
-      <code>bj-upload__file</code>,
-      <code>bj-upload__file-remove</code>.
-    </p>
+  <DocsSection id="sec-variantes" :title="t('section-variants')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-variants-body')"
+    />
   </DocsSection>
 
-  <DocsSection id="sec-classes-css" title="Classes CSS">
+  <DocsSection id="sec-classes-css" :title="t('section-css')">
     <DocsPropsTable :rows="propsRows" />
   </DocsSection>
 
-  <DocsSection id="sec-accessibilité" title="Accessibilité">
+  <DocsSection id="sec-accessibilité" :title="t('section-a11y')">
     <DocsA11yNote>
-      Reliez l’input à une étiquette (<code>aria-labelledby</code>
-      ou <code>label</code>). Décrivez formats et tailles dans le
-      texte visible.
+      <span v-html="t('a11y-note')"></span>
     </DocsA11yNote>
   </DocsSection>
 </template>

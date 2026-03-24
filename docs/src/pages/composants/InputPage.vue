@@ -4,6 +4,63 @@ import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import DocsPropsTable from '@docs/components/DocsPropsTable.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Champ de saisie',
+      desc: 'Libellé, texte d’aide, champ texte ou multiligne, états de validation et champ avec icône pour les formulaires des services publics.',
+      'section-default-example': 'Exemple par défaut',
+      'section-validation': 'États de validation',
+      'section-icon': 'Champ avec icône',
+      'section-textarea': 'Zone de texte',
+      'section-disabled': 'Champ désactivé',
+      'section-css': 'Classes CSS',
+      'section-a11y': 'Accessibilité',
+      'prop-input-group':
+        'Conteneur vertical (label, aide, champ, message).',
+      'prop-label': 'Libellé du champ.',
+      'prop-hint': 'Texte d’aide sous le libellé.',
+      'prop-input': 'Champ input ou textarea.',
+      'prop-input-sm': 'Variante compacte du champ.',
+      'prop-input-group-state':
+        'États de validation sur le groupe.',
+      'prop-message':
+        'Messages de retour sous le champ.',
+      'prop-input-wrap': 'Conteneur pour champ avec icône.',
+      'prop-input-wrap-icon':
+        'Icône positionnée (alternative au marquage avec élément i).',
+      'a11y-note':
+        'Associez toujours un <code>label</code> explicite au champ (<code>for</code> / <code>id</code>). Liez le texte d’aide et les messages de validation au champ avec <code>aria-describedby</code> (identifiants uniques sur les éléments décrits). En cas d’erreur, utilisez <code>aria-invalid="true"</code> et un message en <code>role="alert"</code> ou <code>role="status"</code> selon le contexte.',
+    },
+    en: {
+      title: 'Text input',
+      desc: 'Label, hint text, single-line or multiline field, validation states, and icon-prefixed field for public-sector forms.',
+      'section-default-example': 'Default example',
+      'section-validation': 'Validation states',
+      'section-icon': 'Input with icon',
+      'section-textarea': 'Text area',
+      'section-disabled': 'Disabled field',
+      'section-css': 'CSS classes',
+      'section-a11y': 'Accessibility',
+      'prop-input-group':
+        'Vertical wrapper (label, hint, field, message).',
+      'prop-label': 'Field label.',
+      'prop-hint': 'Help text below the label.',
+      'prop-input': 'Input or textarea element.',
+      'prop-input-sm': 'Compact field variant.',
+      'prop-input-group-state': 'Validation state on the group.',
+      'prop-message': 'Feedback messages below the field.',
+      'prop-input-wrap': 'Wrapper for input with icon.',
+      'prop-input-wrap-icon':
+        'Positioned icon (alternative to marking up with an <code>i</code> element).',
+      'a11y-note':
+        'Always associate an explicit <code>label</code> with the field (<code>for</code> / <code>id</code>). Link hint text and validation messages with <code>aria-describedby</code> (unique ids on the described elements). On error, use <code>aria-invalid="true"</code> and a message with <code>role="alert"</code> or <code>role="status"</code> as appropriate.',
+    },
+  },
+})
 
 const codeDefault = `<div class="bj-input-group">
   <label class="bj-label" for="ex1">Nom</label>
@@ -34,49 +91,49 @@ const codeTextarea = `<div class="bj-input-group">
 const codeDisabled =
   '<input class="bj-input" type="text" disabled value="BJ-2025-00442">'
 
-const propsRows = [
+const propsRows = computed(() => [
   {
     name: 'bj-input-group',
-    description: 'Conteneur vertical (label, aide, champ, message).',
+    description: t('prop-input-group'),
   },
-  { name: 'bj-label', description: 'Libellé du champ.' },
-  { name: 'bj-hint', description: 'Texte d’aide sous le libellé.' },
+  { name: 'bj-label', description: t('prop-label') },
+  { name: 'bj-hint', description: t('prop-hint') },
   {
     name: 'bj-input',
-    description: 'Champ input ou textarea.',
+    description: t('prop-input'),
   },
-  { name: 'bj-input--sm', description: 'Variante compacte du champ.' },
+  { name: 'bj-input--sm', description: t('prop-input-sm') },
   {
     name: 'bj-input-group--valid / bj-input-group--error',
-    description: 'États de validation sur le groupe.',
+    description: t('prop-input-group-state'),
   },
   {
     name: 'bj-message, bj-message--valid, bj-message--error, bj-message--info',
-    description: 'Messages de retour sous le champ.',
+    description: t('prop-message'),
   },
-  { name: 'bj-input-wrap', description: 'Conteneur pour champ avec icône.' },
+  { name: 'bj-input-wrap', description: t('prop-input-wrap') },
   {
     name: 'bj-input-wrap__icon',
-    description:
-      'Icône positionnée (alternative au marquage avec élément i).',
+    description: t('prop-input-wrap-icon'),
   },
-]
+])
 </script>
 
 <template>
   <h1 class="bj-h1" style="margin-top: var(--bj-spacing-4v)">
-    Champ de saisie
+    {{ t('title') }}
   </h1>
   <p
     class="bj-text-lg"
     style="max-width: 44rem; color: var(--bj-text-alt)"
   >
-    Libellé, texte d’aide, champ texte ou multiligne, états de
-    validation et champ avec icône pour les formulaires des services
-    publics.
+    {{ t('desc') }}
   </p>
 
-  <DocsSection id="sec-exemple-defaut" title="Exemple par défaut">
+  <DocsSection
+    id="sec-exemple-defaut"
+    :title="t('section-default-example')"
+  >
     <DocsPreview>
       <div class="bj-input-group">
         <label class="bj-label" for="input-ex1">Nom</label>
@@ -96,7 +153,7 @@ const propsRows = [
     <DocsCode :code="codeDefault" />
   </DocsSection>
 
-  <DocsSection id="sec-validation" title="États de validation">
+  <DocsSection id="sec-validation" :title="t('section-validation')">
     <DocsPreview>
       <div class="bj-input-group bj-input-group--valid">
         <label class="bj-label" for="input-val-ok">N° IFU</label>
@@ -141,7 +198,7 @@ const propsRows = [
     <DocsCode :code="codeValidation" />
   </DocsSection>
 
-  <DocsSection id="sec-icone" title="Champ avec icône">
+  <DocsSection id="sec-icone" :title="t('section-icon')">
     <DocsPreview>
       <div class="bj-input-wrap">
         <i class="ri-search-line" aria-hidden="true"></i>
@@ -155,7 +212,7 @@ const propsRows = [
     <DocsCode :code="codeIcon" />
   </DocsSection>
 
-  <DocsSection id="sec-textarea" title="Zone de texte">
+  <DocsSection id="sec-textarea" :title="t('section-textarea')">
     <DocsPreview>
       <div class="bj-input-group">
         <label class="bj-label" for="input-ta"
@@ -176,7 +233,7 @@ const propsRows = [
     <DocsCode :code="codeTextarea" />
   </DocsSection>
 
-  <DocsSection id="sec-desactive" title="Champ désactivé">
+  <DocsSection id="sec-desactive" :title="t('section-disabled')">
     <DocsPreview>
       <div class="bj-input-group">
         <label class="bj-label" for="input-dis"
@@ -194,20 +251,13 @@ const propsRows = [
     <DocsCode :code="codeDisabled" />
   </DocsSection>
 
-  <DocsSection id="sec-classes-css" title="Classes CSS">
+  <DocsSection id="sec-classes-css" :title="t('section-css')">
     <DocsPropsTable :rows="propsRows" />
   </DocsSection>
 
-  <DocsSection id="sec-accessibilité" title="Accessibilité">
+  <DocsSection id="sec-accessibilité" :title="t('section-a11y')">
     <DocsA11yNote>
-      Associez toujours un <code>label</code> explicite au champ
-      (<code>for</code> / <code>id</code>). Liez le texte d’aide et
-      les messages de validation au champ avec
-      <code>aria-describedby</code> (identifiants uniques sur les
-      éléments décrits). En cas d’erreur, utilisez
-      <code>aria-invalid="true"</code> et un message en
-      <code>role="alert"</code> ou <code>role="status"</code> selon
-      le contexte.
+      <span v-html="t('a11y-note')"></span>
     </DocsA11yNote>
   </DocsSection>
 </template>

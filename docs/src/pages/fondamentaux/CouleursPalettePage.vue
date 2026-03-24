@@ -1,16 +1,42 @@
 <script setup lang="ts">
 import DocsSection from '@docs/components/DocsSection.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Palette de couleurs',
+      desc:
+        'Référence des couleurs de marque, étendues et fonctionnelles. Utilisez les variables CSS pour rester synchronisé avec les thèmes clair et sombre.',
+      'section-primaires': 'Primaires (drapeau)',
+      'section-etendues': 'Étendues',
+      'section-fonctionnelles': 'Fonctionnelles',
+      'section-neutres': 'Neutres (gris)',
+      'neutres-note':
+        'Échelle du plus foncé au plus clair - {gris50} à {gris1000}.',
+    },
+    en: {
+      title: 'Color palette',
+      desc:
+        'Reference for brand, extended, and functional colors. Use CSS variables to stay in sync with light and dark themes.',
+      'section-primaires': 'Primary (flag)',
+      'section-etendues': 'Extended',
+      'section-fonctionnelles': 'Functional',
+      'section-neutres': 'Neutrals (gray)',
+      'neutres-note':
+        'Scale from darkest to lightest - {gris50} to {gris1000}.',
+    },
+  },
+})
 </script>
 
 <template>
-  <h1 class="bj-h1">Palette de couleurs</h1>
+  <h1 class="bj-h1">{{ t('title') }}</h1>
   <p class="bj-text-md bj-text-alt">
-    Référence des couleurs de marque, étendues et fonctionnelles.
-    Utilisez les variables CSS pour rester synchronisé avec les thèmes
-    clair et sombre.
+    {{ t('desc') }}
   </p>
 
-  <DocsSection id="primaires-drapeau" title="Primaires (drapeau)">
+  <DocsSection id="primaires-drapeau" :title="t('section-primaires')">
     <div class="bj-grid-row bj-grid-row--gutters">
       <div class="bj-col-12 bj-col-md-4">
         <div
@@ -51,7 +77,7 @@ import DocsSection from '@docs/components/DocsSection.vue'
     </div>
   </DocsSection>
 
-  <DocsSection id="etendues" title="Étendues">
+  <DocsSection id="etendues" :title="t('section-etendues')">
     <div class="bj-grid-row bj-grid-row--gutters">
       <div class="bj-col-12 bj-col-md-6">
         <div
@@ -80,7 +106,7 @@ import DocsSection from '@docs/components/DocsSection.vue'
     </div>
   </DocsSection>
 
-  <DocsSection id="fonctionnelles" title="Fonctionnelles">
+  <DocsSection id="fonctionnelles" :title="t('section-fonctionnelles')">
     <div class="bj-grid-row bj-grid-row--gutters">
       <div class="bj-col-12 bj-col-sm-6 bj-col-lg-3">
         <div
@@ -133,10 +159,16 @@ import DocsSection from '@docs/components/DocsSection.vue'
     </div>
   </DocsSection>
 
-  <DocsSection id="neutres-gris" title="Neutres (gris)">
+  <DocsSection id="neutres-gris" :title="t('section-neutres')">
     <p class="bj-text-sm bj-text-alt">
-      Échelle du plus foncé au plus clair - <code>gris-50</code> à
-      <code>gris-1000</code>.
+      <i18n-t keypath="neutres-note">
+        <template #gris50>
+          <code>gris-50</code>
+        </template>
+        <template #gris1000>
+          <code>gris-1000</code>
+        </template>
+      </i18n-t>
     </p>
     <div class="bj-grid-row bj-grid-row--gutters">
       <div class="bj-col-12 bj-col-sm-6 bj-col-md-4 bj-col-lg-3">

@@ -4,34 +4,77 @@ import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import DocsPropsTable from '@docs/components/DocsPropsTable.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Case à cocher',
+      desc: 'Choix multiples ou consentement explicite, avec libellé et texte d’aide optionnel.',
+      'section-example': 'Exemple',
+      'section-variants': 'Variantes',
+      'section-variants-body':
+        '<code>bj-checkbox__hint</code> pour préciser contraintes ou formats.',
+      'section-css': 'Classes CSS',
+      'section-a11y': 'Accessibilité',
+      'prop-checkbox-group': 'Conteneur.',
+      'prop-checkbox-legend': 'Titre de groupe.',
+      'prop-checkbox': 'Label englobant.',
+      'prop-checkbox-label': 'Texte.',
+      'prop-checkbox-hint': 'Aide.',
+      'a11y-note':
+        'Pour plusieurs cases liées, préférez <code>fieldset</code> et <code>legend</code>.',
+    },
+    en: {
+      title: 'Checkbox',
+      desc: 'Multiple choices or explicit consent, with label and optional hint text.',
+      'section-example': 'Example',
+      'section-variants': 'Variants',
+      'section-variants-body':
+        '<code>bj-checkbox__hint</code> to specify constraints or formats.',
+      'section-css': 'CSS classes',
+      'section-a11y': 'Accessibility',
+      'prop-checkbox-group': 'Wrapper.',
+      'prop-checkbox-legend': 'Group title.',
+      'prop-checkbox': 'Wrapping label.',
+      'prop-checkbox-label': 'Text.',
+      'prop-checkbox-hint': 'Hint.',
+      'a11y-note':
+        'For related checkboxes, prefer <code>fieldset</code> and <code>legend</code>.',
+    },
+  },
+})
 
 const codeExample = `<fieldset class="bj-checkbox-group">
   <legend class="bj-checkbox-group__legend">…</legend>
   <label class="bj-checkbox">…</label>
 </fieldset>`
 
-const propsRows = [
-  { name: 'bj-checkbox-group', description: 'Conteneur.' },
-  { name: 'bj-checkbox-group__legend', description: 'Titre de groupe.' },
-  { name: 'bj-checkbox', description: 'Label englobant.' },
-  { name: 'bj-checkbox__label', description: 'Texte.' },
-  { name: 'bj-checkbox__hint', description: 'Aide.' },
-]
+const propsRows = computed(() => [
+  { name: 'bj-checkbox-group', description: t('prop-checkbox-group') },
+  {
+    name: 'bj-checkbox-group__legend',
+    description: t('prop-checkbox-legend'),
+  },
+  { name: 'bj-checkbox', description: t('prop-checkbox') },
+  { name: 'bj-checkbox__label', description: t('prop-checkbox-label') },
+  { name: 'bj-checkbox__hint', description: t('prop-checkbox-hint') },
+])
 </script>
 
 <template>
   <h1 class="bj-h1" style="margin-top: var(--bj-spacing-4v)">
-    Case à cocher
+    {{ t('title') }}
   </h1>
   <p
     class="bj-text-lg"
     style="max-width: 44rem; color: var(--bj-text-alt)"
   >
-    Choix multiples ou consentement explicite, avec libellé et texte
-    d’aide optionnel.
+    {{ t('desc') }}
   </p>
 
-  <DocsSection id="sec-exemple" title="Exemple">
+  <DocsSection id="sec-exemple" :title="t('section-example')">
     <DocsPreview>
       <div class="bj-checkbox-group">
         <label class="bj-checkbox">
@@ -67,21 +110,21 @@ const propsRows = [
     <DocsCode :code="codeExample" />
   </DocsSection>
 
-  <DocsSection id="sec-variantes" title="Variantes">
-    <p class="bj-text-md" style="color: var(--bj-text-alt)">
-      <code>bj-checkbox__hint</code> pour préciser contraintes ou
-      formats.
-    </p>
+  <DocsSection id="sec-variantes" :title="t('section-variants')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-variants-body')"
+    />
   </DocsSection>
 
-  <DocsSection id="sec-classes-css" title="Classes CSS">
+  <DocsSection id="sec-classes-css" :title="t('section-css')">
     <DocsPropsTable :rows="propsRows" />
   </DocsSection>
 
-  <DocsSection id="sec-accessibilité" title="Accessibilité">
+  <DocsSection id="sec-accessibilité" :title="t('section-a11y')">
     <DocsA11yNote>
-      Pour plusieurs cases liées, préférez <code>fieldset</code> et
-      <code>legend</code>.
+      <span v-html="t('a11y-note')"></span>
     </DocsA11yNote>
   </DocsSection>
 </template>

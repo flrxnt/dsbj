@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 interface BreadcrumbItem {
-  label: string
+  labelKey: string
   to?: string
 }
 
 const route = useRoute()
+const { t } = useI18n()
 
 const items = computed<BreadcrumbItem[]>(() => {
-  const crumbs: BreadcrumbItem[] = [{ label: 'Accueil', to: '/' }]
+  const crumbs: BreadcrumbItem[] = [{ labelKey: 'common.home', to: '/' }]
   const meta = route.meta.breadcrumb as BreadcrumbItem[] | undefined
   if (meta) {
     crumbs.push(...meta)
@@ -20,7 +22,7 @@ const items = computed<BreadcrumbItem[]>(() => {
 </script>
 
 <template>
-  <nav class="bj-breadcrumb" aria-label="Fil d'Ariane">
+  <nav class="bj-breadcrumb" :aria-label="t('common.breadcrumb-aria')">
     <ol class="bj-breadcrumb__list">
       <li
         v-for="(item, i) in items"
@@ -29,9 +31,9 @@ const items = computed<BreadcrumbItem[]>(() => {
         :aria-current="i === items.length - 1 ? 'page' : undefined"
       >
         <RouterLink v-if="item.to && i < items.length - 1" class="bj-breadcrumb__link" :to="item.to">
-          {{ item.label }}
+          {{ t(item.labelKey) }}
         </RouterLink>
-        <template v-else>{{ item.label }}</template>
+        <template v-else>{{ t(item.labelKey) }}</template>
       </li>
     </ol>
   </nav>

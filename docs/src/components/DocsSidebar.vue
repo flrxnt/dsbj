@@ -14,7 +14,7 @@ const groups = computed(() => sidebars[props.section] || [])
 </script>
 
 <template>
-  <aside class="docs-sidebar" aria-label="Sommaire de section">
+  <aside class="docs-sidebar" :aria-label="t('sidebar.aria-label')">
     <button
       class="docs-sidebar__toggle"
       :aria-label="collapsed ? t('sidebar.show') : t('sidebar.hide')"
@@ -36,7 +36,7 @@ const groups = computed(() => sidebars[props.section] || [])
           :class="{ 'docs-sidebar__link--active': route.path === link.to }"
           :aria-current="route.path === link.to ? 'page' : undefined"
         >
-          {{ link.label }}
+          {{ link.i18nKey ? t(link.i18nKey) : link.label }}
         </RouterLink>
       </nav>
     </template>

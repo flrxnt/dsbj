@@ -4,6 +4,92 @@ import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import DocsPropsTable from '@docs/components/DocsPropsTable.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Bannière',
+      desc:
+        'Section hero pleine largeur avec image de fond, titre, description et appel à l’action. Idéale pour les pages d’accueil, les annonces et les mises en avant promotionnelles.',
+      'sec-base': 'Exemple de base',
+      'sec-sizes': 'Tailles',
+      'sec-sizes-p-1': 'Les modificateurs ',
+      'sec-sizes-p-2': ' et ',
+      'sec-sizes-p-3': ' ajustent la hauteur minimale.',
+      'sec-align': 'Alignement centré',
+      'sec-plain': 'Sans image',
+      'sec-plain-p-1': 'La variante ',
+      'sec-plain-p-2':
+        ' utilise un fond uni et masque l’overlay. Combinable avec les couleurs nationales.',
+      'sec-classes': 'Classes CSS',
+      'sec-a11y': 'Accessibilité',
+      'prop-banner': 'Conteneur principal pleine largeur.',
+      'prop-img':
+        'Image de fond (balise <img>, object-fit cover).',
+      'prop-overlay':
+        'Couche semi-transparente pour la lisibilité du texte.',
+      'prop-body': 'Zone de contenu textuel (titre, texte, actions).',
+      'prop-title': 'Titre principal de la bannière.',
+      'prop-text': 'Sous-titre ou description.',
+      'prop-actions': 'Zone de boutons CTA.',
+      'prop-sm': 'Hauteur réduite (14 rem).',
+      'prop-lg': 'Hauteur augmentée (28 rem).',
+      'prop-center': 'Contenu centré horizontalement.',
+      'prop-right': 'Contenu aligné à droite.',
+      'prop-light': 'Overlay clair pour images sombres.',
+      'prop-dark': 'Overlay sombre uniforme.',
+      'prop-plain': 'Fond uni sans image (couleur action-high).',
+      'prop-colors':
+        'Bordure basse aux couleurs nationales.',
+      'a11y-1': 'L’image décorative de fond doit porter un attribut ',
+      'a11y-alt-mid':
+        ' vide. Si l’image véhicule un sens, décrivez-la dans ',
+      'a11y-2a': '. Utilisez une balise sémantique ',
+      'a11y-2b':
+        ' ou role="banner" avec un aria-label descriptif pour nommer la zone. Les boutons CTA doivent être des liens ou boutons natifs avec un texte explicite. Vérifiez le contraste entre le texte et l’overlay sur les images claires.',
+    },
+    en: {
+      title: 'Banner',
+      desc:
+        'Full-width hero with background image, title, description, and call to action. Suited to home pages, announcements, and promotional highlights.',
+      'sec-base': 'Basic example',
+      'sec-sizes': 'Sizes',
+      'sec-sizes-p-1': 'The ',
+      'sec-sizes-p-2': ' and ',
+      'sec-sizes-p-3': ' modifiers adjust the minimum height.',
+      'sec-align': 'Centered alignment',
+      'sec-plain': 'Without image',
+      'sec-plain-p-1': 'The ',
+      'sec-plain-p-2':
+        ' variant uses a solid background and hides the overlay. Combine with national colour accents.',
+      'sec-classes': 'CSS classes',
+      'sec-a11y': 'Accessibility',
+      'prop-banner': 'Main full-width container.',
+      'prop-img': 'Background image (<img>, object-fit cover).',
+      'prop-overlay': 'Semi-transparent layer for text contrast.',
+      'prop-body': 'Text area (title, copy, actions).',
+      'prop-title': 'Main banner title.',
+      'prop-text': 'Subtitle or description.',
+      'prop-actions': 'CTA button area.',
+      'prop-sm': 'Reduced height (14 rem).',
+      'prop-lg': 'Taller height (28 rem).',
+      'prop-center': 'Horizontally centered content.',
+      'prop-right': 'Right-aligned content.',
+      'prop-light': 'Light overlay for dark images.',
+      'prop-dark': 'Uniform dark overlay.',
+      'prop-plain': 'Solid background without image (action-high colour).',
+      'prop-colors': 'Bottom border in national colours.',
+      'a11y-1': 'Decorative background images should use an empty ',
+      'a11y-alt-mid':
+        ' attribute. If the image conveys meaning, describe it in ',
+      'a11y-2a': '. Use a semantic ',
+      'a11y-2b':
+        ' element or role="banner" with a descriptive aria-label to name the region. CTAs should be native links or buttons with clear text. Check contrast between text and overlay on light images.',
+    },
+  },
+})
 
 const codeBase = `<div class="bj-banner">
   <img class="bj-banner__img" src="https://picsum.photos/1200/500" alt="">
@@ -61,42 +147,40 @@ const codePlain = `<div class="bj-banner bj-banner--plain bj-banner--green">
   </div>
 </div>`
 
-const propsRows = [
-  { name: 'bj-banner', description: 'Conteneur principal pleine largeur.' },
-  { name: 'bj-banner__img', description: 'Image de fond (balise <img>, object-fit cover).' },
-  { name: 'bj-banner__overlay', description: 'Couche semi-transparente pour la lisibilité du texte.' },
-  { name: 'bj-banner__body', description: 'Zone de contenu textuel (titre, texte, actions).' },
-  { name: 'bj-banner__title', description: 'Titre principal de la bannière.' },
-  { name: 'bj-banner__text', description: 'Sous-titre ou description.' },
-  { name: 'bj-banner__actions', description: 'Zone de boutons CTA.' },
-  { name: 'bj-banner--sm', description: 'Hauteur réduite (14 rem).' },
-  { name: 'bj-banner--lg', description: 'Hauteur augmentée (28 rem).' },
-  { name: 'bj-banner--center', description: 'Contenu centré horizontalement.' },
-  { name: 'bj-banner--right', description: 'Contenu aligné à droite.' },
-  { name: 'bj-banner--light', description: 'Overlay clair pour images sombres.' },
-  { name: 'bj-banner--dark', description: 'Overlay sombre uniforme.' },
-  { name: 'bj-banner--plain', description: 'Fond uni sans image (couleur action-high).' },
+const propsRows = computed(() => [
+  { name: 'bj-banner', description: t('prop-banner') },
+  { name: 'bj-banner__img', description: t('prop-img') },
+  { name: 'bj-banner__overlay', description: t('prop-overlay') },
+  { name: 'bj-banner__body', description: t('prop-body') },
+  { name: 'bj-banner__title', description: t('prop-title') },
+  { name: 'bj-banner__text', description: t('prop-text') },
+  { name: 'bj-banner__actions', description: t('prop-actions') },
+  { name: 'bj-banner--sm', description: t('prop-sm') },
+  { name: 'bj-banner--lg', description: t('prop-lg') },
+  { name: 'bj-banner--center', description: t('prop-center') },
+  { name: 'bj-banner--right', description: t('prop-right') },
+  { name: 'bj-banner--light', description: t('prop-light') },
+  { name: 'bj-banner--dark', description: t('prop-dark') },
+  { name: 'bj-banner--plain', description: t('prop-plain') },
   {
     name: 'bj-banner--green / --yellow / --red',
-    description: 'Bordure basse aux couleurs nationales.',
+    description: t('prop-colors'),
   },
-]
+])
 </script>
 
 <template>
   <h1 class="bj-h1" style="margin-top: var(--bj-spacing-4v)">
-    Bannière
+    {{ t('title') }}
   </h1>
   <p
     class="bj-text-lg"
     style="max-width: 44rem; color: var(--bj-text-alt)"
   >
-    Section hero pleine largeur avec image de fond, titre, description
-    et appel à l'action. Idéale pour les pages d'accueil, les
-    annonces et les mises en avant promotionnelles.
+    {{ t('desc') }}
   </p>
 
-  <DocsSection id="sec-exemples-banner" title="Exemple de base">
+  <DocsSection id="sec-exemples-banner" :title="t('sec-base')">
     <DocsPreview>
       <div class="bj-banner">
         <img
@@ -122,13 +206,13 @@ const propsRows = [
     <DocsCode :code="codeBase" />
   </DocsSection>
 
-  <DocsSection id="sec-banner-sizes" title="Tailles">
+  <DocsSection id="sec-banner-sizes" :title="t('sec-sizes')">
     <p
       class="bj-text-md"
       style="max-width: 44rem; color: var(--bj-text-alt)"
     >
-      Les modificateurs <code>bj-banner--sm</code> et
-      <code>bj-banner--lg</code> ajustent la hauteur minimale.
+      {{ t('sec-sizes-p-1') }}<code>bj-banner--sm</code>{{ t('sec-sizes-p-2')
+      }}<code>bj-banner--lg</code>{{ t('sec-sizes-p-3') }}
     </p>
     <DocsPreview
       style="display: flex; flex-direction: column; gap: var(--bj-spacing-4v)"
@@ -173,7 +257,7 @@ const propsRows = [
     <DocsCode :code="codeSizes" />
   </DocsSection>
 
-  <DocsSection id="sec-banner-align" title="Alignement centré">
+  <DocsSection id="sec-banner-align" :title="t('sec-align')">
     <DocsPreview>
       <div class="bj-banner bj-banner--center">
         <img
@@ -196,13 +280,12 @@ const propsRows = [
     <DocsCode :code="codeAlign" />
   </DocsSection>
 
-  <DocsSection id="sec-banner-plain" title="Sans image">
+  <DocsSection id="sec-banner-plain" :title="t('sec-plain')">
     <p
       class="bj-text-md"
       style="max-width: 44rem; color: var(--bj-text-alt)"
     >
-      La variante <code>bj-banner--plain</code> utilise un fond uni
-      et masque l'overlay. Combinable avec les couleurs nationales.
+      {{ t('sec-plain-p-1') }}<code>bj-banner--plain</code>{{ t('sec-plain-p-2') }}
     </p>
     <DocsPreview>
       <div class="bj-banner bj-banner--plain bj-banner--green">
@@ -222,21 +305,19 @@ const propsRows = [
     <DocsCode :code="codePlain" />
   </DocsSection>
 
-  <DocsSection id="classes-banner" title="Classes CSS">
+  <DocsSection id="classes-banner" :title="t('sec-classes')">
     <DocsPropsTable :rows="propsRows" />
   </DocsSection>
 
-  <DocsSection id="a11y-banner" title="Accessibilité">
+  <DocsSection id="a11y-banner" :title="t('sec-a11y')">
     <DocsA11yNote>
-      L'image décorative de fond doit porter un attribut
-      <code>alt=""</code> vide. Si l'image véhicule un sens,
-      décrivez-la dans <code>alt</code>. Utilisez une balise
-      sémantique <code>&lt;section&gt;</code> ou
-      <code>role="banner"</code> avec un
-      <code>aria-label</code> descriptif pour nommer la zone.
-      Les boutons CTA doivent être des liens ou boutons natifs
-      avec un texte explicite. Vérifiez le contraste entre le
-      texte et l'overlay sur les images claires.
+      {{ t('a11y-1') }}
+      <code>alt=""</code>
+      {{ t('a11y-alt-mid') }}
+      <code>alt</code>
+      {{ t('a11y-2a') }}
+      <code>&lt;section&gt;</code>
+      {{ t('a11y-2b') }}
     </DocsA11yNote>
   </DocsSection>
 </template>

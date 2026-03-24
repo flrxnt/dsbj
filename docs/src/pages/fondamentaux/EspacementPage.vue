@@ -2,28 +2,85 @@
 import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Espacement',
+      desc:
+        'L’unité de base est {strong4} (0,25\u00a0rem), notée {strong1v}. Les jetons {spacing} garantissent un rythme vertical et horizontal cohérent.',
+      strong4: '4\u00a0px',
+      strong1v: '1v',
+      spacing: '--bj-spacing-*',
+      'section-jetons': 'Jetons d’espacement',
+      thToken: 'Jeton',
+      thRem: 'rem',
+      thPx: 'px',
+      thGuide: 'Repère',
+      'section-classes': 'Classes utilitaires',
+      'classes-p':
+        'Marges et paddings : {m}, {p}, avec variantes directionnelles {dirs} ({dirsExplain}).',
+      dirsExplain:
+        't, r, b, l pour haut, droite, bas, gauche ; x et y pour les axes',
+      thSuffix: 'Suffixe',
+      thMarginEx: 'Exemple marge',
+      thPaddingEx: 'Exemple padding',
+      rowCenter: 'Centrage horizontal',
+    },
+    en: {
+      title: 'Spacing',
+      desc:
+        'The base unit is {strong4} (0.25\u00a0rem), written {strong1v}. {spacing} tokens keep vertical and horizontal rhythm consistent.',
+      strong4: '4\u00a0px',
+      strong1v: '1v',
+      spacing: '--bj-spacing-*',
+      'section-jetons': 'Spacing tokens',
+      thToken: 'Token',
+      thRem: 'rem',
+      thPx: 'px',
+      thGuide: 'Visual',
+      'section-classes': 'Utility classes',
+      'classes-p':
+        'Margins and paddings: {m}, {p}, with directional variants {dirs} ({dirsExplain}).',
+      dirsExplain:
+        't, r, b, l for top, right, bottom, left; x and y for axes',
+      thSuffix: 'Suffix',
+      thMarginEx: 'Margin example',
+      thPaddingEx: 'Padding example',
+      rowCenter: 'Horizontal centering',
+    },
+  },
+})
 
 const codeSpacing = `<div class="bj-m-4v bj-p-6v">…</div>
 <div class="bj-mt-2v bj-mb-8v">…</div>`
 </script>
 
 <template>
-  <h1 class="bj-h1">Espacement</h1>
+  <h1 class="bj-h1">{{ t('title') }}</h1>
   <p class="bj-text-md bj-text-alt">
-    L’unité de base est <strong>4&nbsp;px</strong> (0,25&nbsp;rem),
-    notée <strong>1v</strong>. Les jetons
-    <code>--bj-spacing-*</code> garantissent un rythme vertical et
-    horizontal cohérent.
+    <i18n-t keypath="desc">
+      <template #strong4>
+        <strong>4&nbsp;px</strong>
+      </template>
+      <template #strong1v>
+        <strong>1v</strong>
+      </template>
+      <template #spacing>
+        <code>--bj-spacing-*</code>
+      </template>
+    </i18n-t>
   </p>
 
-  <DocsSection id="jetons-espacement" title="Jetons d’espacement">
+  <DocsSection id="jetons-espacement" :title="t('section-jetons')">
     <table class="docs-props">
       <thead>
         <tr>
-          <th>Jeton</th>
-          <th>rem</th>
-          <th>px</th>
-          <th>Repère</th>
+          <th>{{ t('thToken') }}</th>
+          <th>{{ t('thRem') }}</th>
+          <th>{{ t('thPx') }}</th>
+          <th>{{ t('thGuide') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -218,19 +275,28 @@ const codeSpacing = `<div class="bj-m-4v bj-p-6v">…</div>
     </table>
   </DocsSection>
 
-  <DocsSection id="classes-marges-padding" title="Classes utilitaires">
+  <DocsSection id="classes-marges-padding" :title="t('section-classes')">
     <p>
-      Marges et paddings : <code>bj-m-{taille}</code>,
-      <code>bj-p-{taille}</code>, avec variantes directionnelles
-      <code>t</code>, <code>r</code>, <code>b</code>, <code>l</code>,
-      <code>x</code>, <code>y</code>.
+      <i18n-t keypath="classes-p">
+        <template #m>
+          <code>bj-m-*</code>
+        </template>
+        <template #p>
+          <code>bj-p-*</code>
+        </template>
+        <template #dirs>
+          <code>t</code>, <code>r</code>, <code>b</code>, <code>l</code>,
+          <code>x</code>, <code>y</code>
+        </template>
+        <template #dirsExplain>{{ t('dirsExplain') }}</template>
+      </i18n-t>
     </p>
     <table class="docs-props">
       <thead>
         <tr>
-          <th>Suffixe</th>
-          <th>Exemple marge</th>
-          <th>Exemple padding</th>
+          <th>{{ t('thSuffix') }}</th>
+          <th>{{ t('thMarginEx') }}</th>
+          <th>{{ t('thPaddingEx') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -245,7 +311,7 @@ const codeSpacing = `<div class="bj-m-4v bj-p-6v">…</div>
           <td><code>bj-p-6v</code>, <code>bj-px-4v</code></td>
         </tr>
         <tr>
-          <td>Centrage horizontal</td>
+          <td>{{ t('rowCenter') }}</td>
           <td colspan="2"><code>bj-mx-auto</code></td>
         </tr>
       </tbody>

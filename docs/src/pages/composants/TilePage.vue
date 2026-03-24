@@ -4,6 +4,52 @@ import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import DocsPropsTable from '@docs/components/DocsPropsTable.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Tuile',
+      desc: 'Tuile d’accès rapide centrée (icône ou image, titre, courte description). Souvent utilisée comme lien ; la grille <code class="bj-text-sm">bj-tiles</code> adapte les colonnes au viewport.',
+      'section-example': 'Exemple',
+      'section-variants': 'Variantes',
+      'section-classes': 'Classes CSS',
+      'section-a11y': 'Accessibilité',
+      'a11y-note':
+        'Sur un <code>&lt;a&gt;</code>, le titre et la description composent le contexte du lien : le libellé doit rester compréhensible hors grille. Marquez les icônes décoratives en <code>aria-hidden="true"</code>. Pour une image purement décorative dans la tuile, utilisez <code>alt=""</code>.',
+      'prop-bj-tile':
+        'Tuile verticale centrée, bordure et survol.',
+      'prop-bj-tile-icon':
+        'Grande icône Remix au-dessus du titre.',
+      'prop-bj-tile-img':
+        'Image 4rem × 4rem sous le même rôle que l’icône.',
+      'prop-bj-tile-title': 'Libellé principal.',
+      'prop-bj-tile-desc': 'Description secondaire.',
+      'prop-bj-tile-horizontal':
+        'Icône à gauche, texte aligné à gauche.',
+      'prop-bj-tiles': 'Grille responsive de tuiles.',
+    },
+    en: {
+      title: 'Tile',
+      desc: 'Centred quick-access tile (icon or image, title, short description). Often used as a link; the <code class="bj-text-sm">bj-tiles</code> grid adapts columns to the viewport.',
+      'section-example': 'Example',
+      'section-variants': 'Variants',
+      'section-classes': 'CSS classes',
+      'section-a11y': 'Accessibility',
+      'a11y-note':
+        'On an <code>&lt;a&gt;</code>, the title and description form the link context: the label must stay clear outside the grid. Mark decorative icons with <code>aria-hidden="true"</code>. For a purely decorative image in the tile, use <code>alt=""</code>.',
+      'prop-bj-tile': 'Centred vertical tile, border and hover.',
+      'prop-bj-tile-icon': 'Large Remix icon above the title.',
+      'prop-bj-tile-img':
+        '4rem × 4rem image serving the same role as the icon.',
+      'prop-bj-tile-title': 'Primary label.',
+      'prop-bj-tile-desc': 'Secondary description.',
+      'prop-bj-tile-horizontal': 'Icon on the left, text left-aligned.',
+      'prop-bj-tiles': 'Responsive tile grid.',
+    },
+  },
+})
 
 const codeExemple = `<a href="#" class="bj-tile">
   <span class="bj-tile__icon" aria-hidden="true">…</span>
@@ -21,32 +67,44 @@ const codeVariantes = `<a href="#" class="bj-tile bj-tile--horizontal">
 <img class="bj-tile__img" src="…" alt="">
 <div class="bj-tiles">…</div>`
 
-const propsRows = [
-  { name: 'bj-tile', description: 'Tuile verticale centrée, bordure et survol.' },
-  { name: 'bj-tile__icon', description: 'Grande icône Remix au-dessus du titre.' },
-  { name: 'bj-tile__img', description: 'Image 4rem × 4rem sous le même rôle que l’icône.' },
-  { name: 'bj-tile__title', description: 'Libellé principal.' },
-  { name: 'bj-tile__desc', description: 'Description secondaire.' },
-  { name: 'bj-tile--horizontal', description: 'Icône à gauche, texte aligné à gauche.' },
-  { name: 'bj-tiles', description: 'Grille responsive de tuiles.' },
-]
+const propsRows = computed(() => [
+  { name: 'bj-tile', description: t('prop-bj-tile') },
+  {
+    name: 'bj-tile__icon',
+    description: t('prop-bj-tile-icon'),
+  },
+  {
+    name: 'bj-tile__img',
+    description: t('prop-bj-tile-img'),
+  },
+  {
+    name: 'bj-tile__title',
+    description: t('prop-bj-tile-title'),
+  },
+  {
+    name: 'bj-tile__desc',
+    description: t('prop-bj-tile-desc'),
+  },
+  {
+    name: 'bj-tile--horizontal',
+    description: t('prop-bj-tile-horizontal'),
+  },
+  { name: 'bj-tiles', description: t('prop-bj-tiles') },
+])
 </script>
 
 <template>
   <h1 class="bj-h1" style="margin-top: var(--bj-spacing-4v)">
-    Tuile
+    {{ t('title') }}
   </h1>
   <p
     class="bj-text-lg"
     style="max-width: 44rem; color: var(--bj-text-alt)"
   >
-    Tuile d’accès rapide centrée (icône ou image, titre, courte
-    description). Souvent utilisée comme lien ; la grille
-    <code class="bj-text-sm">bj-tiles</code> adapte les colonnes au
-    viewport.
+    <span v-html="t('desc')" />
   </p>
 
-  <DocsSection id="exemple-tile" title="Exemple">
+  <DocsSection id="exemple-tile" :title="t('section-example')">
     <DocsPreview>
       <a
         href="#"
@@ -65,7 +123,7 @@ const propsRows = [
     <DocsCode :code="codeExemple" />
   </DocsSection>
 
-  <DocsSection id="variantes-tile" title="Variantes">
+  <DocsSection id="variantes-tile" :title="t('section-variants')">
     <DocsPreview>
       <div class="bj-tiles">
         <a href="#" class="bj-tile bj-tile--horizontal">
@@ -106,17 +164,13 @@ const propsRows = [
     <DocsCode :code="codeVariantes" />
   </DocsSection>
 
-  <DocsSection id="classes-tile" title="Classes CSS">
+  <DocsSection id="classes-tile" :title="t('section-classes')">
     <DocsPropsTable :rows="propsRows" />
   </DocsSection>
 
-  <DocsSection id="a11y-tile" title="Accessibilité">
+  <DocsSection id="a11y-tile" :title="t('section-a11y')">
     <DocsA11yNote>
-      Sur un <code>&lt;a&gt;</code>, le titre et la description
-      composent le contexte du lien : le libellé doit rester
-      compréhensible hors grille. Marquez les icônes décoratives en
-      <code>aria-hidden="true"</code>. Pour une image purement
-      décorative dans la tuile, utilisez <code>alt=""</code>.
+      <span v-html="t('a11y-note')" />
     </DocsA11yNote>
   </DocsSection>
 </template>

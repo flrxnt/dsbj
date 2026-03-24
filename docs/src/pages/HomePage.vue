@@ -1,3 +1,84 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import DocsCard from '../components/DocsCard.vue'
+import DocsCode from '../components/DocsCode.vue'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      'hero-title': 'Design Système{br}du Bénin',
+      'hero-desc': 'Le Design Système du Bénin (DSBJ) est l\'outil destiné à produire les interfaces officielles des services publics numériques. Il regroupe un ensemble de règles et de composants réutilisables, pour fournir des services numériques simples, accessibles et reconnaissables.',
+      'hero-cta': 'Commencer à utiliser le DSBJ',
+      'explore-title': 'Explorer le design système',
+      'card-getting-started': 'Premiers pas',
+      'card-getting-started-desc': 'Installation, configuration et guide de démarrage rapide.',
+      'card-fundamentals': 'Fondamentaux',
+      'card-fundamentals-desc': 'Couleurs, typographie, grille, espacement, icônes et principes.',
+      'card-components': 'Composants',
+      'card-components-desc': '35 composants prêts à l\'emploi : boutons, cartes, formulaires, navigation.',
+      'card-templates': 'Modèles',
+      'card-templates-desc': 'Templates de pages types pour sites gouvernementaux.',
+      'featured-title': 'Composants en vedette',
+      'featured-desc': 'Exemples de composants disponibles dans le DSBJ, prêts à être intégrés dans vos interfaces.',
+      'featured-alerts': 'Alertes',
+      'featured-cards': 'Cartes',
+      'featured-form': 'Formulaire',
+      'featured-tabs': 'Onglets',
+      'production-title': 'Prêt pour la production',
+      'production-desc': 'Installez le DSBJ via npm et commencez à construire des interfaces conformes en quelques minutes.',
+      'production-html': 'Ou importez directement en HTML :',
+      'production-features': 'Caractéristiques',
+      'feat-components': '35 composants',
+      'feat-theme': 'Thème clair/sombre',
+      'feat-a11y': 'WCAG 2.1 AA',
+      'feat-tech': 'SCSS + TypeScript',
+      'feat-size': '78 Ko CSS',
+      'feat-npm': 'Package npm',
+    },
+    en: {
+      'hero-title': 'Benin{br}Design System',
+      'hero-desc': 'The Benin Design System (DSBJ) is the tool for building official digital public service interfaces. It brings together a set of rules and reusable components, to deliver simple, accessible and recognisable digital services.',
+      'hero-cta': 'Get started with DSBJ',
+      'explore-title': 'Explore the design system',
+      'card-getting-started': 'Getting started',
+      'card-getting-started-desc': 'Installation, configuration and quick start guide.',
+      'card-fundamentals': 'Fundamentals',
+      'card-fundamentals-desc': 'Colors, typography, grid, spacing, icons and principles.',
+      'card-components': 'Components',
+      'card-components-desc': '35 ready-to-use components: buttons, cards, forms, navigation.',
+      'card-templates': 'Templates',
+      'card-templates-desc': 'Page templates for government websites.',
+      'featured-title': 'Featured components',
+      'featured-desc': 'Examples of components available in DSBJ, ready to be integrated into your interfaces.',
+      'featured-alerts': 'Alerts',
+      'featured-cards': 'Cards',
+      'featured-form': 'Form',
+      'featured-tabs': 'Tabs',
+      'production-title': 'Production ready',
+      'production-desc': 'Install DSBJ via npm and start building compliant interfaces in minutes.',
+      'production-html': 'Or import directly in HTML:',
+      'production-features': 'Features',
+      'feat-components': '35 components',
+      'feat-theme': 'Light/dark theme',
+      'feat-a11y': 'WCAG 2.1 AA',
+      'feat-tech': 'SCSS + TypeScript',
+      'feat-size': '78 KB CSS',
+      'feat-npm': 'npm package',
+    },
+  },
+})
+
+const features = computed(() => [
+  { icon: 'ri-layout-grid-line', label: t('feat-components') },
+  { icon: 'ri-moon-line', label: t('feat-theme') },
+  { icon: 'ri-accessibility-line', label: t('feat-a11y') },
+  { icon: 'ri-code-s-slash-line', label: t('feat-tech') },
+  { icon: 'ri-feather-line', label: t('feat-size') },
+  { icon: 'ri-npmjs-line', label: t('feat-npm') },
+])
+</script>
+
 <template>
   <!-- Hero -->
   <section
@@ -9,9 +90,8 @@
           <h1
             class="bj-display-lg"
             style="margin-bottom: var(--bj-spacing-4v); line-height: 1.1"
-          >
-            Design Système<br />du Bénin
-          </h1>
+            v-html="t('hero-title', { br: '<br />' })"
+          ></h1>
           <p
             class="bj-text-lg"
             style="
@@ -20,17 +100,14 @@
               max-width: 28rem;
             "
           >
-            Le Design Système du Bénin (DSBJ) est l'outil destiné à produire les
-            interfaces officielles des services publics numériques. Il regroupe
-            un ensemble de règles et de composants réutilisables, pour fournir
-            des services numériques simples, accessibles et reconnaissables.
+            {{ t('hero-desc') }}
           </p>
           <RouterLink
             to="/premiers-pas/installation"
             class="bj-btn"
             style="background-color: var(--bj-color-vert-benin-main-491)"
           >
-            Commencer à utiliser le DSBJ
+            {{ t('hero-cta') }}
           </RouterLink>
         </div>
         <div class="bj-col-12 bj-col-lg-7">
@@ -280,39 +357,39 @@
         class="bj-h2"
         style="text-align: center; margin-bottom: var(--bj-spacing-8v)"
       >
-        Explorer le design système
+        {{ t('explore-title') }}
       </h2>
       <div class="bj-grid-row bj-grid-row--gutters">
         <div class="bj-col-12 bj-col-md-6 bj-col-lg-3">
           <DocsCard
             to="/premiers-pas"
             icon="ri-rocket-line"
-            title="Premiers pas"
-            description="Installation, configuration et guide de démarrage rapide."
+            :title="t('card-getting-started')"
+            :description="t('card-getting-started-desc')"
           />
         </div>
         <div class="bj-col-12 bj-col-md-6 bj-col-lg-3">
           <DocsCard
             to="/fondamentaux"
             icon="ri-palette-line"
-            title="Fondamentaux"
-            description="Couleurs, typographie, grille, espacement, icônes et principes."
+            :title="t('card-fundamentals')"
+            :description="t('card-fundamentals-desc')"
           />
         </div>
         <div class="bj-col-12 bj-col-md-6 bj-col-lg-3">
           <DocsCard
             to="/composants"
             icon="ri-layout-grid-line"
-            title="Composants"
-            description="35 composants prêts à l'emploi : boutons, cartes, formulaires, navigation."
+            :title="t('card-components')"
+            :description="t('card-components-desc')"
           />
         </div>
         <div class="bj-col-12 bj-col-md-6 bj-col-lg-3">
           <DocsCard
             to="/modeles"
             icon="ri-file-copy-line"
-            title="Modèles"
-            description="Templates de pages types pour sites gouvernementaux."
+            :title="t('card-templates')"
+            :description="t('card-templates-desc')"
           />
         </div>
       </div>
@@ -323,7 +400,7 @@
   <section style="padding: var(--bj-spacing-12v) 0">
     <div class="bj-container">
       <h2 class="bj-h2" style="margin-bottom: var(--bj-spacing-3v)">
-        Composants en vedette
+        {{ t('featured-title') }}
       </h2>
       <p
         class="bj-text-lg"
@@ -333,8 +410,7 @@
           max-width: 40rem;
         "
       >
-        Exemples de composants disponibles dans le DSBJ, prêts à être intégrés
-        dans vos interfaces.
+        {{ t('featured-desc') }}
       </p>
       <div class="bj-grid-row bj-grid-row--gutters">
         <div
@@ -342,7 +418,7 @@
           style="margin-bottom: var(--bj-spacing-6v)"
         >
           <h3 class="bj-h5" style="margin-bottom: var(--bj-spacing-3v)">
-            Alertes
+            {{ t('featured-alerts') }}
           </h3>
           <div
             style="
@@ -386,7 +462,7 @@
           style="margin-bottom: var(--bj-spacing-6v)"
         >
           <h3 class="bj-h5" style="margin-bottom: var(--bj-spacing-3v)">
-            Cartes
+            {{ t('featured-cards') }}
           </h3>
           <div
             style="
@@ -418,7 +494,7 @@
           style="margin-bottom: var(--bj-spacing-6v)"
         >
           <h3 class="bj-h5" style="margin-bottom: var(--bj-spacing-3v)">
-            Formulaire
+            {{ t('featured-form') }}
           </h3>
           <div
             style="
@@ -470,7 +546,7 @@
           style="margin-bottom: var(--bj-spacing-6v)"
         >
           <h3 class="bj-h5" style="margin-bottom: var(--bj-spacing-3v)">
-            Onglets
+            {{ t('featured-tabs') }}
           </h3>
           <div data-bj-tabs>
             <div class="bj-tabs__list" role="tablist">
@@ -538,14 +614,13 @@
     <div class="bj-container">
       <div class="bj-grid-row bj-grid-row--gutters bj-grid-row--middle">
         <div class="bj-col-12 bj-col-lg-6">
-          <h2 class="bj-h2">Prêt pour la production</h2>
+          <h2 class="bj-h2">{{ t('production-title') }}</h2>
           <p class="bj-text-lg" style="margin-bottom: var(--bj-spacing-4v)">
-            Installez le DSBJ via npm et commencez à construire des interfaces
-            conformes en quelques minutes.
+            {{ t('production-desc') }}
           </p>
           <DocsCode code="npm install @flrxnt/dsbj" />
           <p style="margin-bottom: var(--bj-spacing-3v)">
-            Ou importez directement en HTML :
+            {{ t('production-html') }}
           </p>
           <DocsCode
             :code="`<link rel=&quot;stylesheet&quot; href=&quot;dsbj.css&quot;>\n<script src=&quot;dsbj.umd.js&quot;><\/script>`"
@@ -553,7 +628,7 @@
         </div>
         <div class="bj-col-12 bj-col-lg-6">
           <h3 class="bj-h4" style="margin-bottom: var(--bj-spacing-4v)">
-            Caractéristiques
+            {{ t('production-features') }}
           </h3>
           <div
             style="
@@ -586,17 +661,3 @@
     </div>
   </section>
 </template>
-
-<script setup lang="ts">
-import DocsCard from "../components/DocsCard.vue";
-import DocsCode from "../components/DocsCode.vue";
-
-const features = [
-  { icon: "ri-layout-grid-line", label: "35 composants" },
-  { icon: "ri-moon-line", label: "Thème clair/sombre" },
-  { icon: "ri-accessibility-line", label: "WCAG 2.1 AA" },
-  { icon: "ri-code-s-slash-line", label: "SCSS + TypeScript" },
-  { icon: "ri-feather-line", label: "78 Ko CSS" },
-  { icon: "ri-npmjs-line", label: "Package npm" },
-];
-</script>

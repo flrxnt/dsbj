@@ -4,6 +4,116 @@ import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import DocsPropsTable from '@docs/components/DocsPropsTable.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Bannière de consentement (Cookies)',
+      desc:
+        'Composant réglementaire permettant de recueillir le consentement de l’utilisateur pour les cookies et traceurs, conformément à la réglementation en vigueur.',
+      'sec-banner': 'Bannière de consentement',
+      'sec-banner-p-1':
+        'La bannière s’affiche en pied de page jusqu’à ce qu’un choix soit enregistré. Pour la documentation, l’aperçu ci-dessous utilise un positionnement relatif afin de rester visible dans le flux de la page.',
+      'sec-modal': 'Modale de personnalisation',
+      'sec-modal-p-1':
+        'La personnalisation repose sur la structure ',
+      'sec-modal-p-2': ' et des lignes ',
+      'sec-modal-p-3': ', chacune associée à un interrupteur ',
+      'sec-modal-p-4':
+        '. En production, le gestionnaire est généralement rendu dans un overlay plein écran ; ici il est centré pour l’aperçu.',
+      'sec-classes-css': 'Classes CSS',
+      'sec-attrs': 'Attributs JavaScript',
+      'sec-a11y': 'Accessibilité',
+      'th-attribute': 'Attribut',
+      'th-description': 'Description',
+      'class-banner': 'Bannière fixée en bas de page',
+      'class-body': 'Corps de la bannière',
+      'class-header': 'En-tête avec icône et titre',
+      'class-icon': 'Icône de la bannière',
+      'class-title': 'Titre de la bannière',
+      'class-text': 'Texte explicatif',
+      'class-actions': 'Conteneur des boutons d’action',
+      'class-manager': 'Modale de personnalisation (overlay)',
+      'class-dialog': 'Boîte de dialogue',
+      'class-m-header': 'En-tête de la modale',
+      'class-m-body': 'Corps scrollable',
+      'class-m-footer': 'Pied avec boutons',
+      'class-service': 'Ligne de service',
+      'class-s-info': 'Informations du service',
+      'class-s-name': 'Nom du service',
+      'class-s-desc': 'Description du service',
+      'class-s-toggle': 'Interrupteur du service',
+      'attr-banner': 'Sur l’élément bannière',
+      'attr-accept': 'Sur le bouton « Tout accepter »',
+      'attr-refuse': 'Sur le bouton « Tout refuser »',
+      'attr-customize-1':
+        'Sur le bouton « Personnaliser » (associer data-bj-modal-open="id" à l’identifiant de la modale)',
+      'attr-expanded':
+        'Rend la bannière visible (utile pour forcer l’affichage en démo ou après rechargement)',
+      'a11y-1':
+        'La modale de personnalisation implémente un piège de focus : la tabulation reste à l’intérieur du dialogue tant qu’il est ouvert. La touche ',
+      'a11y-2':
+        ' ferme la modale lorsque le script DSBJ est actif. Les préférences par service utilisent des cases à cocher natives à l’intérieur d’un ',
+      'a11y-3':
+        ', ce qui préserve une association explicite entre le libellé et le contrôle. Les choix de consentement sont persistés dans localStorage sous la clé ',
+      'a11y-4': '.',
+      'kbd-esc': 'Échap',
+    },
+    en: {
+      title: 'Consent banner (cookies)',
+      desc:
+        'Regulatory component for collecting user consent for cookies and trackers, in line with applicable rules.',
+      'sec-banner': 'Consent banner',
+      'sec-banner-p-1':
+        'The banner stays at the bottom of the page until a choice is saved. For documentation, the preview below uses relative positioning so it stays visible in the page flow.',
+      'sec-modal': 'Customization modal',
+      'sec-modal-p-1': 'Customization uses the ',
+      'sec-modal-p-2': ' structure and ',
+      'sec-modal-p-3': ' rows, each with a ',
+      'sec-modal-p-4':
+        ' switch. In production the manager is usually a full-screen overlay; here it is centered for the preview.',
+      'sec-classes-css': 'CSS classes',
+      'sec-attrs': 'JavaScript attributes',
+      'sec-a11y': 'Accessibility',
+      'th-attribute': 'Attribute',
+      'th-description': 'Description',
+      'class-banner': 'Banner fixed to the bottom of the page',
+      'class-body': 'Banner body',
+      'class-header': 'Header with icon and title',
+      'class-icon': 'Banner icon',
+      'class-title': 'Banner title',
+      'class-text': 'Explanatory text',
+      'class-actions': 'Action buttons container',
+      'class-manager': 'Customization modal (overlay)',
+      'class-dialog': 'Dialog box',
+      'class-m-header': 'Modal header',
+      'class-m-body': 'Scrollable body',
+      'class-m-footer': 'Footer with buttons',
+      'class-service': 'Service row',
+      'class-s-info': 'Service information',
+      'class-s-name': 'Service name',
+      'class-s-desc': 'Service description',
+      'class-s-toggle': 'Service toggle',
+      'attr-banner': 'On the banner element',
+      'attr-accept': 'On the “Accept all” button',
+      'attr-refuse': 'On the “Reject all” button',
+      'attr-customize-1':
+        'On the “Customize” button (pair data-bj-modal-open="id" with the modal’s id)',
+      'attr-expanded':
+        'Shows the banner (useful to force display in demos or after reload)',
+      'a11y-1':
+        'The customization modal traps focus: Tab stays inside the dialog while it is open. The ',
+      'a11y-2':
+        ' key closes the modal when the DSBJ script is active. Per-service preferences use native checkboxes inside a ',
+      'a11y-3':
+        ', keeping an explicit label–control association. Consent choices are stored in localStorage under the key ',
+      'a11y-4': '.',
+      'kbd-esc': 'Escape',
+    },
+  },
+})
 
 const consentBannerCode = `<div style="position: relative; background: var(--bj-bg-alt); padding: var(--bj-spacing-4v); border-radius: var(--bj-radius-sm);">
   <div class="bj-consent-banner" data-bj-consent-banner style="position: relative; display: block; box-shadow: var(--bj-shadow-lg); border-top: 2px solid var(--bj-action-high);">
@@ -52,81 +162,82 @@ const consentManagerCode = `<div class="bj-consent-manager" id="id-modale-consen
   </div>
 </div>`
 
-const classesRows = [
-  { name: 'bj-consent-banner', description: 'Bannière fixée en bas de page' },
-  { name: 'bj-consent-banner__body', description: 'Corps de la bannière' },
+const attrsTableHeaders = computed((): [string, string] => [
+  t('th-attribute'),
+  t('th-description'),
+])
+
+const classesRows = computed(() => [
+  { name: 'bj-consent-banner', description: t('class-banner') },
+  { name: 'bj-consent-banner__body', description: t('class-body') },
   {
     name: 'bj-consent-banner__header',
-    description: 'En-tête avec icône et titre',
+    description: t('class-header'),
   },
-  { name: 'bj-consent-banner__icon', description: 'Icône de la bannière' },
-  { name: 'bj-consent-banner__title', description: 'Titre de la bannière' },
-  { name: 'bj-consent-banner__text', description: 'Texte explicatif' },
+  { name: 'bj-consent-banner__icon', description: t('class-icon') },
+  { name: 'bj-consent-banner__title', description: t('class-title') },
+  { name: 'bj-consent-banner__text', description: t('class-text') },
   {
     name: 'bj-consent-banner__actions',
-    description: "Conteneur des boutons d'action",
+    description: t('class-actions'),
   },
   {
     name: 'bj-consent-manager',
-    description: 'Modale de personnalisation (overlay)',
+    description: t('class-manager'),
   },
-  { name: 'bj-consent-manager__dialog', description: 'Boîte de dialogue' },
-  { name: 'bj-consent-manager__header', description: 'En-tête de la modale' },
-  { name: 'bj-consent-manager__body', description: 'Corps scrollable' },
-  { name: 'bj-consent-manager__footer', description: 'Pied avec boutons' },
-  { name: 'bj-consent-service', description: 'Ligne de service' },
+  { name: 'bj-consent-manager__dialog', description: t('class-dialog') },
+  { name: 'bj-consent-manager__header', description: t('class-m-header') },
+  { name: 'bj-consent-manager__body', description: t('class-m-body') },
+  { name: 'bj-consent-manager__footer', description: t('class-m-footer') },
+  { name: 'bj-consent-service', description: t('class-service') },
   {
     name: 'bj-consent-service__info',
-    description: 'Informations du service',
+    description: t('class-s-info'),
   },
-  { name: 'bj-consent-service__name', description: 'Nom du service' },
+  { name: 'bj-consent-service__name', description: t('class-s-name') },
   {
     name: 'bj-consent-service__desc',
-    description: 'Description du service',
+    description: t('class-s-desc'),
   },
   {
     name: 'bj-consent-service__toggle',
-    description: 'Interrupteur du service',
+    description: t('class-s-toggle'),
   },
-]
+])
 
-const attrsRows = [
-  { name: 'data-bj-consent-banner', description: "Sur l'élément bannière" },
+const attrsRows = computed(() => [
+  { name: 'data-bj-consent-banner', description: t('attr-banner') },
   {
     name: 'data-bj-consent-accept',
-    description: 'Sur le bouton « Tout accepter »',
+    description: t('attr-accept'),
   },
   {
     name: 'data-bj-consent-refuse',
-    description: 'Sur le bouton « Tout refuser »',
+    description: t('attr-refuse'),
   },
   {
     name: 'data-bj-consent-customize',
-    description:
-      'Sur le bouton « Personnaliser » (associer data-bj-modal-open="id" à l’identifiant de la modale)',
+    description: t('attr-customize-1'),
   },
   {
     name: 'data-bj-expanded',
-    description:
-      'Rend la bannière visible (utile pour forcer l’affichage en démo ou après rechargement)',
+    description: t('attr-expanded'),
   },
-]
+])
 </script>
 
 <template>
   <h1 class="bj-h1" style="margin-top: var(--bj-spacing-4v)">
-    Bannière de consentement (Cookies)
+    {{ t('title') }}
   </h1>
   <p
     class="bj-text-lg"
     style="max-width: 44rem; color: var(--bj-text-alt)"
   >
-    Composant réglementaire permettant de recueillir le consentement de
-    l'utilisateur pour les cookies et traceurs, conformément à la réglementation
-    en vigueur.
+    {{ t('desc') }}
   </p>
 
-  <DocsSection id="sec-banniere" title="Bannière de consentement">
+  <DocsSection id="sec-banniere" :title="t('sec-banner')">
     <p
       class="bj-text-md"
       style="
@@ -135,9 +246,7 @@ const attrsRows = [
         max-width: 44rem;
       "
     >
-      La bannière s’affiche en pied de page jusqu’à ce qu’un choix soit
-      enregistré. Pour la documentation, l’aperçu ci-dessous utilise un
-      positionnement relatif afin de rester visible dans le flux de la page.
+      {{ t('sec-banner-p-1') }}
     </p>
     <DocsPreview style="position: relative">
       <div
@@ -190,7 +299,7 @@ const attrsRows = [
     <DocsCode :code="consentBannerCode" />
   </DocsSection>
 
-  <DocsSection id="sec-modale" title="Modale de personnalisation">
+  <DocsSection id="sec-modale" :title="t('sec-modal')">
     <p
       class="bj-text-md"
       style="
@@ -199,11 +308,9 @@ const attrsRows = [
         max-width: 44rem;
       "
     >
-      La personnalisation repose sur la structure
-      <code>bj-consent-manager</code> et des lignes
-      <code>bj-consent-service</code>, chacune associée à un interrupteur
-      <code>bj-toggle</code>. En production, le gestionnaire est généralement
-      rendu dans un overlay plein écran ; ici il est centré pour l’aperçu.
+      {{ t('sec-modal-p-1') }}<code>bj-consent-manager</code
+      >{{ t('sec-modal-p-2') }}<code>bj-consent-service</code
+      >{{ t('sec-modal-p-3') }}<code>bj-toggle</code>{{ t('sec-modal-p-4') }}
     </p>
     <DocsPreview style="position: relative">
       <div
@@ -296,26 +403,26 @@ const attrsRows = [
     <DocsCode :code="consentManagerCode" />
   </DocsSection>
 
-  <DocsSection id="sec-classes-css" title="Classes CSS">
+  <DocsSection id="sec-classes-css" :title="t('sec-classes-css')">
     <DocsPropsTable :rows="classesRows" />
   </DocsSection>
 
-  <DocsSection id="sec-attributs-js" title="Attributs JavaScript">
+  <DocsSection id="sec-attributs-js" :title="t('sec-attrs')">
     <DocsPropsTable
-      :headers="['Attribut', 'Description']"
+      :headers="attrsTableHeaders"
       :rows="attrsRows"
     />
   </DocsSection>
 
-  <DocsSection id="sec-accessibilite" title="Accessibilité">
+  <DocsSection id="sec-accessibilite" :title="t('sec-a11y')">
     <DocsA11yNote>
-      La modale de personnalisation implémente un piège de focus : la tabulation
-      reste à l’intérieur du dialogue tant qu’il est ouvert. La touche
-      <kbd>Échap</kbd> ferme la modale lorsque le script DSBJ est actif. Les
-      préférences par service utilisent des cases à cocher natives à l’intérieur
-      d’un <code>label</code>, ce qui préserve une association explicite entre le
-      libellé et le contrôle. Les choix de consentement sont persistés dans
-      <code>localStorage</code> sous la clé <code>bj-consent</code>.
+      {{ t('a11y-1') }}
+      <kbd>{{ t('kbd-esc') }}</kbd>
+      {{ t('a11y-2') }}
+      <code>label</code>
+      {{ t('a11y-3') }}
+      <code>bj-consent</code>
+      {{ t('a11y-4') }}
     </DocsA11yNote>
   </DocsSection>
 </template>

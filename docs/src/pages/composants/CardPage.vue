@@ -4,6 +4,97 @@ import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import DocsPropsTable from '@docs/components/DocsPropsTable.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'Carte',
+      desc: 'Conteneur pour actualités, services ou fiches administratives : visuel 16:9, métadonnée optionnelle, titre, texte et pied de page pour date ou actions. Combinez les modificateurs pour l’orientation, le relief et la mise en avant.',
+      'section-default': 'Carte par défaut',
+      'section-horizontal': 'Carte horizontale',
+      'para-horizontal':
+        '<code>bj-card--horizontal</code> place le visuel à gauche et le contenu à droite - utile pour listes de résultats ou encarts larges.',
+      'section-flat': 'Carte sans bordure',
+      'para-flat':
+        '<code>bj-card--flat</code> retire bordure et fond : à utiliser sur une page déjà structurée (panneau, colonne avec fond).',
+      'section-highlight': 'Carte avec mise en avant',
+      'para-highlight':
+        '<code>bj-card--highlight</code> ajoute une bordure gauche colorée pour signaler une offre prioritaire ou une action recommandée.',
+      'section-grid': 'Grille de cartes',
+      'para-grid':
+        'Trois cartes sur une ligne desktop avec <code>bj-grid-row</code> et <code>bj-col-4</code> (se réorganisent sur petits écrans).',
+      'section-classes': 'Classes CSS',
+      'section-a11y': 'Accessibilité',
+      'a11y-note':
+        'Les visuels décoratifs doivent avoir un <code>role="img"</code> avec <code>aria-label</code> vide ou un <code>alt</code> vide sur une vraie image. Si le bloc apporte une information, décrivez-la dans le label ou l’attribut <code>alt</code>. Pour une carte entièrement cliquable (<code>bj-card--link</code>), l’intitulé visible doit suffire comme nom de lien. Respectez la hiérarchie des titres : un seul <code>h1</code> par page - utilisez <code>h2</code> ou <code>h3</code> dans les cartes selon le contexte.',
+      'prop-bj-card':
+        'Carte verticale avec bordure et fond surélevé.',
+      'prop-bj-card-img':
+        'Zone visuelle pleine largeur, ratio 16:9 (image ou fond).',
+      'prop-bj-card-body':
+        'Zone principale (détail, titre, description).',
+      'prop-bj-card-detail': 'Ligne de métadonnée en capitales.',
+      'prop-bj-card-title': 'Titre de la carte.',
+      'prop-bj-card-desc': 'Texte descriptif.',
+      'prop-bj-card-footer':
+        'Barre sous le corps (date, liens, actions).',
+      'prop-bj-card-start-end':
+        'Alignement horizontal dans le footer.',
+      'prop-bj-card-horizontal':
+        'Disposition visuel + contenu côte à côte.',
+      'prop-bj-card-flat':
+        'Sans bordure ni ombre, fond transparent.',
+      'prop-bj-card-highlight':
+        'Bordure gauche d’accent (couleur d’action).',
+      'prop-bj-card-link':
+        'Sur un lien (balise a), carte interactive avec ombre au survol.',
+      'prop-bj-cards':
+        'Grille auto-fill de cartes (alternative à la grille 12 colonnes).',
+    },
+    en: {
+      title: 'Card',
+      desc: 'Container for news, services, or administrative sheets: 16:9 visual, optional metadata, title, text, and footer for dates or actions. Combine modifiers for layout, elevation, and emphasis.',
+      'section-default': 'Default card',
+      'section-horizontal': 'Horizontal card',
+      'para-horizontal':
+        '<code>bj-card--horizontal</code> puts the visual on the left and content on the right—useful for result lists or wide promos.',
+      'section-flat': 'Borderless card',
+      'para-flat':
+        '<code>bj-card--flat</code> removes border and background: use on an already structured page (panel, column with background).',
+      'section-highlight': 'Highlighted card',
+      'para-highlight':
+        '<code>bj-card--highlight</code> adds a coloured left border for a priority offer or recommended action.',
+      'section-grid': 'Card grid',
+      'para-grid':
+        'Three cards per row on desktop with <code>bj-grid-row</code> and <code>bj-col-4</code> (they reflow on small screens).',
+      'section-classes': 'CSS classes',
+      'section-a11y': 'Accessibility',
+      'a11y-note':
+        'Decorative visuals should use <code>role="img"</code> with an empty <code>aria-label</code> or an empty <code>alt</code> on a real image. If the block conveys information, describe it in the label or <code>alt</code>. For a fully clickable card (<code>bj-card--link</code>), the visible title should be enough as the link name. Respect heading hierarchy: one <code>h1</code> per page—use <code>h2</code> or <code>h3</code> inside cards as context requires.',
+      'prop-bj-card': 'Vertical card with border and raised background.',
+      'prop-bj-card-img':
+        'Full-width visual area, 16:9 ratio (image or background).',
+      'prop-bj-card-body':
+        'Main area (detail, title, description).',
+      'prop-bj-card-detail': 'Metadata line in capitals.',
+      'prop-bj-card-title': 'Card title.',
+      'prop-bj-card-desc': 'Descriptive text.',
+      'prop-bj-card-footer':
+        'Bar below the body (date, links, actions).',
+      'prop-bj-card-start-end': 'Horizontal alignment in the footer.',
+      'prop-bj-card-horizontal': 'Visual + content side by side.',
+      'prop-bj-card-flat': 'No border or shadow, transparent background.',
+      'prop-bj-card-highlight':
+        'Left accent border (action colour).',
+      'prop-bj-card-link':
+        'On a link (a element), interactive card with hover shadow.',
+      'prop-bj-cards':
+        'Auto-fill card grid (alternative to the 12-column grid).',
+    },
+  },
+})
 
 const codeDefault = `<article class="bj-card">
   <div class="bj-card__img" role="img" aria-label="…"></div>
@@ -34,52 +125,65 @@ const codeGrid = `<div class="bj-grid-row bj-grid-row--gutters">
   <div class="bj-col-4"><article class="bj-card">…</article></div>
 </div>`
 
-const propsRows = [
-  { name: 'bj-card', description: 'Carte verticale avec bordure et fond surélevé.' },
+const propsRows = computed(() => [
+  { name: 'bj-card', description: t('prop-bj-card') },
   {
     name: 'bj-card__img',
-    description: 'Zone visuelle pleine largeur, ratio 16:9 (image ou fond).',
+    description: t('prop-bj-card-img'),
   },
-  { name: 'bj-card__body', description: 'Zone principale (détail, titre, description).' },
-  { name: 'bj-card__detail', description: 'Ligne de métadonnée en capitales.' },
-  { name: 'bj-card__title', description: 'Titre de la carte.' },
-  { name: 'bj-card__desc', description: 'Texte descriptif.' },
-  { name: 'bj-card__footer', description: 'Barre sous le corps (date, liens, actions).' },
+  {
+    name: 'bj-card__body',
+    description: t('prop-bj-card-body'),
+  },
+  {
+    name: 'bj-card__detail',
+    description: t('prop-bj-card-detail'),
+  },
+  { name: 'bj-card__title', description: t('prop-bj-card-title') },
+  { name: 'bj-card__desc', description: t('prop-bj-card-desc') },
+  {
+    name: 'bj-card__footer',
+    description: t('prop-bj-card-footer'),
+  },
   {
     name: 'bj-card__start / bj-card__end',
-    description: 'Alignement horizontal dans le footer.',
+    description: t('prop-bj-card-start-end'),
   },
-  { name: 'bj-card--horizontal', description: 'Disposition visuel + contenu côte à côte.' },
-  { name: 'bj-card--flat', description: 'Sans bordure ni ombre, fond transparent.' },
-  { name: 'bj-card--highlight', description: 'Bordure gauche d’accent (couleur d’action).' },
+  {
+    name: 'bj-card--horizontal',
+    description: t('prop-bj-card-horizontal'),
+  },
+  {
+    name: 'bj-card--flat',
+    description: t('prop-bj-card-flat'),
+  },
+  {
+    name: 'bj-card--highlight',
+    description: t('prop-bj-card-highlight'),
+  },
   {
     name: 'bj-card--link',
-    description:
-      'Sur un lien (balise a), carte interactive avec ombre au survol.',
+    description: t('prop-bj-card-link'),
   },
   {
     name: 'bj-cards',
-    description:
-      'Grille auto-fill de cartes (alternative à la grille 12 colonnes).',
+    description: t('prop-bj-cards'),
   },
-]
+])
 </script>
 
 <template>
   <h1 class="bj-h1" style="margin-top: var(--bj-spacing-4v)">
-    Carte
+    {{ t('title') }}
   </h1>
   <p
     class="bj-text-lg"
     style="max-width: 44rem; color: var(--bj-text-alt)"
   >
-    Conteneur pour actualités, services ou fiches administratives :
-    visuel 16:9, métadonnée optionnelle, titre, texte et pied de page
-    pour date ou actions. Combinez les modificateurs pour
-    l’orientation, le relief et la mise en avant.
+    {{ t('desc') }}
   </p>
 
-  <DocsSection id="sec-card-default" title="Carte par défaut">
+  <DocsSection id="sec-card-default" :title="t('section-default')">
     <DocsPreview>
       <article class="bj-card" style="max-width: 22rem">
         <div
@@ -117,14 +221,12 @@ const propsRows = [
     <DocsCode :code="codeDefault" />
   </DocsSection>
 
-  <DocsSection id="sec-card-horizontal" title="Carte horizontale">
+  <DocsSection id="sec-card-horizontal" :title="t('section-horizontal')">
     <p
       class="bj-text-md"
       style="max-width: 44rem; color: var(--bj-text-alt)"
     >
-      <code>bj-card--horizontal</code> place le visuel à gauche et le
-      contenu à droite - utile pour listes de résultats ou encarts
-      larges.
+      <span v-html="t('para-horizontal')" />
     </p>
     <DocsPreview>
       <article class="bj-card bj-card--horizontal">
@@ -148,13 +250,12 @@ const propsRows = [
     <DocsCode :code="codeHorizontal" />
   </DocsSection>
 
-  <DocsSection id="sec-card-flat" title="Carte sans bordure">
+  <DocsSection id="sec-card-flat" :title="t('section-flat')">
     <p
       class="bj-text-md"
       style="max-width: 44rem; color: var(--bj-text-alt)"
     >
-      <code>bj-card--flat</code> retire bordure et fond : à utiliser
-      sur une page déjà structurée (panneau, colonne avec fond).
+      <span v-html="t('para-flat')" />
     </p>
     <DocsPreview>
       <article class="bj-card bj-card--flat">
@@ -170,14 +271,12 @@ const propsRows = [
     <DocsCode :code="codeFlat" />
   </DocsSection>
 
-  <DocsSection id="sec-card-highlight" title="Carte avec mise en avant">
+  <DocsSection id="sec-card-highlight" :title="t('section-highlight')">
     <p
       class="bj-text-md"
       style="max-width: 44rem; color: var(--bj-text-alt)"
     >
-      <code>bj-card--highlight</code> ajoute une bordure gauche
-      colorée pour signaler une offre prioritaire ou une action
-      recommandée.
+      <span v-html="t('para-highlight')" />
     </p>
     <DocsPreview>
       <article
@@ -197,14 +296,12 @@ const propsRows = [
     <DocsCode :code="codeHighlight" />
   </DocsSection>
 
-  <DocsSection id="sec-card-grid" title="Grille de cartes">
+  <DocsSection id="sec-card-grid" :title="t('section-grid')">
     <p
       class="bj-text-md"
       style="max-width: 44rem; color: var(--bj-text-alt)"
     >
-      Trois cartes sur une ligne desktop avec
-      <code>bj-grid-row</code> et <code>bj-col-4</code> (se
-      réorganisent sur petits écrans).
+      <span v-html="t('para-grid')" />
     </p>
     <DocsPreview>
       <div class="bj-grid-row bj-grid-row--gutters">
@@ -262,22 +359,13 @@ const propsRows = [
     <DocsCode :code="codeGrid" />
   </DocsSection>
 
-  <DocsSection id="classes-card" title="Classes CSS">
+  <DocsSection id="classes-card" :title="t('section-classes')">
     <DocsPropsTable :rows="propsRows" />
   </DocsSection>
 
-  <DocsSection id="a11y-card" title="Accessibilité">
+  <DocsSection id="a11y-card" :title="t('section-a11y')">
     <DocsA11yNote>
-      Les visuels décoratifs doivent avoir un
-      <code>role="img"</code> avec <code>aria-label</code> vide ou
-      un <code>alt</code> vide sur une vraie image. Si le bloc
-      apporte une information, décrivez-la dans le label ou
-      l’attribut <code>alt</code>. Pour une carte entièrement
-      cliquable (<code>bj-card--link</code>), l’intitulé visible
-      doit suffire comme nom de lien. Respectez la hiérarchie des
-      titres : un seul <code>h1</code> par page - utilisez
-      <code>h2</code> ou <code>h3</code> dans les cartes selon le
-      contexte.
+      <span v-html="t('a11y-note')" />
     </DocsA11yNote>
   </DocsSection>
 </template>
