@@ -7,6 +7,7 @@ const pkg = JSON.parse(readFileSync(resolve(__dirname, 'package.json'), 'utf-8')
 
 export default defineConfig({
   root: 'docs',
+  base: process.env.BASE_PATH || '/',
   plugins: [vue()],
   define: {
     __DSBJ_VERSION__: JSON.stringify(pkg.version),

@@ -25,7 +25,7 @@ const i18n = createI18n({
 
 export const createApp = ViteSSG(
   App,
-  { routes, base: '/' },
+  { routes, base: import.meta.env.BASE_URL },
   async ({ app, router, isClient }) => {
     app.use(i18n)
 
