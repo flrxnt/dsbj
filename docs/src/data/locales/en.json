@@ -36,5 +36,13 @@
     "regulatory": "Regulatory",
     "hide": "Hide menu",
     "show": "Show menu"
+  },
+  "search": {
+    "label": "Search documentation",
+    "placeholder": "Search…",
+    "empty": "No results found.",
+    "navigate": "navigate",
+    "select": "open",
+    "close": "close"
   }
 }

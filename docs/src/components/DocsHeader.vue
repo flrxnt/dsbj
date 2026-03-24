@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch, onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useTheme } from "../composables/useTheme";
 import { mainNav } from "../data/navigation";
+import DocsSearch from "./DocsSearch.vue";
 
 const route = useRoute();
 const { t, locale } = useI18n();
@@ -12,6 +13,7 @@ const version = __DSBJ_VERSION__;
 
 const currentSection = computed(() => route.meta.section as string);
 const menuOpen = ref(false);
+const searchOpen = ref(false);
 
 watch(route, () => {
   menuOpen.value = false;
@@ -35,6 +37,23 @@ function sectionFromPath(to: string): string {
   if (to === "/") return "home";
   return to.replace(/^\//, "").split("/")[0];
 }
+
+const isMac = typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.userAgent);
+
+function onGlobalKey(e: KeyboardEvent) {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    searchOpen.value = !searchOpen.value;
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('keydown', onGlobalKey);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', onGlobalKey);
+});
 </script>
 
 <template>
@@ -54,6 +73,16 @@ function sectionFromPath(to: string): string {
           </div>
         </RouterLink>
         <div class="docs-header-tools">
+          <button
+            type="button"
+            class="docs-search-trigger"
+            :aria-label="t('search.label')"
+            @click="searchOpen = true"
+          >
+            <i class="ri-search-line" aria-hidden="true"></i>
+            <span>{{ t('search.placeholder') }}</span>
+            <kbd>{{ isMac ? '⌘' : 'Ctrl' }}K</kbd>
+          </button>
           <button
             type="button"
             class="bj-btn bj-btn--tertiary bj-btn--sm"
@@ -118,4 +147,5 @@ function sectionFromPath(to: string): string {
       </nav>
     </div>
   </header>
+  <DocsSearch :open="searchOpen" @close="searchOpen = false" />
 </template>
