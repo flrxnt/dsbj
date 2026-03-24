@@ -145,6 +145,12 @@
   white-space: nowrap;
 }
 
+@media screen and (max-width: 767px) {
+  .docs-version {
+    display: none;
+  }
+}
+
 /* Cards de documentation */
 .docs-cards {
   display: grid;
@@ -255,6 +261,7 @@ html[data-bj-theme="dark"] .shiki span {
 }
 
 @media (prefers-color-scheme: dark) {
+
   html:not([data-bj-theme="light"]) .shiki,
   html:not([data-bj-theme="light"]) .shiki span {
     color: var(--shiki-dark) !important;
@@ -657,6 +664,7 @@ html[data-bj-theme="dark"] .shiki span {
 }
 
 @media (max-width: 767px) {
+
   .docs-search-trigger span,
   .docs-search-trigger kbd {
     display: none;
