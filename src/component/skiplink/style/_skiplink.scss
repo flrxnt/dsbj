@@ -1,0 +1,29 @@
+.bj-skiplinks {
+  position: relative;
+}
+
+.bj-skiplinks__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.bj-skiplinks__link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  padding: var(--bj-spacing-2v) var(--bj-spacing-4v);
+  background-color: var(--bj-action-high);
+  color: #fff;
+  font-size: var(--bj-fs-sm);
+  font-weight: var(--bj-fw-medium);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: top var(--bj-duration-fast) var(--bj-easing);
+
+  &:focus {
+    top: 0;
+    outline: 2px solid var(--bj-action-high);
+    outline-offset: 2px;
+  }
+}

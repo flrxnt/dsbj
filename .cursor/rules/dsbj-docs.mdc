@@ -1,0 +1,47 @@
+---
+description: Conventions du site de documentation DSBJ (Vue 3 + SSG)
+globs: ["docs/**/*.vue", "docs/**/*.ts", "docs/**/*.css"]
+---
+
+# DSBJ - Documentation Vue.js
+
+## Architecture
+Le site de documentation utilise Vue 3 + vue-router + vite-ssg pour la génération statique.
+- Point d'entrée : `docs/index.html` → `docs/src/main.ts`
+- Config Vite : `vite.docs.config.ts` (root: docs/)
+- Build SSG : `bun run build:docs` → `site/`
+- Dev server : `bun run dev` (port 3000)
+
+## Layouts (docs/src/layouts/)
+- `HomeLayout.vue` : page d'accueil avec hero
+- `SectionLayout.vue` : pages index de section (container + breadcrumb, pas de sidebar)
+- `DocsLayout.vue` : pages intérieures (sidebar + breadcrumb + contenu)
+- Le layout est assigné via `route.meta.layout` ('home' | 'section' | 'docs')
+
+## Composants partagés (docs/src/components/)
+- `DocsHeader.vue` : header avec nav, theme/lang toggle, version
+- `DocsFooter.vue` : footer avec liens légaux et copyright i18n
+- `DocsSidebar.vue` : sidebar configurable par section (prop `section`)
+- `DocsBreadcrumb.vue` : fil d'Ariane auto depuis `route.meta.breadcrumb`
+- `DocsCode.vue` : bloc code + copier (prop `code`)
+- `DocsPreview.vue` : aperçu demo (slot)
+- `DocsSection.vue` : section h2 (props `id`, `title`, slot)
+- `DocsA11yNote.vue` : note accessibilité (slot)
+- `DocsPropsTable.vue` : table classes CSS (prop `rows`)
+- `DocsCard.vue` : carte navigation (props `to`, `icon`, `title`, `description`)
+
+## Pages (docs/src/pages/)
+Chaque page Vue SFC contient uniquement le contenu spécifique. Le chrome (header, footer, sidebar, breadcrumb) est géré par le layout.
+
+## Routing (docs/src/router.ts)
+Routes avec meta : `layout`, `section`, `title`, `breadcrumb`.
+
+## i18n (vue-i18n)
+Fichiers de traduction : `docs/src/data/locales/fr.json` et `en.json`.
+
+## Navigation (docs/src/data/navigation.ts)
+Liens de la nav principale et des sidebars par section.
+
+## Thème
+Composable `useTheme()` dans `docs/src/composables/useTheme.ts`.
+Synchro localStorage + attribut `data-bj-theme` sur `<html>`.

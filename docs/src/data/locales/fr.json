@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "getting-started": "Premiers pas",
+    "fundamentals": "Fondamentaux",
+    "components": "Composants",
+    "templates": "Modèles"
+  },
+  "header": {
+    "tagline": "Design Système du Bénin"
+  },
+  "theme": {
+    "dark": "Mode sombre",
+    "light": "Mode clair"
+  },
+  "lang": {
+    "switch": "EN",
+    "label": "Switch to English"
+  },
+  "footer": {
+    "legal": "Mentions légales",
+    "privacy": "Données personnelles",
+    "a11y": "Accessibilité : partiellement conforme",
+    "copy": "Sauf mention contraire, tous les contenus de ce site sont sous licence étatique - République du Bénin"
+  },
+  "code": {
+    "copy": "Copier",
+    "copied": "Copié !"
+  },
+  "sidebar": {
+    "navigation": "Navigation",
+    "base": "Base",
+    "forms": "Formulaires",
+    "content": "Contenu",
+    "interactive": "Interactifs",
+    "regulatory": "Réglementaire",
+    "hide": "Masquer le menu",
+    "show": "Afficher le menu"
+  }
+}

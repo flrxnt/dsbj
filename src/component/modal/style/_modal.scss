@@ -1,0 +1,101 @@
+.bj-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--bj-spacing-4v);
+
+  &[data-bj-expanded],
+  &--opened {
+    display: flex;
+  }
+}
+
+.bj-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(22, 22, 22, 0.6);
+  z-index: 1;
+}
+
+.bj-modal__dialog {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 40rem;
+  max-height: calc(100vh - var(--bj-spacing-8v));
+  background-color: var(--bj-bg-default);
+  border-radius: var(--bj-radius-md);
+  box-shadow: var(--bj-shadow-xl);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: bjModalIn var(--bj-duration-normal) var(--bj-easing);
+}
+
+@keyframes bjModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bj-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--bj-spacing-4v) var(--bj-spacing-6v);
+  border-bottom: 1px solid var(--bj-border-subtle);
+}
+
+.bj-modal__title {
+  font-size: var(--bj-fs-xl);
+  font-weight: var(--bj-fw-bold);
+  color: var(--bj-text-title);
+  margin: 0;
+}
+
+.bj-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--bj-text-mention);
+  font-size: 1.25rem;
+  border-radius: var(--bj-radius-sm);
+  transition: background-color var(--bj-duration-fast) var(--bj-easing);
+
+  &:hover { background-color: var(--bj-bg-alt); }
+}
+
+.bj-modal__body {
+  padding: var(--bj-spacing-6v);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.bj-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--bj-spacing-2v);
+  padding: var(--bj-spacing-4v) var(--bj-spacing-6v);
+  border-top: 1px solid var(--bj-border-subtle);
+}
+
+.bj-modal--sm .bj-modal__dialog { max-width: 28rem; }
+.bj-modal--lg .bj-modal__dialog { max-width: 56rem; }
+.bj-modal--full .bj-modal__dialog { max-width: none; margin: var(--bj-spacing-4v); }
+
+body.bj-modal-open {
+  overflow: hidden;
+}

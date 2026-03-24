@@ -1,0 +1,34 @@
+---
+description: Règles SEO pour les pages utilisant le DSBJ
+globs: ["**/*.html"]
+---
+
+# DSBJ - SEO
+
+## Head obligatoire
+- `<title>` structuré : "Page - Section - DSBJ" ou "Page - Mon service - République du Bénin"
+- `<meta name="description">` unique par page (150-160 caractères)
+- `<link rel="canonical">` avec URL absolue
+- `<meta name="theme-color" content="#008751">`
+
+## Open Graph
+- `og:title`, `og:description`, `og:type` (website), `og:url`, `og:locale` (fr_BJ)
+- `og:image` avec image de partage (1200x630px recommandé)
+
+## Twitter Card
+- `twitter:card` (summary_large_image), `twitter:title`, `twitter:description`
+
+## Structure sémantique
+- `<header role="banner">`, `<main id="main" role="main">`, `<footer role="contentinfo">`
+- `<nav>` avec `aria-label` pour chaque bloc de navigation
+- Breadcrumb dans un `<nav aria-label="Fil d'Ariane">` avec `<ol>`
+
+## Données structurées
+- JSON-LD WebSite + Organization sur la page d'accueil
+- JSON-LD BreadcrumbList sur les pages intérieures
+- JSON-LD TechArticle sur les pages de composants
+
+## Fichiers
+- `/llms.txt` pour les LLM (standard llmstxt.org)
+- `/robots.txt` avec lien vers sitemap
+- `/sitemap.xml` avec toutes les pages indexables

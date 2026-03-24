@@ -1,0 +1,65 @@
+{
+  "name": "@gouvbj/dsbj",
+  "version": "1.0.0",
+  "description": "Design Système du Bénin - Système de design gouvernemental de la République du Bénin",
+  "author": "République du Bénin",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/dsbj.umd.js",
+  "module": "dist/dsbj.es.js",
+  "types": "dist/index.d.ts",
+  "style": "dist/dsbj.css",
+  "exports": {
+    ".": {
+      "import": "./dist/dsbj.es.js",
+      "require": "./dist/dsbj.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./css": "./dist/dsbj.css",
+    "./scss": "./src/dsbj.scss"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "workspaces": [
+    "mcp"
+  ],
+  "scripts": {
+    "dev": "vite --config vite.docs.config.ts",
+    "build": "vite build",
+    "build:docs": "bun scripts/build-docs.ts",
+    "preview": "vite preview --config vite.preview.config.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "mcp:start": "bun run --cwd mcp start",
+    "mcp:dev": "bun run --cwd mcp dev"
+  },
+  "devDependencies": {
+    "vite": "latest",
+    "vitest": "latest",
+    "typescript": "latest",
+    "sass-embedded": "latest",
+    "jsdom": "latest"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "patchedDependencies": {
+    "vite-ssg@28.3.0": "patches/vite-ssg@28.3.0.patch"
+  },
+  "dependencies": {
+    "@unhead/vue": "^2.1.12",
+    "@vitejs/plugin-vue": "^6.0.5",
+    "vite-ssg": "^28.3.0",
+    "vue": "^3.5.30",
+    "vue-i18n": "^11.3.0",
+    "vue-router": "^5.0.4"
+  }
+}

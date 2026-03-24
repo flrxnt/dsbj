@@ -1,0 +1,22 @@
+// Intégration Remix Icon via classe .bj-icon
+// Les icônes Remix Icon sont chargées via CDN dans le HTML
+
+.bj-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+
+  &::before { line-height: 1; }
+}
+
+.bj-icon--sm { font-size: 1rem; }
+.bj-icon--md { font-size: 1.25rem; }
+.bj-icon--lg { font-size: 1.5rem; }
+.bj-icon--xl { font-size: 2rem; }
+
+.bj-icon--action  { color: var(--bj-action-high); }
+.bj-icon--info    { color: var(--bj-info); }
+.bj-icon--success { color: var(--bj-success); }
+.bj-icon--warning { color: var(--bj-warning); }
+.bj-icon--error   { color: var(--bj-error); }

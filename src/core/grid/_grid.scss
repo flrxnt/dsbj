@@ -1,0 +1,82 @@
+@use 'breakpoints' as bp;
+
+$columns: 12;
+$gutter: var(--bj-spacing-4v);
+
+.bj-container {
+  width: 100%;
+  max-width: bp.$xl;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--bj-spacing-4v);
+  padding-right: var(--bj-spacing-4v);
+
+  @media (min-width: bp.$md) {
+    padding-left: var(--bj-spacing-6v);
+    padding-right: var(--bj-spacing-6v);
+  }
+  @media (min-width: bp.$lg) {
+    padding-left: var(--bj-spacing-8v);
+    padding-right: var(--bj-spacing-8v);
+  }
+}
+
+.bj-container--fluid {
+  max-width: 100%;
+}
+
+.bj-grid-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(-1 * #{$gutter} / 2);
+  margin-right: calc(-1 * #{$gutter} / 2);
+}
+
+.bj-grid-row--gutters {
+  margin-left: calc(-1 * #{$gutter} / 2);
+  margin-right: calc(-1 * #{$gutter} / 2);
+  row-gap: $gutter;
+
+  > [class*="bj-col"] {
+    padding-left: calc(#{$gutter} / 2);
+    padding-right: calc(#{$gutter} / 2);
+  }
+}
+
+.bj-grid-row--center  { justify-content: center; }
+.bj-grid-row--right   { justify-content: flex-end; }
+.bj-grid-row--middle  { align-items: center; }
+.bj-grid-row--bottom  { align-items: flex-end; }
+
+[class*="bj-col"] {
+  padding-left: calc(#{$gutter} / 2);
+  padding-right: calc(#{$gutter} / 2);
+}
+
+@for $i from 1 through $columns {
+  .bj-col-#{$i} {
+    flex: 0 0 auto;
+    width: calc(100% * #{$i} / #{$columns});
+  }
+}
+
+.bj-col { flex: 1 1 0%; }
+
+@each $name, $size in bp.$breakpoints {
+  @media (min-width: $size) {
+    @for $i from 1 through $columns {
+      .bj-col-#{$name}-#{$i} {
+        flex: 0 0 auto;
+        width: calc(100% * #{$i} / #{$columns});
+      }
+    }
+    .bj-col-#{$name} { flex: 1 1 0%; }
+
+    .bj-col-offset-#{$name}-0 { margin-left: 0; }
+    @for $i from 1 through $columns {
+      .bj-col-offset-#{$name}-#{$i} {
+        margin-left: calc(100% * #{$i} / #{$columns});
+      }
+    }
+  }
+}

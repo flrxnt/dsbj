@@ -1,0 +1,16 @@
+@use 'tokens';
+
+:root {
+  @include tokens.generate-palette-tokens;
+  @include tokens.generate-semantic-tokens-light;
+}
+
+[data-bj-theme="dark"] {
+  @include tokens.generate-semantic-tokens-dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-bj-theme="light"]) {
+    @include tokens.generate-semantic-tokens-dark;
+  }
+}

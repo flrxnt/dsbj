@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "home": "Home",
+    "getting-started": "Getting started",
+    "fundamentals": "Fundamentals",
+    "components": "Components",
+    "templates": "Templates"
+  },
+  "header": {
+    "tagline": "Benin Design System"
+  },
+  "theme": {
+    "dark": "Dark mode",
+    "light": "Light mode"
+  },
+  "lang": {
+    "switch": "FR",
+    "label": "Passer en français"
+  },
+  "footer": {
+    "legal": "Legal notice",
+    "privacy": "Personal data",
+    "a11y": "Accessibility: partially compliant",
+    "copy": "Unless otherwise stated, all content on this site is under government license - Republic of Benin"
+  },
+  "code": {
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "sidebar": {
+    "navigation": "Navigation",
+    "base": "Base",
+    "forms": "Forms",
+    "content": "Content",
+    "interactive": "Interactive",
+    "regulatory": "Regulatory",
+    "hide": "Hide menu",
+    "show": "Show menu"
+  }
+}

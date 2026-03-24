@@ -1,0 +1,17 @@
+{
+  "name": "@gouvbj/dsbj-mcp",
+  "version": "1.0.0",
+  "description": "Serveur MCP pour le Design Système du Bénin - accès IA aux composants et fondamentaux",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "dev": "bun --watch run src/index.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1"
+  },
+  "devDependencies": {
+    "bun-types": "^1.3.11"
+  }
+}

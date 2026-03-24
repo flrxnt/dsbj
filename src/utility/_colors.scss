@@ -1,0 +1,21 @@
+.bj-text-default   { color: var(--bj-text-default); }
+.bj-text-title     { color: var(--bj-text-title); }
+.bj-text-alt       { color: var(--bj-text-alt); }
+.bj-text-mention   { color: var(--bj-text-mention); }
+.bj-text-inverted  { color: var(--bj-text-inverted); }
+.bj-text-action    { color: var(--bj-action-high); }
+.bj-text-info      { color: var(--bj-info); }
+.bj-text-success   { color: var(--bj-success); }
+.bj-text-warning   { color: var(--bj-warning); }
+.bj-text-error     { color: var(--bj-error); }
+.bj-text-accent    { color: var(--bj-accent-text); }
+
+.bj-bg-default     { background-color: var(--bj-bg-default); }
+.bj-bg-alt         { background-color: var(--bj-bg-alt); }
+.bj-bg-contrast    { background-color: var(--bj-bg-contrast); color: var(--bj-text-inverted); }
+.bj-bg-elevated    { background-color: var(--bj-bg-elevated); }
+.bj-bg-action      { background-color: var(--bj-action-high); color: #fff; }
+.bj-bg-info        { background-color: var(--bj-info-bg); }
+.bj-bg-success     { background-color: var(--bj-success-bg); }
+.bj-bg-warning     { background-color: var(--bj-warning-bg); }
+.bj-bg-error       { background-color: var(--bj-error-bg); }

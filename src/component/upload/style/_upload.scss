@@ -1,0 +1,75 @@
+.bj-upload-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bj-spacing-1v);
+  margin-bottom: var(--bj-spacing-4v);
+}
+
+.bj-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bj-spacing-2v);
+  padding: var(--bj-spacing-6v) var(--bj-spacing-4v);
+  border: 2px dashed var(--bj-border-default);
+  border-radius: var(--bj-radius-sm);
+  background-color: var(--bj-bg-alt);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color var(--bj-duration-fast) var(--bj-easing),
+              background-color var(--bj-duration-fast) var(--bj-easing);
+
+  &:hover, &--drag-over {
+    border-color: var(--bj-action-high);
+    background-color: var(--bj-action-low);
+  }
+
+  input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+}
+
+.bj-upload__text {
+  font-size: var(--bj-fs-md);
+  color: var(--bj-text-alt);
+}
+
+.bj-upload__hint {
+  font-size: var(--bj-fs-sm);
+  color: var(--bj-text-mention);
+}
+
+.bj-upload__icon {
+  font-size: 2rem;
+  color: var(--bj-text-mention);
+}
+
+// État d'erreur
+.bj-upload-group--error .bj-upload {
+  border-color: var(--bj-error);
+}
+
+// Fichier sélectionné
+.bj-upload__file {
+  display: flex;
+  align-items: center;
+  gap: var(--bj-spacing-2v);
+  padding: var(--bj-spacing-2v) var(--bj-spacing-3v);
+  background-color: var(--bj-bg-alt);
+  border-radius: var(--bj-radius-sm);
+  font-size: var(--bj-fs-sm);
+}
+
+.bj-upload__file-remove {
+  margin-left: auto;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--bj-text-mention);
+  &:hover { color: var(--bj-error); }
+}

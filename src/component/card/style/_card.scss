@@ -1,0 +1,105 @@
+.bj-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bj-bg-elevated);
+  border-radius: var(--bj-radius-sm);
+  border: 1px solid var(--bj-border-subtle);
+  overflow: hidden;
+  transition: box-shadow var(--bj-duration-fast) var(--bj-easing);
+}
+
+a.bj-card,
+.bj-card--link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: var(--bj-shadow-md);
+  }
+}
+
+.bj-card__img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.bj-card__body {
+  padding: var(--bj-spacing-4v) var(--bj-spacing-5v);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.bj-card__detail {
+  font-size: var(--bj-fs-xs);
+  font-weight: var(--bj-fw-medium);
+  color: var(--bj-text-mention);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: var(--bj-spacing-1v);
+}
+
+.bj-card__title {
+  font-size: var(--bj-fs-lg);
+  font-weight: var(--bj-fw-bold);
+  color: var(--bj-text-title);
+  margin-bottom: var(--bj-spacing-2v);
+}
+
+.bj-card__desc {
+  font-size: var(--bj-fs-sm);
+  color: var(--bj-text-alt);
+  line-height: var(--bj-lh-normal);
+  flex: 1;
+}
+
+.bj-card__footer {
+  padding: var(--bj-spacing-3v) var(--bj-spacing-5v);
+  border-top: 1px solid var(--bj-border-subtle);
+  display: flex;
+  align-items: center;
+  gap: var(--bj-spacing-2v);
+}
+
+.bj-card__start {
+  display: flex;
+  align-items: center;
+  gap: var(--bj-spacing-2v);
+}
+
+.bj-card__end {
+  margin-left: auto;
+}
+
+// Horizontale
+.bj-card--horizontal {
+  flex-direction: row;
+
+  .bj-card__img {
+    width: 40%;
+    max-width: 16rem;
+    aspect-ratio: auto;
+    min-height: 100%;
+  }
+}
+
+// Sans bordure
+.bj-card--flat {
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+// Mise en avant
+.bj-card--highlight {
+  border-left: 4px solid var(--bj-action-high);
+}
+
+// Grille de cards
+.bj-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: var(--bj-spacing-4v);
+}

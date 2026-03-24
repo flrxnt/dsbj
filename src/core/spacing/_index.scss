@@ -1,0 +1,22 @@
+// Espacement - base 4px (0.25rem)
+// Notation : v = unité de 4px. 1v=4px, 2v=8px, …
+
+:root {
+  --bj-spacing-0v5: 0.125rem;
+  --bj-spacing-1v:  0.25rem;
+  --bj-spacing-1v5: 0.375rem;
+  --bj-spacing-2v:  0.5rem;
+  --bj-spacing-3v:  0.75rem;
+  --bj-spacing-4v:  1rem;
+  --bj-spacing-5v:  1.25rem;
+  --bj-spacing-6v:  1.5rem;
+  --bj-spacing-7v:  1.75rem;
+  --bj-spacing-8v:  2rem;
+  --bj-spacing-9v:  2.25rem;
+  --bj-spacing-10v: 2.5rem;
+  --bj-spacing-12v: 3rem;
+  --bj-spacing-14v: 3.5rem;
+  --bj-spacing-16v: 4rem;
+  --bj-spacing-20v: 5rem;
+  --bj-spacing-24v: 6rem;
+}

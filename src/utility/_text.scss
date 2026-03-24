@@ -1,0 +1,20 @@
+.bj-text-left   { text-align: left; }
+.bj-text-center { text-align: center; }
+.bj-text-right  { text-align: right; }
+
+.bj-text-uppercase   { text-transform: uppercase; }
+.bj-text-lowercase   { text-transform: lowercase; }
+.bj-text-capitalize  { text-transform: capitalize; }
+.bj-text-normal-case { text-transform: none; }
+
+.bj-text-underline  { text-decoration: underline; }
+.bj-text-no-underline { text-decoration: none; }
+.bj-text-line-through { text-decoration: line-through; }
+
+.bj-text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bj-text-break { overflow-wrap: break-word; word-break: break-word; }

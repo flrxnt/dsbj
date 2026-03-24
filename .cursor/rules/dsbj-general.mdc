@@ -1,0 +1,37 @@
+---
+description: Conventions générales du Design Système du Bénin (DSBJ)
+globs: ["**/*.html", "**/*.scss", "**/*.ts", "**/*.css"]
+---
+
+# DSBJ - Conventions générales
+
+## Préfixe CSS
+- Toutes les classes CSS utilisent le préfixe `bj-` (ex: `bj-btn`, `bj-card`)
+- Toutes les variables CSS utilisent `--bj-*` (ex: `--bj-spacing-4v`, `--bj-color-vert-benin-main-491`)
+- Les composants suivent la convention BEM : `bj-composant`, `bj-composant__element`, `bj-composant--modifier`
+
+## Structure des composants
+- Styles SCSS : `src/component/<name>/style/_<name>.scss`
+- JavaScript : `src/js/<name>.ts` (utilise `register()` de `src/js/core.ts`)
+- Documentation : `docs/composants/<name>.html`
+- Tests : `tests/<name>.test.ts`
+
+## Attributs data
+- Les hooks JavaScript utilisent `data-bj-*` (ex: `data-bj-accordion-btn`, `data-bj-modal-open`)
+- L'état ouvert/actif est marqué par `data-bj-expanded`
+
+## Polices et icônes
+- Corps : Open Sans (400, 500, 600, 700)
+- Titres éditoriaux : Spectral (400, 600)
+- Icônes : Remix Icon 4.1 (`ri-*`), toujours avec `aria-hidden="true"` quand décoratives
+
+## Package et outils
+- Gestionnaire de paquets : `bun` (jamais npm/yarn)
+- Build : `vite build` (sortie dans `dist/`)
+- Tests : `vitest` avec jsdom
+- Serveur de dev docs : `bun run dev` (port 3000)
+
+## Patterns JavaScript
+- Chaque module JS utilise `register(name, handler)` de `src/js/core.ts` pour s'auto-enregistrer
+- `boot()` est appelé au DOMContentLoaded et exécute tous les handlers enregistrés
+- `focusTrap.trap(el)` / `focusTrap.release(el)` pour piéger le focus dans les overlays

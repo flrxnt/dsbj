@@ -1,0 +1,106 @@
+.bj-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.bj-dropdown__trigger {
+  // Inherits btn styling from the consumer; only augments arrow indicator
+}
+
+.bj-dropdown__menu {
+  position: absolute;
+  top: calc(100% + var(--bj-spacing-1v));
+  left: 0;
+  z-index: 300;
+  min-width: 12rem;
+  max-height: 20rem;
+  overflow-y: auto;
+  background-color: var(--bj-bg-default);
+  border: 1px solid var(--bj-border-default);
+  border-radius: var(--bj-radius-md);
+  box-shadow: var(--bj-shadow-lg);
+  padding: var(--bj-spacing-1v) 0;
+  list-style: none;
+  margin: 0;
+  display: none;
+
+  &[data-bj-expanded] {
+    display: block;
+    animation: bjDropdownIn var(--bj-duration-fast) var(--bj-easing);
+  }
+}
+
+@keyframes bjDropdownIn {
+  from { opacity: 0; transform: translateY(-0.25rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.bj-dropdown__item {
+  display: flex;
+}
+
+.bj-dropdown__item > button,
+.bj-dropdown__item > a {
+  display: flex;
+  align-items: center;
+  gap: var(--bj-spacing-2v);
+  width: 100%;
+  padding: var(--bj-spacing-2v) var(--bj-spacing-4v);
+  font-size: var(--bj-fs-sm);
+  color: var(--bj-text-default);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: left;
+  transition: background-color var(--bj-duration-fast) var(--bj-easing);
+
+  &:hover,
+  &:focus {
+    background-color: var(--bj-bg-alt);
+    outline: none;
+  }
+
+  &[aria-disabled="true"] {
+    color: var(--bj-text-disabled);
+    cursor: not-allowed;
+    &:hover { background: none; }
+  }
+}
+
+.bj-dropdown__divider {
+  height: 1px;
+  margin: var(--bj-spacing-1v) 0;
+  background-color: var(--bj-border-subtle);
+}
+
+.bj-dropdown__header {
+  padding: var(--bj-spacing-2v) var(--bj-spacing-4v) var(--bj-spacing-1v);
+  font-size: var(--bj-fs-xs);
+  font-weight: var(--bj-fw-semibold);
+  color: var(--bj-text-mention);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+// Alignment variants
+.bj-dropdown--right .bj-dropdown__menu {
+  left: auto;
+  right: 0;
+}
+
+.bj-dropdown--up .bj-dropdown__menu {
+  top: auto;
+  bottom: calc(100% + var(--bj-spacing-1v));
+}
+
+// Size
+.bj-dropdown--sm .bj-dropdown__menu {
+  min-width: 8rem;
+}
+
+.bj-dropdown--sm .bj-dropdown__item > button,
+.bj-dropdown--sm .bj-dropdown__item > a {
+  padding: var(--bj-spacing-1v) var(--bj-spacing-3v);
+  font-size: var(--bj-fs-xs);
+}

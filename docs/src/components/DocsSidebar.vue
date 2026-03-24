@@ -1,0 +1,44 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { sidebars } from '../data/navigation'
+import { useSidebar } from '../composables/useSidebar'
+
+const props = defineProps<{ section: string }>()
+const route = useRoute()
+const { t } = useI18n()
+const { collapsed, toggle } = useSidebar()
+
+const groups = computed(() => sidebars[props.section] || [])
+</script>
+
+<template>
+  <aside class="docs-sidebar" aria-label="Sommaire de section">
+    <button
+      class="docs-sidebar__toggle"
+      :aria-label="collapsed ? t('sidebar.show') : t('sidebar.hide')"
+      :title="collapsed ? t('sidebar.show') : t('sidebar.hide')"
+      @click="toggle"
+    >
+      <i :class="collapsed ? 'ri-menu-unfold-line' : 'ri-menu-fold-line'" aria-hidden="true"></i>
+    </button>
+    <template v-for="(group, gi) in groups" :key="gi">
+      <p class="docs-sidebar__title" :style="gi > 0 ? 'margin-top: var(--bj-spacing-4v)' : undefined">
+        {{ group.i18nKey ? t(group.i18nKey) : group.title }}
+      </p>
+      <nav class="docs-sidebar__list">
+        <RouterLink
+          v-for="link in group.links"
+          :key="link.to"
+          :to="link.to"
+          class="docs-sidebar__link"
+          :class="{ 'docs-sidebar__link--active': route.path === link.to }"
+          :aria-current="route.path === link.to ? 'page' : undefined"
+        >
+          {{ link.label }}
+        </RouterLink>
+      </nav>
+    </template>
+  </aside>
+</template>

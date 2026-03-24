@@ -1,0 +1,62 @@
+/*! DSBJ v1.0.0 | Design Système du Bénin | MIT License */
+
+// ============================================================================
+// FONDAMENTAUX
+// ============================================================================
+@use 'core/reset/reset';
+@use 'core/color/index' as color;
+@use 'core/typography/index' as typography;
+@use 'core/spacing/index' as spacing;
+@use 'core/elevation/index' as elevation;
+@use 'core/grid/index' as grid;
+@use 'core/icon/index' as icon;
+@use 'core/media/index' as media;
+
+// ============================================================================
+// CLASSES UTILITAIRES
+// ============================================================================
+@use 'utility/index' as utility;
+
+// ============================================================================
+// COMPOSANTS
+// ============================================================================
+@use 'component/logo/style/logo';
+@use 'component/link/style/link';
+@use 'component/button/style/button';
+@use 'component/badge/style/badge';
+@use 'component/tag/style/tag';
+@use 'component/input/style/input';
+@use 'component/select/style/select';
+@use 'component/checkbox/style/checkbox';
+@use 'component/radio/style/radio';
+@use 'component/toggle/style/toggle';
+@use 'component/upload/style/upload';
+@use 'component/search/style/search';
+@use 'component/alert/style/alert';
+@use 'component/notice/style/notice';
+@use 'component/callout/style/callout';
+@use 'component/highlight/style/highlight';
+@use 'component/quote/style/quote';
+@use 'component/card/style/card';
+@use 'component/tile/style/tile';
+@use 'component/table/style/table';
+@use 'component/content/style/content';
+@use 'component/accordion/style/accordion';
+@use 'component/tab/style/tab';
+@use 'component/modal/style/modal';
+@use 'component/tooltip/style/tooltip';
+@use 'component/stepper/style/stepper';
+@use 'component/header/style/header';
+@use 'component/footer/style/footer';
+@use 'component/navigation/style/navigation';
+@use 'component/breadcrumb/style/breadcrumb';
+@use 'component/sidemenu/style/sidemenu';
+@use 'component/skiplink/style/skiplink';
+@use 'component/pagination/style/pagination';
+@use 'component/summary/style/summary';
+@use 'component/consent/style/consent';
+@use 'component/datepicker/style/datepicker';
+@use 'component/toast/style/toast';
+@use 'component/dropdown/style/dropdown';
+@use 'component/marquee/style/marquee';
+@use 'component/gallery/style/gallery';

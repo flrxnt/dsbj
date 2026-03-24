@@ -1,0 +1,41 @@
+.bj-quote {
+  padding: var(--bj-spacing-6v) var(--bj-spacing-8v);
+  border-left: 4px solid var(--bj-action-high);
+  position: relative;
+}
+
+.bj-quote__text {
+  font-family: var(--bj-font-serif);
+  font-size: var(--bj-fs-xl);
+  line-height: var(--bj-lh-normal);
+  font-style: italic;
+  color: var(--bj-text-default);
+  margin-bottom: var(--bj-spacing-3v);
+
+  &::before { content: '\00ab\00a0'; }
+  &::after  { content: '\00a0\00bb'; }
+}
+
+.bj-quote__author {
+  font-size: var(--bj-fs-sm);
+  font-weight: var(--bj-fw-semibold);
+  color: var(--bj-text-alt);
+}
+
+.bj-quote__source {
+  font-size: var(--bj-fs-sm);
+  color: var(--bj-text-mention);
+  margin-top: var(--bj-spacing-0v5);
+}
+
+.bj-quote--accent {
+  border-left-color: var(--bj-color-rouge-benin-main-472);
+}
+
+.bj-quote__image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--bj-radius-full);
+  object-fit: cover;
+  margin-bottom: var(--bj-spacing-3v);
+}

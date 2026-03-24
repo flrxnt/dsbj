@@ -1,0 +1,47 @@
+$spacing-map: (
+  '0': 0,
+  '0v5': var(--bj-spacing-0v5),
+  '1v': var(--bj-spacing-1v),
+  '1v5': var(--bj-spacing-1v5),
+  '2v': var(--bj-spacing-2v),
+  '3v': var(--bj-spacing-3v),
+  '4v': var(--bj-spacing-4v),
+  '5v': var(--bj-spacing-5v),
+  '6v': var(--bj-spacing-6v),
+  '8v': var(--bj-spacing-8v),
+  '10v': var(--bj-spacing-10v),
+  '12v': var(--bj-spacing-12v),
+  '16v': var(--bj-spacing-16v),
+);
+
+$sides: (
+  '':  (''),
+  't': ('-top'),
+  'r': ('-right'),
+  'b': ('-bottom'),
+  'l': ('-left'),
+  'x': ('-left', '-right'),
+  'y': ('-top', '-bottom'),
+);
+
+@each $skey, $sprops in $sides {
+  @each $vkey, $val in $spacing-map {
+    @if $skey == '' {
+      .bj-m-#{$vkey} {
+        @each $prop in $sprops { margin#{$prop}: #{$val}; }
+      }
+      .bj-p-#{$vkey} {
+        @each $prop in $sprops { padding#{$prop}: #{$val}; }
+      }
+    } @else {
+      .bj-m-#{$skey}-#{$vkey} {
+        @each $prop in $sprops { margin#{$prop}: #{$val}; }
+      }
+      .bj-p-#{$skey}-#{$vkey} {
+        @each $prop in $sprops { padding#{$prop}: #{$val}; }
+      }
+    }
+  }
+}
+
+.bj-mx-auto { margin-left: auto; margin-right: auto; }

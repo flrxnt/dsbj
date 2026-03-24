@@ -1,0 +1,58 @@
+.bj-stepper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bj-spacing-4v);
+}
+
+.bj-stepper__header {
+  font-size: var(--bj-fs-sm);
+  color: var(--bj-text-mention);
+  font-weight: var(--bj-fw-medium);
+}
+
+.bj-stepper__title {
+  font-size: var(--bj-fs-xl);
+  font-weight: var(--bj-fw-bold);
+  color: var(--bj-text-title);
+}
+
+.bj-stepper__steps {
+  display: flex;
+  gap: var(--bj-spacing-1v);
+}
+
+.bj-stepper__step {
+  flex: 1;
+  height: 0.25rem;
+  border-radius: var(--bj-radius-pill);
+  background-color: var(--bj-border-subtle);
+  transition: background-color var(--bj-duration-fast) var(--bj-easing);
+}
+
+.bj-stepper__step--current {
+  background-color: var(--bj-action-high);
+}
+
+.bj-stepper__step--done {
+  background-color: var(--bj-action-high);
+  opacity: 0.5;
+}
+
+.bj-stepper__detail {
+  font-size: var(--bj-fs-sm);
+  color: var(--bj-text-mention);
+}
+
+// Stepper vertical (pour listes d'étapes)
+.bj-stepper--vertical {
+  .bj-stepper__steps {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .bj-stepper__step {
+    width: 0.25rem;
+    height: 2rem;
+    flex: none;
+  }
+}

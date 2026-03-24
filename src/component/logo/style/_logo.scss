@@ -1,0 +1,93 @@
+// Logo de la République du Bénin
+// Drapeau : bande verte verticale à gauche, jaune en haut à droite, rouge en bas à droite
+// Utilisation : <div class="bj-logo"><p>République<br>du Bénin</p></div>
+// Avec devise : <div class="bj-logo"><p>République<br>du Bénin</p><span class="bj-logo__motto">Fraternité, Justice, Travail</span></div>
+
+.bj-logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-decoration: none;
+  color: var(--bj-text-title);
+
+  &::before {
+    content: '';
+    display: block;
+    width: 2.75rem;
+    height: 2rem;
+    margin-bottom: var(--bj-spacing-1v);
+    border-radius: var(--bj-radius-xs);
+    overflow: hidden;
+    background:
+      linear-gradient(to right,
+        var(--bj-color-vert-benin-main-491) 40%,
+        transparent 40%
+      ),
+      linear-gradient(to bottom,
+        var(--bj-color-jaune-benin-main-822) 50%,
+        var(--bj-color-rouge-benin-main-472) 50%
+      );
+  }
+
+  p {
+    font-size: var(--bj-fs-xs);
+    line-height: 1.3;
+    font-weight: var(--bj-fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    margin: 0;
+  }
+}
+
+.bj-logo--lg {
+  &::before {
+    width: 4.25rem;
+    height: 3rem;
+  }
+  p {
+    font-size: var(--bj-fs-sm);
+  }
+}
+
+.bj-logo--xl {
+  &::before {
+    width: 6rem;
+    height: 4.25rem;
+  }
+  p {
+    font-size: var(--bj-fs-md);
+  }
+}
+
+.bj-logo__link {
+  display: inline-flex;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bj-logo__motto {
+  display: block;
+  font-size: 0.5625rem;
+  font-weight: var(--bj-fw-medium);
+  font-style: italic;
+  color: var(--bj-text-alt);
+  text-transform: none;
+  letter-spacing: 0.02em;
+  margin-top: var(--bj-spacing-0v5);
+}
+
+.bj-logo--lg .bj-logo__motto {
+  font-size: var(--bj-fs-xs);
+}
+
+.bj-logo--xl .bj-logo__motto {
+  font-size: var(--bj-fs-sm);
+}
+
+.bj-logo__tagline {
+  font-size: var(--bj-fs-xs);
+  font-weight: var(--bj-fw-regular);
+  color: var(--bj-text-alt);
+  text-transform: none;
+  margin-top: var(--bj-spacing-0v5);
+}

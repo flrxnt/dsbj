@@ -1,0 +1,34 @@
+---
+description: Règles d'accessibilité WCAG 2.1 AA pour le DSBJ
+globs: ["**/*.html", "**/*.ts"]
+---
+
+# DSBJ - Accessibilité (WCAG 2.1 AA)
+
+## Règles obligatoires
+- Un seul `<h1>` par page, hiérarchie de titres stricte (h1 > h2 > h3, pas de saut)
+- Skip links en début de page : `<div class="bj-skiplinks"><a class="bj-skiplink" href="#main">Accéder au contenu</a></div>`
+- Attribut `lang="fr"` sur `<html>`, cohérent avec le contenu visible
+- Alt text sur toutes les images (`alt=""` si purement décorative)
+- Contraste minimum AA (4.5:1 texte normal, 3:1 grand texte)
+
+## Composants interactifs
+- `aria-expanded` + `aria-controls` sur les boutons qui ouvrent/ferment (accordéon, menu, dropdown)
+- `aria-hidden="true"` sur les icônes décoratives (`<i class="ri-*">`)
+- `aria-label` sur les boutons sans texte visible (boutons icône)
+- `role="dialog"` + `aria-modal="true"` + `aria-labelledby` sur les modales
+- `role="tablist"`, `role="tab"`, `role="tabpanel"` + `aria-selected` sur les onglets
+- `role="alert"` sur les alertes dynamiques injectées
+- `aria-current="page"` sur le lien actif dans la navigation et le breadcrumb
+
+## Formulaires
+- Chaque champ a un `<label>` avec `for` pointant vers l'`id` du champ
+- Erreurs liées via `aria-describedby` + `aria-invalid="true"`
+- Focus visible avec `:focus-visible` (jamais supprimer l'outline)
+- Groupes de choix dans `<fieldset>` avec `<legend>`
+
+## Navigation clavier
+- `focusTrap` de core.ts pour les overlays (modale, galerie)
+- Tous les éléments interactifs accessibles au Tab
+- Échap ferme les modales et dropdowns
+- Flèches pour naviguer entre onglets

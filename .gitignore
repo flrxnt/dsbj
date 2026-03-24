@@ -1,0 +1,12 @@
+node_modules/
+dist/
+site/
+docs-legacy/
+docs/.vite-ssg-temp/
+.sass-cache/
+*.css.map
+.DS_Store
+*.tsbuildinfo
+.cursor/*
+!.cursor/rules/
+!.cursor/mcp.json

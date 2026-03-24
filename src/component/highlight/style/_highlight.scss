@@ -1,0 +1,18 @@
+.bj-highlight {
+  padding: var(--bj-spacing-4v) var(--bj-spacing-6v);
+  border-left: 4px solid var(--bj-color-gris-850);
+  font-size: var(--bj-fs-lg);
+  line-height: var(--bj-lh-normal);
+  color: var(--bj-text-default);
+
+  p { margin: 0; }
+}
+
+.bj-highlight--sm {
+  padding: var(--bj-spacing-3v) var(--bj-spacing-4v);
+  font-size: var(--bj-fs-md);
+}
+
+.bj-highlight--lg {
+  font-size: var(--bj-fs-xl);
+}

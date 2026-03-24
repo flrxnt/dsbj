@@ -1,0 +1,119 @@
+.bj-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bj-spacing-2v);
+  padding: var(--bj-spacing-2v) var(--bj-spacing-6v);
+  font-size: var(--bj-fs-md);
+  font-weight: var(--bj-fw-medium);
+  line-height: 1.5;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--bj-radius-xs);
+  cursor: pointer;
+  transition: all var(--bj-duration-fast) var(--bj-easing);
+  white-space: nowrap;
+  user-select: none;
+
+  &:disabled, &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// Primaire (vert Bénin)
+.bj-btn {
+  background-color: var(--bj-action-high);
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background-color: var(--bj-action-high-hover);
+  }
+  &:active:not(:disabled) {
+    background-color: var(--bj-action-high-active);
+  }
+}
+
+// Secondaire
+.bj-btn--secondary {
+  background-color: transparent;
+  color: var(--bj-action-high);
+  border-color: var(--bj-action-high);
+
+  &:hover:not(:disabled) {
+    background-color: var(--bj-action-low);
+  }
+  &:active:not(:disabled) {
+    background-color: var(--bj-action-low-hover);
+  }
+}
+
+// Tertiaire
+.bj-btn--tertiary {
+  background-color: transparent;
+  color: var(--bj-action-high);
+  border-color: transparent;
+  padding-left: var(--bj-spacing-3v);
+  padding-right: var(--bj-spacing-3v);
+
+  &:hover:not(:disabled) {
+    background-color: var(--bj-action-low);
+  }
+}
+
+// Tailles
+.bj-btn--sm {
+  padding: var(--bj-spacing-1v) var(--bj-spacing-3v);
+  font-size: var(--bj-fs-sm);
+}
+
+.bj-btn--lg {
+  padding: var(--bj-spacing-3v) var(--bj-spacing-8v);
+  font-size: var(--bj-fs-lg);
+}
+
+// Icon seul
+.bj-btn--icon {
+  padding: var(--bj-spacing-2v);
+  gap: 0;
+}
+.bj-btn--icon.bj-btn--sm { padding: var(--bj-spacing-1v); }
+.bj-btn--icon.bj-btn--lg { padding: var(--bj-spacing-3v); }
+
+// Pleine largeur
+.bj-btn--full { width: 100%; }
+
+// Groupe de boutons
+.bj-btn-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--bj-spacing-2v);
+}
+
+.bj-btn-group--vertical {
+  flex-direction: column;
+}
+
+.bj-btn-group--inline-sm {
+  gap: var(--bj-spacing-1v);
+}
+
+// Couleurs spéciales
+.bj-btn--accent {
+  background-color: var(--bj-color-rouge-benin-main-472);
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background-color: var(--bj-color-rouge-benin-425);
+  }
+}
+
+.bj-btn--contrast {
+  background-color: var(--bj-bg-contrast);
+  color: var(--bj-text-inverted);
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+}

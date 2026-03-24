@@ -1,0 +1,15 @@
+@use '../core/grid/breakpoints' as bp;
+
+$displays: block, inline-block, inline, flex, inline-flex, grid, none;
+
+@each $d in $displays {
+  .bj-d-#{$d} { display: #{$d}; }
+}
+
+@each $name, $size in bp.$breakpoints {
+  @media (min-width: $size) {
+    @each $d in $displays {
+      .bj-d-#{$name}-#{$d} { display: #{$d}; }
+    }
+  }
+}

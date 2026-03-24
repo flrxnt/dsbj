@@ -1,0 +1,30 @@
+.bj-flex-row       { flex-direction: row; }
+.bj-flex-col       { flex-direction: column; }
+.bj-flex-wrap      { flex-wrap: wrap; }
+.bj-flex-nowrap    { flex-wrap: nowrap; }
+
+.bj-justify-start   { justify-content: flex-start; }
+.bj-justify-center  { justify-content: center; }
+.bj-justify-end     { justify-content: flex-end; }
+.bj-justify-between { justify-content: space-between; }
+.bj-justify-around  { justify-content: space-around; }
+
+.bj-items-start   { align-items: flex-start; }
+.bj-items-center  { align-items: center; }
+.bj-items-end     { align-items: flex-end; }
+.bj-items-stretch { align-items: stretch; }
+
+.bj-self-start  { align-self: flex-start; }
+.bj-self-center { align-self: center; }
+.bj-self-end    { align-self: flex-end; }
+
+.bj-flex-1    { flex: 1 1 0%; }
+.bj-flex-auto { flex: 1 1 auto; }
+.bj-flex-none { flex: none; }
+
+.bj-gap-1v  { gap: var(--bj-spacing-1v); }
+.bj-gap-2v  { gap: var(--bj-spacing-2v); }
+.bj-gap-3v  { gap: var(--bj-spacing-3v); }
+.bj-gap-4v  { gap: var(--bj-spacing-4v); }
+.bj-gap-6v  { gap: var(--bj-spacing-6v); }
+.bj-gap-8v  { gap: var(--bj-spacing-8v); }

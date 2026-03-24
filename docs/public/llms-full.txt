@@ -1,0 +1,722 @@
+# DSBJ - Design Système du Bénin - Documentation complète
+
+> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 40 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@gouvbj/dsbj`.
+
+## Informations générales
+
+- **Package** : `@gouvbj/dsbj` v1.0.0
+- **Installation** : `npm install @gouvbj/dsbj` ou `bun add @gouvbj/dsbj`
+- **CDN** : `https://unpkg.com/@gouvbj/dsbj@1.0.0/dist/dsbj.css` + `dsbj.umd.js`
+- **Imports** : `import '@gouvbj/dsbj'` (auto-init) ou `import '@gouvbj/dsbj/css'` (CSS seul) ou `@use '@gouvbj/dsbj/scss'` (SCSS)
+- **Préfixe CSS** : toutes les classes utilisent `bj-`, toutes les variables `--bj-*`
+- **Thème sombre** : `<html data-bj-theme="dark">` ou automatique via `prefers-color-scheme`
+- **Polices** : Open Sans (400, 500, 600, 700) pour le corps, Spectral (400, 600) pour titres éditoriaux
+- **Icônes** : Remix Icon 4.1 (`ri-*`), toujours avec `aria-hidden="true"` sur icônes décoratives
+- **Grille** : 12 colonnes responsive avec `bj-container`, `bj-grid-row`, `bj-col-{1-12}`, `bj-col-md-{1-12}`, `bj-col-lg-{1-12}`
+- **Accessibilité** : WCAG 2.1 AA, navigation clavier, attributs ARIA sur tous les composants interactifs, `:focus-visible`, skip links
+
+## Structure HTML de base
+
+```html
+<!doctype html>
+<html lang="fr" data-bj-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Titre - Mon service - République du Bénin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="dsbj.css" />
+  </head>
+  <body>
+    <div class="bj-skiplinks">
+      <a class="bj-skiplink" href="#main">Accéder au contenu</a>
+    </div>
+    <header class="bj-header" role="banner">...</header>
+    <main id="main" role="main">...</main>
+    <footer class="bj-footer" role="contentinfo">...</footer>
+    <script src="dsbj.es.js" type="module"></script>
+  </body>
+</html>
+```
+
+---
+
+## Fondamentaux
+
+### Couleurs
+
+Tokens de couleur principaux (variables CSS) :
+- `--bj-color-vert-benin-main-491` : Vert Bénin principal (#008751)
+- `--bj-color-jaune-benin-main-491` : Jaune Bénin (#FCD116)
+- `--bj-color-rouge-benin-main-491` : Rouge Bénin (#E8112D)
+- `--bj-action-high` : Couleur d'action principale (vert Bénin)
+- `--bj-text-default` : Texte par défaut
+- `--bj-text-alt` : Texte secondaire
+- `--bj-bg-default` : Fond par défaut
+- `--bj-bg-alt` : Fond alternatif
+- `--bj-border-default` : Bordure par défaut
+- `--bj-border-subtle` : Bordure subtile
+- `--bj-success`, `--bj-warning`, `--bj-error`, `--bj-info` : Couleurs sémantiques
+
+### Typographie
+
+- Display : `bj-display-xs` à `bj-display-xl`
+- Titres : `bj-h1` à `bj-h6`
+- Texte : `bj-text-xs`, `bj-text-sm`, `bj-text-md`, `bj-text-lg`, `bj-text-xl`
+- Variables : `--bj-fs-xs` à `--bj-fs-xl`, `--bj-fw-regular` (400), `--bj-fw-medium` (500), `--bj-fw-semibold` (600), `--bj-fw-bold` (700)
+
+### Espacement
+
+- Variables : `--bj-spacing-1v` (0.25rem) à `--bj-spacing-16v` (4rem)
+- Classes marges : `bj-m-{1v..16v}`, `bj-mt-*`, `bj-mb-*`, `bj-ml-*`, `bj-mr-*`, `bj-mx-*`, `bj-my-*`
+- Classes padding : `bj-p-{1v..16v}`, `bj-pt-*`, `bj-pb-*`, `bj-pl-*`, `bj-pr-*`, `bj-px-*`, `bj-py-*`
+
+### Grille
+
+```html
+<div class="bj-container">
+  <div class="bj-grid-row bj-grid-row--gutters">
+    <div class="bj-col-12 bj-col-md-6 bj-col-lg-4">Colonne</div>
+    <div class="bj-col-12 bj-col-md-6 bj-col-lg-8">Colonne</div>
+  </div>
+</div>
+```
+
+Modificateurs : `bj-grid-row--gutters`, `bj-grid-row--middle`, `bj-grid-row--center`
+
+### Ombres
+
+- `--bj-shadow-sm`, `--bj-shadow-md`, `--bj-shadow-lg`, `--bj-shadow-xl`
+- Classes : `bj-shadow-sm` à `bj-shadow-xl`
+
+---
+
+## Composants
+
+### Header (En-tête de page)
+
+Classes : `bj-header`, `bj-header__body`, `bj-header__brand`, `bj-header__service`, `bj-header__service-title`, `bj-header__service-tagline`, `bj-header__tools`, `bj-header__tools-link`, `bj-header__menu-btn`, `bj-header__nav`, `bj-header__nav-list`, `bj-header__nav-item`, `bj-header__nav-link`, `bj-header__nav-link--active`
+ARIA : `role="banner"` sur header, `role="navigation"` + `aria-label` sur nav, `aria-controls` + `aria-expanded` sur menu mobile, `aria-current="page"` sur lien actif
+JS : `data-bj-header-menu` sur le bouton menu
+
+```html
+<header class="bj-header" role="banner">
+  <div class="bj-container">
+    <div class="bj-header__body">
+      <a href="/" class="bj-header__brand">
+        <div class="bj-logo">
+          <p>République<br>du Bénin</p>
+        </div>
+        <div class="bj-header__service">
+          <span class="bj-header__service-title">Mon service</span>
+          <span class="bj-header__service-tagline">Description du service</span>
+        </div>
+      </a>
+      <div class="bj-header__tools">
+        <button type="button" class="bj-header__menu-btn" data-bj-header-menu aria-controls="main-nav" aria-expanded="false">
+          <i class="ri-menu-line" aria-hidden="true"></i> Menu
+        </button>
+      </div>
+    </div>
+    <nav class="bj-header__nav" id="main-nav" role="navigation" aria-label="Navigation principale">
+      <ul class="bj-header__nav-list">
+        <li class="bj-header__nav-item"><a class="bj-header__nav-link bj-header__nav-link--active" href="/" aria-current="page">Accueil</a></li>
+        <li class="bj-header__nav-item"><a class="bj-header__nav-link" href="/services">Services</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+```
+
+### Footer (Pied de page)
+
+Classes : `bj-footer`, `bj-footer__top`, `bj-footer__top-row`, `bj-footer__col-title`, `bj-footer__list`, `bj-footer__link`, `bj-footer__partners`, `bj-footer__bottom`, `bj-footer__bottom-list`, `bj-footer__bottom-link`, `bj-footer__copy`
+ARIA : `role="contentinfo"` sur footer
+
+```html
+<footer class="bj-footer" role="contentinfo">
+  <div class="bj-container">
+    <div class="bj-footer__bottom">
+      <ul class="bj-footer__bottom-list">
+        <li><a class="bj-footer__bottom-link" href="/mentions-legales">Mentions légales</a></li>
+        <li><a class="bj-footer__bottom-link" href="/donnees">Données personnelles</a></li>
+        <li><a class="bj-footer__bottom-link" href="/accessibilite">Accessibilité : partiellement conforme</a></li>
+      </ul>
+      <p class="bj-footer__copy">Sauf mention contraire, tous les contenus sont sous licence étatique - République du Bénin</p>
+    </div>
+  </div>
+</footer>
+```
+
+### Bouton
+
+Classes : `bj-btn`, `bj-btn--secondary`, `bj-btn--tertiary`, `bj-btn--accent`, `bj-btn--contrast`, `bj-btn--sm`, `bj-btn--lg`, `bj-btn--icon`, `bj-btn--full`, `bj-btn--disabled`, `bj-btn-group`, `bj-btn-group--vertical`, `bj-btn-group--inline-sm`
+
+```html
+<button type="button" class="bj-btn">Primaire</button>
+<button type="button" class="bj-btn bj-btn--secondary">Secondaire</button>
+<button type="button" class="bj-btn bj-btn--tertiary">Tertiaire</button>
+<button type="button" class="bj-btn bj-btn--sm">Petit</button>
+<button type="button" class="bj-btn bj-btn--lg">Grand</button>
+<button type="button" class="bj-btn bj-btn--icon" aria-label="Rechercher">
+  <i class="ri-search-line" aria-hidden="true"></i>
+</button>
+<div class="bj-btn-group">
+  <button class="bj-btn">Action 1</button>
+  <button class="bj-btn bj-btn--secondary">Action 2</button>
+</div>
+```
+
+### Lien
+
+Classes : `bj-link`, `bj-link--sm`, `bj-link--lg`, `bj-link--icon-left`, `bj-link--icon-right`, `bj-link--reset`
+
+```html
+<a href="#" class="bj-link">Lien simple</a>
+<a href="#" class="bj-link bj-link--icon-right">En savoir plus <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+```
+
+### Badge
+
+Classes : `bj-badge`, `bj-badge--info`, `bj-badge--success`, `bj-badge--warning`, `bj-badge--error`, `bj-badge--new`, `bj-badge--sm`, `bj-badge--no-icon`
+
+```html
+<span class="bj-badge">Par défaut</span>
+<span class="bj-badge bj-badge--success">Validé</span>
+<span class="bj-badge bj-badge--error">Erreur</span>
+<span class="bj-badge bj-badge--new">Nouveau</span>
+```
+
+### Tag
+
+Classes : `bj-tag`, `bj-tag--action`, `bj-tag--info`, `bj-tag--success`, `bj-tag--warning`, `bj-tag--error`, `bj-tag--sm`, `bj-tag--dismiss`, `bj-tag__close`, `bj-tags`
+
+```html
+<span class="bj-tag bj-tag--action">Étiquette</span>
+<span class="bj-tag bj-tag--dismiss">Supprimable <button class="bj-tag__close" aria-label="Supprimer">&times;</button></span>
+<div class="bj-tags">
+  <span class="bj-tag bj-tag--info">Info</span>
+  <span class="bj-tag bj-tag--success">Succès</span>
+</div>
+```
+
+### Alerte
+
+Classes : `bj-alert`, `bj-alert--info`, `bj-alert--success`, `bj-alert--warning`, `bj-alert--error`, `bj-alert--sm`, `bj-alert__body`, `bj-alert__title`, `bj-alert__text`, `bj-alert__close`
+ARIA : `role="alert"` pour alertes dynamiques, bouton fermeture avec `aria-label`
+
+```html
+<div class="bj-alert bj-alert--info" role="alert">
+  <div class="bj-alert__body">
+    <p class="bj-alert__title">Information</p>
+    <p class="bj-alert__text">Votre demande a bien été prise en compte.</p>
+  </div>
+</div>
+<div class="bj-alert bj-alert--error">
+  <div class="bj-alert__body">
+    <p class="bj-alert__title">Erreur</p>
+    <p class="bj-alert__text">La soumission a échoué.</p>
+  </div>
+  <button type="button" class="bj-alert__close" aria-label="Fermer l'alerte">&times;</button>
+</div>
+```
+
+### Carte
+
+Classes : `bj-card`, `bj-card__img`, `bj-card__body`, `bj-card__detail`, `bj-card__title`, `bj-card__desc`, `bj-card__footer`, `bj-card--horizontal`, `bj-card--flat`, `bj-card--highlight`, `bj-card--link`, `bj-cards`
+
+```html
+<article class="bj-card">
+  <div class="bj-card__img" role="img" aria-label="Description de l'image" style="background-image:url(...)"></div>
+  <div class="bj-card__body">
+    <div class="bj-card__detail">Catégorie</div>
+    <h3 class="bj-card__title">Titre de la carte</h3>
+    <p class="bj-card__desc">Description du contenu.</p>
+  </div>
+  <div class="bj-card__footer">
+    <span class="bj-text-sm">Date</span>
+    <a href="#" class="bj-link bj-link--icon-right">Lire <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+  </div>
+</article>
+```
+
+### Tuile
+
+Classes : `bj-tile`, `bj-tile__icon`, `bj-tile__img`, `bj-tile__body`, `bj-tile__title`, `bj-tile__desc`, `bj-tile--horizontal`, `bj-tiles`
+
+```html
+<div class="bj-tile">
+  <div class="bj-tile__icon"><i class="ri-government-line" aria-hidden="true"></i></div>
+  <div class="bj-tile__body">
+    <h3 class="bj-tile__title">Service public</h3>
+    <p class="bj-tile__desc">Accédez à vos démarches</p>
+  </div>
+</div>
+```
+
+### Accordéon
+
+Classes : `bj-accordion`, `bj-accordion__btn`, `bj-accordion__body`, `bj-accordion--expanded`, `data-bj-accordion-group`
+ARIA : `aria-expanded`, `aria-controls` sur bouton, `id` sur panel
+JS : `data-bj-accordion-btn`, `data-bj-expanded` pour état ouvert
+
+```html
+<div data-bj-accordion-group>
+  <div class="bj-accordion">
+    <button type="button" class="bj-accordion__btn" data-bj-accordion-btn aria-expanded="false" aria-controls="acc-1">
+      Titre de l'accordéon
+    </button>
+    <div id="acc-1" class="bj-accordion__body">
+      <p>Contenu de l'accordéon.</p>
+    </div>
+  </div>
+</div>
+```
+
+### Onglet (Tabs)
+
+Classes : `bj-tabs__list`, `bj-tabs__tab`, `bj-tabs__panel`
+ARIA : `role="tablist"`, `role="tab"`, `role="tabpanel"`, `aria-selected`
+JS : `data-bj-tabs` sur conteneur, `data-bj-tab`, `data-bj-tab-panel`, `data-bj-expanded`
+
+```html
+<div data-bj-tabs>
+  <div class="bj-tabs__list" role="tablist">
+    <button class="bj-tabs__tab" data-bj-tab role="tab" aria-selected="true">Onglet 1</button>
+    <button class="bj-tabs__tab" data-bj-tab role="tab">Onglet 2</button>
+  </div>
+  <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel" data-bj-expanded>
+    <p>Contenu du premier onglet.</p>
+  </div>
+  <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel">
+    <p>Contenu du deuxième onglet.</p>
+  </div>
+</div>
+```
+
+### Modale
+
+Classes : `bj-modal`, `bj-modal__overlay`, `bj-modal__dialog`, `bj-modal__header`, `bj-modal__title`, `bj-modal__close`, `bj-modal__body`, `bj-modal__footer`, `bj-modal--sm`, `bj-modal--lg`, `bj-modal--full`
+ARIA : `role="dialog"`, `aria-modal="true"`, `aria-labelledby`
+JS : `data-bj-modal-open="id"`, `data-bj-modal-close`, focus trap automatique
+
+```html
+<button type="button" class="bj-btn" data-bj-modal-open="my-modal">Ouvrir</button>
+<div class="bj-modal" id="my-modal" role="dialog" aria-modal="true" aria-labelledby="my-modal-title">
+  <div class="bj-modal__overlay" data-bj-modal-close tabindex="-1"></div>
+  <div class="bj-modal__dialog">
+    <header class="bj-modal__header">
+      <h2 class="bj-modal__title" id="my-modal-title">Titre de la modale</h2>
+      <button type="button" class="bj-modal__close" data-bj-modal-close aria-label="Fermer">
+        <i class="ri-close-line" aria-hidden="true"></i>
+      </button>
+    </header>
+    <div class="bj-modal__body"><p>Contenu de la modale.</p></div>
+    <footer class="bj-modal__footer">
+      <button type="button" class="bj-btn bj-btn--secondary" data-bj-modal-close>Annuler</button>
+      <button type="button" class="bj-btn">Confirmer</button>
+    </footer>
+  </div>
+</div>
+```
+
+### Champ de saisie (Input)
+
+Classes : `bj-input-group`, `bj-label`, `bj-hint`, `bj-input`, `bj-input--sm`, `bj-input-group--valid`, `bj-input-group--error`, `bj-message`, `bj-message--valid`, `bj-message--error`, `bj-message--info`, `bj-input-wrap`, `bj-input-wrap__icon`
+
+```html
+<div class="bj-input-group">
+  <label class="bj-label" for="email">Adresse e-mail</label>
+  <p class="bj-hint">Format : nom@exemple.bj</p>
+  <input class="bj-input" type="email" id="email" />
+</div>
+<div class="bj-input-group bj-input-group--error">
+  <label class="bj-label" for="name">Nom</label>
+  <input class="bj-input" type="text" id="name" aria-describedby="name-err" aria-invalid="true" />
+  <p class="bj-message bj-message--error" id="name-err">Ce champ est obligatoire</p>
+</div>
+```
+
+### Liste déroulante (Select)
+
+Classes : `bj-select-group`, `bj-select`, `bj-select--error`
+
+```html
+<div class="bj-select-group">
+  <label class="bj-label" for="dept">Département</label>
+  <select class="bj-select" id="dept">
+    <option>Choisir</option>
+    <option>Littoral</option>
+    <option>Atlantique</option>
+  </select>
+</div>
+```
+
+### Case à cocher (Checkbox)
+
+Classes : `bj-checkbox-group`, `bj-checkbox-group__legend`, `bj-checkbox`, `bj-checkbox__label`, `bj-checkbox__hint`
+
+```html
+<fieldset class="bj-checkbox-group">
+  <legend class="bj-checkbox-group__legend">Options</legend>
+  <label class="bj-checkbox">
+    <input type="checkbox" />
+    <span class="bj-checkbox__label">Option 1</span>
+  </label>
+  <label class="bj-checkbox">
+    <input type="checkbox" />
+    <span class="bj-checkbox__label">Option 2</span>
+  </label>
+</fieldset>
+```
+
+### Bouton radio
+
+Classes : `bj-radio-group`, `bj-radio-group--inline`, `bj-radio-group__legend`, `bj-radio`, `bj-radio__label`, `bj-radio__hint`
+
+```html
+<fieldset class="bj-radio-group">
+  <legend class="bj-radio-group__legend">Civilité</legend>
+  <label class="bj-radio"><input type="radio" name="civ" /><span class="bj-radio__label">Monsieur</span></label>
+  <label class="bj-radio"><input type="radio" name="civ" /><span class="bj-radio__label">Madame</span></label>
+</fieldset>
+```
+
+### Interrupteur (Toggle)
+
+Classes : `bj-toggle`, `bj-toggle__input`, `bj-toggle__label`, `bj-toggle__hint`
+
+```html
+<label class="bj-toggle">
+  <input type="checkbox" class="bj-toggle__input" />
+  <span class="bj-toggle__label">Activer les notifications</span>
+</label>
+```
+
+### Breadcrumb (Fil d'Ariane)
+
+Classes : `bj-breadcrumb`, `bj-breadcrumb__list`, `bj-breadcrumb__item`, `bj-breadcrumb__link`
+ARIA : `aria-label="Fil d'Ariane"` sur nav, `aria-current="page"` sur dernier item
+
+```html
+<nav class="bj-breadcrumb" aria-label="Fil d'Ariane">
+  <ol class="bj-breadcrumb__list">
+    <li class="bj-breadcrumb__item"><a class="bj-breadcrumb__link" href="/">Accueil</a></li>
+    <li class="bj-breadcrumb__item"><a class="bj-breadcrumb__link" href="/services">Services</a></li>
+    <li class="bj-breadcrumb__item" aria-current="page">Mon service</li>
+  </ol>
+</nav>
+```
+
+### Navigation
+
+Classes : `bj-nav`, `bj-nav__list`, `bj-nav__item`, `bj-nav__link`, `bj-nav__btn`
+
+```html
+<nav class="bj-nav" aria-label="Navigation secondaire">
+  <ul class="bj-nav__list">
+    <li class="bj-nav__item"><a class="bj-nav__link" href="#">Lien 1</a></li>
+    <li class="bj-nav__item"><a class="bj-nav__link" href="#">Lien 2</a></li>
+  </ul>
+</nav>
+```
+
+### Bandeau (Notice)
+
+Classes : `bj-notice`, `bj-notice__icon`, `bj-notice__body`, `bj-notice__title`, `bj-notice__close`, `bj-notice--info`, `bj-notice--warning`, `bj-notice--alert`
+
+```html
+<div class="bj-notice bj-notice--info">
+  <div class="bj-notice__body">
+    <p class="bj-notice__title">Information importante</p>
+  </div>
+  <button type="button" class="bj-notice__close" aria-label="Fermer">&times;</button>
+</div>
+```
+
+### Mise en avant (Callout)
+
+Classes : `bj-callout`, `bj-callout__icon`, `bj-callout__title`, `bj-callout__text`, `bj-callout__btn`, `bj-callout--green`, `bj-callout--yellow`, `bj-callout--red`
+
+```html
+<div class="bj-callout bj-callout--green">
+  <p class="bj-callout__title">Titre de la mise en avant</p>
+  <p class="bj-callout__text">Texte descriptif avec informations complémentaires.</p>
+  <a href="#" class="bj-btn bj-callout__btn">Action</a>
+</div>
+```
+
+### Mise en exergue (Highlight)
+
+Classes : `bj-highlight`, `bj-highlight--sm`, `bj-highlight--lg`
+
+```html
+<p class="bj-highlight">Texte important mis en exergue pour attirer l'attention du lecteur.</p>
+```
+
+### Citation (Quote)
+
+Classes : `bj-quote`, `bj-quote__text`, `bj-quote__author`, `bj-quote__source`, `bj-quote--accent`, `bj-quote__image`
+
+```html
+<figure class="bj-quote">
+  <blockquote class="bj-quote__text">Le texte de la citation.</blockquote>
+  <figcaption class="bj-quote__author">Auteur<span class="bj-quote__source">Source</span></figcaption>
+</figure>
+```
+
+### Tableau (Table)
+
+Classes : `bj-table-wrapper`, `bj-table`, `bj-table--bordered`, `bj-table--striped`, `bj-table--layout-fixed`, `bj-table--no-caption`
+
+```html
+<div class="bj-table-wrapper">
+  <table class="bj-table bj-table--bordered">
+    <caption>Titre du tableau</caption>
+    <thead>
+      <tr><th scope="col">Nom</th><th scope="col">Valeur</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Donnée 1</td><td>Valeur 1</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+### Skiplink (Lien d'évitement)
+
+Classes : `bj-skiplinks`, `bj-skiplinks__list`, `bj-skiplinks__link`
+
+```html
+<div class="bj-skiplinks">
+  <a class="bj-skiplink" href="#main">Accéder au contenu</a>
+  <a class="bj-skiplink" href="#nav">Accéder à la navigation</a>
+</div>
+```
+
+### Pagination
+
+Classes : `bj-pagination`, `bj-pagination__link`, `bj-pagination__link--active`, `bj-pagination__link--disabled`, `bj-pagination__ellipsis`, `bj-pagination__nav`, `bj-pagination__nav--disabled`, `bj-pagination__label`
+
+```html
+<nav class="bj-pagination" aria-label="Pagination">
+  <a class="bj-pagination__nav" href="#" aria-label="Page précédente">&laquo;</a>
+  <a class="bj-pagination__link" href="#">1</a>
+  <a class="bj-pagination__link bj-pagination__link--active" href="#" aria-current="page">2</a>
+  <a class="bj-pagination__link" href="#">3</a>
+  <a class="bj-pagination__nav" href="#" aria-label="Page suivante">&raquo;</a>
+</nav>
+```
+
+### Infobulle (Tooltip)
+
+Classes : `bj-tooltip`, `bj-tooltip__content`
+
+```html
+<span class="bj-tooltip">
+  Survolez-moi
+  <span class="bj-tooltip__content">Texte de l'infobulle</span>
+</span>
+```
+
+### Indicateur d'étapes (Stepper)
+
+Classes : `bj-stepper`, `bj-stepper__header`, `bj-stepper__title`, `bj-stepper__detail`, `bj-stepper__steps`, `bj-stepper__step`, `bj-stepper--vertical`
+
+```html
+<div class="bj-stepper">
+  <div class="bj-stepper__header">
+    <h2 class="bj-stepper__title">Mon parcours</h2>
+    <p class="bj-stepper__detail">Étape 2 sur 4</p>
+  </div>
+  <div class="bj-stepper__steps">
+    <div class="bj-stepper__step" data-bj-stepper-complete>Identité</div>
+    <div class="bj-stepper__step" data-bj-stepper-current>Adresse</div>
+    <div class="bj-stepper__step">Pièces jointes</div>
+    <div class="bj-stepper__step">Récapitulatif</div>
+  </div>
+</div>
+```
+
+### Notification toast
+
+Classes : `bj-toast-container`, `bj-toast`, `bj-toast--info`, `bj-toast--success`, `bj-toast--warning`, `bj-toast--error`, `bj-toast__progress`, `bj-toast-container--top-left`, `bj-toast-container--bottom-right`
+JS : `toast('Message', { type: 'success' })`
+
+```html
+<div class="bj-toast-container">
+  <div class="bj-toast bj-toast--success" role="alert">
+    Opération réussie
+    <div class="bj-toast__progress"></div>
+  </div>
+</div>
+```
+
+### Menu déroulant (Dropdown)
+
+Classes : `bj-dropdown`, `bj-dropdown__trigger`, `bj-dropdown__menu`, `bj-dropdown__item`, `bj-dropdown__divider`, `bj-dropdown__header`, `bj-dropdown--right`, `bj-dropdown--up`, `bj-dropdown--sm`
+
+```html
+<div class="bj-dropdown">
+  <button type="button" class="bj-btn bj-dropdown__trigger" aria-haspopup="true" aria-expanded="false">
+    Actions <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+  </button>
+  <div class="bj-dropdown__menu" role="menu">
+    <a class="bj-dropdown__item" href="#" role="menuitem">Modifier</a>
+    <a class="bj-dropdown__item" href="#" role="menuitem">Dupliquer</a>
+    <div class="bj-dropdown__divider"></div>
+    <a class="bj-dropdown__item" href="#" role="menuitem">Supprimer</a>
+  </div>
+</div>
+```
+
+### Bandeau défilant (Marquee)
+
+Classes : `bj-marquee`, `bj-marquee__track`, `bj-marquee__item`, `bj-marquee__pause`, `bj-marquee--reverse`, `bj-marquee--slow`, `bj-marquee--fast`, `bj-marquee--bordered`
+ARIA : `aria-live="polite"` ou `aria-live="off"` selon le contexte, `aria-label` sur le bouton pause
+
+```html
+<div class="bj-marquee" aria-live="off">
+  <div class="bj-marquee__track">
+    <span class="bj-marquee__item">Annonce importante</span>
+    <span class="bj-marquee__item">Deuxième annonce</span>
+  </div>
+  <button type="button" class="bj-marquee__pause" aria-label="Mettre en pause">⏸</button>
+</div>
+```
+
+### Galerie d'images
+
+Classes : `bj-gallery`, `bj-gallery__item`, `bj-gallery__img`, `bj-gallery__caption`, `bj-gallery--cols-2`, `bj-gallery--cols-4`
+
+```html
+<div class="bj-gallery bj-gallery--cols-2">
+  <figure class="bj-gallery__item">
+    <img class="bj-gallery__img" src="image.jpg" alt="Description de l'image" />
+    <figcaption class="bj-gallery__caption">Légende</figcaption>
+  </figure>
+</div>
+```
+
+### Consentement (RGPD)
+
+Classes : `bj-consent-banner`, `bj-consent-banner__body`, `bj-consent-banner__header`, `bj-consent-banner__title`, `bj-consent-banner__text`, `bj-consent-banner__actions`, `bj-consent-manager`, `bj-consent-manager__dialog`, `bj-consent-manager__header`, `bj-consent-manager__body`, `bj-consent-manager__footer`, `bj-consent-service`, `bj-consent-service__name`, `bj-consent-service__desc`, `bj-consent-service__toggle`
+
+```html
+<div class="bj-consent-banner">
+  <div class="bj-consent-banner__body">
+    <div class="bj-consent-banner__header">
+      <p class="bj-consent-banner__title">Gestion des cookies</p>
+    </div>
+    <p class="bj-consent-banner__text">Ce site utilise des cookies pour améliorer votre expérience.</p>
+    <div class="bj-consent-banner__actions">
+      <button type="button" class="bj-btn" data-bj-consent-accept>Tout accepter</button>
+      <button type="button" class="bj-btn bj-btn--secondary" data-bj-consent-refuse>Tout refuser</button>
+      <button type="button" class="bj-btn bj-btn--tertiary" data-bj-consent-customize>Personnaliser</button>
+    </div>
+  </div>
+</div>
+```
+
+### Sélecteur de date (Datepicker)
+
+Classes : `bj-datepicker`, `bj-datepicker__input`, `bj-datepicker__trigger`, `bj-datepicker__calendar`, `bj-datepicker__day--today`, `bj-datepicker__day--selected`, `bj-datepicker--sm`
+
+```html
+<div class="bj-datepicker">
+  <label class="bj-label" for="date-naissance">Date de naissance</label>
+  <input class="bj-datepicker__input" type="text" id="date-naissance" placeholder="jj/mm/aaaa" />
+</div>
+```
+
+### Recherche
+
+Classes : `bj-search`, `bj-search__input`, `bj-search__btn`, `bj-search--lg`
+
+```html
+<div class="bj-search" role="search">
+  <input class="bj-search__input" type="search" placeholder="Rechercher..." aria-label="Rechercher" />
+  <button type="submit" class="bj-search__btn" aria-label="Lancer la recherche">
+    <i class="ri-search-line" aria-hidden="true"></i>
+  </button>
+</div>
+```
+
+### Téléversement (Upload)
+
+Classes : `bj-upload-group`, `bj-upload-group--error`, `bj-upload`, `bj-upload--drag-over`
+
+```html
+<div class="bj-upload-group">
+  <label class="bj-label" for="file">Pièce jointe</label>
+  <input class="bj-upload" type="file" id="file" />
+</div>
+```
+
+### Logo
+
+Classes : `bj-logo`, `bj-logo--lg`, `bj-logo--xl`, `bj-logo__link`, `bj-logo__motto`, `bj-logo__tagline`
+
+```html
+<div class="bj-logo">
+  <p>République<br>du Bénin</p>
+  <span class="bj-logo__motto">Fraternité, Justice, Travail</span>
+</div>
+```
+
+### Sidemenu (Menu latéral)
+
+Classes : `bj-sidemenu`, `bj-sidemenu__title`, `bj-sidemenu__list`, `bj-sidemenu__item`, `bj-sidemenu__sublist`, `bj-sidemenu__btn`
+
+```html
+<nav class="bj-sidemenu" aria-label="Menu de section">
+  <p class="bj-sidemenu__title">Ma section</p>
+  <ul class="bj-sidemenu__list">
+    <li class="bj-sidemenu__item"><a href="#" aria-current="page">Page active</a></li>
+    <li class="bj-sidemenu__item"><a href="#">Autre page</a></li>
+  </ul>
+</nav>
+```
+
+### Sommaire
+
+Classes : `bj-summary`, `bj-summary__title`, `bj-summary__list`, `bj-summary__link`
+
+```html
+<nav class="bj-summary" aria-label="Sommaire">
+  <p class="bj-summary__title">Sommaire</p>
+  <ul class="bj-summary__list">
+    <li><a class="bj-summary__link" href="#section-1">Section 1</a></li>
+    <li><a class="bj-summary__link" href="#section-2">Section 2</a></li>
+  </ul>
+</nav>
+```
+
+### Contenu éditorial
+
+Classes : `bj-content`
+
+```html
+<div class="bj-content">
+  <h1>Titre de l'article</h1>
+  <p>Paragraphe avec typographie optimisée pour la lecture.</p>
+  <h2>Sous-titre</h2>
+  <ul><li>Élément de liste</li></ul>
+</div>
+```
+
+---
+
+## Règles d'accessibilité DSBJ
+
+1. Toujours utiliser `aria-hidden="true"` sur les icônes décoratives (`<i class="ri-*">`)
+2. Les composants interactifs nécessitent `aria-expanded`, `aria-controls`, `aria-label` selon le contexte
+3. Les modales utilisent `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, et un focus trap
+4. Les onglets utilisent `role="tablist"`, `role="tab"`, `role="tabpanel"`, `aria-selected`
+5. Les alertes dynamiques utilisent `role="alert"`
+6. Le breadcrumb utilise `aria-current="page"` sur l'élément actif
+7. Un seul `<h1>` par page, hiérarchie de titres stricte (h1 > h2 > h3...)
+8. Skip links en début de page vers `#main`
+9. Tous les champs de formulaire ont un `<label>` associé
+10. Les erreurs de formulaire utilisent `aria-describedby` + `aria-invalid="true"`

@@ -1,0 +1,98 @@
+// Palette brute - couleurs de référence
+// Convention : --bj-color-{nom}-{variante}-{indice}
+// Indice = luminosité HSL approx (0=noir, 1000=blanc)
+
+$palette: (
+  // --- Couleurs primaires (drapeau du Bénin) ---
+  'vert-benin': (
+    975: #e3fdeb,
+    925: #b8f0cc,
+    850: #6bda93,
+    main-491: #008751,
+    425: #006a3f,
+    sun-340: #00542f,
+    moon-680: #34cb76,
+  ),
+  'jaune-benin': (
+    975: #fef6d5,
+    925: #fdeea4,
+    main-822: #fcd116,
+    750: #d4a900,
+    sun-600: #8a6d00,
+    moon-850: #ffe45c,
+  ),
+  'rouge-benin': (
+    975: #fde4e7,
+    925: #fbcacd,
+    850: #f28a93,
+    main-472: #e8112d,
+    425: #c00a22,
+    sun-340: #8d0418,
+    moon-680: #f46b7a,
+  ),
+
+  // --- Couleurs étendues (identité 2025) ---
+  'ocre-terre': (
+    975: #fdf3e3,
+    925: #f9e1b8,
+    main-620: #c8842a,
+    sun-460: #8a5a18,
+    moon-750: #e0a954,
+  ),
+  'bleu-horizon': (
+    975: #e3f0f7,
+    925: #b8daf0,
+    850: #6bb8da,
+    main-491: #1b6b93,
+    425: #155474,
+    sun-340: #0f3d55,
+    moon-680: #4da3c9,
+  ),
+
+  // --- Couleurs fonctionnelles ---
+  'info': (
+    975: #e0edff,
+    925: #b8d5ff,
+    main-500: #0063cb,
+    sun-380: #004a98,
+    moon-625: #3389e0,
+  ),
+  'succes': (
+    975: #e0f5e7,
+    925: #b8e7c8,
+    main-460: #18753c,
+    sun-340: #0f5a2c,
+    moon-640: #2bae5a,
+  ),
+  'alerte': (
+    975: #fff0e0,
+    925: #ffd9b3,
+    main-510: #d64d00,
+    sun-380: #a33b00,
+    moon-640: #f08432,
+  ),
+  'erreur': (
+    975: #ffe0e0,
+    925: #ffb8b8,
+    main-510: #ce0500,
+    sun-380: #9c0400,
+    moon-640: #e85550,
+  ),
+
+  // --- Neutres ---
+  'gris': (
+    1000: #ffffff,
+    975: #f6f6f6,
+    950: #eeeeee,
+    925: #e5e5e5,
+    900: #dddddd,
+    850: #cecece,
+    750: #a8a8a8,
+    625: #7b7b7b,
+    500: #585858,
+    425: #3a3a3a,
+    200: #2a2a2a,
+    100: #1e1e1e,
+    50:  #161616,
+  ),
+);

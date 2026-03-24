@@ -1,0 +1,23 @@
+:root {
+  // Ombres
+  --bj-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --bj-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --bj-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --bj-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --bj-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  // Rayons de bordure
+  --bj-radius-xs: 0.125rem;
+  --bj-radius-sm: 0.25rem;
+  --bj-radius-md: 0.5rem;
+  --bj-radius-lg: 0.75rem;
+  --bj-radius-xl: 1rem;
+  --bj-radius-full: 50%;
+  --bj-radius-pill: 9999px;
+
+  // Transitions
+  --bj-duration-fast: 150ms;
+  --bj-duration-normal: 250ms;
+  --bj-duration-slow: 400ms;
+  --bj-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}

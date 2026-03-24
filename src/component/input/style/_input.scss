@@ -1,0 +1,102 @@
+// Input group - label + champ + message
+.bj-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bj-spacing-1v);
+  margin-bottom: var(--bj-spacing-4v);
+}
+
+.bj-label {
+  font-size: var(--bj-fs-md);
+  font-weight: var(--bj-fw-medium);
+  color: var(--bj-text-title);
+}
+
+.bj-hint {
+  font-size: var(--bj-fs-sm);
+  color: var(--bj-text-mention);
+}
+
+.bj-input {
+  width: 100%;
+  padding: var(--bj-spacing-2v) var(--bj-spacing-3v);
+  font-size: var(--bj-fs-md);
+  line-height: 1.5;
+  color: var(--bj-text-default);
+  background-color: var(--bj-bg-default);
+  border: 1px solid var(--bj-border-default);
+  border-radius: var(--bj-radius-sm);
+  transition: border-color var(--bj-duration-fast) var(--bj-easing),
+              box-shadow var(--bj-duration-fast) var(--bj-easing);
+
+  &::placeholder {
+    color: var(--bj-text-mention);
+  }
+
+  &:focus {
+    border-color: var(--bj-action-high);
+    box-shadow: 0 0 0 2px rgba(0, 135, 81, 0.2);
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: var(--bj-bg-disabled);
+    color: var(--bj-text-disabled);
+    cursor: not-allowed;
+  }
+}
+
+textarea.bj-input {
+  min-height: 5rem;
+  resize: vertical;
+}
+
+.bj-input--sm {
+  padding: var(--bj-spacing-1v) var(--bj-spacing-2v);
+  font-size: var(--bj-fs-sm);
+}
+
+// États de validation
+.bj-input-group--valid {
+  .bj-input {
+    border-color: var(--bj-success);
+  }
+  .bj-input:focus {
+    box-shadow: 0 0 0 2px rgba(24, 117, 60, 0.2);
+  }
+}
+
+.bj-input-group--error {
+  .bj-input {
+    border-color: var(--bj-error);
+  }
+  .bj-input:focus {
+    box-shadow: 0 0 0 2px rgba(206, 5, 0, 0.2);
+  }
+}
+
+.bj-message {
+  font-size: var(--bj-fs-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--bj-spacing-1v);
+}
+.bj-message--valid   { color: var(--bj-success); }
+.bj-message--error   { color: var(--bj-error); }
+.bj-message--info    { color: var(--bj-info); }
+
+// Addon (icône dans le champ)
+.bj-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.bj-input-wrap .bj-input {
+  padding-right: var(--bj-spacing-10v);
+}
+.bj-input-wrap__icon {
+  position: absolute;
+  right: var(--bj-spacing-3v);
+  color: var(--bj-text-mention);
+  pointer-events: none;
+}

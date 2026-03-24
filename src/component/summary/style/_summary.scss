@@ -1,0 +1,43 @@
+// Sommaire (table of contents)
+.bj-summary {
+  padding: var(--bj-spacing-4v) var(--bj-spacing-6v);
+  border-left: 4px solid var(--bj-action-high);
+  background-color: var(--bj-bg-alt);
+  border-radius: 0 var(--bj-radius-sm) var(--bj-radius-sm) 0;
+}
+
+.bj-summary__title {
+  font-size: var(--bj-fs-md);
+  font-weight: var(--bj-fw-bold);
+  color: var(--bj-text-title);
+  margin-bottom: var(--bj-spacing-3v);
+}
+
+.bj-summary__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bj-spacing-1v5);
+  counter-reset: summary-counter;
+}
+
+.bj-summary__link {
+  display: flex;
+  align-items: baseline;
+  gap: var(--bj-spacing-2v);
+  font-size: var(--bj-fs-sm);
+  color: var(--bj-action-high);
+  text-decoration: none;
+  transition: color var(--bj-duration-fast) var(--bj-easing);
+  counter-increment: summary-counter;
+
+  &::before {
+    content: counter(summary-counter) '.';
+    font-weight: var(--bj-fw-semibold);
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--bj-action-high-hover);
+  }
+}
