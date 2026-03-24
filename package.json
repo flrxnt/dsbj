@@ -51,9 +51,6 @@
     "last 2 versions",
     "not dead"
   ],
-  "patchedDependencies": {
-    "vite-ssg@28.3.0": "patches/vite-ssg@28.3.0.patch"
-  },
   "dependencies": {
     "@unhead/vue": "^2.1.12",
     "@vitejs/plugin-vue": "^6.0.5",
