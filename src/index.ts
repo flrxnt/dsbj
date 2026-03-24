@@ -1,6 +1,6 @@
 import './dsbj.scss';
 
-export { register, boot, focusTrap } from './js/core';
+export { register, boot, focusTrap, queryNew } from './js/core';
 export { initAccordion } from './js/accordion';
 export { initModal } from './js/modal';
 export { initTab } from './js/tab';

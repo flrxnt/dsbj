@@ -1,4 +1,4 @@
-import { register } from './core';
+import { register, queryNew } from './core';
 
 const DAYS_FR = ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim'];
 const MONTHS_FR = [
@@ -165,7 +165,7 @@ function buildCalendar(wrapper: HTMLElement): void {
 }
 
 export function initDatepicker(): void {
-  document.querySelectorAll<HTMLElement>('[data-bj-datepicker]').forEach(buildCalendar);
+  queryNew<HTMLElement>('[data-bj-datepicker]').forEach(buildCalendar);
 }
 
 register('datepicker', initDatepicker);

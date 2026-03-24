@@ -1,4 +1,4 @@
-import { register } from './core';
+import { register, queryNew } from './core';
 
 export type ToastType = 'info' | 'success' | 'warning' | 'error';
 
@@ -102,7 +102,7 @@ export function toast(options: ToastOptions): HTMLElement {
 }
 
 export function initToast(): void {
-  document.querySelectorAll<HTMLElement>('[data-bj-toast-trigger]').forEach((btn) => {
+  queryNew<HTMLElement>('[data-bj-toast-trigger]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const text = btn.getAttribute('data-bj-toast-text') || '';
       const title = btn.getAttribute('data-bj-toast-title') || undefined;

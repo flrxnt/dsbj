@@ -1,7 +1,9 @@
-import { register } from './core';
+import { register, queryNew } from './core';
+
+let docListenersReady = false;
 
 export function initNavigation(): void {
-  document.querySelectorAll<HTMLElement>('[data-bj-nav-btn]').forEach((btn) => {
+  queryNew<HTMLElement>('[data-bj-nav-btn]').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const targetId = btn.getAttribute('aria-controls');
@@ -31,13 +33,17 @@ export function initNavigation(): void {
     });
   });
 
-  document.addEventListener('click', () => {
-    document.querySelectorAll<HTMLElement>('.bj-nav__mega[data-bj-expanded]').forEach((menu) => {
-      menu.removeAttribute('data-bj-expanded');
-      const relatedBtn = document.querySelector<HTMLElement>(`[aria-controls="${menu.id}"]`);
-      relatedBtn?.setAttribute('aria-expanded', 'false');
+  if (!docListenersReady) {
+    docListenersReady = true;
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll<HTMLElement>('.bj-nav__mega[data-bj-expanded]').forEach((menu) => {
+        menu.removeAttribute('data-bj-expanded');
+        const relatedBtn = document.querySelector<HTMLElement>(`[aria-controls="${menu.id}"]`);
+        relatedBtn?.setAttribute('aria-expanded', 'false');
+      });
     });
-  });
+  }
 }
 
 register('navigation', initNavigation);

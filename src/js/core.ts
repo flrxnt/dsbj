@@ -12,6 +12,16 @@ export function boot(): void {
   }
 }
 
+const INIT_ATTR = 'data-bj-ready';
+
+export function queryNew<T extends HTMLElement>(selector: string): T[] {
+  const elements = Array.from(
+    document.querySelectorAll<T>(`${selector}:not([${INIT_ATTR}])`)
+  );
+  elements.forEach(el => el.setAttribute(INIT_ATTR, ''));
+  return elements;
+}
+
 const FOCUSABLE = 'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 interface TrapEntry {

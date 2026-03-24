@@ -1,7 +1,7 @@
-import { register } from './core';
+import { register, queryNew } from './core';
 
 export function initToggle(): void {
-  document.querySelectorAll<HTMLElement>('[data-bj-toggle]').forEach((toggle) => {
+  queryNew<HTMLElement>('[data-bj-toggle]').forEach((toggle) => {
     const input = toggle.querySelector<HTMLInputElement>('.bj-toggle__input');
     if (!input) return;
 

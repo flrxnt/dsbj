@@ -1,4 +1,6 @@
-import { register, focusTrap } from './core';
+import { register, focusTrap, queryNew } from './core';
+
+let docListenersReady = false;
 
 function openModal(id: string): void {
   const modal = document.getElementById(id);
@@ -18,31 +20,35 @@ function closeModal(modal: HTMLElement | null): void {
 }
 
 export function initModal(): void {
-  document.querySelectorAll<HTMLElement>('[data-bj-modal-open]').forEach((btn) => {
+  queryNew<HTMLElement>('[data-bj-modal-open]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-bj-modal-open');
       if (id) openModal(id);
     });
   });
 
-  document.querySelectorAll<HTMLElement>('[data-bj-modal-close]').forEach((btn) => {
+  queryNew<HTMLElement>('[data-bj-modal-close]').forEach((btn) => {
     btn.addEventListener('click', () => {
       closeModal(btn.closest('.bj-modal'));
     });
   });
 
-  document.addEventListener('click', (e) => {
-    if ((e.target as HTMLElement).classList.contains('bj-modal__overlay')) {
-      closeModal((e.target as HTMLElement).closest('.bj-modal'));
-    }
-  });
+  if (!docListenersReady) {
+    docListenersReady = true;
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      const open = document.querySelector<HTMLElement>('.bj-modal[data-bj-expanded]');
-      if (open) closeModal(open);
-    }
-  });
+    document.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).classList.contains('bj-modal__overlay')) {
+        closeModal((e.target as HTMLElement).closest('.bj-modal'));
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const open = document.querySelector<HTMLElement>('.bj-modal[data-bj-expanded]');
+        if (open) closeModal(open);
+      }
+    });
+  }
 }
 
 register('modal', initModal);

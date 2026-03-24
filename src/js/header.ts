@@ -1,7 +1,7 @@
-import { register } from './core';
+import { register, queryNew } from './core';
 
 export function initHeader(): void {
-  document.querySelectorAll<HTMLElement>('[data-bj-header-menu]').forEach((btn) => {
+  queryNew<HTMLElement>('[data-bj-header-menu]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('aria-controls');
       if (!targetId) return;

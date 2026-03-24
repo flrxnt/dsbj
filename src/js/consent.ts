@@ -1,4 +1,4 @@
-import { register } from './core';
+import { register, queryNew } from './core';
 
 const STORAGE_KEY = 'bj-consent';
 
@@ -13,7 +13,8 @@ function setConsent(value: Record<string, unknown>): void {
 }
 
 export function initConsent(): void {
-  const banner = document.querySelector<HTMLElement>('[data-bj-consent-banner]');
+  const banners = queryNew<HTMLElement>('[data-bj-consent-banner]');
+  const banner = banners[0] ?? null;
   if (!banner) return;
 
   if (!getConsent()) {

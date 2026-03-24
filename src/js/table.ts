@@ -1,4 +1,4 @@
-import { register } from './core';
+import { register, queryNew } from './core';
 
 type SortDir = 'ascending' | 'descending' | 'none';
 
@@ -161,7 +161,7 @@ function initSortableTable(wrapper: HTMLElement): void {
 }
 
 export function initTable(): void {
-  document.querySelectorAll<HTMLElement>('[data-bj-table]').forEach(initSortableTable);
+  queryNew<HTMLElement>('[data-bj-table]').forEach(initSortableTable);
 }
 
 register('table', initTable);

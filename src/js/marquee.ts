@@ -1,4 +1,4 @@
-import { register } from './core';
+import { register, queryNew } from './core';
 
 function initSingleMarquee(wrapper: HTMLElement): void {
   const track = wrapper.querySelector<HTMLElement>('.bj-marquee__track');
@@ -55,7 +55,7 @@ function initSingleMarquee(wrapper: HTMLElement): void {
 }
 
 export function initMarquee(): void {
-  document.querySelectorAll<HTMLElement>('[data-bj-marquee]').forEach(initSingleMarquee);
+  queryNew<HTMLElement>('[data-bj-marquee]').forEach(initSingleMarquee);
 }
 
 register('marquee', initMarquee);

@@ -1,5 +1,6 @@
 import { ViteSSG } from 'vite-ssg'
 import { createI18n } from 'vue-i18n'
+import { nextTick } from 'vue'
 import App from './App.vue'
 import { routes } from './router'
 import fr from './data/locales/fr.json'
@@ -31,9 +32,14 @@ export const createApp = ViteSSG(
 
     if (isClient) {
       const { initDSBJ } = await import('@dsbj/index')
+
       router.afterEach(() => {
         window.scrollTo({ top: 0, left: 0 })
-        setTimeout(() => initDSBJ(), 50)
+        nextTick(() => initDSBJ())
+      })
+
+      router.isReady().then(() => {
+        nextTick(() => initDSBJ())
       })
     }
   },

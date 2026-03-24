@@ -1,4 +1,4 @@
-import { register } from './core';
+import { register, queryNew } from './core';
 
 function initSingleDropdown(wrapper: HTMLElement): void {
   const trigger = wrapper.querySelector<HTMLElement>('.bj-dropdown__trigger');
@@ -101,7 +101,7 @@ function initSingleDropdown(wrapper: HTMLElement): void {
 }
 
 export function initDropdown(): void {
-  document.querySelectorAll<HTMLElement>('[data-bj-dropdown]').forEach(initSingleDropdown);
+  queryNew<HTMLElement>('[data-bj-dropdown]').forEach(initSingleDropdown);
 }
 
 register('dropdown', initDropdown);

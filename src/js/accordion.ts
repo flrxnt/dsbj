@@ -1,7 +1,7 @@
-import { register } from './core';
+import { register, queryNew } from './core';
 
 export function initAccordion(): void {
-  const btns = document.querySelectorAll<HTMLButtonElement>('[data-bj-accordion-btn]');
+  const btns = queryNew<HTMLButtonElement>('[data-bj-accordion-btn]');
 
   btns.forEach((btn) => {
     btn.addEventListener('click', () => {

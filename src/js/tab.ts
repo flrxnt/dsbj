@@ -1,7 +1,7 @@
-import { register } from './core';
+import { register, queryNew } from './core';
 
 export function initTab(): void {
-  document.querySelectorAll<HTMLElement>('[data-bj-tabs]').forEach((group) => {
+  queryNew<HTMLElement>('[data-bj-tabs]').forEach((group) => {
     const tabs = group.querySelectorAll<HTMLElement>('[data-bj-tab]');
     const panels = group.querySelectorAll<HTMLElement>('[data-bj-tab-panel]');
 

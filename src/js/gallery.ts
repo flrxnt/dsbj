@@ -1,4 +1,4 @@
-import { register, focusTrap } from './core';
+import { register, focusTrap, queryNew } from './core';
 
 interface GalleryItem {
   src: string;
@@ -161,7 +161,7 @@ function initSingleGallery(wrapper: HTMLElement): void {
 }
 
 export function initGallery(): void {
-  document.querySelectorAll<HTMLElement>('[data-bj-gallery]').forEach(initSingleGallery);
+  queryNew<HTMLElement>('[data-bj-gallery]').forEach(initSingleGallery);
 }
 
 register('gallery', initGallery);

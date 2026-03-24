@@ -1,6 +1,7 @@
 node_modules/
 dist/
 site/
+showcase/
 docs-legacy/
 docs/.vite-ssg-temp/
 .sass-cache/
