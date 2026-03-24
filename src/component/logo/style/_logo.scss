@@ -29,6 +29,10 @@
       );
   }
 
+  &:has(.bj-logo__img)::before {
+    display: none;
+  }
+
   p {
     font-size: var(--bj-fs-xs);
     line-height: 1.3;
@@ -39,6 +43,14 @@
   }
 }
 
+.bj-logo__img {
+  display: block;
+  width: 2.75rem;
+  height: auto;
+  margin-bottom: var(--bj-spacing-1v);
+  object-fit: contain;
+}
+
 .bj-logo--lg {
   &::before {
     width: 4.25rem;
@@ -46,6 +58,9 @@
   }
   p {
     font-size: var(--bj-fs-sm);
+  }
+  .bj-logo__img {
+    width: 4.25rem;
   }
 }
 
@@ -56,6 +71,9 @@
   }
   p {
     font-size: var(--bj-fs-md);
+  }
+  .bj-logo__img {
+    width: 6rem;
   }
 }
 

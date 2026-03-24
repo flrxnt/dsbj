@@ -29,6 +29,8 @@ const { t } = useI18n({
         'Grande taille pour hero ou pages d’accueil.',
       'prop-bj-logo__link':
         'Enveloppe lien conservant la mise en page du logo.',
+      'prop-bj-logo__img':
+        'Image du sigle (armoiries) remplaçant la bande tricolore CSS.',
       'prop-bj-logo__tagline':
         'Sous-ligne descriptive (non en capitales, couleur secondaire).',
       'a11y-note':
@@ -54,6 +56,8 @@ const { t } = useI18n({
         'Large size for heroes or home pages.',
       'prop-bj-logo__link':
         'Link wrapper preserving logo layout.',
+      'prop-bj-logo__img':
+        'Coat of arms image replacing the CSS tricolor band.',
       'prop-bj-logo__tagline':
         'Descriptive subline (not uppercase, secondary color).',
       'a11y-note':
@@ -63,15 +67,26 @@ const { t } = useI18n({
 })
 
 const codeExemple = `<div class="bj-logo">
+  <img src="/sigle.svg" alt="" class="bj-logo__img">
   <p>République<br>du Bénin</p>
 </div>`
 
-const codeVariantes = `<div class="bj-logo bj-logo--lg">…</div>
-<div class="bj-logo bj-logo--xl">…</div>
+const codeVariantes = `<div class="bj-logo bj-logo--lg">
+  <img src="/sigle.svg" alt="" class="bj-logo__img">
+  <p>République<br>du Bénin</p>
+</div>
+<div class="bj-logo bj-logo--xl">
+  <img src="/sigle.svg" alt="" class="bj-logo__img">
+  <p>République<br>du Bénin</p>
+</div>
 <a href="/" class="bj-logo__link">
-  <div class="bj-logo">…</div>
+  <div class="bj-logo">
+    <img src="/sigle.svg" alt="" class="bj-logo__img">
+    <p>République<br>du Bénin</p>
+  </div>
 </a>
 <div class="bj-logo bj-logo--lg">
+  <img src="/sigle.svg" alt="" class="bj-logo__img">
   <p>République<br>du Bénin</p>
   <span class="bj-logo__tagline">Portail des démarches</span>
 </div>`
@@ -94,6 +109,10 @@ const propsRows = computed(() => [
     description: t('prop-bj-logo__link'),
   },
   {
+    name: 'bj-logo__img',
+    description: t('prop-bj-logo__img'),
+  },
+  {
     name: 'bj-logo__tagline',
     description: t('prop-bj-logo__tagline'),
   },
@@ -114,6 +133,7 @@ const propsRows = computed(() => [
   <DocsSection id="exemple-logo" :title="t('section-exemple')">
     <DocsPreview>
       <div class="bj-logo">
+        <img src="/sigle.svg" alt="" class="bj-logo__img">
         <p>République<br />du Bénin</p>
       </div>
     </DocsPreview>
@@ -138,17 +158,21 @@ const propsRows = computed(() => [
       "
     >
       <div class="bj-logo bj-logo--lg">
+        <img src="/sigle.svg" alt="" class="bj-logo__img">
         <p>République<br />du Bénin</p>
       </div>
       <div class="bj-logo bj-logo--xl">
+        <img src="/sigle.svg" alt="" class="bj-logo__img">
         <p>République<br />du Bénin</p>
       </div>
       <a href="#" class="bj-logo__link">
         <div class="bj-logo">
+          <img src="/sigle.svg" alt="" class="bj-logo__img">
           <p>République<br />du Bénin</p>
         </div>
       </a>
       <div class="bj-logo bj-logo--lg">
+        <img src="/sigle.svg" alt="" class="bj-logo__img">
         <p>République<br />du Bénin</p>
         <span class="bj-logo__tagline">Portail des démarches</span>
       </div>
