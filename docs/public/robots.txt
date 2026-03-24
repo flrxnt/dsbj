@@ -1,8 +1,8 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://design.gouv.bj/sitemap.xml
+Sitemap: https://design.gouv.example/sitemap.xml
 
 # LLM-friendly documentation
-# llms.txt: https://design.gouv.bj/llms.txt
-# llms-full.txt: https://design.gouv.bj/llms-full.txt
+# llms.txt: https://design.gouv.example/llms.txt
+# llms-full.txt: https://design.gouv.example/llms-full.txt
