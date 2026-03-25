@@ -6,22 +6,6 @@ Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/)
 
 ## [1.3.0] - 2026-03-25
 
-### Ajouté
-
-- Release v1.3.0: Introduced scoped CSS reset and typography styles, added opt-in global reset file, updated documentation for integration and migration, and enhanced package exports for better usability.
-
-### Modifié
-
-- v1.2.5
-
-## [1.2.5] - 2026-03-25
-
-### Ajouté
-
-- Release v1.3.0: Introduced scoped CSS reset and typography styles, added opt-in global reset file, updated documentation for integration and migration, and enhanced package exports for better usability.
-
-## [1.3.0] - 2026-03-25
-
 ### Modifié (BREAKING)
 
 - **Reset CSS scopé** : le reset global (`*`, `body`, `html`, `h1-h6`, `p`, `a`, `table`, `img`, etc.) est supprimé du build principal. Tous les styles sont désormais scopés aux classes `.bj-*` et ne modifient plus les éléments HTML existants.
