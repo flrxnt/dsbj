@@ -141,6 +141,16 @@ export const sidebars: Record<string, SidebarGroup[]> = {
         { label: 'React', to: '/integrations/react', i18nKey: 'link.integrations-react' },
       ],
     },
+  ],
+  'integrations-vue': [
+    {
+      title: 'Intégrations',
+      i18nKey: 'nav.integrations',
+      links: [
+        { label: 'Vue 3', to: '/integrations/vue', i18nKey: 'link.integrations-vue' },
+        { label: 'React', to: '/integrations/react', i18nKey: 'link.integrations-react' },
+      ],
+    },
     {
       title: 'Composants Vue',
       i18nKey: 'sidebar.integrations-vue-docs',
@@ -160,13 +170,7 @@ export const sidebars: Record<string, SidebarGroup[]> = {
     {
       title: 'Showcases',
       i18nKey: 'nav.showcases',
-      links: [
-        { label: 'Portail gouvernemental', to: '/showcases/gouv-bj', i18nKey: 'link.showcase-gouv' },
-        { label: 'Ministère des Finances', to: '/showcases/finances-bj', i18nKey: 'link.showcase-finances' },
-        { label: 'Ministère de la Santé', to: '/showcases/sante-gouv-bj', i18nKey: 'link.showcase-sante' },
-        { label: 'Ministère de l\'Éducation', to: '/showcases/education-gouv-bj', i18nKey: 'link.showcase-education' },
-        { label: 'Services publics', to: '/showcases/service-public-bj', i18nKey: 'link.showcase-services' },
-      ],
+      links: [],
     },
   ],
   modeles: [
