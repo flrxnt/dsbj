@@ -98,11 +98,53 @@ Pour inclure le reset global via CDN :
 <link rel="stylesheet" href="https://unpkg.com/@flrxnt/dsbj/dist/dsbj-reset.css">
 ```
 
+## Composants Vue 3
+
+Des wrappers Vue 3 réactifs sont disponibles pour les 44+ composants du design système :
+
+```js
+import { BjButton, BjCard, BjModal } from '@flrxnt/dsbj/vue'
+```
+
+```vue
+<BjButton variant="secondary" size="lg">Valider</BjButton>
+
+<BjModal v-model="show" title="Confirmation">
+  <p>Confirmer l'action ?</p>
+</BjModal>
+
+<BjAccordion exclusive>
+  <BjAccordionItem id="a1" title="Section 1">Contenu</BjAccordionItem>
+</BjAccordion>
+```
+
+Les composants interactifs utilisent des composables Vue natifs (`useModal`, `useAccordion`, `useToast`) avec v-model, emits et slots.
+
+## Composants React
+
+Des composants React avec TypeScript, hooks et forwardRef :
+
+```js
+import { BjButton, BjCard, BjModal, useModal } from '@flrxnt/dsbj/react'
+```
+
+```jsx
+<BjButton variant="accent" size="lg">Valider</BjButton>
+
+<BjModal open={isOpen} onClose={close} title="Confirmation">
+  <p>Confirmer l'action ?</p>
+</BjModal>
+```
+
+Les hooks `useModal` et `useToast` fournissent la gestion d'état. React 18+ requis (peerDependency).
+
 ## Résumé des exports
 
 | Import | Contenu | Usage |
 |--------|---------|-------|
 | `@flrxnt/dsbj` | CSS scopé + JS | Intégration dans un projet existant |
+| `@flrxnt/dsbj/vue` | Composants Vue 3 | Projet Vue (44+ composants) |
+| `@flrxnt/dsbj/react` | Composants React | Projet React (44+ composants) |
 | `@flrxnt/dsbj/css` | CSS scopé seul | Sans JavaScript |
 | `@flrxnt/dsbj/reset` | Reset CSS global | Projet 100% DSBJ uniquement |
 | `@flrxnt/dsbj/scss` | Sources SCSS | Personnalisation avancée |
@@ -136,9 +178,11 @@ dsbj/
 │   ├── dsbj.scss             # Point d'entrée SCSS (styles scopés .bj-*)
 │   ├── dsbj-reset.scss       # Reset CSS global (opt-in)
 │   ├── core/                 # Fondamentaux (reset scopé, couleurs, typographie, grille, espacement)
-│   ├── component/            # 35+ composants SCSS
+│   ├── component/            # 44 composants SCSS
 │   ├── utility/              # Classes utilitaires
-│   └── js/                   # Modules TypeScript (accordion, modal, tab, header, etc.)
+│   ├── js/                   # Modules TypeScript (accordion, modal, tab, header, etc.)
+│   ├── vue/                  # Composants Vue 3 (44 SFC + composables)
+│   └── react/                # Composants React (44 TSX + hooks)
 ├── tests/                    # Tests Vitest
 ├── docs/                     # Documentation complète (Vue 3 + vite-ssg)
 ├── dist/                     # Build (CSS + JS ES + JS UMD + reset)

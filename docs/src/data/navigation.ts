@@ -15,6 +15,8 @@ export const mainNav: NavLink[] = [
   { label: 'Premiers pas', to: '/premiers-pas', i18nKey: 'nav.getting-started' },
   { label: 'Fondamentaux', to: '/fondamentaux', i18nKey: 'nav.fundamentals' },
   { label: 'Composants', to: '/composants', i18nKey: 'nav.components' },
+  { label: 'Intégrations', to: '/integrations', i18nKey: 'nav.integrations' },
+  { label: 'Showcases', to: '/showcases', i18nKey: 'nav.showcases' },
   { label: 'Modèles', to: '/modeles', i18nKey: 'nav.templates' },
 ]
 
@@ -127,6 +129,43 @@ export const sidebars: Record<string, SidebarGroup[]> = {
       i18nKey: 'sidebar.regulatory',
       links: [
         { label: 'Consentement', to: '/composants/consent', i18nKey: 'link.consent' },
+      ],
+    },
+  ],
+  integrations: [
+    {
+      title: 'Intégrations',
+      i18nKey: 'nav.integrations',
+      links: [
+        { label: 'Vue 3', to: '/integrations/vue', i18nKey: 'link.integrations-vue' },
+        { label: 'React', to: '/integrations/react', i18nKey: 'link.integrations-react' },
+      ],
+    },
+    {
+      title: 'Composants Vue',
+      i18nKey: 'sidebar.integrations-vue-docs',
+      links: [
+        { label: 'BjButton', to: '/integrations/vue/button', i18nKey: 'link.button' },
+        { label: 'BjModal', to: '/integrations/vue/modal', i18nKey: 'link.modal' },
+        { label: 'BjAccordion', to: '/integrations/vue/accordion', i18nKey: 'link.accordion' },
+        { label: 'BjInput', to: '/integrations/vue/input', i18nKey: 'link.input' },
+        { label: 'BjCard', to: '/integrations/vue/card', i18nKey: 'link.card' },
+        { label: 'BjAlert', to: '/integrations/vue/alert', i18nKey: 'link.alert' },
+        { label: 'BjTab', to: '/integrations/vue/tab', i18nKey: 'link.tab' },
+        { label: 'BjToast', to: '/integrations/vue/toast', i18nKey: 'link.toast' },
+      ],
+    },
+  ],
+  showcases: [
+    {
+      title: 'Showcases',
+      i18nKey: 'nav.showcases',
+      links: [
+        { label: 'Portail gouvernemental', to: '/showcases/gouv-bj', i18nKey: 'link.showcase-gouv' },
+        { label: 'Ministère des Finances', to: '/showcases/finances-bj', i18nKey: 'link.showcase-finances' },
+        { label: 'Ministère de la Santé', to: '/showcases/sante-gouv-bj', i18nKey: 'link.showcase-sante' },
+        { label: 'Ministère de l\'Éducation', to: '/showcases/education-gouv-bj', i18nKey: 'link.showcase-education' },
+        { label: 'Services publics', to: '/showcases/service-public-bj', i18nKey: 'link.showcase-services' },
       ],
     },
   ],

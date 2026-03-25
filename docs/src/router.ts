@@ -313,6 +313,95 @@ export const routes: RouteRecordRaw[] = [
     meta: { layout: 'docs', section: 'composants', titleKey: 'route.consent', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.consent' }] },
   },
 
+  // Intégrations
+  {
+    path: '/integrations',
+    component: () => import('./pages/integrations/IndexPage.vue'),
+    meta: { layout: 'section', section: 'integrations', titleKey: 'route.integrations', breadcrumb: [{ labelKey: 'breadcrumb.integrations' }] },
+  },
+  {
+    path: '/integrations/vue',
+    component: () => import('./pages/integrations/vue/IndexPage.vue'),
+    meta: { layout: 'docs', section: 'integrations', titleKey: 'route.integrations-vue', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue' }] },
+  },
+  {
+    path: '/integrations/vue/button',
+    component: () => import('./pages/integrations/vue/ButtonPage.vue'),
+    meta: { layout: 'docs', section: 'integrations', titleKey: 'route.vue-button', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.button' }] },
+  },
+  {
+    path: '/integrations/vue/modal',
+    component: () => import('./pages/integrations/vue/ModalPage.vue'),
+    meta: { layout: 'docs', section: 'integrations', titleKey: 'route.vue-modal', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.modal' }] },
+  },
+  {
+    path: '/integrations/vue/accordion',
+    component: () => import('./pages/integrations/vue/AccordionPage.vue'),
+    meta: { layout: 'docs', section: 'integrations', titleKey: 'route.vue-accordion', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.accordion' }] },
+  },
+  {
+    path: '/integrations/vue/input',
+    component: () => import('./pages/integrations/vue/InputPage.vue'),
+    meta: { layout: 'docs', section: 'integrations', titleKey: 'route.vue-input', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.input' }] },
+  },
+  {
+    path: '/integrations/vue/card',
+    component: () => import('./pages/integrations/vue/CardPage.vue'),
+    meta: { layout: 'docs', section: 'integrations', titleKey: 'route.vue-card', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.card' }] },
+  },
+  {
+    path: '/integrations/vue/alert',
+    component: () => import('./pages/integrations/vue/AlertPage.vue'),
+    meta: { layout: 'docs', section: 'integrations', titleKey: 'route.vue-alert', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.alert' }] },
+  },
+  {
+    path: '/integrations/vue/tab',
+    component: () => import('./pages/integrations/vue/TabPage.vue'),
+    meta: { layout: 'docs', section: 'integrations', titleKey: 'route.vue-tab', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.tab' }] },
+  },
+  {
+    path: '/integrations/vue/toast',
+    component: () => import('./pages/integrations/vue/ToastPage.vue'),
+    meta: { layout: 'docs', section: 'integrations', titleKey: 'route.vue-toast', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.toast' }] },
+  },
+  {
+    path: '/integrations/react',
+    component: () => import('./pages/integrations/react/IndexPage.vue'),
+    meta: { layout: 'docs', section: 'integrations', titleKey: 'route.integrations-react', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react' }] },
+  },
+
+  // Showcases
+  {
+    path: '/showcases',
+    component: () => import('./pages/showcases/IndexPage.vue'),
+    meta: { layout: 'section', section: 'showcases', titleKey: 'route.showcases', breadcrumb: [{ labelKey: 'breadcrumb.showcases' }] },
+  },
+  {
+    path: '/showcases/gouv-bj',
+    component: () => import('./pages/showcases/GouvBjPage.vue'),
+    meta: { layout: 'docs', section: 'showcases', titleKey: 'route.showcase-gouv', breadcrumb: [{ labelKey: 'breadcrumb.showcases', to: '/showcases' }, { labelKey: 'breadcrumb.showcase-gouv' }] },
+  },
+  {
+    path: '/showcases/finances-bj',
+    component: () => import('./pages/showcases/FinancesBjPage.vue'),
+    meta: { layout: 'docs', section: 'showcases', titleKey: 'route.showcase-finances', breadcrumb: [{ labelKey: 'breadcrumb.showcases', to: '/showcases' }, { labelKey: 'breadcrumb.showcase-finances' }] },
+  },
+  {
+    path: '/showcases/sante-gouv-bj',
+    component: () => import('./pages/showcases/SanteBjPage.vue'),
+    meta: { layout: 'docs', section: 'showcases', titleKey: 'route.showcase-sante', breadcrumb: [{ labelKey: 'breadcrumb.showcases', to: '/showcases' }, { labelKey: 'breadcrumb.showcase-sante' }] },
+  },
+  {
+    path: '/showcases/education-gouv-bj',
+    component: () => import('./pages/showcases/EducationBjPage.vue'),
+    meta: { layout: 'docs', section: 'showcases', titleKey: 'route.showcase-education', breadcrumb: [{ labelKey: 'breadcrumb.showcases', to: '/showcases' }, { labelKey: 'breadcrumb.showcase-education' }] },
+  },
+  {
+    path: '/showcases/service-public-bj',
+    component: () => import('./pages/showcases/ServicePublicBjPage.vue'),
+    meta: { layout: 'docs', section: 'showcases', titleKey: 'route.showcase-services', breadcrumb: [{ labelKey: 'breadcrumb.showcases', to: '/showcases' }, { labelKey: 'breadcrumb.showcase-services' }] },
+  },
+
   // Modèles
   {
     path: '/modeles',
