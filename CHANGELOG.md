@@ -4,6 +4,12 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.2.4] - 2026-03-25
+
+### Ajouté
+
+- Refactor SCSS files to utilize CSS layers for better organization; enhance typography styles with additional heading definitions and improved body styles.
+
 ## [1.2.3] - 2026-03-25
 
 ### Ajouté
