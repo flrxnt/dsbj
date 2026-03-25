@@ -36,6 +36,7 @@
     "preview": "vite preview --config vite.preview.config.ts",
     "test": "vitest run",
     "test:watch": "vitest",
+    "release": "bun run test && bun run build && git push && git push --tags",
     "mcp:start": "bun run --cwd mcp start",
     "mcp:dev": "bun run --cwd mcp dev"
   },
