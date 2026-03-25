@@ -4,6 +4,25 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.2.1] - 2026-03-25
+
+### Modifié
+
+- Composant **Logo** (`bj-logo`) : ajout du sigle officiel (armoiries) en image SVG (`bj-logo__img`) remplaçant la bande tricolore CSS.
+  - Nouveau sous-élément `bj-logo__img` avec dimensionnement adapté aux variantes `--lg` et `--xl`.
+  - Masquage automatique du pseudo-élément tricolore lorsque l'image est présente (`:has(.bj-logo__img)`).
+- Favicon du site de documentation remplacé par le sigle officiel.
+
+### Ajouté
+
+- Asset SVG du sigle (`assets/images/sigle.svg`, `docs/public/sigle.svg`).
+- Liens GitHub et feuille de route dans le footer de la documentation.
+
+### Corrigé
+
+- Masquage de l'indicateur de version sur petits écrans (`< 768px`).
+- Ajustements de styles pour le mode sombre (coloration syntaxique, recherche).
+
 ## [1.2.0] - 2026-03-24
 
 ### Ajouté
