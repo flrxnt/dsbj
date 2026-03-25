@@ -21,7 +21,8 @@
     ".": {
       "import": "./dist/dsbj.es.js",
       "require": "./dist/dsbj.umd.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "style": "./dist/dsbj.css"
     },
     "./css": "./dist/dsbj.css",
     "./scss": "./src/dsbj.scss"

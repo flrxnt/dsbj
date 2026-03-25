@@ -1,5 +1,18 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import { resolve } from 'path';
+
+function injectCssImport(): Plugin {
+  return {
+    name: 'inject-css-import',
+    generateBundle(_, bundle) {
+      for (const chunk of Object.values(bundle)) {
+        if (chunk.type === 'chunk' && chunk.fileName.endsWith('.es.js')) {
+          chunk.code = `import './dsbj.css';\n${chunk.code}`;
+        }
+      }
+    },
+  };
+}
 
 export default defineConfig({
   css: {
@@ -22,4 +35,5 @@ export default defineConfig({
       },
     },
   },
+  plugins: [injectCssImport()],
 });
