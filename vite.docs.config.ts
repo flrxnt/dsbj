@@ -13,18 +13,21 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
-      injectRegister: 'script-defer',
+      injectRegister: false,
       includeAssets: ['favicon.svg', 'sigle.svg', 'robots.txt', 'sitemap.xml'],
       manifest: {
+        id: '/',
         name: 'DSBJ — Design Système du Bénin',
         short_name: 'DSBJ',
         description: 'Documentation du Design Système gouvernemental de la République du Bénin',
         theme_color: '#008751',
         background_color: '#ffffff',
         display: 'standalone',
+        orientation: 'any',
         scope: '/',
         start_url: '/',
         lang: 'fr',
+        dir: 'ltr',
         categories: ['government', 'design', 'documentation'],
         icons: [
           {
@@ -49,10 +52,24 @@ export default defineConfig({
             type: 'image/svg+xml',
           },
         ],
+        shortcuts: [
+          {
+            name: 'Composants',
+            url: '/composants',
+            icons: [{ src: '/pwa-192x192.png', sizes: '192x192' }],
+          },
+          {
+            name: 'Fondamentaux',
+            url: '/fondamentaux',
+            icons: [{ src: '/pwa-192x192.png', sizes: '192x192' }],
+          },
+        ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2}'],
-        navigateFallback: null,
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff,woff2}'],
+        cleanupOutdatedCaches: true,
+        navigateFallback: 'index.html',
+        navigateFallbackDenylist: [/^\/api/, /\.\w+$/],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -77,7 +94,7 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'jsdelivr-cache',
-              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 30 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },

@@ -9,6 +9,7 @@ function isCollapsed(): boolean {
 }
 
 const collapsed = ref(isCollapsed())
+const mobileOpen = ref(false)
 
 export function useSidebar() {
   function toggle() {
@@ -18,5 +19,17 @@ export function useSidebar() {
     } catch {}
   }
 
-  return { collapsed, toggle }
+  function openMobile() {
+    mobileOpen.value = true
+  }
+
+  function closeMobile() {
+    mobileOpen.value = false
+  }
+
+  function toggleMobile() {
+    mobileOpen.value = !mobileOpen.value
+  }
+
+  return { collapsed, toggle, mobileOpen, openMobile, closeMobile, toggleMobile }
 }

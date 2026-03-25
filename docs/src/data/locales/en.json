@@ -46,7 +46,8 @@
     "integrations-react-docs": "React components",
     "hide": "Hide menu",
     "show": "Show menu",
-    "aria-label": "Section table of contents"
+    "aria-label": "Section table of contents",
+    "menu": "Menu"
   },
   "search": {
     "label": "Search documentation",

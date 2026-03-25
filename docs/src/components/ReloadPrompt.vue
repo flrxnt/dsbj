@@ -1,35 +1,30 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { useRegisterSW } from 'virtual:pwa-register/vue'
 
-const offlineReady = ref(false)
-const needRefresh = ref(false)
+const intervalMS = 60 * 60 * 1000
+
+const {
+  offlineReady,
+  needRefresh,
+  updateServiceWorker,
+} = useRegisterSW({
+  onRegisteredSW(swUrl, registration) {
+    if (!registration) return
+    setInterval(async () => {
+      if (registration.installing || !navigator) return
+      if ('connection' in navigator && !navigator.onLine) return
+      const resp = await fetch(swUrl, {
+        cache: 'no-store',
+        headers: { 'cache-control': 'no-cache' },
+      })
+      if (resp.status === 200) await registration.update()
+    }, intervalMS)
+  },
+})
 
 function close() {
   offlineReady.value = false
   needRefresh.value = false
-}
-
-onMounted(() => {
-  if (!('serviceWorker' in navigator)) return
-
-  navigator.serviceWorker.ready.then((registration) => {
-    offlineReady.value = true
-
-    registration.addEventListener('updatefound', () => {
-      const newWorker = registration.installing
-      if (!newWorker) return
-
-      newWorker.addEventListener('statechange', () => {
-        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-          needRefresh.value = true
-        }
-      })
-    })
-  })
-})
-
-function reload() {
-  window.location.reload()
 }
 </script>
 
@@ -52,7 +47,7 @@ function reload() {
         <button
           v-if="needRefresh"
           class="bj-btn bj-btn--sm"
-          @click="reload"
+          @click="updateServiceWorker()"
         >
           Mettre à jour
         </button>

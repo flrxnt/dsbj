@@ -46,7 +46,8 @@
     "integrations-react-docs": "Composants React",
     "hide": "Masquer le menu",
     "show": "Afficher le menu",
-    "aria-label": "Sommaire de section"
+    "aria-label": "Sommaire de section",
+    "menu": "Menu"
   },
   "search": {
     "label": "Rechercher dans la documentation",
