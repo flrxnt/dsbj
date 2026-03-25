@@ -41,11 +41,11 @@ Utilisez ensuite les composants DSBJ avec les classes `.bj-*` dans votre HTML :
 
 ### Polices
 
-Le DSBJ utilise Open Sans. Ajoutez-la dans votre `<head>` si elle n'est pas déjà chargée :
+Le DSBJ utilise Montserrat. Ajoutez-la dans votre `<head>` si elle n'est pas déjà chargée :
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 ```
 
 ## Projet 100% DSBJ (site gouvernemental)

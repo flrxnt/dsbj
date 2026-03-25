@@ -30,7 +30,7 @@ const PAGE_DESCRIPTIONS: Record<string, PageMeta> = {
   'fondamentaux/index.html': { description: 'Fondamentaux du DSBJ : couleurs, typographie, grille, espacement, icônes et principes du Design Système du Bénin.', priority: '0.8' },
   'fondamentaux/couleurs-palette.html': { description: 'Palette de couleurs officielle du DSBJ : vert, jaune et rouge du Bénin, couleurs sémantiques et tokens CSS.', priority: '0.6' },
   'fondamentaux/couleurs-utilisation.html': { description: 'Utilisation des couleurs dans le DSBJ : tokens sémantiques pour action, texte, fond et bordure.', priority: '0.6' },
-  'fondamentaux/typographie.html': { description: 'Typographie du DSBJ : polices Open Sans et Spectral, échelle typographique, classes de titres et de texte.', priority: '0.6' },
+  'fondamentaux/typographie.html': { description: 'Typographie du DSBJ : polices Montserrat et Spectral, échelle typographique, classes de titres et de texte.', priority: '0.6' },
   'fondamentaux/espacement.html': { description: 'Système d\'espacement du DSBJ : tokens --bj-spacing-*, classes utilitaires de marge et padding.', priority: '0.6' },
   'fondamentaux/grille.html': { description: 'Grille responsive du DSBJ : système 12 colonnes avec bj-container, bj-grid-row et bj-col-*.', priority: '0.6' },
   'fondamentaux/ombres-elevation.html': { description: 'Ombres et élévation du DSBJ : niveaux d\'ombre sm, md, lg, xl pour la hiérarchie visuelle.', priority: '0.5' },

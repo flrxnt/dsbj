@@ -180,7 +180,7 @@ const { t } = useI18n({
         "Gr\u00e2ce au syst\u00e8me de scoping, le DSBJ ne modifie aucun \u00e9l\u00e9ment HTML qui ne porte pas de classe .bj-*. Vous pouvez l\u2019int\u00e9grer en toute s\u00e9curit\u00e9 dans un projet existant utilisant Bootstrap, Tailwind ou tout autre framework CSS.",
       'section-fonts': 'Polices',
       'fonts-intro':
-        "Le DSBJ utilise Open Sans comme police principale. Ajoutez-la dans votre <head> si elle n'est pas d\u00e9j\u00e0 charg\u00e9e :",
+        "Le DSBJ utilise Montserrat comme police principale. Ajoutez-la dans votre <head> si elle n'est pas d\u00e9j\u00e0 charg\u00e9e :",
       'section-theme': 'Th\u00e8me sombre',
       'theme-a': "Le jeu de couleurs sombre s\u2019active en positionnant l\u2019attribut ",
       'theme-b': " sur l\u2019\u00e9l\u00e9ment racine ",
@@ -238,7 +238,7 @@ const { t } = useI18n({
         'Thanks to the scoping system, DSBJ does not modify any HTML element that does not carry a .bj-* class. You can safely integrate it into an existing project using Bootstrap, Tailwind, or any other CSS framework.',
       'section-fonts': 'Fonts',
       'fonts-intro':
-        "DSBJ uses Open Sans as its primary font. Add it to your <head> if it's not already loaded:",
+        "DSBJ uses Montserrat as its primary font. Add it to your <head> if it's not already loaded:",
       'section-theme': 'Dark theme',
       'theme-a': 'The dark palette is enabled by setting the ',
       'theme-b': ' attribute on the root ',
@@ -284,7 +284,7 @@ const resetSnippet = `import '@flrxnt/dsbj/reset';`
 
 const fontsSnippet = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">`
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">`
 
 const structureHtmlSnippet = `<!DOCTYPE html>
 <html lang="fr" data-bj-theme="light">
@@ -294,7 +294,7 @@ const structureHtmlSnippet = `<!DOCTYPE html>
   <title>Mon service - R\u00e9publique du B\u00e9nin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="chemin/vers/dsbj.css">
   <!-- Optionnel : reset global pour projets 100% DSBJ -->
