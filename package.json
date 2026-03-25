@@ -28,7 +28,7 @@
   },
   "files": [
     "dist",
-    "src/**/*.scss"
+    "src"
   ],
   "sideEffects": [
     "**/*.css",
