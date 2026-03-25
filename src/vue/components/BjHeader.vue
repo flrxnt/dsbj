@@ -1,10 +1,12 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
+<script lang="ts">
 export interface BjHeaderProps {
   serviceName?: string
   serviceTagline?: string
 }
+</script>
+
+<script setup lang="ts">
+import { ref } from 'vue'
 
 defineProps<BjHeaderProps>()
 

@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjLogoProps {
   size?: 'md' | 'lg' | 'xl'
   href?: string
@@ -9,6 +7,10 @@ export interface BjLogoProps {
   src?: string
   alt?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjLogoProps>(), {
   size: 'md',

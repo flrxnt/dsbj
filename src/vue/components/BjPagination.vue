@@ -1,12 +1,14 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjPaginationProps {
   modelValue: number
   total: number
   perPage?: number
   maxVisible?: number
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjPaginationProps>(), {
   perPage: 10,

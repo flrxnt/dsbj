@@ -1,12 +1,14 @@
-<script setup lang="ts">
-import { computed, ref } from 'vue'
-
+<script lang="ts">
 export interface BjNoticeProps {
   variant?: 'default' | 'info' | 'warning' | 'alert'
   closable?: boolean
   title?: string
   icon?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed, ref } from 'vue'
 
 const props = withDefaults(defineProps<BjNoticeProps>(), {
   variant: 'default',

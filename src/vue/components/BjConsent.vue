@@ -1,18 +1,19 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
+<script lang="ts">
 export interface ConsentService {
   id: string
   name: string
   description?: string
   required?: boolean
 }
-
 export interface BjConsentProps {
   title?: string
   text?: string
   services?: ConsentService[]
 }
+</script>
+
+<script setup lang="ts">
+import { ref } from 'vue'
 
 const props = withDefaults(defineProps<BjConsentProps>(), {
   title: 'Gestion des cookies',

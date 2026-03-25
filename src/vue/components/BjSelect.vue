@@ -1,12 +1,9 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjSelectOption {
   value: string
   label: string
   disabled?: boolean
 }
-
 export interface BjSelectProps {
   modelValue?: string
   label?: string
@@ -17,6 +14,10 @@ export interface BjSelectProps {
   disabled?: boolean
   placeholder?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjSelectProps>(), {
   modelValue: '',

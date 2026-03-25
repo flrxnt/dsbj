@@ -1,20 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-export interface TreeNode {
-  id: string
-  label: string
-  icon?: string
-  children?: TreeNode[]
-  checked?: boolean
-}
-
-export interface BjTreeviewProps {
-  nodes: TreeNode[]
-  checkbox?: boolean
-  compact?: boolean
-}
-
 const props = withDefaults(defineProps<BjTreeviewProps>(), {
   checkbox: false,
   compact: false,
@@ -113,5 +99,18 @@ function isChecked(id: string) { return checked.value.has(id) }
 </template>
 
 <script lang="ts">
+export interface TreeNode {
+  id: string
+  label: string
+  icon?: string
+  children?: TreeNode[]
+  checked?: boolean
+}
+export interface BjTreeviewProps {
+  nodes: TreeNode[]
+  checkbox?: boolean
+  compact?: boolean
+}
+
 export default { name: 'BjTreeview' }
 </script>

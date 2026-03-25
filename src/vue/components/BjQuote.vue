@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjQuoteProps {
   accent?: boolean
   text?: string
@@ -8,6 +6,10 @@ export interface BjQuoteProps {
   source?: string
   image?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = defineProps<BjQuoteProps>()
 

@@ -1,12 +1,14 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjSearchProps {
   modelValue?: string
   placeholder?: string
   size?: 'md' | 'lg'
   buttonLabel?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjSearchProps>(), {
   modelValue: '',

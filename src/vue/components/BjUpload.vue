@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { computed, ref } from 'vue'
-
+<script lang="ts">
 export interface BjUploadProps {
   label?: string
   hint?: string
@@ -11,6 +9,10 @@ export interface BjUploadProps {
   text?: string
   icon?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed, ref } from 'vue'
 
 const props = withDefaults(defineProps<BjUploadProps>(), {
   text: 'Glissez un fichier ou cliquez pour parcourir',

@@ -1,8 +1,11 @@
-<script setup lang="ts">
+<script lang="ts">
 export interface BjCardImgProps {
   background?: string
   label?: string
 }
+</script>
+
+<script setup lang="ts">
 
 const props = withDefaults(defineProps<BjCardImgProps>(), {
   label: '',

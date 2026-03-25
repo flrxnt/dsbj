@@ -1,12 +1,14 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjTableProps {
   bordered?: boolean
   striped?: boolean
   fixedLayout?: boolean
   caption?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = defineProps<BjTableProps>()
 

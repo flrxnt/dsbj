@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjRadioProps {
   modelValue?: string
   value: string
@@ -9,6 +7,10 @@ export interface BjRadioProps {
   disabled?: boolean
   name?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = defineProps<BjRadioProps>()
 

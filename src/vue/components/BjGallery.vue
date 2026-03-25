@@ -1,17 +1,18 @@
-<script setup lang="ts">
-import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
-
+<script lang="ts">
 export interface GalleryImage {
   src: string
   alt?: string
   caption?: string
   thumbnail?: string
 }
-
 export interface BjGalleryProps {
   images: GalleryImage[]
   cols?: 2 | 3 | 4
 }
+</script>
+
+<script setup lang="ts">
+import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
 
 const props = withDefaults(defineProps<BjGalleryProps>(), {
   cols: 3,

@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjToggleProps {
   modelValue?: boolean
   label?: string
@@ -9,6 +7,10 @@ export interface BjToggleProps {
   border?: boolean
   labelLeft?: boolean
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjToggleProps>(), {
   modelValue: false,

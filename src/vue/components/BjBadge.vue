@@ -1,11 +1,13 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjBadgeProps {
   variant?: 'default' | 'info' | 'success' | 'warning' | 'error' | 'new'
   size?: 'sm' | 'md'
   noIcon?: boolean
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjBadgeProps>(), {
   variant: 'default',

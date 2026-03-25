@@ -1,15 +1,17 @@
-<script setup lang="ts">
+<script lang="ts">
 export interface SidemenuLink {
   label: string
   to: string
   active?: boolean
   children?: SidemenuLink[]
 }
-
 export interface BjSidemenuProps {
   title?: string
   links: SidemenuLink[]
 }
+</script>
+
+<script setup lang="ts">
 
 defineProps<BjSidemenuProps>()
 </script>

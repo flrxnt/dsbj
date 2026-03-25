@@ -1,11 +1,13 @@
-<script setup lang="ts">
-import { computed, inject } from 'vue'
-import { AccordionKey } from '../composables/useAccordion'
-
+<script lang="ts">
 export interface BjAccordionItemProps {
   id: string
   title: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed, inject } from 'vue'
+import { AccordionKey } from '../composables/useAccordion'
 
 const props = defineProps<BjAccordionItemProps>()
 

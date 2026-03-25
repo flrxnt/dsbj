@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjButtonProps {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'accent' | 'contrast'
   size?: 'sm' | 'md' | 'lg'
@@ -9,6 +7,10 @@ export interface BjButtonProps {
   disabled?: boolean
   tag?: 'button' | 'a'
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjButtonProps>(), {
   variant: 'primary',

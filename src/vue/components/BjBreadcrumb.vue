@@ -1,12 +1,14 @@
-<script setup lang="ts">
+<script lang="ts">
 export interface BreadcrumbItem {
   label: string
   to?: string
 }
-
 export interface BjBreadcrumbProps {
   items: BreadcrumbItem[]
 }
+</script>
+
+<script setup lang="ts">
 
 defineProps<BjBreadcrumbProps>()
 </script>

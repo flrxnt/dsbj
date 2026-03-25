@@ -1,13 +1,15 @@
-<script setup lang="ts">
+<script lang="ts">
 export interface SummaryLink {
   label: string
   anchor: string
 }
-
 export interface BjSummaryProps {
   title?: string
   links: SummaryLink[]
 }
+</script>
+
+<script setup lang="ts">
 
 const props = withDefaults(defineProps<BjSummaryProps>(), {
   title: 'Sommaire',

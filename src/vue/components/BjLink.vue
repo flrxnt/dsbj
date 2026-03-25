@@ -1,11 +1,13 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjLinkProps {
   size?: 'sm' | 'md' | 'lg'
   iconPosition?: 'left' | 'right' | 'none'
   reset?: boolean
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjLinkProps>(), {
   size: 'md',

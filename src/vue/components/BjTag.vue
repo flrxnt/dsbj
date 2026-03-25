@@ -1,12 +1,14 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjTagProps {
   variant?: 'default' | 'action' | 'info' | 'success' | 'warning' | 'error'
   size?: 'sm' | 'md'
   dismissible?: boolean
   tag?: 'span' | 'a' | 'button'
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjTagProps>(), {
   variant: 'default',

@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { ref, provide, computed, type InjectionKey, type Ref } from 'vue'
+<script lang="ts">
+import { type InjectionKey, type Ref } from 'vue'
 
 export interface TabContext {
   activeIndex: Ref<number>
@@ -13,6 +13,10 @@ export interface BjTabProps {
   modelValue?: number
   tabs: string[]
 }
+</script>
+
+<script setup lang="ts">
+import { ref, provide } from 'vue'
 
 const props = withDefaults(defineProps<BjTabProps>(), {
   modelValue: 0,

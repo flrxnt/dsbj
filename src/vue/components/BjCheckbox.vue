@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjCheckboxProps {
   modelValue?: boolean
   label?: string
@@ -9,6 +7,10 @@ export interface BjCheckboxProps {
   name?: string
   value?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjCheckboxProps>(), {
   modelValue: false,

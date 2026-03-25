@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjCardProps {
   horizontal?: boolean
   flat?: boolean
@@ -8,6 +6,10 @@ export interface BjCardProps {
   link?: boolean
   tag?: 'article' | 'div' | 'a'
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjCardProps>(), {
   tag: 'article',

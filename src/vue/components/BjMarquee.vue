@@ -1,12 +1,14 @@
-<script setup lang="ts">
-import { computed, ref } from 'vue'
-
+<script lang="ts">
 export interface BjMarqueeProps {
   speed?: 'slow' | 'default' | 'fast'
   reverse?: boolean
   bordered?: boolean
   pausable?: boolean
 }
+</script>
+
+<script setup lang="ts">
+import { computed, ref } from 'vue'
 
 const props = withDefaults(defineProps<BjMarqueeProps>(), {
   speed: 'default',

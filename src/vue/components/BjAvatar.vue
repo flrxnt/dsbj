@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjAvatarProps {
   size?: 'sm' | 'md' | 'lg' | 'xl'
   square?: boolean
@@ -10,6 +8,10 @@ export interface BjAvatarProps {
   icon?: string
   status?: 'online' | 'away' | 'busy' | 'offline'
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjAvatarProps>(), {
   size: 'md',

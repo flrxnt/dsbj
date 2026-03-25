@@ -1,10 +1,12 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjTooltipProps {
   text: string
   position?: 'top' | 'bottom' | 'left' | 'right'
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjTooltipProps>(), {
   position: 'top',

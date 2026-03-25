@@ -1,12 +1,14 @@
-<script setup lang="ts">
+<script lang="ts">
 export interface SkiplinkItem {
   label: string
   target: string
 }
-
 export interface BjSkiplinkProps {
   links?: SkiplinkItem[]
 }
+</script>
+
+<script setup lang="ts">
 
 const props = withDefaults(defineProps<BjSkiplinkProps>(), {
   links: () => [{ label: 'Aller au contenu', target: '#main' }],

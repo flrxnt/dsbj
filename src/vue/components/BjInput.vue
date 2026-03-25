@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjInputProps {
   modelValue?: string
   label?: string
@@ -15,6 +13,10 @@ export interface BjInputProps {
   rows?: number
   icon?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjInputProps>(), {
   modelValue: '',

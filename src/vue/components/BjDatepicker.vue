@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
-
+<script lang="ts">
 export interface BjDatepickerProps {
   modelValue?: string
   label?: string
@@ -12,6 +10,10 @@ export interface BjDatepickerProps {
   size?: 'sm' | 'md'
   mode?: 'date' | 'month' | 'year'
 }
+</script>
+
+<script setup lang="ts">
+import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
 
 const DAYS_SHORT = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
 const MONTHS = [

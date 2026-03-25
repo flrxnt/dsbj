@@ -1,11 +1,13 @@
-<script setup lang="ts">
-import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
-
+<script lang="ts">
 export interface BjDropdownProps {
   align?: 'left' | 'right'
   direction?: 'down' | 'up'
   size?: 'sm' | 'md'
 }
+</script>
+
+<script setup lang="ts">
+import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
 
 const props = withDefaults(defineProps<BjDropdownProps>(), {
   align: 'left',

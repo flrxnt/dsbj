@@ -1,11 +1,8 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface StepperStep {
   label: string
   done?: boolean
 }
-
 export interface BjStepperProps {
   title?: string
   steps: StepperStep[]
@@ -13,6 +10,10 @@ export interface BjStepperProps {
   vertical?: boolean
   detail?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjStepperProps>(), {
   current: 0,

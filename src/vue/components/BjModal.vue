@@ -1,12 +1,14 @@
-<script setup lang="ts">
-import { computed, ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
-
+<script lang="ts">
 export interface BjModalProps {
   modelValue?: boolean
   size?: 'default' | 'sm' | 'lg' | 'full'
   title?: string
   id?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed, ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 
 const props = withDefaults(defineProps<BjModalProps>(), {
   modelValue: false,

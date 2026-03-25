@@ -1,11 +1,13 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjCalloutProps {
   color?: 'default' | 'green' | 'yellow' | 'red'
   icon?: string
   title?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjCalloutProps>(), {
   color: 'default',

@@ -1,10 +1,12 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjTileProps {
   horizontal?: boolean
   tag?: 'a' | 'div'
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjTileProps>(), {
   tag: 'a',

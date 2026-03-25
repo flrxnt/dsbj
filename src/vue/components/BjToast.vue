@@ -1,10 +1,14 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-import { useToast, type ToastPosition } from '../composables/useToast'
+<script lang="ts">
+import type { ToastPosition } from '../composables/useToast'
 
 export interface BjToastProps {
   position?: ToastPosition
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useToast, type ToastPosition } from '../composables/useToast'
 
 const props = withDefaults(defineProps<BjToastProps>(), {
   position: 'top-right',

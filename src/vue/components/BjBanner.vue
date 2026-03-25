@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
+<script lang="ts">
 export interface BjBannerProps {
   size?: 'sm' | 'md' | 'lg'
   align?: 'left' | 'center' | 'right'
@@ -9,6 +7,10 @@ export interface BjBannerProps {
   title?: string
   text?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjBannerProps>(), {
   size: 'md',

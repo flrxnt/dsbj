@@ -1,10 +1,12 @@
-<script setup lang="ts">
-import { provide } from 'vue'
-import { useAccordion, AccordionKey } from '../composables/useAccordion'
-
+<script lang="ts">
 export interface BjAccordionProps {
   exclusive?: boolean
 }
+</script>
+
+<script setup lang="ts">
+import { provide } from 'vue'
+import { useAccordion, AccordionKey } from '../composables/useAccordion'
 
 const props = withDefaults(defineProps<BjAccordionProps>(), {
   exclusive: false,
