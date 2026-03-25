@@ -10,41 +10,41 @@ const { t } = useI18n({
   messages: {
     fr: {
       title: 'BjDatepicker',
-      desc: 'Sélecteur de date React avec calendrier en portail, format JJ/MM/AAAA, bornes min et max, taille sm ou md.',
+      desc: 'Selecteur de date React avec calendrier en portail, modes date/mois/annee, format JJ/MM/AAAA, bornes min et max.',
       'section-usage': 'Utilisation',
-      'section-preview': 'Aperçu',
+      'section-preview': 'Aperçu — Date',
+      'section-month': 'Mode mois',
+      'section-year': 'Mode année',
       'section-props': 'Props',
-      'prop-value': 'Date sélectionnée, chaîne JJ/MM/AAAA.',
-      'prop-onChange': 'Appelé avec la chaîne formatée lors du choix d’un jour.',
-      'prop-label': 'Libellé au-dessus du champ.',
-      'prop-hint': 'Texte d’aide sous le libellé.',
-      'prop-placeholder': 'Placeholder du champ (défaut JJ/MM/AAAA).',
-      'prop-min': 'Date minimale sélectionnable, JJ/MM/AAAA.',
-      'prop-max': 'Date maximale sélectionnable, JJ/MM/AAAA.',
-      'prop-disabled': 'Désactive le champ et le bouton calendrier.',
-      'prop-size': 'Taille : sm ou md (défaut md).',
-      'prop-id': 'Identifiant du champ ; sinon généré automatiquement.',
-      'prop-className': 'Classe CSS sur le conteneur racine bj-datepicker.',
-      'prop-rest': 'Autres attributs HTML natifs du div racine (onChange est réservé).',
+      'prop-value': 'Valeur selectionnee. Format selon le mode : JJ/MM/AAAA, MM/AAAA ou AAAA.',
+      'prop-onChange': 'Callback avec la valeur formatee lors de la selection.',
+      'prop-label': 'Libelle au-dessus du champ.',
+      'prop-hint': 'Texte d aide sous le libelle.',
+      'prop-placeholder': 'Placeholder du champ.',
+      'prop-min': 'Date minimale selectionnable, JJ/MM/AAAA.',
+      'prop-max': 'Date maximale selectionnable, JJ/MM/AAAA.',
+      'prop-disabled': 'Desactive le champ et le bouton calendrier.',
+      'prop-size': 'Taille : sm ou md (defaut md).',
+      'prop-mode': 'Mode de selection : date, month ou year.',
     },
     en: {
       title: 'BjDatepicker',
-      desc: 'React date picker with portaled calendar, DD/MM/YYYY format, min and max bounds, sm or md size.',
+      desc: 'React date picker with portaled calendar, date/month/year modes, DD/MM/YYYY format, min and max bounds.',
       'section-usage': 'Usage',
-      'section-preview': 'Preview',
+      'section-preview': 'Preview — Date',
+      'section-month': 'Month mode',
+      'section-year': 'Year mode',
       'section-props': 'Props',
-      'prop-value': 'Selected date, DD/MM/YYYY string.',
-      'prop-onChange': 'Called with the formatted string when a day is chosen.',
+      'prop-value': 'Selected value. Format depends on mode: DD/MM/YYYY, MM/YYYY, or YYYY.',
+      'prop-onChange': 'Callback with formatted value on selection.',
       'prop-label': 'Label above the field.',
       'prop-hint': 'Help text below the label.',
-      'prop-placeholder': 'Field placeholder (default DD/MM/YYYY).',
+      'prop-placeholder': 'Field placeholder.',
       'prop-min': 'Earliest selectable date, DD/MM/YYYY.',
       'prop-max': 'Latest selectable date, DD/MM/YYYY.',
       'prop-disabled': 'Disables the field and calendar button.',
       'prop-size': 'Size: sm or md (default md).',
-      'prop-id': 'Field id; auto-generated when omitted.',
-      'prop-className': 'CSS class on the root bj-datepicker wrapper.',
-      'prop-rest': 'Other native div HTML attributes (onChange is reserved).',
+      'prop-mode': 'Selection mode: date, month, or year.',
     },
   },
 })
@@ -52,16 +52,45 @@ const { t } = useI18n({
 const codeUsage = `import { useState } from 'react'
 import { BjDatepicker } from '@flrxnt/dsbj/react'
 
-export default function Example() {
-  const [birth, setBirth] = useState('')
+export default function App() {
+  const [date, setDate] = useState('')
   return (
     <BjDatepicker
-      value={birth}
-      onChange={setBirth}
+      value={date}
+      onChange={setDate}
       label="Date de naissance"
-      hint="JJ/MM/AAAA"
       min="01/01/1950"
       max="31/12/2010"
+    />
+  )
+}`
+
+const codeMonth = `import { useState } from 'react'
+import { BjDatepicker } from '@flrxnt/dsbj/react'
+
+export default function App() {
+  const [month, setMonth] = useState('')
+  return (
+    <BjDatepicker
+      value={month}
+      onChange={setMonth}
+      mode="month"
+      label="Mois de facturation"
+    />
+  )
+}`
+
+const codeYear = `import { useState } from 'react'
+import { BjDatepicker } from '@flrxnt/dsbj/react'
+
+export default function App() {
+  const [year, setYear] = useState('')
+  return (
+    <BjDatepicker
+      value={year}
+      onChange={setYear}
+      mode="year"
+      label="Annee fiscale"
     />
   )
 }`
@@ -69,6 +98,7 @@ export default function Example() {
 const propsRows = computed(() => [
   { name: 'value', description: t('prop-value') },
   { name: 'onChange', description: t('prop-onChange') },
+  { name: 'mode', description: t('prop-mode') },
   { name: 'label', description: t('prop-label') },
   { name: 'hint', description: t('prop-hint') },
   { name: 'placeholder', description: t('prop-placeholder') },
@@ -76,9 +106,6 @@ const propsRows = computed(() => [
   { name: 'max', description: t('prop-max') },
   { name: 'disabled', description: t('prop-disabled') },
   { name: 'size', description: t('prop-size') },
-  { name: 'id', description: t('prop-id') },
-  { name: 'className', description: t('prop-className') },
-  { name: '…', description: t('prop-rest') },
 ])
 </script>
 
@@ -94,33 +121,27 @@ const propsRows = computed(() => [
     <DocsPreview>
       <div class="bj-datepicker" style="max-width: 18rem">
         <label class="bj-label">Date de naissance</label>
-        <span class="bj-hint">JJ/MM/AAAA</span>
         <div class="bj-datepicker__field">
-          <input class="bj-datepicker__input" type="text" readonly placeholder="JJ/MM/AAAA" value="15/03/1990" />
-          <button type="button" class="bj-datepicker__trigger" aria-label="Ouvrir le calendrier">
-            <i class="ri-calendar-line" aria-hidden="true" />
-          </button>
+          <input class="bj-datepicker__input" type="text" readonly placeholder="JJ/MM/AAAA" value="14/03/2026" />
+          <button type="button" class="bj-datepicker__trigger"><i class="ri-calendar-line" aria-hidden="true"></i></button>
         </div>
-        <div class="bj-datepicker__calendar" data-bj-expanded role="dialog" aria-label="Calendrier">
+        <div class="bj-datepicker__calendar" data-bj-expanded style="position: relative; top: 0;">
           <div class="bj-datepicker__nav">
-            <button type="button" class="bj-datepicker__nav-btn" aria-label="Mois précédent">
-              <i class="ri-arrow-left-s-line" aria-hidden="true" />
-            </button>
-            <span class="bj-datepicker__month-year">mars 2026</span>
-            <button type="button" class="bj-datepicker__nav-btn" aria-label="Mois suivant">
-              <i class="ri-arrow-right-s-line" aria-hidden="true" />
-            </button>
+            <button type="button" class="bj-datepicker__nav-btn"><i class="ri-arrow-left-s-line" aria-hidden="true"></i></button>
+            <button type="button" class="bj-datepicker__nav-title">Mars 2026</button>
+            <button type="button" class="bj-datepicker__nav-btn"><i class="ri-arrow-right-s-line" aria-hidden="true"></i></button>
           </div>
           <div class="bj-datepicker__weekdays">
-            <span class="bj-datepicker__weekday">lun</span>
-            <span class="bj-datepicker__weekday">mar</span>
-            <span class="bj-datepicker__weekday">mer</span>
-            <span class="bj-datepicker__weekday">jeu</span>
-            <span class="bj-datepicker__weekday">ven</span>
-            <span class="bj-datepicker__weekday">sam</span>
-            <span class="bj-datepicker__weekday">dim</span>
+            <span class="bj-datepicker__weekday">Lun</span><span class="bj-datepicker__weekday">Mar</span>
+            <span class="bj-datepicker__weekday">Mer</span><span class="bj-datepicker__weekday">Jeu</span>
+            <span class="bj-datepicker__weekday">Ven</span><span class="bj-datepicker__weekday">Sam</span>
+            <span class="bj-datepicker__weekday">Dim</span>
           </div>
           <div class="bj-datepicker__grid" role="grid">
+            <button type="button" class="bj-datepicker__day bj-datepicker__day--outside" tabindex="-1">23</button>
+            <button type="button" class="bj-datepicker__day bj-datepicker__day--outside" tabindex="-1">24</button>
+            <button type="button" class="bj-datepicker__day bj-datepicker__day--outside" tabindex="-1">25</button>
+            <button type="button" class="bj-datepicker__day bj-datepicker__day--outside" tabindex="-1">26</button>
             <button type="button" class="bj-datepicker__day bj-datepicker__day--outside" tabindex="-1">27</button>
             <button type="button" class="bj-datepicker__day bj-datepicker__day--outside" tabindex="-1">28</button>
             <button type="button" class="bj-datepicker__day" tabindex="-1">1</button>
@@ -128,17 +149,88 @@ const propsRows = computed(() => [
             <button type="button" class="bj-datepicker__day" tabindex="-1">3</button>
             <button type="button" class="bj-datepicker__day" tabindex="-1">4</button>
             <button type="button" class="bj-datepicker__day" tabindex="-1">5</button>
+            <button type="button" class="bj-datepicker__day" tabindex="-1">6</button>
+            <button type="button" class="bj-datepicker__day" tabindex="-1">7</button>
+            <button type="button" class="bj-datepicker__day" tabindex="-1">8</button>
+            <button type="button" class="bj-datepicker__day" tabindex="-1">9</button>
             <button type="button" class="bj-datepicker__day" tabindex="-1">10</button>
-            <button type="button" class="bj-datepicker__day bj-datepicker__day--today" tabindex="-1">11</button>
+            <button type="button" class="bj-datepicker__day" tabindex="-1">11</button>
             <button type="button" class="bj-datepicker__day" tabindex="-1">12</button>
-            <button type="button" class="bj-datepicker__day bj-datepicker__day--selected" tabindex="-1">15</button>
-            <button type="button" class="bj-datepicker__day" tabindex="-1">16</button>
-            <button type="button" class="bj-datepicker__day" tabindex="-1">17</button>
-            <button type="button" class="bj-datepicker__day" tabindex="-1">18</button>
+            <button type="button" class="bj-datepicker__day" tabindex="-1">13</button>
+            <button type="button" class="bj-datepicker__day bj-datepicker__day--selected" tabindex="-1">14</button>
+            <button type="button" class="bj-datepicker__day" tabindex="-1">15</button>
           </div>
         </div>
       </div>
     </DocsPreview>
+  </DocsSection>
+
+  <DocsSection id="react-datepicker-month" :title="t('section-month')">
+    <DocsPreview>
+      <div class="bj-datepicker" style="max-width: 18rem">
+        <label class="bj-label">Mois de facturation</label>
+        <div class="bj-datepicker__field">
+          <input class="bj-datepicker__input" type="text" readonly placeholder="MM/AAAA" value="03/2026" />
+          <button type="button" class="bj-datepicker__trigger"><i class="ri-calendar-line" aria-hidden="true"></i></button>
+        </div>
+        <div class="bj-datepicker__calendar" data-bj-expanded style="position: relative; top: 0;">
+          <div class="bj-datepicker__nav">
+            <button type="button" class="bj-datepicker__nav-btn"><i class="ri-arrow-left-s-line" aria-hidden="true"></i></button>
+            <button type="button" class="bj-datepicker__nav-title">2026</button>
+            <button type="button" class="bj-datepicker__nav-btn"><i class="ri-arrow-right-s-line" aria-hidden="true"></i></button>
+          </div>
+          <div class="bj-datepicker__months-grid">
+            <button type="button" class="bj-datepicker__month-cell">Jan</button>
+            <button type="button" class="bj-datepicker__month-cell">Fév</button>
+            <button type="button" class="bj-datepicker__month-cell bj-datepicker__month-cell--selected">Mar</button>
+            <button type="button" class="bj-datepicker__month-cell">Avr</button>
+            <button type="button" class="bj-datepicker__month-cell">Mai</button>
+            <button type="button" class="bj-datepicker__month-cell">Juin</button>
+            <button type="button" class="bj-datepicker__month-cell">Juil</button>
+            <button type="button" class="bj-datepicker__month-cell">Août</button>
+            <button type="button" class="bj-datepicker__month-cell">Sep</button>
+            <button type="button" class="bj-datepicker__month-cell">Oct</button>
+            <button type="button" class="bj-datepicker__month-cell">Nov</button>
+            <button type="button" class="bj-datepicker__month-cell">Déc</button>
+          </div>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeMonth" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-datepicker-year" :title="t('section-year')">
+    <DocsPreview>
+      <div class="bj-datepicker" style="max-width: 18rem">
+        <label class="bj-label">Année fiscale</label>
+        <div class="bj-datepicker__field">
+          <input class="bj-datepicker__input" type="text" readonly placeholder="AAAA" value="2026" />
+          <button type="button" class="bj-datepicker__trigger"><i class="ri-calendar-line" aria-hidden="true"></i></button>
+        </div>
+        <div class="bj-datepicker__calendar" data-bj-expanded style="position: relative; top: 0;">
+          <div class="bj-datepicker__nav">
+            <button type="button" class="bj-datepicker__nav-btn"><i class="ri-arrow-left-s-line" aria-hidden="true"></i></button>
+            <span class="bj-datepicker__nav-title" style="cursor: default;">2020–2029</span>
+            <button type="button" class="bj-datepicker__nav-btn"><i class="ri-arrow-right-s-line" aria-hidden="true"></i></button>
+          </div>
+          <div class="bj-datepicker__years-grid">
+            <button type="button" class="bj-datepicker__year-cell bj-datepicker__year-cell--outside">2019</button>
+            <button type="button" class="bj-datepicker__year-cell">2020</button>
+            <button type="button" class="bj-datepicker__year-cell">2021</button>
+            <button type="button" class="bj-datepicker__year-cell">2022</button>
+            <button type="button" class="bj-datepicker__year-cell">2023</button>
+            <button type="button" class="bj-datepicker__year-cell">2024</button>
+            <button type="button" class="bj-datepicker__year-cell">2025</button>
+            <button type="button" class="bj-datepicker__year-cell bj-datepicker__year-cell--selected">2026</button>
+            <button type="button" class="bj-datepicker__year-cell">2027</button>
+            <button type="button" class="bj-datepicker__year-cell">2028</button>
+            <button type="button" class="bj-datepicker__year-cell">2029</button>
+            <button type="button" class="bj-datepicker__year-cell bj-datepicker__year-cell--outside">2030</button>
+          </div>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeYear" lang="tsx" />
   </DocsSection>
 
   <DocsSection id="react-datepicker-props" :title="t('section-props')">
