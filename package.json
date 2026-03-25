@@ -4,6 +4,14 @@
   "description": "Design Système du Bénin - Système de design gouvernemental de la République du Bénin",
   "author": "République du Bénin",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flrxnt/dsbj"
+  },
+  "bugs": {
+    "url": "https://github.com/flrxnt/dsbj/issues"
+  },
+  "homepage": "https://github.com/flrxnt/dsbj#readme",
   "type": "module",
   "main": "dist/dsbj.umd.js",
   "module": "dist/dsbj.es.js",
