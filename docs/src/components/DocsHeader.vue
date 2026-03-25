@@ -113,7 +113,7 @@ onUnmounted(() => {
             :aria-expanded="menuOpen"
             @click="toggleMenu"
           >
-            <i class="ri-menu-line" aria-hidden="true"></i> {{ t('header.menu') }}
+            <i class="ri-menu-line" aria-hidden="true"></i> <span class="bj-header__menu-label">{{ t('header.menu') }}</span>
           </button>
         </div>
       </div>
