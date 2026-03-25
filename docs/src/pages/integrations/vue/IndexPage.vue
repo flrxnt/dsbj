@@ -74,6 +74,7 @@ const { t } = useI18n({
     <DocsCard to="/integrations/vue/gallery" icon="ri-gallery-line" title="BjGallery" description="Galerie d'images avec lightbox." />
     <DocsCard to="/integrations/vue/marquee" icon="ri-text-wrap" title="BjMarquee" description="Bandeau défilant." />
     <DocsCard to="/integrations/vue/treeview" icon="ri-node-tree" title="BjTreeview" description="Arborescence interactive." />
+    <DocsCard to="/integrations/vue/consent" icon="ri-shield-check-line" title="BjConsent" description="Bannière et préférences cookies." />
   </div>
 
   <h2 class="bj-h3" style="margin-top: var(--bj-spacing-8v)">{{ t('section-nav') }}</h2>
@@ -84,5 +85,10 @@ const { t } = useI18n({
     <DocsCard to="/integrations/vue/pagination" icon="ri-more-line" title="BjPagination" description="Pagination avec v-model." />
     <DocsCard to="/integrations/vue/stepper" icon="ri-list-ordered" title="BjStepper" description="Indicateur d'étapes." />
     <DocsCard to="/integrations/vue/banner" icon="ri-image-line" title="BjBanner" description="Bannière hero." />
+    <DocsCard to="/integrations/vue/logo" icon="ri-government-line" title="BjLogo" description="Logo institutionnel et tagline." />
+    <DocsCard to="/integrations/vue/summary" icon="ri-list-unordered" title="BjSummary" description="Sommaire avec ancres." />
+    <DocsCard to="/integrations/vue/sidemenu" icon="ri-menu-unfold-line" title="BjSidemenu" description="Menu latéral et sous-menus." />
+    <DocsCard to="/integrations/vue/navigation" icon="ri-compass-3-line" title="BjNavigation" description="Liste de navigation principale." />
+    <DocsCard to="/integrations/vue/skiplink" icon="ri-skip-forward-line" title="BjSkiplink" description="Liens d'évitement." />
   </div>
 </template>
