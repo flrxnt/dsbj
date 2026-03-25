@@ -66,7 +66,7 @@ const { t } = useI18n({
   <h2 class="bj-h3" style="margin-top: var(--bj-spacing-8v)">{{ t('section-interactive') }}</h2>
   <div class="docs-cards">
     <DocsCard to="/integrations/react/accordion" icon="ri-layout-row-line" title="Accordion" description="Accordéon avec mode exclusif." />
-    <DocsCard to="/integrations/react/modal" icon="ri-window-line" title="Modal" description="Modale contrôlée (open + onOpenChange)." />
+    <DocsCard to="/integrations/react/modal" icon="ri-window-line" title="Modal" description="Modale contrôlée (open + onClose)." />
     <DocsCard to="/integrations/react/tab" icon="ri-folder-line" title="Tabs" description="Onglets avec navigation clavier." />
     <DocsCard to="/integrations/react/dropdown" icon="ri-arrow-down-s-line" title="Dropdown" description="Menu déroulant." />
     <DocsCard to="/integrations/react/toast" icon="ri-notification-3-line" title="Toast" description="Notifications toast." />
@@ -74,6 +74,7 @@ const { t } = useI18n({
     <DocsCard to="/integrations/react/gallery" icon="ri-gallery-line" title="Gallery" description="Galerie avec lightbox." />
     <DocsCard to="/integrations/react/marquee" icon="ri-text-wrap" title="Marquee" description="Bandeau défilant." />
     <DocsCard to="/integrations/react/treeview" icon="ri-node-tree" title="TreeView" description="Arborescence interactive." />
+    <DocsCard to="/integrations/react/consent" icon="ri-shield-check-line" title="Consent" description="Bannière cookies et préférences." />
   </div>
 
   <h2 class="bj-h3" style="margin-top: var(--bj-spacing-8v)">{{ t('section-nav') }}</h2>
