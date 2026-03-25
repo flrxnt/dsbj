@@ -4,6 +4,26 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.3.1] - 2026-03-25
+
+### Ajouté
+
+- Enhance Datepicker components for React and Vue with new selection modes
+- Update useShiki to include additional languages for syntax highlighting
+- Enhance React integration documentation and add new components
+- Add new Vue integration components and enhance documentation
+
+### Modifié
+
+- Merge pull request #1 from flrxnt/integration
+- Enhance DocsSidebar and useSidebar for mobile support
+- Update typography to use Montserrat as the primary font across documentation and components
+- Update LegalLayout and SectionLayout to set minimum height for main content area
+- Update dependencies and enhance documentation for Vue and PWA integration
+- Enhance documentation and integration support for Vue and React components
+- Clean up CHANGELOG by removing duplicate entries
+- Update readme-banner.png image for improved visual presentation.
+
 ## [1.3.0] - 2026-03-25
 
 ### Modifié (BREAKING)
