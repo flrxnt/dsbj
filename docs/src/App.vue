@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import HomeLayout from './layouts/HomeLayout.vue'
 import SectionLayout from './layouts/SectionLayout.vue'
@@ -9,6 +9,9 @@ import CookieConsent from './components/CookieConsent.vue'
 import ReloadPrompt from './components/ReloadPrompt.vue'
 
 const route = useRoute()
+
+const isClient = ref(false)
+onMounted(() => { isClient.value = true })
 
 const layouts: Record<string, any> = {
   home: HomeLayout,
@@ -28,5 +31,5 @@ const layout = computed(() => {
     <RouterView />
   </component>
   <CookieConsent />
-  <ReloadPrompt />
+  <ReloadPrompt v-if="isClient" />
 </template>
