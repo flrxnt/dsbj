@@ -32,7 +32,9 @@
   ],
   "sideEffects": [
     "**/*.css",
-    "**/*.scss"
+    "**/*.scss",
+    "src/index.ts",
+    "src/js/*.ts"
   ],
   "workspaces": [
     "mcp"
