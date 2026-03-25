@@ -7,7 +7,7 @@ function getHighlighter(): Promise<Highlighter> {
   if (!instance) {
     instance = createHighlighter({
       themes: ['github-light', 'github-dark'],
-      langs: ['html', 'css', 'scss', 'javascript', 'typescript', 'bash', 'json'],
+      langs: ['html', 'css', 'scss', 'javascript', 'typescript', 'jsx', 'tsx', 'bash', 'json'],
     })
   }
   return instance
