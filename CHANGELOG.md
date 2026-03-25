@@ -4,6 +4,19 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.2.3] - 2026-03-25
+
+### Ajouté
+
+- Ajout carte Utiliser avec l'IA dans Premiers pas, masquage du texte Menu sur mobile
+
+### Modifié
+
+- Enhance package.json to include CSS file in sideEffects and update vite.config.ts to inject CSS import into ES module bundles.
+- Refactor imports in index.ts for better organization and clarity; update package.json to include TypeScript files in sideEffects.
+- Update package.json to include the entire src directory instead of just SCSS files in the files array
+- Exclure les fichiers TypeScript source du paquet npm, ne garder que dist + SCSS
+
 ## [1.2.2] - 2026-03-25
 
 ### Ajouté
