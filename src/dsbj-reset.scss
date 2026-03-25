@@ -1,0 +1,156 @@
+/*! DSBJ Reset - Reset CSS global complet (opt-in) */
+// Importer via : import "@flrxnt/dsbj/reset"
+// À utiliser UNIQUEMENT si DSBJ est le framework principal du projet.
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  tab-size: 4;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--bj-font-sans);
+  font-size: var(--bj-fs-md);
+  line-height: var(--bj-lh-normal);
+  color: var(--bj-text-default);
+  background-color: var(--bj-bg-default);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+hr {
+  height: 0;
+  color: inherit;
+  border: 0;
+  border-top: 1px solid var(--bj-border-default);
+  margin: var(--bj-spacing-4v) 0;
+}
+
+abbr[title] { text-decoration: underline dotted; }
+b, strong { font-weight: bolder; }
+code, kbd, samp, pre {
+  font-family: var(--bj-font-mono);
+  font-size: 0.875em;
+}
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub { bottom: -0.25em; }
+sup { top: -0.5em; }
+
+table {
+  text-indent: 0;
+  border-color: inherit;
+  border-collapse: collapse;
+}
+
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+button, [type='button'], [type='reset'], [type='submit'] {
+  -webkit-appearance: button;
+  appearance: button;
+  cursor: pointer;
+}
+
+button::-moz-focus-inner, [type='button']::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+fieldset { border: 0; }
+legend { padding: 0; }
+textarea { resize: vertical; }
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  max-width: 100%;
+}
+
+img { height: auto; }
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+ol, ul { list-style: none; }
+
+h1 {
+  font-size: var(--bj-fs-4xl);
+  line-height: var(--bj-lh-tight);
+  font-weight: var(--bj-fw-bold);
+  color: var(--bj-text-title);
+  margin: 0 0 1rem;
+}
+h2 {
+  font-size: var(--bj-fs-3xl);
+  line-height: var(--bj-lh-tight);
+  font-weight: var(--bj-fw-bold);
+  color: var(--bj-text-title);
+  margin: 0 0 0.75rem;
+}
+h3 {
+  font-size: var(--bj-fs-2xl);
+  line-height: var(--bj-lh-tight);
+  font-weight: var(--bj-fw-semibold);
+  color: var(--bj-text-title);
+  margin: 0 0 0.75rem;
+}
+h4 {
+  font-size: var(--bj-fs-xl);
+  line-height: var(--bj-lh-tight);
+  font-weight: var(--bj-fw-semibold);
+  color: var(--bj-text-title);
+  margin: 0 0 0.5rem;
+}
+h5 {
+  font-size: var(--bj-fs-lg);
+  line-height: var(--bj-lh-normal);
+  font-weight: var(--bj-fw-semibold);
+  color: var(--bj-text-title);
+  margin: 0 0 0.5rem;
+}
+h6 {
+  font-size: var(--bj-fs-md);
+  line-height: var(--bj-lh-normal);
+  font-weight: var(--bj-fw-semibold);
+  color: var(--bj-text-title);
+  margin: 0 0 0.5rem;
+}
+
+p {
+  margin: 0 0 1rem;
+  &:last-child { margin-bottom: 0; }
+}
+
+small { font-size: var(--bj-fs-sm); }
+
+:focus-visible {
+  outline: 2px solid var(--bj-action-high);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}

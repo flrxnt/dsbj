@@ -29,15 +29,16 @@ bun install
 
 ```
 src/
-├── core/           # Fondamentaux (reset, couleurs, typographie, grille…)
-├── component/      # Composants SCSS (un dossier par composant)
-├── utility/        # Classes utilitaires
-├── js/             # Modules TypeScript interactifs
-├── dsbj.scss       # Point d'entrée SCSS
-└── index.ts        # Point d'entrée JS
+├── core/              # Fondamentaux (reset scopé, couleurs, typographie, grille…)
+├── component/         # Composants SCSS (un dossier par composant)
+├── utility/           # Classes utilitaires
+├── js/                # Modules TypeScript interactifs
+├── dsbj.scss          # Point d'entrée SCSS (styles scopés .bj-*)
+├── dsbj-reset.scss    # Reset CSS global (opt-in, pour projets 100% DSBJ)
+└── index.ts           # Point d'entrée JS
 
-docs/               # Site de documentation (Vue 3 + vite-ssg)
-tests/              # Tests Vitest
+docs/                  # Site de documentation (Vue 3 + vite-ssg)
+tests/                 # Tests Vitest
 ```
 
 ## Ajouter un composant
@@ -59,6 +60,7 @@ tests/              # Tests Vitest
 - **Responsive** : mobile-first, breakpoints via `@media (min-width: …)`.
 - **Thème sombre** : les couleurs doivent fonctionner automatiquement grâce aux tokens `--bj-*` qui s'adaptent au thème.
 - **Accessibilité** : contraste AA minimum (WCAG 2.1), focus visible, attributs ARIA.
+- **Pas de styles globaux** : ne jamais cibler d'éléments HTML nus (`body`, `h1`, `p`, `a`, `table`, etc.) dans `dsbj.scss`. Les styles sur éléments nus vont uniquement dans `dsbj-reset.scss`. Les composants doivent être autonomes via leurs classes `.bj-*`.
 
 ## Convention de commits
 

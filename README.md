@@ -22,38 +22,91 @@ Le **Design Système du Bénin (DSBJ)** est l'outil destiné à produire les int
 bun add @flrxnt/dsbj
 ```
 
-### Import ES Module
+## Intégration dans un projet existant
+
+Le DSBJ est conçu pour **coexister avec votre CSS existant** sans le modifier. Tous les styles sont scopés aux classes `.bj-*` : aucun reset global, aucun style sur `body`, `h1`, `p`, `a`, `table`, etc.
 
 ```js
 import '@flrxnt/dsbj';
 ```
 
-Le module importe automatiquement les styles CSS et initialise les composants JavaScript au chargement du DOM.
+C'est tout. Le module importe automatiquement les styles CSS et initialise les composants JavaScript au chargement du DOM. Votre UI existante n'est pas affectée.
 
-### Import CSS seul
+Utilisez ensuite les composants DSBJ avec les classes `.bj-*` dans votre HTML :
 
 ```html
-<link rel="stylesheet" href="node_modules/@flrxnt/dsbj/dist/dsbj.css">
+<button class="bj-btn bj-btn--primary">Valider</button>
+<div class="bj-alert bj-alert--success">Opération réussie</div>
 ```
 
-Ou via le point d'export :
+### Polices
+
+Le DSBJ utilise Open Sans. Ajoutez-la dans votre `<head>` si elle n'est pas déjà chargée :
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+```
+
+## Projet 100% DSBJ (site gouvernemental)
+
+Si le DSBJ est le **framework principal** de votre projet (site institutionnel, portail public), vous pouvez activer le reset CSS global complet qui stylise `body`, `h1-h6`, `p`, `a`, `table`, etc. :
+
+```js
+import '@flrxnt/dsbj';
+import '@flrxnt/dsbj/reset';
+```
+
+> **Attention** : le reset modifie les styles de tous les éléments HTML. Ne l'utilisez pas si vous intégrez le DSBJ dans une application existante avec son propre CSS.
+
+## Autres méthodes d'import
+
+### CSS seul (sans JavaScript)
 
 ```js
 import '@flrxnt/dsbj/css';
 ```
 
-### Import SCSS (personnalisation avancée)
+Ou en HTML :
+
+```html
+<link rel="stylesheet" href="node_modules/@flrxnt/dsbj/dist/dsbj.css">
+```
+
+### SCSS (personnalisation avancée)
 
 ```scss
 @use '@flrxnt/dsbj/scss' as *;
 ```
 
+Pour le reset global en SCSS :
+
+```scss
+@use '@flrxnt/dsbj/scss/reset';
+```
+
 ### CDN
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@flrxnt/dsbj@1.1.0/dist/dsbj.css">
-<script src="https://unpkg.com/@flrxnt/dsbj@1.1.0/dist/dsbj.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@flrxnt/dsbj/dist/dsbj.css">
+<script src="https://unpkg.com/@flrxnt/dsbj/dist/dsbj.umd.js"></script>
 ```
+
+Pour inclure le reset global via CDN :
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@flrxnt/dsbj/dist/dsbj-reset.css">
+```
+
+## Résumé des exports
+
+| Import | Contenu | Usage |
+|--------|---------|-------|
+| `@flrxnt/dsbj` | CSS scopé + JS | Intégration dans un projet existant |
+| `@flrxnt/dsbj/css` | CSS scopé seul | Sans JavaScript |
+| `@flrxnt/dsbj/reset` | Reset CSS global | Projet 100% DSBJ uniquement |
+| `@flrxnt/dsbj/scss` | Sources SCSS | Personnalisation avancée |
+| `@flrxnt/dsbj/scss/reset` | Sources SCSS du reset | Personnalisation du reset |
 
 ## Développement
 
@@ -80,20 +133,15 @@ bun run test:watch
 dsbj/
 ├── src/
 │   ├── index.ts              # Point d'entrée (import SCSS + export JS)
-│   ├── dsbj.scss             # Point d'entrée SCSS
-│   ├── core/                 # Fondamentaux (reset, couleurs, typographie, grille, espacement)
-│   ├── component/            # 35 composants SCSS
+│   ├── dsbj.scss             # Point d'entrée SCSS (styles scopés .bj-*)
+│   ├── dsbj-reset.scss       # Reset CSS global (opt-in)
+│   ├── core/                 # Fondamentaux (reset scopé, couleurs, typographie, grille, espacement)
+│   ├── component/            # 35+ composants SCSS
 │   ├── utility/              # Classes utilitaires
 │   └── js/                   # Modules TypeScript (accordion, modal, tab, header, etc.)
-├── tests/                    # Tests Vitest (8 fichiers, 23 tests)
-├── docs/                     # Documentation complète
-│   ├── index.html            # Page d'accueil
-│   ├── docs.css              # Styles du site de documentation
-│   ├── premiers-pas/         # Installation, utilisation
-│   ├── fondamentaux/         # Couleurs, typographie, grille, espacement, icônes...
-│   ├── composants/           # 35 fiches composants
-│   └── modeles/              # Templates de pages types
-├── dist/                     # Build (CSS + JS ES + JS UMD)
+├── tests/                    # Tests Vitest
+├── docs/                     # Documentation complète (Vue 3 + vite-ssg)
+├── dist/                     # Build (CSS + JS ES + JS UMD + reset)
 ├── vite.config.ts            # Build library
 ├── vite.docs.config.ts       # Serveur de dev documentation
 ├── vitest.config.ts          # Configuration des tests
@@ -105,9 +153,10 @@ dsbj/
 
 | Fichier | Taille | Description |
 |---------|--------|-------------|
-| `dist/dsbj.css` | ~78 Ko | Styles complets |
-| `dist/dsbj.es.js` | ~7 Ko | Module ES |
-| `dist/dsbj.umd.js` | ~6 Ko | Module UMD |
+| `dist/dsbj.css` | ~103 Ko | Styles scopés (safe pour intégration) |
+| `dist/dsbj.es.js` | ~27 Ko | Module ES |
+| `dist/dsbj.umd.js` | ~22 Ko | Module UMD |
+| `dist/dsbj-reset.css` | ~2 Ko | Reset global (opt-in) |
 
 ## Préfixe CSS
 

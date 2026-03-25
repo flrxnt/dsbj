@@ -7,11 +7,10 @@
   --bj-font-mono: 'Fira Code', 'Fira Mono', 'Cascadia Code', Consolas, 'Courier New', monospace;
 }
 
-@layer bj-base {
-  body {
-    font-family: var(--bj-font-sans);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-  }
+[class^="bj-"],
+[class*=" bj-"] {
+  font-family: var(--bj-font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }

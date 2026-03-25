@@ -7,6 +7,7 @@ import fr from './data/locales/fr.json'
 import en from './data/locales/en.json'
 
 import '@dsbj/dsbj.scss'
+import '@dsbj/dsbj-reset.scss'
 import './styles/docs.css'
 
 function getStoredLang(): string {

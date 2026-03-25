@@ -1,99 +1,85 @@
-@layer bj-reset, bj-base;
+// Reset scopé : normalise les éléments à l'intérieur des composants DSBJ
+// :where() maintient une spécificité de 0, ce qui :
+//   - bat les styles par défaut du navigateur (auteur > user-agent)
+//   - ne bat PAS le CSS du consommateur (spécificité > 0)
+//   - ne bat PAS les classes .bj-* des composants (spécificité > 0)
+// Pour un reset global complet, importer "@flrxnt/dsbj/reset"
 
-@layer bj-reset {
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+// box-sizing : seule règle à spécificité normale (inoffensive)
+[class^="bj-"],
+[class*=" bj-"],
+[class^="bj-"] *,
+[class*=" bj-"] *,
+[class^="bj-"] *::before,
+[class*=" bj-"] *::before,
+[class^="bj-"] *::after,
+[class*=" bj-"] *::after {
+  box-sizing: border-box;
+}
 
-  html {
-    -webkit-text-size-adjust: 100%;
-    -moz-tab-size: 4;
-    tab-size: 4;
-    scroll-behavior: smooth;
-  }
+// Normalisations à spécificité 0 via :where()
+:where([class^="bj-"], [class*=" bj-"]) {
+  margin: 0;
+  padding: 0;
+}
 
-  body {
-    min-height: 100vh;
-    background-color: var(--bj-bg-default);
-  }
+:where([class^="bj-"], [class*=" bj-"]) :where(a) {
+  color: inherit;
+  text-decoration: inherit;
+}
 
-  hr {
-    height: 0;
-    color: inherit;
-    border: 0;
-    border-top: 1px solid var(--bj-border-default);
-    margin: var(--bj-spacing-4v) 0;
-  }
+:where([class^="bj-"], [class*=" bj-"]) :where(ul, ol) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-  abbr[title] { text-decoration: underline dotted; }
-  b, strong { font-weight: bolder; }
-  code, kbd, samp, pre {
-    font-family: var(--bj-font-mono);
-    font-size: 0.875em;
-  }
-  sub, sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-  }
-  sub { bottom: -0.25em; }
-  sup { top: -0.5em; }
+:where([class^="bj-"], [class*=" bj-"]) :where(img) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
-  table {
-    text-indent: 0;
-    border-color: inherit;
-    border-collapse: collapse;
-  }
+:where([class^="bj-"], [class*=" bj-"]) :where(svg) {
+  display: block;
+  max-width: 100%;
+}
 
-  button, input, optgroup, select, textarea {
-    font-family: inherit;
-    font-size: 100%;
-    line-height: inherit;
-    color: inherit;
-    margin: 0;
-    padding: 0;
-  }
+:where([class^="bj-"], [class*=" bj-"]) :where(button, input, select, textarea) {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
 
-  button, [type='button'], [type='reset'], [type='submit'] {
-    -webkit-appearance: button;
-    appearance: button;
-    cursor: pointer;
-  }
+:where([class^="bj-"], [class*=" bj-"]) :where(button) {
+  appearance: button;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
 
-  button::-moz-focus-inner, [type='button']::-moz-focus-inner {
-    border-style: none;
-    padding: 0;
-  }
+:where([class^="bj-"], [class*=" bj-"]) :where(p) {
+  margin: 0;
+}
 
-  fieldset { border: 0; }
-  legend { padding: 0; }
-  textarea { resize: vertical; }
+:where([class^="bj-"], [class*=" bj-"]) :where(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+}
 
-  img, svg, video, canvas, audio, iframe, embed, object {
-    display: block;
-    max-width: 100%;
-  }
+:where([class^="bj-"], [class*=" bj-"]) :where(fieldset) {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
 
-  img { height: auto; }
+:where([class^="bj-"], [class*=" bj-"]) :where(:focus-visible) {
+  outline: 2px solid var(--bj-action-high);
+  outline-offset: 2px;
+}
 
-  a {
-    color: inherit;
-    text-decoration: inherit;
-  }
-
-  ol, ul { list-style: none; }
-
-  :focus-visible {
-    outline: 2px solid var(--bj-action-high);
-    outline-offset: 2px;
-  }
-
-  :focus:not(:focus-visible) {
-    outline: none;
-  }
+:where([class^="bj-"], [class*=" bj-"]) :where(:focus:not(:focus-visible)) {
+  outline: none;
 }

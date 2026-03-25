@@ -25,7 +25,9 @@
       "style": "./dist/dsbj.css"
     },
     "./css": "./dist/dsbj.css",
-    "./scss": "./src/dsbj.scss"
+    "./reset": "./dist/dsbj-reset.css",
+    "./scss": "./src/dsbj.scss",
+    "./scss/reset": "./src/dsbj-reset.scss"
   },
   "files": [
     "dist",
@@ -42,7 +44,8 @@
   ],
   "scripts": {
     "dev": "vite --config vite.docs.config.ts",
-    "build": "vite build",
+    "build": "vite build && bun run build:reset",
+    "build:reset": "bunx sass-embedded src/dsbj-reset.scss dist/dsbj-reset.css --style=compressed --no-source-map",
     "build:docs": "bun scripts/build-docs.ts",
     "preview": "vite preview --config vite.preview.config.ts",
     "test": "vitest run",

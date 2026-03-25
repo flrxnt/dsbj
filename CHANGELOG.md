@@ -4,11 +4,30 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.3.0] - 2026-03-25
+
+### Modifié (BREAKING)
+
+- **Reset CSS scopé** : le reset global (`*`, `body`, `html`, `h1-h6`, `p`, `a`, `table`, `img`, etc.) est supprimé du build principal. Tous les styles sont désormais scopés aux classes `.bj-*` et ne modifient plus les éléments HTML existants.
+- **Typographie scopée** : les styles `font-family`, `font-size`, `line-height` sur `body` sont remplacés par un ciblage sur `[class^="bj-"]`. Les sélecteurs nus `h1-h6`, `p`, `small` sont remplacés par les classes `.bj-h1` à `.bj-h6`.
+
+### Ajouté
+
+- **Reset opt-in** : nouveau fichier `dsbj-reset.css` contenant le reset CSS global complet, à importer séparément via `import "@flrxnt/dsbj/reset"` pour les projets 100% DSBJ.
+- **Exports** : ajout des points d'entrée `@flrxnt/dsbj/reset` (CSS) et `@flrxnt/dsbj/scss/reset` (SCSS).
+- **Documentation** : guide d'intégration dans un projet existant dans le README.
+
+### Migration depuis 1.2.x
+
+- **Projets existants intégrant le DSBJ** : aucune action requise. Le DSBJ ne modifie plus votre CSS.
+- **Projets 100% DSBJ** (site institutionnel) : ajoutez `import "@flrxnt/dsbj/reset"` après `import "@flrxnt/dsbj"` pour retrouver le reset global.
+- Si vous utilisiez les sélecteurs nus `h1`, `h2`, etc. avec les styles DSBJ, remplacez-les par les classes `.bj-h1`, `.bj-h2`, etc.
+
 ## [1.2.4] - 2026-03-25
 
 ### Ajouté
 
-- Refactor SCSS files to utilize CSS layers for better organization; enhance typography styles with additional heading definitions and improved body styles.
+- Injection automatique de l'import CSS dans le bundle ES pour que `import "@flrxnt/dsbj"` charge les styles sans import supplémentaire.
 
 ## [1.2.3] - 2026-03-25
 
