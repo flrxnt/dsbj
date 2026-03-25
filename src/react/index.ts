@@ -27,6 +27,7 @@ export { BjRadio } from './components/BjRadio'
 export { BjToggle } from './components/BjToggle'
 export { BjUpload } from './components/BjUpload'
 export { BjSearch } from './components/BjSearch'
+export { BjCombobox } from './components/BjCombobox'
 export { BjDatepicker } from './components/BjDatepicker'
 
 // Interactive

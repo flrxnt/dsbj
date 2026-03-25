@@ -24,6 +24,11 @@ export const routes: RouteRecordRaw[] = [
     meta: { layout: 'docs', section: 'premiers-pas', titleKey: 'route.usage', breadcrumb: [{ labelKey: 'breadcrumb.getting-started', to: '/premiers-pas' }, { labelKey: 'breadcrumb.usage' }] },
   },
   {
+    path: '/premiers-pas/personnalisation',
+    component: () => import('./pages/premiers-pas/PersonnalisationPage.vue'),
+    meta: { layout: 'docs', section: 'premiers-pas', titleKey: 'route.customization', breadcrumb: [{ labelKey: 'breadcrumb.getting-started', to: '/premiers-pas' }, { labelKey: 'breadcrumb.customization' }] },
+  },
+  {
     path: '/premiers-pas/ia',
     component: () => import('./pages/premiers-pas/IaPage.vue'),
     meta: { layout: 'docs', section: 'premiers-pas', titleKey: 'route.ai', breadcrumb: [{ labelKey: 'breadcrumb.getting-started', to: '/premiers-pas' }, { labelKey: 'breadcrumb.ai' }] },
@@ -166,6 +171,11 @@ export const routes: RouteRecordRaw[] = [
     path: '/composants/select',
     component: () => import('./pages/composants/SelectPage.vue'),
     meta: { layout: 'docs', section: 'composants', titleKey: 'route.select', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.select' }] },
+  },
+  {
+    path: '/composants/combobox',
+    component: () => import('./pages/composants/ComboboxPage.vue'),
+    meta: { layout: 'docs', section: 'composants', titleKey: 'route.combobox', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.combobox' }] },
   },
   {
     path: '/composants/checkbox',
@@ -390,6 +400,11 @@ export const routes: RouteRecordRaw[] = [
     meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-select', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.select' }] },
   },
   {
+    path: '/integrations/vue/combobox',
+    component: () => import('./pages/integrations/vue/ComboboxPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-combobox', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.combobox' }] },
+  },
+  {
     path: '/integrations/vue/checkbox',
     component: () => import('./pages/integrations/vue/CheckboxPage.vue'),
     meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-checkbox', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.checkbox' }] },
@@ -578,6 +593,11 @@ export const routes: RouteRecordRaw[] = [
     path: '/integrations/react/select',
     component: () => import('./pages/integrations/react/SelectPage.vue'),
     meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-select', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.select' }] },
+  },
+  {
+    path: '/integrations/react/combobox',
+    component: () => import('./pages/integrations/react/ComboboxPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-combobox', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.combobox' }] },
   },
   {
     path: '/integrations/react/checkbox',

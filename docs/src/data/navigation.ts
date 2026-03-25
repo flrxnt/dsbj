@@ -29,6 +29,7 @@ export const sidebars: Record<string, SidebarGroup[]> = {
         { label: 'Présentation', to: '/premiers-pas', i18nKey: 'link.presentation' },
         { label: 'Installation', to: '/premiers-pas/installation', i18nKey: 'link.installation' },
         { label: 'Utilisation', to: '/premiers-pas/utilisation', i18nKey: 'link.usage' },
+        { label: 'Personnalisation', to: '/premiers-pas/personnalisation', i18nKey: 'link.customization' },
         { label: 'Utiliser avec l\'IA', to: '/premiers-pas/ia', i18nKey: 'link.ai' },
       ],
     },

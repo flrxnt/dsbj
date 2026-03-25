@@ -146,6 +146,11 @@
     <p style="margin-top: var(--bj-spacing-4v); max-width: 40rem">
       {{ t('custom-note') }}
     </p>
+    <p style="margin-top: var(--bj-spacing-3v); max-width: 40rem">
+      <RouterLink to="/premiers-pas/personnalisation" class="bj-link">
+        {{ t('custom-link') }} →
+      </RouterLink>
+    </p>
   </DocsSection>
 </template>
 
@@ -213,6 +218,7 @@ const { t } = useI18n({
         " pour adapter l\u2019apparence tout en conservant la structure des composants.",
       'custom-note':
         "Pour des ajustements syst\u00e9matiques \u00e0 la charte d\u2019un minist\u00e8re, la compilation depuis les sources SCSS et la surcharge des jetons en amont restent les approches recommand\u00e9es.",
+      'custom-link': 'Voir le guide complet de personnalisation',
     },
     en: {
       title: 'Usage',
@@ -270,6 +276,7 @@ const { t } = useI18n({
         ' to adjust look and feel while keeping component structure.',
       'custom-note':
         "For systematic adjustments to a ministry\u2019s brand guidelines, compiling from SCSS sources and overriding tokens upstream remain the recommended approaches.",
+      'custom-link': 'See the full customization guide',
     },
   },
 })

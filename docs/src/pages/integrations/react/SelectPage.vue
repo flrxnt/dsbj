@@ -10,32 +10,38 @@ const { t } = useI18n({
   messages: {
     fr: {
       title: 'BjSelect',
-      desc: 'Liste déroulante React contrôlée avec libellé, aide, placeholder, tableau d’options ou enfants personnalisés.',
+      desc: 'Liste d\u00e9roulante React contr\u00f4l\u00e9e avec lib\u00e9ll\u00e9, aide, placeholder, tableau d\u2019options. Supporte un mode recherche via la prop searchable.',
       'section-usage': 'Utilisation',
-      'section-preview': 'Aperçu',
+      'section-searchable': 'Mode recherche',
+      'section-preview': 'Aper\u00e7u',
       'section-props': 'Props',
-      'prop-value': 'Valeur sélectionnée, chaîne.',
+      'prop-value': 'Valeur s\u00e9lectionn\u00e9e, cha\u00eene.',
       'prop-onChange': 'Gestionnaire de changement sur le select natif.',
-      'prop-label': 'Libellé au-dessus du select.',
-      'prop-hint': 'Texte d’aide sous le libellé.',
-      'prop-options': 'Tableau d’objets value, label et disabled optionnel.',
-      'prop-error': 'Si vrai, applique le style d’erreur et aria-invalid.',
+      'prop-onValueChange': 'Callback avec la nouvelle valeur (fonctionne en mode natif et searchable).',
+      'prop-label': 'Lib\u00e9ll\u00e9 au-dessus du select.',
+      'prop-hint': 'Texte d\u2019aide sous le lib\u00e9ll\u00e9.',
+      'prop-options': 'Tableau d\u2019objets value, label et disabled optionnel.',
+      'prop-error': 'Si vrai, applique le style d\u2019erreur et aria-invalid.',
       'prop-message': 'Message sous le champ (couleur selon error).',
-      'prop-disabled': 'Désactive le select.',
-      'prop-placeholder': 'Première option vide, désactivée, avec ce libellé.',
-      'prop-id': 'Identifiant du select ; sinon généré automatiquement.',
-      'prop-children': 'Options ou nœuds React supplémentaires rendus après les options générées.',
-      'prop-className': 'Classe CSS sur l’élément select.',
-      'prop-rest': 'Autres attributs HTML natifs du select (hors size, value, defaultValue, onChange, id et children réservés).',
+      'prop-disabled': 'D\u00e9sactive le select.',
+      'prop-placeholder': 'Premi\u00e8re option vide, d\u00e9sactiv\u00e9e, avec ce lib\u00e9ll\u00e9.',
+      'prop-searchable': 'Active le mode recherche avec dropdown custom.',
+      'prop-searchPlaceholder': 'Placeholder du champ de recherche.',
+      'prop-noResults': 'Texte quand aucune option ne correspond.',
+      'prop-id': 'Identifiant du select ; sinon g\u00e9n\u00e9r\u00e9 automatiquement.',
+      'prop-children': 'Options ou n\u0153uds React suppl\u00e9mentaires (mode natif uniquement).',
+      'prop-rest': 'Autres attributs HTML natifs du select.',
     },
     en: {
       title: 'BjSelect',
-      desc: 'Controlled React select with label, hint, placeholder, options array, or custom children.',
+      desc: 'Controlled React select with label, hint, placeholder, options array. Supports a searchable mode via the searchable prop.',
       'section-usage': 'Usage',
+      'section-searchable': 'Searchable mode',
       'section-preview': 'Preview',
       'section-props': 'Props',
       'prop-value': 'Selected value, string.',
       'prop-onChange': 'Change handler on the native select.',
+      'prop-onValueChange': 'Callback with the new value (works in both native and searchable modes).',
       'prop-label': 'Label above the select.',
       'prop-hint': 'Help text below the label.',
       'prop-options': 'Array of objects with value, label, and optional disabled.',
@@ -43,10 +49,12 @@ const { t } = useI18n({
       'prop-message': 'Message below the field (color follows error).',
       'prop-disabled': 'Disables the select.',
       'prop-placeholder': 'Initial empty disabled option with this label.',
+      'prop-searchable': 'Enables searchable mode with custom dropdown.',
+      'prop-searchPlaceholder': 'Placeholder for the search input.',
+      'prop-noResults': 'Text when no option matches.',
       'prop-id': 'Select id; auto-generated when omitted.',
-      'prop-children': 'Extra option nodes rendered after generated options.',
-      'prop-className': 'CSS class on the select element.',
-      'prop-rest': 'Other native select HTML attributes (size, value, defaultValue, onChange, id, and children are reserved).',
+      'prop-children': 'Extra option nodes (native mode only).',
+      'prop-rest': 'Other native select HTML attributes.',
     },
   },
 })
@@ -55,8 +63,8 @@ const codeUsage = `import { useState } from 'react'
 import { BjSelect } from '@flrxnt/dsbj/react'
 
 const options = [
-  { value: 'dg', label: 'Direction générale' },
-  { value: 'dr', label: 'Direction régionale' },
+  { value: 'dg', label: 'Direction g\u00e9n\u00e9rale' },
+  { value: 'dr', label: 'Direction r\u00e9gionale' },
 ]
 
 export default function Example() {
@@ -67,8 +75,32 @@ export default function Example() {
       onChange={(e) => setDept(e.target.value)}
       label="Direction"
       hint="Choisir une direction dans la liste"
-      placeholder="Sélectionner…"
+      placeholder="S\u00e9lectionner\u2026"
       options={options}
+    />
+  )
+}`
+
+const codeSearchable = `import { useState } from 'react'
+import { BjSelect } from '@flrxnt/dsbj/react'
+
+const cities = [
+  { value: 'cotonou', label: 'Cotonou' },
+  { value: 'porto', label: 'Porto-Novo' },
+  { value: 'parakou', label: 'Parakou' },
+  { value: 'abomey', label: 'Abomey-Calavi' },
+]
+
+export default function Example() {
+  const [city, setCity] = useState('')
+  return (
+    <BjSelect
+      value={city}
+      onValueChange={setCity}
+      label="Commune"
+      placeholder="S\u00e9lectionner\u2026"
+      options={cities}
+      searchable
     />
   )
 }`
@@ -76,6 +108,7 @@ export default function Example() {
 const propsRows = computed(() => [
   { name: 'value', description: t('prop-value') },
   { name: 'onChange', description: t('prop-onChange') },
+  { name: 'onValueChange', description: t('prop-onValueChange') },
   { name: 'label', description: t('prop-label') },
   { name: 'hint', description: t('prop-hint') },
   { name: 'options', description: t('prop-options') },
@@ -83,10 +116,12 @@ const propsRows = computed(() => [
   { name: 'message', description: t('prop-message') },
   { name: 'disabled', description: t('prop-disabled') },
   { name: 'placeholder', description: t('prop-placeholder') },
+  { name: 'searchable', description: t('prop-searchable') },
+  { name: 'searchPlaceholder', description: t('prop-searchPlaceholder') },
+  { name: 'noResults', description: t('prop-noResults') },
   { name: 'id', description: t('prop-id') },
   { name: 'children', description: t('prop-children') },
-  { name: 'className', description: t('prop-className') },
-  { name: '…', description: t('prop-rest') },
+  { name: '\u2026', description: t('prop-rest') },
 ])
 </script>
 
@@ -108,6 +143,30 @@ const propsRows = computed(() => [
           <option value="dg">Direction générale</option>
           <option value="dr">Direction régionale</option>
         </select>
+      </div>
+    </DocsPreview>
+  </DocsSection>
+
+  <DocsSection id="react-select-searchable" :title="t('section-searchable')">
+    <DocsCode :code="codeSearchable" lang="tsx" />
+    <DocsPreview style="min-height: 16rem">
+      <div class="bj-select-group" style="max-width: 24rem">
+        <label class="bj-label" for="react-sel-search">Commune</label>
+        <div class="bj-select-custom bj-select-custom--open">
+          <button id="react-sel-search" type="button" class="bj-select-custom__trigger" role="combobox" aria-expanded="true" aria-haspopup="listbox">
+            <span>Sélectionner…</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true" />
+          </button>
+          <div class="bj-select-custom__panel" style="position: relative">
+            <input class="bj-select-custom__search" type="text" placeholder="Rechercher…" />
+            <ul class="bj-select-custom__listbox" role="listbox">
+              <li class="bj-select-custom__option" role="option">Cotonou</li>
+              <li class="bj-select-custom__option" role="option">Porto-Novo</li>
+              <li class="bj-select-custom__option" role="option">Parakou</li>
+              <li class="bj-select-custom__option" role="option">Abomey-Calavi</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </DocsPreview>
   </DocsSection>

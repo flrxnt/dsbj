@@ -27,6 +27,7 @@ export { default as BjRadio } from './components/BjRadio.vue'
 export { default as BjToggle } from './components/BjToggle.vue'
 export { default as BjUpload } from './components/BjUpload.vue'
 export { default as BjSearch } from './components/BjSearch.vue'
+export { default as BjCombobox } from './components/BjCombobox.vue'
 export { default as BjDatepicker } from './components/BjDatepicker.vue'
 
 // Interactive

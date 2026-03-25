@@ -1,0 +1,240 @@
+// ─── Combobox ───────────────────────────────────────────
+// Autocomplete input with a filterable listbox dropdown.
+
+.bj-combobox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--bj-spacing-1v);
+  margin-bottom: var(--bj-spacing-4v);
+}
+
+.bj-combobox__input-wrap {
+  position: relative;
+}
+
+.bj-combobox__input {
+  width: 100%;
+  padding: var(--bj-spacing-2v) var(--bj-spacing-8v) var(--bj-spacing-2v) var(--bj-spacing-3v);
+  font-size: var(--bj-fs-md);
+  line-height: 1.5;
+  color: var(--bj-text-default);
+  background-color: var(--bj-bg-default);
+  border: 1px solid var(--bj-border-default);
+  border-radius: var(--bj-radius-sm);
+  transition: border-color var(--bj-duration-fast) var(--bj-easing);
+
+  &:focus {
+    border-color: var(--bj-action-high);
+    box-shadow: 0 0 0 2px rgba(0, 135, 81, 0.2);
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: var(--bj-bg-disabled);
+    color: var(--bj-text-disabled);
+    cursor: not-allowed;
+  }
+}
+
+.bj-combobox__icon {
+  position: absolute;
+  right: var(--bj-spacing-3v);
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 1rem;
+  color: var(--bj-text-mention);
+  transition: transform var(--bj-duration-fast) var(--bj-easing);
+}
+
+.bj-combobox--open .bj-combobox__icon {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.bj-combobox__listbox {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 300;
+  max-height: 16rem;
+  overflow-y: auto;
+  background-color: var(--bj-bg-default);
+  border: 1px solid var(--bj-border-default);
+  border-radius: var(--bj-radius-md);
+  box-shadow: var(--bj-shadow-lg);
+  padding: var(--bj-spacing-1v) 0;
+  margin-top: var(--bj-spacing-1v);
+  list-style: none;
+  animation: bjDropdownIn var(--bj-duration-fast) var(--bj-easing);
+}
+
+.bj-combobox__option {
+  display: flex;
+  align-items: center;
+  gap: var(--bj-spacing-2v);
+  width: 100%;
+  padding: var(--bj-spacing-2v) var(--bj-spacing-3v);
+  font-size: var(--bj-fs-sm);
+  color: var(--bj-text-default);
+  cursor: pointer;
+  transition: background-color var(--bj-duration-fast) var(--bj-easing);
+
+  &:hover,
+  &--active {
+    background-color: var(--bj-bg-alt);
+  }
+
+  &[aria-selected="true"] {
+    font-weight: var(--bj-fw-semibold);
+    color: var(--bj-action-high);
+  }
+
+  &[aria-disabled="true"] {
+    color: var(--bj-text-disabled);
+    cursor: not-allowed;
+    &:hover { background: none; }
+  }
+}
+
+.bj-combobox__no-results {
+  padding: var(--bj-spacing-3v);
+  font-size: var(--bj-fs-sm);
+  color: var(--bj-text-mention);
+  text-align: center;
+}
+
+.bj-combobox--error .bj-combobox__input {
+  border-color: var(--bj-error);
+}
+
+// ─── Select searchable variant ──────────────────────────
+// Replaces native <select> with a custom listbox + search input.
+
+.bj-select-custom {
+  position: relative;
+}
+
+.bj-select-custom__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--bj-spacing-2v) var(--bj-spacing-3v);
+  font-size: var(--bj-fs-md);
+  line-height: 1.5;
+  color: var(--bj-text-default);
+  background-color: var(--bj-bg-default);
+  border: 1px solid var(--bj-border-default);
+  border-radius: var(--bj-radius-sm);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--bj-duration-fast) var(--bj-easing);
+
+  &:focus {
+    border-color: var(--bj-action-high);
+    box-shadow: 0 0 0 2px rgba(0, 135, 81, 0.2);
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: var(--bj-bg-disabled);
+    color: var(--bj-text-disabled);
+    cursor: not-allowed;
+  }
+
+  i {
+    font-size: 1rem;
+    color: var(--bj-text-mention);
+    transition: transform var(--bj-duration-fast) var(--bj-easing);
+    flex-shrink: 0;
+  }
+}
+
+.bj-select-custom__trigger--placeholder {
+  color: var(--bj-text-mention);
+}
+
+.bj-select-custom--open .bj-select-custom__trigger i {
+  transform: rotate(180deg);
+}
+
+.bj-select-custom__panel {
+  position: absolute;
+  top: calc(100% + var(--bj-spacing-1v));
+  left: 0;
+  right: 0;
+  z-index: 300;
+  background-color: var(--bj-bg-default);
+  border: 1px solid var(--bj-border-default);
+  border-radius: var(--bj-radius-md);
+  box-shadow: var(--bj-shadow-lg);
+  padding: 0;
+  animation: bjDropdownIn var(--bj-duration-fast) var(--bj-easing);
+}
+
+.bj-select-custom__search {
+  display: block;
+  width: 100%;
+  padding: var(--bj-spacing-2v) var(--bj-spacing-3v);
+  font-size: var(--bj-fs-sm);
+  border: 0;
+  border-bottom: 1px solid var(--bj-border-subtle);
+  background: transparent;
+  color: var(--bj-text-default);
+  outline: none;
+
+  &::placeholder {
+    color: var(--bj-text-mention);
+  }
+}
+
+.bj-select-custom__listbox {
+  max-height: 14rem;
+  overflow-y: auto;
+  padding: var(--bj-spacing-1v) 0;
+  list-style: none;
+  margin: 0;
+}
+
+.bj-select-custom__option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--bj-spacing-2v) var(--bj-spacing-3v);
+  font-size: var(--bj-fs-sm);
+  color: var(--bj-text-default);
+  cursor: pointer;
+  background: none;
+  border: 0;
+  text-align: left;
+  transition: background-color var(--bj-duration-fast) var(--bj-easing);
+
+  &:hover,
+  &--active {
+    background-color: var(--bj-bg-alt);
+  }
+
+  &[aria-selected="true"] {
+    font-weight: var(--bj-fw-semibold);
+    color: var(--bj-action-high);
+  }
+
+  &[aria-disabled="true"] {
+    color: var(--bj-text-disabled);
+    cursor: not-allowed;
+    &:hover { background: none; }
+  }
+}
+
+.bj-select-custom__no-results {
+  padding: var(--bj-spacing-3v);
+  font-size: var(--bj-fs-sm);
+  color: var(--bj-text-mention);
+  text-align: center;
+}
+
+.bj-select--error .bj-select-custom__trigger {
+  border-color: var(--bj-error);
+}

@@ -136,7 +136,10 @@ const sectionIcons: Record<string, string> = {
   'Premiers pas': 'ri-rocket-line',
   'Fondamentaux': 'ri-palette-line',
   'Composants': 'ri-layout-3-line',
+  'Vue': 'ri-vuejs-line',
+  'React': 'ri-reactjs-line',
   'Modèles': 'ri-file-copy-line',
+  'Showcases': 'ri-window-line',
 }
 </script>
 
