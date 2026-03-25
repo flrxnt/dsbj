@@ -6,6 +6,7 @@ import SectionLayout from './layouts/SectionLayout.vue'
 import DocsLayout from './layouts/DocsLayout.vue'
 import LegalLayout from './layouts/LegalLayout.vue'
 import CookieConsent from './components/CookieConsent.vue'
+import ReloadPrompt from './components/ReloadPrompt.vue'
 
 const route = useRoute()
 
@@ -27,4 +28,5 @@ const layout = computed(() => {
     <RouterView />
   </component>
   <CookieConsent />
+  <ReloadPrompt />
 </template>

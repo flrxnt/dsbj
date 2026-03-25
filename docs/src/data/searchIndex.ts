@@ -81,4 +81,12 @@ export const searchIndex: SearchEntry[] = [
   { label: 'Page d\'accueil', path: '/modeles/page-accueil', section: 'Modèles', keywords: ['template', 'modèle', 'accueil', 'home'] },
   { label: 'Page article', path: '/modeles/page-article', section: 'Modèles', keywords: ['template', 'modèle', 'article', 'blog'] },
   { label: 'Page formulaire', path: '/modeles/page-formulaire', section: 'Modèles', keywords: ['template', 'modèle', 'formulaire', 'form'] },
+
+  // Showcases
+  { label: 'Showcases', path: '/showcases', section: 'Showcases', keywords: ['showcase', 'redesign', 'gouvernement', 'gouv', 'exemple'] },
+  { label: 'Portail gouv.bj', path: '/showcases/gouv-bj', section: 'Showcases', keywords: ['gouv', 'portail', 'banner', 'services'] },
+  { label: 'Ministère des Finances', path: '/showcases/finances-bj', section: 'Showcases', keywords: ['finances', 'impôts', 'tableau', 'fiscal'] },
+  { label: 'Ministère de la Santé', path: '/showcases/sante-gouv-bj', section: 'Showcases', keywords: ['santé', 'alerte', 'hôpital', 'CHD'] },
+  { label: 'Ministère de l’Éducation', path: '/showcases/education-gouv-bj', section: 'Showcases', keywords: ['éducation', 'école', 'BAC', 'accordéon'] },
+  { label: 'Services publics', path: '/showcases/service-public-bj', section: 'Showcases', keywords: ['démarche', 'stepper', 'tuile', 'guichet'] },
 ]

@@ -8,7 +8,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "jsx": "preserve",
-    "types": ["vite/client"],
+    "types": ["vite/client", "vite-plugin-pwa/client", "vite-plugin-pwa/vue"],
     "paths": {
       "@dsbj/*": ["../src/*"],
       "@docs/*": ["./src/*"]

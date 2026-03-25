@@ -313,6 +313,435 @@ export const routes: RouteRecordRaw[] = [
     meta: { layout: 'docs', section: 'composants', titleKey: 'route.consent', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.consent' }] },
   },
 
+  // Intégrations
+  {
+    path: '/integrations',
+    component: () => import('./pages/integrations/IndexPage.vue'),
+    meta: { layout: 'section', section: 'integrations', titleKey: 'route.integrations', breadcrumb: [{ labelKey: 'breadcrumb.integrations' }] },
+  },
+  {
+    path: '/integrations/vue',
+    component: () => import('./pages/integrations/vue/IndexPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.integrations-vue', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue' }] },
+  },
+  {
+    path: '/integrations/vue/button',
+    component: () => import('./pages/integrations/vue/ButtonPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-button', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.button' }] },
+  },
+  {
+    path: '/integrations/vue/link',
+    component: () => import('./pages/integrations/vue/LinkPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-link', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.link' }] },
+  },
+  {
+    path: '/integrations/vue/badge',
+    component: () => import('./pages/integrations/vue/BadgePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-badge', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.badge' }] },
+  },
+  {
+    path: '/integrations/vue/tag',
+    component: () => import('./pages/integrations/vue/TagPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-tag', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.tag' }] },
+  },
+  {
+    path: '/integrations/vue/avatar',
+    component: () => import('./pages/integrations/vue/AvatarPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-avatar', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.avatar' }] },
+  },
+  {
+    path: '/integrations/vue/modal',
+    component: () => import('./pages/integrations/vue/ModalPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-modal', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.modal' }] },
+  },
+  {
+    path: '/integrations/vue/accordion',
+    component: () => import('./pages/integrations/vue/AccordionPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-accordion', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.accordion' }] },
+  },
+  {
+    path: '/integrations/vue/input',
+    component: () => import('./pages/integrations/vue/InputPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-input', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.input' }] },
+  },
+  {
+    path: '/integrations/vue/card',
+    component: () => import('./pages/integrations/vue/CardPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-card', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.card' }] },
+  },
+  {
+    path: '/integrations/vue/alert',
+    component: () => import('./pages/integrations/vue/AlertPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-alert', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.alert' }] },
+  },
+  {
+    path: '/integrations/vue/tab',
+    component: () => import('./pages/integrations/vue/TabPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-tab', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.tab' }] },
+  },
+  {
+    path: '/integrations/vue/toast',
+    component: () => import('./pages/integrations/vue/ToastPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-toast', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.toast' }] },
+  },
+  {
+    path: '/integrations/vue/select',
+    component: () => import('./pages/integrations/vue/SelectPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-select', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.select' }] },
+  },
+  {
+    path: '/integrations/vue/checkbox',
+    component: () => import('./pages/integrations/vue/CheckboxPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-checkbox', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.checkbox' }] },
+  },
+  {
+    path: '/integrations/vue/radio',
+    component: () => import('./pages/integrations/vue/RadioPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-radio', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.radio' }] },
+  },
+  {
+    path: '/integrations/vue/toggle',
+    component: () => import('./pages/integrations/vue/TogglePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-toggle', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.toggle' }] },
+  },
+  {
+    path: '/integrations/vue/upload',
+    component: () => import('./pages/integrations/vue/UploadPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-upload', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.upload' }] },
+  },
+  {
+    path: '/integrations/vue/search',
+    component: () => import('./pages/integrations/vue/SearchPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-search', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.search' }] },
+  },
+  {
+    path: '/integrations/vue/datepicker',
+    component: () => import('./pages/integrations/vue/DatepickerPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-datepicker', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.datepicker' }] },
+  },
+  {
+    path: '/integrations/vue/dropdown',
+    component: () => import('./pages/integrations/vue/DropdownPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-dropdown', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.dropdown' }] },
+  },
+  {
+    path: '/integrations/vue/tooltip',
+    component: () => import('./pages/integrations/vue/TooltipPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-tooltip', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.tooltip' }] },
+  },
+  {
+    path: '/integrations/vue/gallery',
+    component: () => import('./pages/integrations/vue/GalleryPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-gallery', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.gallery' }] },
+  },
+  {
+    path: '/integrations/vue/marquee',
+    component: () => import('./pages/integrations/vue/MarqueePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-marquee', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.marquee' }] },
+  },
+  {
+    path: '/integrations/vue/treeview',
+    component: () => import('./pages/integrations/vue/TreeviewPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-treeview', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.treeview' }] },
+  },
+  {
+    path: '/integrations/vue/consent',
+    component: () => import('./pages/integrations/vue/ConsentPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-consent', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.consent' }] },
+  },
+  {
+    path: '/integrations/vue/callout',
+    component: () => import('./pages/integrations/vue/CalloutPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-callout', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.callout' }] },
+  },
+  {
+    path: '/integrations/vue/notice',
+    component: () => import('./pages/integrations/vue/NoticePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-notice', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.notice' }] },
+  },
+  {
+    path: '/integrations/vue/highlight',
+    component: () => import('./pages/integrations/vue/HighlightPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-highlight', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.highlight' }] },
+  },
+  {
+    path: '/integrations/vue/quote',
+    component: () => import('./pages/integrations/vue/QuotePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-quote', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.quote' }] },
+  },
+  {
+    path: '/integrations/vue/tile',
+    component: () => import('./pages/integrations/vue/TilePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-tile', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.tile' }] },
+  },
+  {
+    path: '/integrations/vue/table',
+    component: () => import('./pages/integrations/vue/TablePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-table', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.table' }] },
+  },
+  {
+    path: '/integrations/vue/skeleton',
+    component: () => import('./pages/integrations/vue/SkeletonPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-skeleton', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.skeleton' }] },
+  },
+  {
+    path: '/integrations/vue/header',
+    component: () => import('./pages/integrations/vue/HeaderPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-header', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.header' }] },
+  },
+  {
+    path: '/integrations/vue/footer',
+    component: () => import('./pages/integrations/vue/FooterPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-footer', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.footer' }] },
+  },
+  {
+    path: '/integrations/vue/breadcrumb',
+    component: () => import('./pages/integrations/vue/BreadcrumbPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-breadcrumb', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.breadcrumb' }] },
+  },
+  {
+    path: '/integrations/vue/pagination',
+    component: () => import('./pages/integrations/vue/PaginationPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-pagination', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.pagination' }] },
+  },
+  {
+    path: '/integrations/vue/stepper',
+    component: () => import('./pages/integrations/vue/StepperPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-stepper', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.stepper' }] },
+  },
+  {
+    path: '/integrations/vue/banner',
+    component: () => import('./pages/integrations/vue/BannerPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-banner', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.banner' }] },
+  },
+  {
+    path: '/integrations/vue/logo',
+    component: () => import('./pages/integrations/vue/LogoPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-logo', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.logo' }] },
+  },
+  {
+    path: '/integrations/vue/summary',
+    component: () => import('./pages/integrations/vue/SummaryPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-summary', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.summary' }] },
+  },
+  {
+    path: '/integrations/vue/sidemenu',
+    component: () => import('./pages/integrations/vue/SidemenuPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-sidemenu', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.sidemenu' }] },
+  },
+  {
+    path: '/integrations/vue/navigation',
+    component: () => import('./pages/integrations/vue/NavigationPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-navigation', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.navigation' }] },
+  },
+  {
+    path: '/integrations/vue/skiplink',
+    component: () => import('./pages/integrations/vue/SkiplinkPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-skiplink', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.skiplink' }] },
+  },
+  {
+    path: '/integrations/react',
+    component: () => import('./pages/integrations/react/IndexPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.integrations-react', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react' }] },
+  },
+  {
+    path: '/integrations/react/button',
+    component: () => import('./pages/integrations/react/ButtonPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-button', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.button' }] },
+  },
+  {
+    path: '/integrations/react/link',
+    component: () => import('./pages/integrations/react/LinkPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-link', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.link' }] },
+  },
+  {
+    path: '/integrations/react/badge',
+    component: () => import('./pages/integrations/react/BadgePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-badge', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.badge' }] },
+  },
+  {
+    path: '/integrations/react/tag',
+    component: () => import('./pages/integrations/react/TagPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-tag', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.tag' }] },
+  },
+  {
+    path: '/integrations/react/avatar',
+    component: () => import('./pages/integrations/react/AvatarPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-avatar', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.avatar' }] },
+  },
+  {
+    path: '/integrations/react/input',
+    component: () => import('./pages/integrations/react/InputPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-input', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.input' }] },
+  },
+  {
+    path: '/integrations/react/select',
+    component: () => import('./pages/integrations/react/SelectPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-select', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.select' }] },
+  },
+  {
+    path: '/integrations/react/checkbox',
+    component: () => import('./pages/integrations/react/CheckboxPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-checkbox', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.checkbox' }] },
+  },
+  {
+    path: '/integrations/react/radio',
+    component: () => import('./pages/integrations/react/RadioPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-radio', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.radio' }] },
+  },
+  {
+    path: '/integrations/react/toggle',
+    component: () => import('./pages/integrations/react/TogglePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-toggle', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.toggle' }] },
+  },
+  {
+    path: '/integrations/react/datepicker',
+    component: () => import('./pages/integrations/react/DatepickerPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-datepicker', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.datepicker' }] },
+  },
+  {
+    path: '/integrations/react/upload',
+    component: () => import('./pages/integrations/react/UploadPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-upload', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.upload' }] },
+  },
+  {
+    path: '/integrations/react/search',
+    component: () => import('./pages/integrations/react/SearchPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-search', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.search' }] },
+  },
+  {
+    path: '/integrations/react/alert',
+    component: () => import('./pages/integrations/react/AlertPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-alert', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.alert' }] },
+  },
+  {
+    path: '/integrations/react/card',
+    component: () => import('./pages/integrations/react/CardPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-card', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.card' }] },
+  },
+  {
+    path: '/integrations/react/callout',
+    component: () => import('./pages/integrations/react/CalloutPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-callout', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.callout' }] },
+  },
+  {
+    path: '/integrations/react/notice',
+    component: () => import('./pages/integrations/react/NoticePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-notice', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.notice' }] },
+  },
+  {
+    path: '/integrations/react/highlight',
+    component: () => import('./pages/integrations/react/HighlightPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-highlight', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.highlight' }] },
+  },
+  {
+    path: '/integrations/react/quote',
+    component: () => import('./pages/integrations/react/QuotePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-quote', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.quote' }] },
+  },
+  {
+    path: '/integrations/react/tile',
+    component: () => import('./pages/integrations/react/TilePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-tile', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.tile' }] },
+  },
+  {
+    path: '/integrations/react/table',
+    component: () => import('./pages/integrations/react/TablePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-table', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.table' }] },
+  },
+  {
+    path: '/integrations/react/skeleton',
+    component: () => import('./pages/integrations/react/SkeletonPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-skeleton', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.skeleton' }] },
+  },
+  {
+    path: '/integrations/react/header',
+    component: () => import('./pages/integrations/react/HeaderPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-header', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.header' }] },
+  },
+  {
+    path: '/integrations/react/footer',
+    component: () => import('./pages/integrations/react/FooterPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-footer', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.footer' }] },
+  },
+  {
+    path: '/integrations/react/breadcrumb',
+    component: () => import('./pages/integrations/react/BreadcrumbPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-breadcrumb', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.breadcrumb' }] },
+  },
+  {
+    path: '/integrations/react/pagination',
+    component: () => import('./pages/integrations/react/PaginationPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-pagination', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.pagination' }] },
+  },
+  {
+    path: '/integrations/react/stepper',
+    component: () => import('./pages/integrations/react/StepperPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-stepper', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.stepper' }] },
+  },
+  {
+    path: '/integrations/react/banner',
+    component: () => import('./pages/integrations/react/BannerPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-banner', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.banner' }] },
+  },
+  {
+    path: '/integrations/react/accordion',
+    component: () => import('./pages/integrations/react/AccordionPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-accordion', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.accordion' }] },
+  },
+  {
+    path: '/integrations/react/modal',
+    component: () => import('./pages/integrations/react/ModalPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-modal', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.modal' }] },
+  },
+  {
+    path: '/integrations/react/tab',
+    component: () => import('./pages/integrations/react/TabPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-tab', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.tab' }] },
+  },
+  {
+    path: '/integrations/react/dropdown',
+    component: () => import('./pages/integrations/react/DropdownPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-dropdown', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.dropdown' }] },
+  },
+  {
+    path: '/integrations/react/toast',
+    component: () => import('./pages/integrations/react/ToastPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-toast', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.toast' }] },
+  },
+  {
+    path: '/integrations/react/tooltip',
+    component: () => import('./pages/integrations/react/TooltipPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-tooltip', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.tooltip' }] },
+  },
+  {
+    path: '/integrations/react/gallery',
+    component: () => import('./pages/integrations/react/GalleryPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-gallery', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.gallery' }] },
+  },
+  {
+    path: '/integrations/react/marquee',
+    component: () => import('./pages/integrations/react/MarqueePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-marquee', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.marquee' }] },
+  },
+  {
+    path: '/integrations/react/treeview',
+    component: () => import('./pages/integrations/react/TreeviewPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-treeview', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.treeview' }] },
+  },
+  {
+    path: '/integrations/react/consent',
+    component: () => import('./pages/integrations/react/ConsentPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-consent', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.consent' }] },
+  },
+
+  // Showcases
+  {
+    path: '/showcases',
+    component: () => import('./pages/showcases/IndexPage.vue'),
+    meta: { layout: 'section', section: 'showcases', titleKey: 'route.showcases', breadcrumb: [{ labelKey: 'breadcrumb.showcases' }] },
+  },
+
   // Modèles
   {
     path: '/modeles',

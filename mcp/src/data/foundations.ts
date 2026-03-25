@@ -27,7 +27,7 @@ export const FOUNDATIONS: FoundationData[] = [
   {
     name: 'Typographie',
     slug: 'typographie',
-    description: 'Open Sans (corps) + Spectral (titres éditoriaux), échelle typographique.',
+    description: 'Montserrat (corps) + Spectral (titres éditoriaux), échelle typographique.',
     variables: ['--bj-fs-xs', '--bj-fs-sm', '--bj-fs-md', '--bj-fs-lg', '--bj-fs-xl', '--bj-fw-regular', '--bj-fw-medium', '--bj-fw-semibold', '--bj-fw-bold', '--bj-font-body', '--bj-font-display', '--bj-font-mono'],
     classes: ['bj-display-xs', 'bj-display-sm', 'bj-display-md', 'bj-display-lg', 'bj-display-xl', 'bj-h1', 'bj-h2', 'bj-h3', 'bj-h4', 'bj-h5', 'bj-h6', 'bj-text-xs', 'bj-text-sm', 'bj-text-md', 'bj-text-lg', 'bj-text-xl'],
     usage: 'Un seul <h1> par page. Hiérarchie stricte h1>h2>h3 sans sauter de niveaux.',

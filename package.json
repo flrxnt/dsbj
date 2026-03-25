@@ -24,6 +24,14 @@
       "types": "./dist/index.d.ts",
       "style": "./dist/dsbj.css"
     },
+    "./vue": {
+      "import": "./src/vue/index.ts",
+      "types": "./src/vue/index.ts"
+    },
+    "./react": {
+      "import": "./src/react/index.ts",
+      "types": "./src/react/index.ts"
+    },
     "./css": "./dist/dsbj.css",
     "./reset": "./dist/dsbj-reset.css",
     "./scss": "./src/dsbj.scss",
@@ -46,6 +54,7 @@
     "dev": "vite --config vite.docs.config.ts",
     "build": "vite build && bun run build:reset",
     "build:reset": "bunx sass-embedded src/dsbj-reset.scss dist/dsbj-reset.css --style=compressed --no-source-map",
+    "pwa:icons": "bun scripts/generate-pwa-icons.ts",
     "build:docs": "bun scripts/build-docs.ts",
     "preview": "vite preview --config vite.preview.config.ts",
     "test": "vitest run",
@@ -57,9 +66,11 @@
   },
   "devDependencies": {
     "vite": "latest",
+    "vite-plugin-pwa": "^1.2.0",
     "vitest": "latest",
     "typescript": "latest",
     "sass-embedded": "latest",
+    "sharp": "^0.34.5",
     "jsdom": "latest"
   },
   "browserslist": [
@@ -67,6 +78,14 @@
     "last 2 versions",
     "not dead"
   ],
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": { "optional": true },
+    "react-dom": { "optional": true }
+  },
   "dependencies": {
     "@unhead/vue": "^2.1.12",
     "@vitejs/plugin-vue": "^6.0.5",
@@ -74,6 +93,7 @@
     "vite-ssg": "^28.3.0",
     "vue": "^3.5.30",
     "vue-i18n": "^11.3.0",
-    "vue-router": "^5.0.4"
+    "vue-router": "^5.0.4",
+    "workbox-window": "^7.4.0"
   }
 }

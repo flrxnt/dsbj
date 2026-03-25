@@ -10,7 +10,7 @@ const { t } = useI18n({
       title: "Typographie",
       intro:
         "Le DSBJ s’appuie sur {sans} pour l’interface, {serif} pour le contenu éditorial ou les citations, et une pile {mono} pour le code.",
-      introSans: "Open Sans",
+      introSans: "Montserrat",
       introSerif: "Spectral",
       introMono: "monospace",
       "section-familles": "Familles de polices",
@@ -49,7 +49,7 @@ const { t } = useI18n({
       title: "Typography",
       intro:
         "DSBJ uses {sans} for the UI, {serif} for editorial content or quotes, and a {mono} stack for code.",
-      introSans: "Open Sans",
+      introSans: "Montserrat",
       introSerif: "Spectral",
       introMono: "monospace",
       "section-familles": "Type families",
@@ -131,7 +131,7 @@ const codeTextSizes = `<p class="bj-text-lg">…</p>
         <tr>
           <td>{{ t("roleSans") }}</td>
           <td><code>--bj-font-sans</code></td>
-          <td class="bj-text-md">Open Sans - Services en ligne</td>
+          <td class="bj-text-md">Montserrat - Services en ligne</td>
         </tr>
         <tr>
           <td>{{ t("roleSerif") }}</td>
