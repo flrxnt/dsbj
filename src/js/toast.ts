@@ -67,19 +67,46 @@ export function toast(options: ToastOptions): HTMLElement {
 
   const icon = ICONS[type] || ICONS.info;
 
-  el.innerHTML = `
-    <span class="bj-toast__icon" aria-hidden="true"><i class="${icon}"></i></span>
-    <div class="bj-toast__body">
-      ${title ? `<p class="bj-toast__title">${title}</p>` : ''}
-      <p class="bj-toast__text">${text}</p>
-    </div>
-    <button type="button" class="bj-toast__close" aria-label="Fermer"><i class="ri-close-line" aria-hidden="true"></i></button>
-    ${duration > 0 ? '<div class="bj-toast__progress"></div>' : ''}
-  `;
+  const iconSpan = document.createElement('span');
+  iconSpan.className = 'bj-toast__icon';
+  iconSpan.setAttribute('aria-hidden', 'true');
+  const iconI = document.createElement('i');
+  iconI.className = icon;
+  iconSpan.appendChild(iconI);
+  el.appendChild(iconSpan);
+
+  const body = document.createElement('div');
+  body.className = 'bj-toast__body';
+  if (title) {
+    const titleP = document.createElement('p');
+    titleP.className = 'bj-toast__title';
+    titleP.textContent = title;
+    body.appendChild(titleP);
+  }
+  const textP = document.createElement('p');
+  textP.className = 'bj-toast__text';
+  textP.textContent = text;
+  body.appendChild(textP);
+  el.appendChild(body);
+
+  const closeBtn = document.createElement('button');
+  closeBtn.type = 'button';
+  closeBtn.className = 'bj-toast__close';
+  closeBtn.setAttribute('aria-label', 'Fermer');
+  const closeIcon = document.createElement('i');
+  closeIcon.className = 'ri-close-line';
+  closeIcon.setAttribute('aria-hidden', 'true');
+  closeBtn.appendChild(closeIcon);
+  el.appendChild(closeBtn);
+
+  if (duration > 0) {
+    const progress = document.createElement('div');
+    progress.className = 'bj-toast__progress';
+    el.appendChild(progress);
+  }
 
   container.appendChild(el);
 
-  const closeBtn = el.querySelector<HTMLButtonElement>('.bj-toast__close')!;
   closeBtn.addEventListener('click', () => removeToast(el));
 
   if (duration > 0) {

@@ -22,18 +22,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Resolve tag
-        run: echo "TAG=${{ github.event.inputs.tag || github.ref_name }}" >> "$GITHUB_ENV"
+        id: resolve
+        env:
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          TAG="${INPUT_TAG:-$REF_NAME}"
+          printf 'TAG=%s\n' "$TAG" >> "$GITHUB_OUTPUT"
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
-          ref: ${{ env.TAG }}
+          ref: ${{ steps.resolve.outputs.TAG }}
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
 
       - name: Setup Node (npm registry auth)
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
@@ -47,7 +53,14 @@ jobs:
       - name: Build library
         run: bun run build
 
+      - name: Security audit
+        run: npx audit-ci --moderate
+        continue-on-error: false
+
       - name: Verify package version matches tag
+        id: version
+        env:
+          TAG: ${{ steps.resolve.outputs.TAG }}
         run: |
           TAG_VERSION="${TAG#v}"
           PKG_VERSION=$(node -e "console.log(require('./package.json').version)")
@@ -55,9 +68,12 @@ jobs:
             echo "::error::Tag $TAG ne correspond pas à la version du package ($PKG_VERSION)"
             exit 1
           fi
-          echo "VERSION=$TAG_VERSION" >> "$GITHUB_ENV"
+          printf 'VERSION=%s\n' "$TAG_VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Extract changelog for this version
+        id: changelog
+        env:
+          VERSION: ${{ steps.version.outputs.VERSION }}
         run: |
           BODY=$(awk -v ver="$VERSION" '
             /^## \[/ {
@@ -67,11 +83,12 @@ jobs:
             found { print }
           ' CHANGELOG.md)
 
+          DELIM="CHANGELOG_$(openssl rand -hex 8)"
           {
-            echo "RELEASE_BODY<<CHANGELOG_EOF"
-            echo "$BODY"
-            echo "CHANGELOG_EOF"
-          } >> "$GITHUB_ENV"
+            printf 'RELEASE_BODY<<%s\n' "$DELIM"
+            printf '%s\n' "$BODY"
+            printf '%s\n' "$DELIM"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Publish to npm
         run: npm publish --access public --provenance
@@ -79,9 +96,9 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2
         with:
-          tag_name: ${{ env.TAG }}
-          name: ${{ env.TAG }}
-          body: ${{ env.RELEASE_BODY }}
+          tag_name: ${{ steps.resolve.outputs.TAG }}
+          name: ${{ steps.resolve.outputs.TAG }}
+          body: ${{ steps.changelog.outputs.RELEASE_BODY }}
           generate_release_notes: false

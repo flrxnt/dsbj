@@ -8,6 +8,22 @@ docs/.vite-ssg-temp/
 *.css.map
 .DS_Store
 *.tsbuildinfo
+
+# Secrets & credentials
+.env
+.env.*
+.env.local
+.npmrc
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Test & coverage
+coverage/
+.nyc_output/
+
+# IDE
 .cursor/*
 !.cursor/rules/
 !.cursor/workflows/

@@ -38,6 +38,26 @@ export function BjRichEditor({
   const toolbarSet = new Set(toolbar)
   const has = (tool: string) => toolbarSet.has(tool)
 
+  const ALLOWED_SCHEMES = ['http:', 'https:', 'mailto:']
+  const EMBED_HOSTS = ['youtube.com', 'www.youtube.com', 'youtube-nocookie.com', 'www.youtube-nocookie.com', 'player.vimeo.com', 'vimeo.com', 'www.dailymotion.com']
+
+  function isSafeUrl(raw: string): string | null {
+    try {
+      const u = new URL(raw)
+      if (!ALLOWED_SCHEMES.includes(u.protocol)) return null
+      return u.href
+    } catch { return null }
+  }
+
+  function isEmbedUrl(raw: string): string | null {
+    try {
+      const u = new URL(raw)
+      if (u.protocol !== 'https:') return null
+      if (!EMBED_HOSTS.some(h => u.hostname === h)) return null
+      return u.href
+    } catch { return null }
+  }
+
   const exec = useCallback((command: string, val?: string) => {
     document.execCommand(command, false, val)
     contentRef.current?.focus()
@@ -53,20 +73,36 @@ export function BjRichEditor({
   }, [onChange])
 
   const insertLink = useCallback(() => {
-    const url = prompt('URL du lien :')
-    if (url) exec('createLink', url)
+    const raw = prompt('URL du lien :')
+    if (!raw) return
+    const safe = isSafeUrl(raw)
+    if (!safe) return alert('URL invalide. Seuls http://, https:// et mailto: sont autorisés.')
+    exec('createLink', safe)
   }, [exec])
 
   const insertImage = useCallback(() => {
-    const url = prompt("URL de l'image :")
-    if (url) exec('insertImage', url)
+    const raw = prompt("URL de l'image :")
+    if (!raw) return
+    const safe = isSafeUrl(raw)
+    if (!safe) return alert('URL invalide. Seuls http:// et https:// sont autorisés.')
+    exec('insertImage', safe)
   }, [exec])
 
   const insertVideo = useCallback(() => {
-    const url = prompt('URL de la vidéo (YouTube, Vimeo embed) :')
-    if (!url) return
-    const iframe = `<div><iframe src="${url}" width="560" height="315" frameborder="0" allowfullscreen style="max-width:100%;"></iframe></div>`
-    exec('insertHTML', iframe)
+    const raw = prompt('URL de la vidéo (YouTube, Vimeo embed) :')
+    if (!raw) return
+    const safe = isEmbedUrl(raw)
+    if (!safe) return alert('URL invalide. Seuls les liens embed YouTube, Vimeo et Dailymotion en HTTPS sont autorisés.')
+    const wrapper = document.createElement('div')
+    const iframe = document.createElement('iframe')
+    iframe.src = safe
+    iframe.width = '560'
+    iframe.height = '315'
+    iframe.setAttribute('frameborder', '0')
+    iframe.setAttribute('allowfullscreen', '')
+    iframe.style.maxWidth = '100%'
+    wrapper.appendChild(iframe)
+    exec('insertHTML', wrapper.outerHTML)
   }, [exec])
 
   const insertTable = useCallback(() => {
@@ -118,10 +154,24 @@ export function BjRichEditor({
     }
   }, [exec])
 
+  function sanitizeHtml(html: string): string {
+    const doc = new DOMParser().parseFromString(html, 'text/html')
+    doc.querySelectorAll('script, style, link, meta, object, embed, applet').forEach(el => el.remove())
+    doc.querySelectorAll('*').forEach(el => {
+      for (const attr of Array.from(el.attributes)) {
+        if (attr.name.startsWith('on') || (attr.name === 'href' && attr.value.trim().toLowerCase().startsWith('javascript:')) || (attr.name === 'src' && attr.value.trim().toLowerCase().startsWith('javascript:'))) {
+          el.removeAttribute(attr.name)
+        }
+      }
+    })
+    return doc.body.innerHTML
+  }
+
   useEffect(() => {
-    if (contentRef.current && contentRef.current.innerHTML !== value) {
+    const safe = sanitizeHtml(value)
+    if (contentRef.current && contentRef.current.innerHTML !== safe) {
       isUpdating.current = true
-      contentRef.current.innerHTML = value
+      contentRef.current.innerHTML = safe
       isUpdating.current = false
     }
   }, [value])
