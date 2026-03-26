@@ -11,7 +11,7 @@ import { createServer, type IncomingMessage, type ServerResponse } from 'node:ht
 import { randomUUID } from 'node:crypto';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DOCS_DIR = resolve(__dirname, '../../docs/public');
+const DOCS_DIR = process.env.DOCS_DIR || resolve(__dirname, '../../docs/public');
 
 function readDocsFile(filename: string): string {
   try {
