@@ -228,7 +228,8 @@
     "template-form": "Page formulaire - DSBJ",
     "legal-notice": "Mentions légales - DSBJ",
     "personal-data": "Données personnelles - DSBJ",
-    "accessibility": "Accessibilité - DSBJ"
+    "accessibility": "Accessibilité - DSBJ",
+    "not-found": "Page non trouvée - DSBJ"
   },
   "breadcrumb": {
     "getting-started": "Premiers pas",

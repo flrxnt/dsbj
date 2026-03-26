@@ -815,4 +815,11 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('./pages/AccessibilitePage.vue'),
     meta: { layout: 'legal', titleKey: 'route.accessibility', breadcrumb: [{ labelKey: 'breadcrumb.accessibility' }] },
   },
+
+  // 404
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import('./pages/NotFoundPage.vue'),
+    meta: { layout: 'home', titleKey: 'route.not-found' },
+  },
 ]
