@@ -15,7 +15,7 @@ const isExternal = computed(() => props.to.startsWith('http'))
   <component
     :is="isExternal ? 'a' : 'RouterLink'"
     :to="isExternal ? undefined : to"
-    :href="isExternal ? to : undefined"
+    :href="to"
     :target="isExternal ? '_blank' : undefined"
     :rel="isExternal ? 'noopener noreferrer' : undefined"
     class="docs-card"

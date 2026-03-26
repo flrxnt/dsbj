@@ -62,7 +62,7 @@ onUnmounted(() => {
       <div class="bj-header__body">
         <RouterLink to="/" class="bj-header__brand">
           <div class="bj-logo">
-            <img src="/sigle.svg" alt="" class="bj-logo__img">
+            <img src="/sigle.svg" alt="" class="bj-logo__img" width="44" height="39">
             <p>{{ t('header.republic') }}</p>
             <span class="bj-logo__motto">{{ t('header.motto') }}</span>
           </div>

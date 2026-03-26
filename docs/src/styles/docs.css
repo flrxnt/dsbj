@@ -411,16 +411,16 @@ html[data-bj-theme="dark"] .shiki span {
   right: var(--bj-spacing-2v);
   padding: var(--bj-spacing-1v) var(--bj-spacing-2v);
   font-size: var(--bj-fs-xs);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--bj-bg-alt);
+  border: 1px solid var(--bj-border-default);
   border-radius: var(--bj-radius-xs);
-  color: var(--bj-color-gris-850);
+  color: var(--bj-text-default);
   cursor: pointer;
   z-index: 2;
 }
 
 .docs-code__copy:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--bj-bg-disabled);
 }
 
 /* Component preview box */
@@ -588,8 +588,9 @@ html[data-bj-theme="dark"] .shiki span {
 }
 
 [data-bj-theme="dark"] .docs-code__copy {
-  color: var(--bj-color-gris-850);
-  border-color: var(--bj-color-gris-425);
+  color: var(--bj-text-default);
+  border-color: var(--bj-border-default);
+  background: var(--bj-bg-alt);
 }
 
 [data-bj-theme="dark"] .docs-preview+.docs-code .docs-code__shiki pre {
@@ -772,7 +773,7 @@ html[data-bj-theme="dark"] .shiki span {
   border: 1px solid var(--bj-border-default);
   border-radius: var(--bj-radius-sm);
   background: var(--bj-bg-alt);
-  color: var(--bj-text-mention);
+  color: var(--bj-text-alt);
   font-size: var(--bj-fs-sm);
   cursor: pointer;
   transition: border-color 150ms ease, color 150ms ease;

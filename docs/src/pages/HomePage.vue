@@ -248,7 +248,7 @@ const features = computed(() => [
                     style="margin-bottom: var(--bj-spacing-1v)"
                     >Libellé</span
                   >
-                  <h3 class="bj-tile__title">Titre lorem</h3>
+                  <p class="bj-tile__title">Titre lorem</p>
                   <p class="bj-tile__desc">Description</p>
                 </div>
               </div>
@@ -650,9 +650,9 @@ const features = computed(() => [
                 ></i>
               </div>
               <div class="bj-tile__body">
-                <h4 class="bj-tile__title" style="font-size: var(--bj-fs-sm)">
+                <p class="bj-tile__title" style="font-size: var(--bj-fs-sm)">
                   {{ feat.label }}
-                </h4>
+                </p>
               </div>
             </div>
           </div>
