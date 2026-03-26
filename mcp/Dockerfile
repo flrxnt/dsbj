@@ -11,9 +11,11 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY package.json ./
 COPY src ./src
+COPY docs ./docs
 
 ENV NODE_ENV=production
 ENV MCP_TRANSPORT=http
+ENV DOCS_DIR=/app/docs
 ENV PORT=3001
 
 EXPOSE 3001
