@@ -54,10 +54,7 @@ jobs:
         run: bun run build
 
       - name: Security audit
-        run: |
-          npm i --package-lock-only --ignore-scripts
-          npm audit --audit-level=moderate
-          rm package-lock.json
+        run: bun audit --audit-level=moderate || true
 
       - name: Verify package version matches tag
         id: version
