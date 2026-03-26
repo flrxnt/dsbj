@@ -322,6 +322,11 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('./pages/composants/ConsentPage.vue'),
     meta: { layout: 'docs', section: 'composants', titleKey: 'route.consent', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.consent' }] },
   },
+  {
+    path: '/composants/rich-editor',
+    component: () => import('./pages/composants/RichEditorPage.vue'),
+    meta: { layout: 'docs', section: 'composants', titleKey: 'route.rich-editor', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.rich-editor' }] },
+  },
 
   // Intégrations
   {
@@ -555,6 +560,11 @@ export const routes: RouteRecordRaw[] = [
     meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-skiplink', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.skiplink' }] },
   },
   {
+    path: '/integrations/vue/rich-editor',
+    component: () => import('./pages/integrations/vue/RichEditorPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-rich-editor', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.rich-editor' }] },
+  },
+  {
     path: '/integrations/react',
     component: () => import('./pages/integrations/react/IndexPage.vue'),
     meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.integrations-react', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react' }] },
@@ -753,6 +763,11 @@ export const routes: RouteRecordRaw[] = [
     path: '/integrations/react/consent',
     component: () => import('./pages/integrations/react/ConsentPage.vue'),
     meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-consent', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.consent' }] },
+  },
+  {
+    path: '/integrations/react/rich-editor',
+    component: () => import('./pages/integrations/react/RichEditorPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-rich-editor', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.rich-editor' }] },
   },
 
   // Showcases

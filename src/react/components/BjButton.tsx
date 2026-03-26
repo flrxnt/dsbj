@@ -10,6 +10,7 @@ export interface BjButtonProps {
   size?: 'sm' | 'md' | 'lg'
   icon?: boolean
   full?: boolean
+  loading?: boolean
   as?: 'button' | 'a'
   children?: ReactNode
 }
@@ -30,6 +31,7 @@ export const BjButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, Button
       size = 'md',
       icon: isIcon,
       full,
+      loading,
       as: Tag = 'button',
       className,
       children,
@@ -37,18 +39,32 @@ export const BjButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, Button
     },
     ref
   ) => {
+    const isDisabled = (rest as any).disabled || loading
+
     const cls = [
       'bj-btn',
       variant !== 'primary' && `bj-btn--${variant}`,
       size !== 'md' && `bj-btn--${size}`,
       isIcon && 'bj-btn--icon',
       full && 'bj-btn--full',
+      loading && 'bj-btn--loading',
       className,
     ]
       .filter(Boolean)
       .join(' ')
 
-    return <Tag ref={ref as any} className={cls} {...(rest as any)}>{children}</Tag>
+    return (
+      <Tag
+        ref={ref as any}
+        className={cls}
+        aria-busy={loading ? 'true' : undefined}
+        {...(rest as any)}
+        disabled={Tag === 'button' ? isDisabled : undefined}
+        aria-disabled={Tag !== 'button' && isDisabled ? 'true' : undefined}
+      >
+        {children}
+      </Tag>
+    )
   }
 )
 BjButton.displayName = 'BjButton'

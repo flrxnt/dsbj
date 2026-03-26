@@ -5,6 +5,7 @@ export interface BjButtonProps {
   icon?: boolean
   full?: boolean
   disabled?: boolean
+  loading?: boolean
   tag?: 'button' | 'a'
 }
 </script>
@@ -18,13 +19,16 @@ const props = withDefaults(defineProps<BjButtonProps>(), {
   tag: 'button',
 })
 
+const isDisabled = computed(() => props.disabled || props.loading)
+
 const classes = computed(() => [
   'bj-btn',
   props.variant !== 'primary' && `bj-btn--${props.variant}`,
   props.size !== 'md' && `bj-btn--${props.size}`,
   props.icon && 'bj-btn--icon',
   props.full && 'bj-btn--full',
-  props.disabled && props.tag !== 'button' && 'bj-btn--disabled',
+  props.loading && 'bj-btn--loading',
+  isDisabled.value && props.tag !== 'button' && 'bj-btn--disabled',
 ])
 </script>
 
@@ -32,8 +36,9 @@ const classes = computed(() => [
   <component
     :is="tag"
     :class="classes"
-    :disabled="tag === 'button' ? disabled : undefined"
-    :aria-disabled="tag !== 'button' && disabled ? 'true' : undefined"
+    :disabled="tag === 'button' ? isDisabled : undefined"
+    :aria-disabled="tag !== 'button' && isDisabled ? 'true' : undefined"
+    :aria-busy="loading ? 'true' : undefined"
     v-bind="$attrs"
   >
     <slot />

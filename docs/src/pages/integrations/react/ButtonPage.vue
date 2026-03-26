@@ -19,6 +19,8 @@ const { t } = useI18n({
       'prop-icon': 'Mode bouton carré pour une icône seule (bj-btn--icon).',
       'prop-full': 'Largeur 100 % du conteneur (bj-btn--full).',
       'prop-as': 'Élément rendu : button (défaut) ou a pour un lien stylé comme bouton.',
+      'prop-loading': 'Affiche un spinner et désactive le bouton.',
+      'section-loading': 'Chargement',
     },
     en: {
       title: 'BjButton',
@@ -26,11 +28,13 @@ const { t } = useI18n({
       'section-usage': 'Usage',
       'section-preview': 'Preview',
       'section-props': 'Props',
+      'section-loading': 'Loading',
       'prop-variant': 'Visual variant: primary, secondary, tertiary, accent, or contrast.',
       'prop-size': 'Size: sm, md (default), or lg.',
       'prop-icon': 'Square icon-only button (bj-btn--icon).',
       'prop-full': 'Full width of the container (bj-btn--full).',
       'prop-as': 'Rendered element: button (default) or a for a link styled as a button.',
+      'prop-loading': 'Shows a spinner and disables the button.',
     },
   },
 })
@@ -46,11 +50,28 @@ export default function App() {
   )
 }`
 
+const codeLoading = `import { BjButton } from '@flrxnt/dsbj/react'
+
+export default function App() {
+  return (
+    <>
+      <BjButton loading>Envoi en cours</BjButton>
+      <BjButton variant="secondary" loading>Chargement</BjButton>
+      <BjButton variant="tertiary" loading>Patientez</BjButton>
+      <BjButton variant="accent" loading>Accent</BjButton>
+      <BjButton variant="contrast" loading>Contraste</BjButton>
+      <BjButton size="sm" loading>Petit</BjButton>
+      <BjButton size="lg" loading>Grand</BjButton>
+    </>
+  )
+}`
+
 const propsRows = computed(() => [
   { name: 'variant', description: t('prop-variant') },
   { name: 'size', description: t('prop-size') },
   { name: 'icon', description: t('prop-icon') },
   { name: 'full', description: t('prop-full') },
+  { name: 'loading', description: t('prop-loading') },
   { name: 'as', description: t('prop-as') },
 ])
 </script>
@@ -68,6 +89,19 @@ const propsRows = computed(() => [
       <button type="button" class="bj-btn">Valider</button>
       <button type="button" class="bj-btn bj-btn--secondary">Annuler</button>
     </DocsPreview>
+  </DocsSection>
+
+  <DocsSection id="react-btn-loading" :title="t('section-loading')">
+    <DocsPreview style="display: flex; flex-wrap: wrap; gap: var(--bj-spacing-3v); align-items: center;">
+      <button type="button" class="bj-btn bj-btn--loading" aria-busy="true">Envoi en cours</button>
+      <button type="button" class="bj-btn bj-btn--secondary bj-btn--loading" aria-busy="true">Chargement</button>
+      <button type="button" class="bj-btn bj-btn--tertiary bj-btn--loading" aria-busy="true">Patientez</button>
+      <button type="button" class="bj-btn bj-btn--accent bj-btn--loading" aria-busy="true">Accent</button>
+      <button type="button" class="bj-btn bj-btn--contrast bj-btn--loading" aria-busy="true">Contraste</button>
+      <button type="button" class="bj-btn bj-btn--sm bj-btn--loading" aria-busy="true">Petit</button>
+      <button type="button" class="bj-btn bj-btn--lg bj-btn--loading" aria-busy="true">Grand</button>
+    </DocsPreview>
+    <DocsCode :code="codeLoading" lang="tsx" />
   </DocsSection>
 
   <DocsSection id="react-btn-props" :title="t('section-props')">

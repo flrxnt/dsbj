@@ -45,6 +45,9 @@ const { t } = useI18n({
       'prop-bj-btn-group-vertical': 'Empile les boutons du groupe en colonne.',
       'prop-bj-btn-group-inline-sm':
         'Groupe avec un espacement réduit entre les boutons.',
+      'prop-bj-btn-loading':
+        'État de chargement : désactive le bouton et affiche un spinner animé à la place du texte.',
+      'section-chargement': 'Chargement',
     },
     en: {
       title: 'Button',
@@ -78,6 +81,9 @@ const { t } = useI18n({
       'prop-bj-btn-group': 'Inline flex container with spacing between buttons.',
       'prop-bj-btn-group-vertical': 'Stacks group buttons in a column.',
       'prop-bj-btn-group-inline-sm': 'Group with tighter spacing between buttons.',
+      'prop-bj-btn-loading':
+        'Loading state: disables the button and displays an animated spinner instead of text.',
+      'section-chargement': 'Loading',
     },
   },
 })
@@ -104,6 +110,14 @@ const codeGroupe = `<div class="bj-btn-group">
   <button class="bj-btn bj-btn--secondary">Secondaire</button>
   <button class="bj-btn bj-btn--tertiary">Annuler</button>
 </div>`
+
+const codeChargement = `<button class="bj-btn bj-btn--loading" aria-busy="true">Chargement</button>
+<button class="bj-btn bj-btn--secondary bj-btn--loading" aria-busy="true">Chargement</button>
+<button class="bj-btn bj-btn--tertiary bj-btn--loading" aria-busy="true">Chargement</button>
+<button class="bj-btn bj-btn--accent bj-btn--loading" aria-busy="true">Chargement</button>
+<button class="bj-btn bj-btn--contrast bj-btn--loading" aria-busy="true">Chargement</button>
+<button class="bj-btn bj-btn--sm bj-btn--loading" aria-busy="true">Petit</button>
+<button class="bj-btn bj-btn--lg bj-btn--loading" aria-busy="true">Grand</button>`
 
 const codeEtats = `<button class="bj-btn">Normal</button>
 <button class="bj-btn" disabled>Désactivé</button>
@@ -140,6 +154,10 @@ const propsRows = computed(() => [
   {
     name: 'bj-btn--disabled',
     description: t('prop-bj-btn-disabled'),
+  },
+  {
+    name: 'bj-btn--loading',
+    description: t('prop-bj-btn-loading'),
   },
   {
     name: 'bj-btn-group',
@@ -265,6 +283,26 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeGroupe" />
+  </DocsSection>
+
+  <DocsSection id="chargement-btn" :title="t('section-chargement')">
+    <DocsPreview
+      style="
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--bj-spacing-3v);
+        align-items: center;
+      "
+    >
+      <button type="button" class="bj-btn bj-btn--loading" aria-busy="true">Chargement</button>
+      <button type="button" class="bj-btn bj-btn--secondary bj-btn--loading" aria-busy="true">Chargement</button>
+      <button type="button" class="bj-btn bj-btn--tertiary bj-btn--loading" aria-busy="true">Chargement</button>
+      <button type="button" class="bj-btn bj-btn--accent bj-btn--loading" aria-busy="true">Chargement</button>
+      <button type="button" class="bj-btn bj-btn--contrast bj-btn--loading" aria-busy="true">Chargement</button>
+      <button type="button" class="bj-btn bj-btn--sm bj-btn--loading" aria-busy="true">Petit</button>
+      <button type="button" class="bj-btn bj-btn--lg bj-btn--loading" aria-busy="true">Grand</button>
+    </DocsPreview>
+    <DocsCode :code="codeChargement" />
   </DocsSection>
 
   <DocsSection id="etats-btn" :title="t('section-etats')">

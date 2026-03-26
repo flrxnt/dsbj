@@ -60,6 +60,7 @@ export { default as BjBanner } from './components/BjBanner.vue'
 export { default as BjSkeleton } from './components/BjSkeleton.vue'
 export { default as BjContent } from './components/BjContent.vue'
 export { default as BjTable } from './components/BjTable.vue'
+export { default as BjRichEditor } from './components/BjRichEditor.vue'
 
 // Regulatory
 export { default as BjConsent } from './components/BjConsent.vue'

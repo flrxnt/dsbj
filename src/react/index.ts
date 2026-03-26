@@ -60,6 +60,7 @@ export { BjBanner } from './components/BjBanner'
 export { BjSkeleton } from './components/BjSkeleton'
 export { BjContent } from './components/BjContent'
 export { BjTable } from './components/BjTable'
+export { BjRichEditor } from './components/BjRichEditor'
 
 // Regulatory
 export { BjConsent } from './components/BjConsent'

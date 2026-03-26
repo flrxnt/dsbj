@@ -79,6 +79,9 @@ export const searchIndex: SearchEntry[] = [
   { label: 'Galerie d\'images', path: '/composants/gallery', section: 'Composants', keywords: ['gallery', 'images', 'lightbox', 'bj-gallery'] },
   { label: 'Arborescence', path: '/composants/treeview', section: 'Composants', keywords: ['treeview', 'arbre', 'hiérarchie', 'nœuds', 'bj-treeview'] },
 
+  // Composants - Éditeur riche
+  { label: 'Éditeur riche', path: '/composants/rich-editor', section: 'Composants', keywords: ['rich-editor', 'wysiwyg', 'éditeur', 'contenteditable', 'formatage', 'bj-rich-editor'] },
+
   // Composants - Réglementaire
   { label: 'Consentement', path: '/composants/consent', section: 'Composants', keywords: ['consent', 'cookies', 'rgpd', 'bj-consent'] },
 
@@ -127,6 +130,7 @@ export const searchIndex: SearchEntry[] = [
   { label: 'BjSidemenu', path: '/integrations/vue/sidemenu', section: 'Vue', keywords: ['sidemenu', 'vue', 'BjSidemenu'] },
   { label: 'BjNavigation', path: '/integrations/vue/navigation', section: 'Vue', keywords: ['navigation', 'vue', 'BjNavigation'] },
   { label: 'BjSkiplink', path: '/integrations/vue/skiplink', section: 'Vue', keywords: ['skiplink', 'vue', 'BjSkiplink'] },
+  { label: 'BjRichEditor', path: '/integrations/vue/rich-editor', section: 'Vue', keywords: ['rich-editor', 'wysiwyg', 'éditeur', 'vue', 'BjRichEditor'] },
 
   // Intégrations React
   { label: 'BjButton', path: '/integrations/react/button', section: 'React', keywords: ['bouton', 'button', 'react', 'BjButton'] },
@@ -168,6 +172,7 @@ export const searchIndex: SearchEntry[] = [
   { label: 'BjPagination', path: '/integrations/react/pagination', section: 'React', keywords: ['pagination', 'react', 'BjPagination'] },
   { label: 'BjStepper', path: '/integrations/react/stepper', section: 'React', keywords: ['stepper', 'react', 'BjStepper'] },
   { label: 'BjBanner', path: '/integrations/react/banner', section: 'React', keywords: ['banner', 'react', 'BjBanner'] },
+  { label: 'BjRichEditor', path: '/integrations/react/rich-editor', section: 'React', keywords: ['rich-editor', 'wysiwyg', 'éditeur', 'react', 'BjRichEditor'] },
 
   // Modèles
   { label: 'Page d\'accueil', path: '/modeles/page-accueil', section: 'Modèles', keywords: ['template', 'modèle', 'accueil', 'home'] },

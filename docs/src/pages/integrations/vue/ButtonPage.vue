@@ -20,7 +20,9 @@ const { t } = useI18n({
       'prop-icon': 'Bouton carré pour icône seule.',
       'prop-full': 'Largeur 100% du conteneur.',
       'prop-disabled': 'Désactive le bouton.',
+      'prop-loading': 'Affiche un spinner et désactive le bouton.',
       'prop-tag': 'Élément HTML rendu (button ou a).',
+      'section-loading': 'Chargement',
     },
     en: {
       title: 'BjButton',
@@ -29,11 +31,13 @@ const { t } = useI18n({
       'section-variants': 'Variants',
       'section-sizes': 'Sizes',
       'section-props': 'Props',
+      'section-loading': 'Loading',
       'prop-variant': 'Visual variant of the button.',
       'prop-size': 'Button size.',
       'prop-icon': 'Square button for icon only.',
       'prop-full': '100% width of the container.',
       'prop-disabled': 'Disables the button.',
+      'prop-loading': 'Shows a spinner and disables the button.',
       'prop-tag': 'Rendered HTML element (button or a).',
     },
   },
@@ -60,12 +64,21 @@ const codeSizes = `<BjButton size="sm">Petit</BjButton>
 <BjButton size="lg">Grand</BjButton>
 <BjButton :full="true">Pleine largeur</BjButton>`
 
+const codeLoading = `<BjButton :loading="true">Envoi en cours</BjButton>
+<BjButton variant="secondary" :loading="true">Chargement</BjButton>
+<BjButton variant="tertiary" :loading="true">Patientez</BjButton>
+<BjButton variant="accent" :loading="true">Accent</BjButton>
+<BjButton variant="contrast" :loading="true">Contraste</BjButton>
+<BjButton size="sm" :loading="true">Petit</BjButton>
+<BjButton size="lg" :loading="true">Grand</BjButton>`
+
 const propsRows = computed(() => [
   { name: 'variant', description: t('prop-variant') },
   { name: 'size', description: t('prop-size') },
   { name: 'icon', description: t('prop-icon') },
   { name: 'full', description: t('prop-full') },
   { name: 'disabled', description: t('prop-disabled') },
+  { name: 'loading', description: t('prop-loading') },
   { name: 'tag', description: t('prop-tag') },
 ])
 </script>
@@ -96,6 +109,19 @@ const propsRows = computed(() => [
       <button type="button" class="bj-btn bj-btn--lg">Grand</button>
     </DocsPreview>
     <DocsCode :code="codeSizes" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-btn-loading" :title="t('section-loading')">
+    <DocsPreview style="display: flex; flex-wrap: wrap; gap: var(--bj-spacing-3v); align-items: center;">
+      <button type="button" class="bj-btn bj-btn--loading" aria-busy="true">Envoi en cours</button>
+      <button type="button" class="bj-btn bj-btn--secondary bj-btn--loading" aria-busy="true">Chargement</button>
+      <button type="button" class="bj-btn bj-btn--tertiary bj-btn--loading" aria-busy="true">Patientez</button>
+      <button type="button" class="bj-btn bj-btn--accent bj-btn--loading" aria-busy="true">Accent</button>
+      <button type="button" class="bj-btn bj-btn--contrast bj-btn--loading" aria-busy="true">Contraste</button>
+      <button type="button" class="bj-btn bj-btn--sm bj-btn--loading" aria-busy="true">Petit</button>
+      <button type="button" class="bj-btn bj-btn--lg bj-btn--loading" aria-busy="true">Grand</button>
+    </DocsPreview>
+    <DocsCode :code="codeLoading" lang="html" />
   </DocsSection>
 
   <DocsSection id="vue-btn-props" :title="t('section-props')">
