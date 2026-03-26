@@ -657,7 +657,105 @@ Ajouter dans **4 sections** de chaque fichier :
 
 ---
 
-## Étape 18 — Tests Vitest
+## Étape 18 — Mettre à jour le MCP et les fichiers llms
+
+Le serveur MCP expose les données des composants aux assistants IA. Chaque nouveau composant doit y être ajouté.
+
+### 18a. Ajouter le composant dans les données MCP
+
+**Fichier :** `mcp/src/data/components.ts`
+
+Ajouter une entrée `ComponentData` dans le tableau `COMPONENTS`, **dans la bonne catégorie** (Navigation, Base, Formulaires, Contenu, Interactifs, Réglementaire) :
+
+```ts
+{
+  name: '<Nom affiché>',
+  slug: '<nom>',
+  category: '<Catégorie>',
+  description: '<Description courte du composant.>',
+  classes: ['bj-<nom>', 'bj-<nom>__element', 'bj-<nom>--variant', ...],
+  aria: ['role="..."', 'aria-label', 'aria-expanded', ...],
+  jsHooks: ['data-bj-<nom>'],  // [] si aucun
+  markup: `<HTML d'exemple complet et accessible>`,
+},
+```
+
+> **Interface :**
+> | Champ | Description |
+> |-------|-------------|
+> | `name` | Nom affiché en français (ex: `Bannière`, `Éditeur riche`) |
+> | `slug` | Identifiant kebab-case, doit correspondre au dossier `src/component/<slug>/` |
+> | `category` | Une des 6 catégories de `CATEGORIES` |
+> | `classes` | Toutes les classes CSS BEM du composant |
+> | `aria` | Attributs ARIA nécessaires |
+> | `jsHooks` | Attributs `data-bj-*` pour le JS interactif |
+> | `markup` | Exemple HTML complet et accessible (avec ARIA, labels, etc.) |
+
+### 18b. Mettre à jour llms.txt
+
+**Fichier :** `docs/public/llms.txt`
+
+1. Mettre à jour le **compteur de composants** dans le résumé en haut du fichier
+2. Ajouter une ligne dans la **section de catégorie** correspondante :
+
+```
+- [<Nom>](https://design.gouv.example/docs/composants/<nom>.html): bj-<nom>, bj-<nom>__element, <attributs clés>
+```
+
+### 18c. Mettre à jour llms-full.txt
+
+**Fichier :** `docs/public/llms-full.txt`
+
+1. Mettre à jour le **compteur de composants** dans le résumé en haut du fichier
+2. Ajouter une section complète avec les classes, ARIA et markup :
+
+```markdown
+### <Nom affiché> (<Nom anglais>)
+
+Classes : `bj-<nom>`, `bj-<nom>__element`, `bj-<nom>--variant`
+ARIA : `role="..."`, `aria-label`, ...
+JS : `data-bj-<nom>` (si applicable)
+
+\```html
+<HTML d'exemple complet>
+\```
+```
+
+### 18d. Mettre à jour le compteur partout
+
+Rechercher l'ancien compteur (ex: `46 composants`) et le remplacer par le nouveau dans :
+
+- `docs/public/llms.txt` — résumé
+- `docs/public/llms-full.txt` — résumé
+- `mcp/src/index.ts` — description de l'outil `list-components`
+- `mcp/README.md` — tableau des outils + arborescence
+- `docs/src/pages/premiers-pas/IaPage.vue` — description de l'outil
+- `scripts/inject-seo.ts` — meta descriptions SEO
+
+### Prompt IA
+
+```
+Mets à jour le serveur MCP et les fichiers llms pour le nouveau composant DSBJ "<NOM>".
+
+Composant :
+- Slug : <nom>
+- Catégorie : <catégorie>
+- Description : <description>
+- Classes CSS : <lister>
+- Attributs ARIA : <lister>
+- Hooks JS : <lister ou "aucun">
+- Markup HTML : <fournir>
+
+Fichiers à modifier :
+1. mcp/src/data/components.ts — ajouter l'entrée ComponentData
+2. docs/public/llms.txt — ajouter la ligne dans la bonne section + compteur
+3. docs/public/llms-full.txt — ajouter la section complète + compteur
+4. Mettre à jour le compteur de composants partout (chercher "<ancien nombre> composants")
+```
+
+---
+
+## Étape 19 — Tests Vitest
 
 **Fichier :** `tests/<nom>.test.ts`
 
@@ -729,7 +827,7 @@ Comportement JS : <DÉCRIRE ou "aucun">
 
 ---
 
-## Étape 19 — Vérification finale
+## Étape 20 — Vérification finale
 
 ```bash
 # Build de la bibliothèque
@@ -788,8 +886,12 @@ Le composant doit suivre le workflow complet du DSBJ :
 13. Liens sidebar dans docs/src/data/navigation.ts (composants + vue + react)
 14. 3 entrées dans docs/src/data/searchIndex.ts
 15. Clés i18n dans docs/src/data/locales/fr.json et en.json (route, breadcrumb, link)
-16. Tests dans tests/<nom>.test.ts (structure, ARIA, variantes, disabled)
-17. Vérifier build + tests : bun run build && bun run test
+16. Entrée MCP dans mcp/src/data/components.ts (name, slug, category, description, classes, aria, jsHooks, markup)
+17. Ligne dans docs/public/llms.txt (section + compteur)
+18. Section complète dans docs/public/llms-full.txt (classes, ARIA, markup + compteur)
+19. Mettre à jour le compteur de composants partout (llms, mcp/src/index.ts, mcp/README.md, IaPage.vue, inject-seo.ts)
+20. Tests dans tests/<nom>.test.ts (structure, ARIA, variantes, disabled)
+21. Vérifier build + tests : bun run build && bun run test
 ```
 
 ---
@@ -822,8 +924,15 @@ docs/src/
         ├── fr.json                            ← Clés i18n (modifier)
         └── en.json                            ← Clés i18n (modifier)
 
+mcp/src/data/
+└── components.ts                              ← Entrée MCP (modifier)
+
+docs/public/
+├── llms.txt                                   ← Résumé LLM (modifier)
+└── llms-full.txt                              ← Doc complète LLM (modifier)
+
 tests/
 └── <nom>.test.ts                              ← Tests Vitest
 ```
 
-> **Total : 6 fichiers créés + 10 fichiers modifiés**
+> **Total : 6 fichiers créés + 13 fichiers modifiés**
