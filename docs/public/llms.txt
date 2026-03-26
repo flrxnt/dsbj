@@ -1,6 +1,6 @@
 # DSBJ - Design Système du Bénin
 
-> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 40 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
+> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 46 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
 
 Informations clés :
 - Package npm : `@flrxnt/dsbj` (ES module + UMD + CSS)
@@ -49,6 +49,7 @@ Informations clés :
 - [Lien](https://design.gouv.example/docs/composants/link.html): bj-link, bj-link--sm, bj-link--lg, bj-link--icon-right
 - [Badge](https://design.gouv.example/docs/composants/badge.html): bj-badge, bj-badge--info, bj-badge--success, bj-badge--warning, bj-badge--error
 - [Tag](https://design.gouv.example/docs/composants/tag.html): bj-tag, bj-tag--action, bj-tag--dismiss, bj-tags
+- [Avatar](https://design.gouv.example/docs/composants/avatar.html): bj-avatar, bj-avatar--sm/lg/xl, bj-avatar__img, bj-avatar__initials, bj-avatar__status, bj-avatar-group
 
 ## Composants - Formulaires
 
@@ -60,6 +61,8 @@ Informations clés :
 - [Téléversement](https://design.gouv.example/docs/composants/upload.html): bj-upload-group, bj-upload
 - [Recherche](https://design.gouv.example/docs/composants/search.html): bj-search, bj-search__input, bj-search__btn
 - [Sélecteur de date](https://design.gouv.example/docs/composants/datepicker.html): bj-datepicker, bj-datepicker__input, bj-datepicker__calendar
+- [Combobox](https://design.gouv.example/docs/composants/combobox.html): bj-combobox, bj-combobox__input, bj-combobox__listbox, role="combobox", aria-autocomplete="list"
+- [Éditeur riche](https://design.gouv.example/docs/composants/rich-editor.html): bj-rich-editor, bj-rich-editor__toolbar, bj-rich-editor__content, role="textbox"
 
 ## Composants - Contenu
 
@@ -72,6 +75,8 @@ Informations clés :
 - [Tuile](https://design.gouv.example/docs/composants/tile.html): bj-tile, bj-tile__icon, bj-tile__title, bj-tile--horizontal
 - [Tableau](https://design.gouv.example/docs/composants/table.html): bj-table-wrapper, bj-table, bj-table--bordered, bj-table--striped
 - [Contenu éditorial](https://design.gouv.example/docs/composants/content.html): bj-content, typographie pour articles
+- [Skeleton](https://design.gouv.example/docs/composants/skeleton.html): bj-skeleton, bj-skeleton--text/heading/circle/rect, bj-skeleton-group, aria-busy="true"
+- [Bannière](https://design.gouv.example/docs/composants/banner.html): bj-banner, bj-banner__img, bj-banner__body, bj-banner__title, bj-banner--sm/lg/center/right/light/dark/plain
 
 ## Composants - Interactifs
 
@@ -84,6 +89,7 @@ Informations clés :
 - [Menu déroulant](https://design.gouv.example/docs/composants/dropdown.html): bj-dropdown, bj-dropdown__trigger, bj-dropdown__menu, bj-dropdown__item
 - [Bandeau défilant](https://design.gouv.example/docs/composants/marquee.html): bj-marquee, bj-marquee__track, bj-marquee__pause, aria-live
 - [Galerie d'images](https://design.gouv.example/docs/composants/gallery.html): bj-gallery, bj-gallery__item, bj-gallery--cols-2/cols-4
+- [Arborescence](https://design.gouv.example/docs/composants/treeview.html): bj-tree, bj-tree__item, bj-tree__branch, bj-tree__toggle, role="tree", role="treeitem"
 
 ## Composants - Réglementaire
 

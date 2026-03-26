@@ -1,6 +1,6 @@
 # DSBJ - Design Système du Bénin - Documentation complète
 
-> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 40 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
+> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 46 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
 
 ## Informations générales
 
@@ -198,6 +198,25 @@ Classes : `bj-tag`, `bj-tag--action`, `bj-tag--info`, `bj-tag--success`, `bj-tag
 <div class="bj-tags">
   <span class="bj-tag bj-tag--info">Info</span>
   <span class="bj-tag bj-tag--success">Succès</span>
+</div>
+```
+
+### Avatar
+
+Classes : `bj-avatar`, `bj-avatar--sm`, `bj-avatar--lg`, `bj-avatar--xl`, `bj-avatar--square`, `bj-avatar__img`, `bj-avatar__initials`, `bj-avatar__icon`, `bj-avatar__status`, `bj-avatar__status--online`, `bj-avatar__status--away`, `bj-avatar__status--busy`, `bj-avatar__status--offline`, `bj-avatar-group`
+ARIA : `alt` sur img, `aria-hidden="true"` si avatar décoratif
+
+```html
+<div class="bj-avatar">
+  <img class="bj-avatar__img" src="photo.jpg" alt="Nom de la personne" />
+  <span class="bj-avatar__status bj-avatar__status--online"></span>
+</div>
+<div class="bj-avatar">
+  <span class="bj-avatar__initials">AB</span>
+</div>
+<div class="bj-avatar-group">
+  <div class="bj-avatar bj-avatar--sm"><img class="bj-avatar__img" src="a.jpg" alt="Alice" /></div>
+  <div class="bj-avatar bj-avatar--sm"><img class="bj-avatar__img" src="b.jpg" alt="Bob" /></div>
 </div>
 ```
 
@@ -599,6 +618,66 @@ Classes : `bj-gallery`, `bj-gallery__item`, `bj-gallery__img`, `bj-gallery__capt
 </div>
 ```
 
+### Skeleton (Placeholder de chargement)
+
+Classes : `bj-skeleton`, `bj-skeleton--text`, `bj-skeleton--heading`, `bj-skeleton--circle`, `bj-skeleton--rect`, `bj-skeleton--sm`, `bj-skeleton--lg`, `bj-skeleton-group`
+ARIA : `aria-busy="true"` sur le conteneur, `aria-hidden="true"` sur les skeletons
+
+```html
+<div class="bj-skeleton-group" aria-busy="true" aria-hidden="true">
+  <div class="bj-skeleton bj-skeleton--rect"></div>
+  <div class="bj-skeleton bj-skeleton--heading"></div>
+  <div class="bj-skeleton bj-skeleton--text"></div>
+  <div class="bj-skeleton bj-skeleton--text" style="width: 80%"></div>
+</div>
+```
+
+### Bannière (Banner)
+
+Classes : `bj-banner`, `bj-banner__img`, `bj-banner__overlay`, `bj-banner__body`, `bj-banner__title`, `bj-banner__text`, `bj-banner__actions`, `bj-banner--sm`, `bj-banner--lg`, `bj-banner--center`, `bj-banner--right`, `bj-banner--light`, `bj-banner--dark`, `bj-banner--plain`, `bj-banner--green`, `bj-banner--yellow`, `bj-banner--red`
+
+```html
+<div class="bj-banner bj-banner--dark">
+  <img class="bj-banner__img" src="hero.jpg" alt="" />
+  <div class="bj-banner__overlay"></div>
+  <div class="bj-banner__body">
+    <h1 class="bj-banner__title">Bienvenue sur le portail</h1>
+    <p class="bj-banner__text">Accédez à vos démarches en ligne.</p>
+    <div class="bj-banner__actions">
+      <a href="#" class="bj-btn">Commencer</a>
+      <a href="#" class="bj-btn bj-btn--secondary">En savoir plus</a>
+    </div>
+  </div>
+</div>
+```
+
+### Arborescence (Treeview)
+
+Classes : `bj-tree`, `bj-tree__item`, `bj-tree__item-content`, `bj-tree__branch`, `bj-tree__toggle`, `bj-tree__toggle-spacer`, `bj-tree__label`, `bj-tree__icon`, `bj-tree__checkbox`, `bj-tree--checkbox`, `bj-tree--compact`
+ARIA : `role="tree"`, `role="treeitem"`, `role="group"`, `aria-expanded`
+JS : `data-bj-tree-toggle`
+
+```html
+<ul class="bj-tree" role="tree">
+  <li class="bj-tree__item" role="treeitem">
+    <div class="bj-tree__item-content">
+      <button type="button" class="bj-tree__toggle" data-bj-tree-toggle aria-expanded="true">
+        <i class="ri-arrow-right-s-line" aria-hidden="true"></i>
+      </button>
+      <span class="bj-tree__label">Dossier</span>
+    </div>
+    <ul class="bj-tree__branch" role="group">
+      <li class="bj-tree__item" role="treeitem">
+        <div class="bj-tree__item-content">
+          <span class="bj-tree__toggle-spacer"></span>
+          <span class="bj-tree__label">Fichier</span>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+```
+
 ### Consentement (RGPD)
 
 Classes : `bj-consent-banner`, `bj-consent-banner__body`, `bj-consent-banner__header`, `bj-consent-banner__title`, `bj-consent-banner__text`, `bj-consent-banner__actions`, `bj-consent-manager`, `bj-consent-manager__dialog`, `bj-consent-manager__header`, `bj-consent-manager__body`, `bj-consent-manager__footer`, `bj-consent-service`, `bj-consent-service__name`, `bj-consent-service__desc`, `bj-consent-service__toggle`
@@ -616,6 +695,77 @@ Classes : `bj-consent-banner`, `bj-consent-banner__body`, `bj-consent-banner__he
       <button type="button" class="bj-btn bj-btn--tertiary" data-bj-consent-customize>Personnaliser</button>
     </div>
   </div>
+</div>
+```
+
+### Combobox (Autocomplétion)
+
+Classes : `bj-combobox`, `bj-combobox__input-wrap`, `bj-combobox__input`, `bj-combobox__icon`, `bj-combobox__listbox`, `bj-combobox__option`, `bj-combobox__option--active`, `bj-combobox__no-results`, `bj-combobox--open`, `bj-combobox--error`
+ARIA : `role="combobox"`, `aria-expanded`, `aria-autocomplete="list"`, `aria-haspopup="listbox"`, `aria-controls`, `aria-activedescendant`, `role="listbox"`, `role="option"`, `aria-selected`, `aria-disabled`
+
+```html
+<div class="bj-combobox">
+  <label class="bj-label" for="ville">Ville</label>
+  <p class="bj-hint">Tapez pour filtrer</p>
+  <div class="bj-combobox__input-wrap">
+    <input class="bj-combobox__input" type="text" id="ville" role="combobox" autocomplete="off" aria-expanded="false" aria-autocomplete="list" aria-haspopup="listbox" aria-controls="ville-list" />
+    <i class="ri-arrow-down-s-line bj-combobox__icon" aria-hidden="true"></i>
+  </div>
+  <ul id="ville-list" class="bj-combobox__listbox" role="listbox">
+    <li class="bj-combobox__option" role="option">Cotonou</li>
+    <li class="bj-combobox__option" role="option">Porto-Novo</li>
+    <li class="bj-combobox__option" role="option">Parakou</li>
+  </ul>
+</div>
+```
+
+Variante select custom avec recherche :
+
+```html
+<div class="bj-select-custom">
+  <button type="button" class="bj-select-custom__trigger" aria-haspopup="listbox" aria-expanded="false">
+    Choisir une ville <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+  </button>
+  <div class="bj-select-custom__panel">
+    <input class="bj-select-custom__search" type="text" placeholder="Rechercher..." aria-label="Rechercher" />
+    <ul class="bj-select-custom__listbox" role="listbox">
+      <li class="bj-select-custom__option" role="option">Cotonou</li>
+      <li class="bj-select-custom__option" role="option">Porto-Novo</li>
+    </ul>
+  </div>
+</div>
+```
+
+### Éditeur riche (Rich Editor)
+
+Classes : `bj-rich-editor`, `bj-rich-editor--disabled`, `bj-rich-editor__toolbar`, `bj-rich-editor__toolbar-group`, `bj-rich-editor__toolbar-separator`, `bj-rich-editor__toolbar-btn`, `bj-rich-editor__toolbar-btn--active`, `bj-rich-editor__toolbar-select`, `bj-rich-editor__color-picker`, `bj-rich-editor__content`
+ARIA : `role="toolbar"` + `aria-label` sur la barre d'outils, `role="textbox"` + `aria-multiline="true"` sur la zone de contenu, `aria-label` sur chaque bouton
+Outils disponibles : heading, bold, italic, underline, strikethrough, unorderedList, orderedList, indent, outdent, alignLeft, alignCenter, alignRight, alignJustify, link, unlink, image, video, table, blockquote, codeBlock, removeFormat, textColor, bgColor, horizontalRule, undo, redo
+
+```html
+<div class="bj-rich-editor">
+  <div class="bj-rich-editor__toolbar" role="toolbar" aria-label="Éditeur de texte riche">
+    <div class="bj-rich-editor__toolbar-group">
+      <select class="bj-rich-editor__toolbar-select" aria-label="Style de bloc">
+        <option value="p">Paragraphe</option>
+        <option value="h1">Titre 1</option>
+        <option value="h2">Titre 2</option>
+        <option value="h3">Titre 3</option>
+      </select>
+    </div>
+    <div class="bj-rich-editor__toolbar-separator" aria-hidden="true"></div>
+    <div class="bj-rich-editor__toolbar-group">
+      <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Gras"><i class="ri-bold" aria-hidden="true"></i></button>
+      <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Italique"><i class="ri-italic" aria-hidden="true"></i></button>
+      <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Souligné"><i class="ri-underline" aria-hidden="true"></i></button>
+    </div>
+    <div class="bj-rich-editor__toolbar-separator" aria-hidden="true"></div>
+    <div class="bj-rich-editor__toolbar-group">
+      <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Liste à puces"><i class="ri-list-unordered" aria-hidden="true"></i></button>
+      <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Liste numérotée"><i class="ri-list-ordered" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <div class="bj-rich-editor__content" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Éditeur de texte riche" data-placeholder="Saisissez votre contenu..."></div>
 </div>
 ```
 

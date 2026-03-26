@@ -43,8 +43,9 @@
 [ ] 15. Doc — sidebar dans navigation.ts
 [ ] 16. Doc — entrée dans searchIndex.ts
 [ ] 17. Doc — clés i18n dans fr.json et en.json
-[ ] 18. Tests — tests Vitest
-[ ] 19. Vérification — build + tests
+[ ] 18. MCP — données composant + fichiers llms
+[ ] 19. Tests — tests Vitest
+[ ] 20. Vérification — build + tests
 ```
 
 ---

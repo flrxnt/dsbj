@@ -648,6 +648,82 @@ export const COMPONENTS: ComponentData[] = [
 </ul>`,
   },
   {
+    name: 'Bannière',
+    slug: 'banner',
+    category: 'Contenu',
+    description: 'Section héro avec image de fond, overlay, titre, texte et actions. Variantes de taille, alignement et teinte.',
+    classes: ['bj-banner', 'bj-banner__img', 'bj-banner__overlay', 'bj-banner__body', 'bj-banner__title', 'bj-banner__text', 'bj-banner__actions', 'bj-banner--sm', 'bj-banner--lg', 'bj-banner--center', 'bj-banner--right', 'bj-banner--light', 'bj-banner--dark', 'bj-banner--plain', 'bj-banner--green', 'bj-banner--yellow', 'bj-banner--red'],
+    aria: ['role="img" aria-hidden="true" (image de fond décorative)'],
+    jsHooks: [],
+    markup: `<div class="bj-banner bj-banner--dark">
+  <img class="bj-banner__img" src="hero.jpg" alt="" />
+  <div class="bj-banner__overlay"></div>
+  <div class="bj-banner__body">
+    <h1 class="bj-banner__title">Bienvenue sur le portail</h1>
+    <p class="bj-banner__text">Accédez à vos démarches en ligne.</p>
+    <div class="bj-banner__actions">
+      <a href="#" class="bj-btn">Commencer</a>
+      <a href="#" class="bj-btn bj-btn--secondary">En savoir plus</a>
+    </div>
+  </div>
+</div>`,
+  },
+  {
+    name: 'Combobox',
+    slug: 'combobox',
+    category: 'Formulaires',
+    description: 'Champ de saisie avec autocomplétion et liste déroulante filtrable. Variante select custom avec recherche.',
+    classes: ['bj-combobox', 'bj-combobox__input-wrap', 'bj-combobox__input', 'bj-combobox__icon', 'bj-combobox__listbox', 'bj-combobox__option', 'bj-combobox__option--active', 'bj-combobox__no-results', 'bj-combobox--open', 'bj-combobox--error', 'bj-select-custom', 'bj-select-custom__trigger', 'bj-select-custom__panel', 'bj-select-custom__search', 'bj-select-custom__listbox', 'bj-select-custom__option', 'bj-select-custom__no-results', 'bj-select-custom--open'],
+    aria: ['role="combobox"', 'aria-expanded', 'aria-autocomplete="list"', 'aria-haspopup="listbox"', 'aria-controls', 'aria-activedescendant', 'aria-invalid', 'aria-describedby', 'role="listbox"', 'role="option"', 'aria-selected', 'aria-disabled'],
+    jsHooks: [],
+    markup: `<div class="bj-combobox">
+  <label class="bj-label" for="ville">Ville</label>
+  <p class="bj-hint">Tapez pour filtrer</p>
+  <div class="bj-combobox__input-wrap">
+    <input class="bj-combobox__input" type="text" id="ville" role="combobox" autocomplete="off" aria-expanded="false" aria-autocomplete="list" aria-haspopup="listbox" aria-controls="ville-list" />
+    <i class="ri-arrow-down-s-line bj-combobox__icon" aria-hidden="true"></i>
+  </div>
+  <ul id="ville-list" class="bj-combobox__listbox" role="listbox">
+    <li class="bj-combobox__option" role="option">Cotonou</li>
+    <li class="bj-combobox__option" role="option">Porto-Novo</li>
+    <li class="bj-combobox__option" role="option">Parakou</li>
+  </ul>
+</div>`,
+  },
+  {
+    name: 'Éditeur riche',
+    slug: 'rich-editor',
+    category: 'Formulaires',
+    description: 'Éditeur de texte riche WYSIWYG avec barre d\'outils configurable : formatage, listes, liens, images, tableaux, code.',
+    classes: ['bj-rich-editor', 'bj-rich-editor--disabled', 'bj-rich-editor__toolbar', 'bj-rich-editor__toolbar-group', 'bj-rich-editor__toolbar-separator', 'bj-rich-editor__toolbar-btn', 'bj-rich-editor__toolbar-btn--active', 'bj-rich-editor__toolbar-select', 'bj-rich-editor__color-picker', 'bj-rich-editor__content'],
+    aria: ['role="toolbar" aria-label="Éditeur de texte riche" (barre d\'outils)', 'role="textbox" aria-multiline="true" (zone de contenu)', 'aria-label (sur chaque bouton d\'outil)'],
+    jsHooks: [],
+    markup: `<div class="bj-rich-editor">
+  <div class="bj-rich-editor__toolbar" role="toolbar" aria-label="Éditeur de texte riche">
+    <div class="bj-rich-editor__toolbar-group">
+      <select class="bj-rich-editor__toolbar-select" aria-label="Style de bloc">
+        <option value="p">Paragraphe</option>
+        <option value="h1">Titre 1</option>
+        <option value="h2">Titre 2</option>
+        <option value="h3">Titre 3</option>
+      </select>
+    </div>
+    <div class="bj-rich-editor__toolbar-separator" aria-hidden="true"></div>
+    <div class="bj-rich-editor__toolbar-group">
+      <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Gras"><i class="ri-bold" aria-hidden="true"></i></button>
+      <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Italique"><i class="ri-italic" aria-hidden="true"></i></button>
+      <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Souligné"><i class="ri-underline" aria-hidden="true"></i></button>
+    </div>
+    <div class="bj-rich-editor__toolbar-separator" aria-hidden="true"></div>
+    <div class="bj-rich-editor__toolbar-group">
+      <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Liste à puces"><i class="ri-list-unordered" aria-hidden="true"></i></button>
+      <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Liste numérotée"><i class="ri-list-ordered" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <div class="bj-rich-editor__content" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Éditeur de texte riche" data-placeholder="Saisissez votre contenu..."></div>
+</div>`,
+  },
+  {
     name: 'Consentement',
     slug: 'consent',
     category: 'Réglementaire',
