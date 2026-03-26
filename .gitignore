@@ -10,4 +10,5 @@ docs/.vite-ssg-temp/
 *.tsbuildinfo
 .cursor/*
 !.cursor/rules/
+!.cursor/workflows/
 !.cursor/mcp.json
