@@ -4,6 +4,17 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.3.5] - 2026-03-26
+
+### Modifié
+
+- Refactor DocsCard and HomePage components, update styles and color tokens
+- Update dependencies and package configurations
+- Update GitHub Actions workflows to improve dependency installation and audit processes
+- Update GitHub Actions workflows for improved security audits and dependency management
+- Enhance security and functionality of Rich Editor components
+- Update .gitignore to include workflows directory
+
 ## [1.3.4] - 2026-03-26
 
 ### Ajouté
