@@ -4,6 +4,23 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.4.0] - 2026-03-27
+
+### Ajouté
+
+- add 404 page to the docs
+
+### Modifié
+
+- Update package.json for improved build process and module imports
+- Prompts pour maj/modification des composants
+- Initialisation du serveur mcp
+
+### Corrigé
+
+- fix docs errors
+- fix mcp build errors
+
 ## [1.3.5] - 2026-03-26
 
 ### Modifié
