@@ -68,6 +68,7 @@ function toggleService(id: string) {
     v-if="visible"
     class="bj-consent-banner"
     data-bj-consent-banner
+    data-bj-expanded
     role="dialog"
     aria-label="Consentement aux cookies"
   >

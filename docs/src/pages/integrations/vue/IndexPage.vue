@@ -12,6 +12,7 @@ const { t } = useI18n({
       'section-content': 'Contenu',
       'section-interactive': 'Interactifs',
       'section-nav': 'Navigation',
+      'section-dashboard': 'Dashboard',
     },
     en: {
       title: 'Vue 3',
@@ -21,6 +22,7 @@ const { t } = useI18n({
       'section-content': 'Content',
       'section-interactive': 'Interactive',
       'section-nav': 'Navigation',
+      'section-dashboard': 'Dashboard',
     },
   },
 })
@@ -90,5 +92,13 @@ const { t } = useI18n({
     <DocsCard to="/integrations/vue/sidemenu" icon="ri-menu-unfold-line" title="BjSidemenu" description="Menu latéral et sous-menus." />
     <DocsCard to="/integrations/vue/navigation" icon="ri-compass-3-line" title="BjNavigation" description="Liste de navigation principale." />
     <DocsCard to="/integrations/vue/skiplink" icon="ri-skip-forward-line" title="BjSkiplink" description="Liens d'évitement." />
+  </div>
+
+  <h2 class="bj-h3" style="margin-top: var(--bj-spacing-8v)">{{ t('section-dashboard') }}</h2>
+  <div class="docs-cards">
+    <DocsCard to="/integrations/vue/dashboard-sidebar" icon="ri-layout-left-line" title="BjDashboardSidebar" description="Barre latérale de navigation dashboard." />
+    <DocsCard to="/integrations/vue/chart-bar" icon="ri-bar-chart-2-line" title="BjChartBar" description="Graphique en barres." />
+    <DocsCard to="/integrations/vue/chart-line" icon="ri-line-chart-line" title="BjChartLine" description="Graphique en lignes." />
+    <DocsCard to="/integrations/vue/chart-pie" icon="ri-pie-chart-2-line" title="BjChartPie" description="Graphique camembert / donut." />
   </div>
 </template>

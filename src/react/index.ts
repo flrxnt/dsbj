@@ -65,6 +65,15 @@ export { BjRichEditor } from './components/BjRichEditor'
 // Regulatory
 export { BjConsent } from './components/BjConsent'
 
+// Dashboard
+export { BjDashboardSidebar } from './components/BjDashboardSidebar'
+
+// Charts
+export { BjChart } from './components/BjChart'
+export { BjChartBar } from './components/BjChartBar'
+export { BjChartLine } from './components/BjChartLine'
+export { BjChartPie } from './components/BjChartPie'
+
 // Hooks
 export { useModal } from './hooks/useModal'
 export { useToast } from './hooks/useToast'

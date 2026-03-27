@@ -85,6 +85,10 @@ export const searchIndex: SearchEntry[] = [
   // Composants - Réglementaire
   { label: 'Consentement', path: '/composants/consent', section: 'Composants', keywords: ['consent', 'cookies', 'rgpd', 'bj-consent'] },
 
+  // Composants - Dashboard
+  { label: 'Dashboard Sidebar', path: '/composants/dashboard-sidebar', section: 'Composants', keywords: ['dashboard', 'sidebar', 'navigation', 'tableau de bord', 'bj-dashboard-sidebar'] },
+  { label: 'Charts', path: '/composants/chart', section: 'Composants', keywords: ['chart', 'graphique', 'bar', 'line', 'pie', 'bj-chart'] },
+
   // Intégrations Vue
   { label: 'BjButton', path: '/integrations/vue/button', section: 'Vue', keywords: ['bouton', 'button', 'vue', 'BjButton'] },
   { label: 'BjLink', path: '/integrations/vue/link', section: 'Vue', keywords: ['lien', 'link', 'vue', 'BjLink'] },
@@ -131,6 +135,10 @@ export const searchIndex: SearchEntry[] = [
   { label: 'BjNavigation', path: '/integrations/vue/navigation', section: 'Vue', keywords: ['navigation', 'vue', 'BjNavigation'] },
   { label: 'BjSkiplink', path: '/integrations/vue/skiplink', section: 'Vue', keywords: ['skiplink', 'vue', 'BjSkiplink'] },
   { label: 'BjRichEditor', path: '/integrations/vue/rich-editor', section: 'Vue', keywords: ['rich-editor', 'wysiwyg', 'éditeur', 'vue', 'BjRichEditor'] },
+  { label: 'BjDashboardSidebar', path: '/integrations/vue/dashboard-sidebar', section: 'Vue', keywords: ['dashboard', 'sidebar', 'vue', 'BjDashboardSidebar'] },
+  { label: 'BjChartBar', path: '/integrations/vue/chart-bar', section: 'Vue', keywords: ['chart', 'bar', 'graphique', 'vue', 'BjChartBar'] },
+  { label: 'BjChartLine', path: '/integrations/vue/chart-line', section: 'Vue', keywords: ['chart', 'line', 'graphique', 'vue', 'BjChartLine'] },
+  { label: 'BjChartPie', path: '/integrations/vue/chart-pie', section: 'Vue', keywords: ['chart', 'pie', 'camembert', 'vue', 'BjChartPie'] },
 
   // Intégrations React
   { label: 'BjButton', path: '/integrations/react/button', section: 'React', keywords: ['bouton', 'button', 'react', 'BjButton'] },
@@ -173,6 +181,16 @@ export const searchIndex: SearchEntry[] = [
   { label: 'BjStepper', path: '/integrations/react/stepper', section: 'React', keywords: ['stepper', 'react', 'BjStepper'] },
   { label: 'BjBanner', path: '/integrations/react/banner', section: 'React', keywords: ['banner', 'react', 'BjBanner'] },
   { label: 'BjRichEditor', path: '/integrations/react/rich-editor', section: 'React', keywords: ['rich-editor', 'wysiwyg', 'éditeur', 'react', 'BjRichEditor'] },
+  { label: 'BjLogo', path: '/integrations/react/logo', section: 'React', keywords: ['logo', 'react', 'BjLogo'] },
+  { label: 'BjNavigation', path: '/integrations/react/navigation', section: 'React', keywords: ['navigation', 'react', 'BjNavigation'] },
+  { label: 'BjSidemenu', path: '/integrations/react/sidemenu', section: 'React', keywords: ['sidemenu', 'react', 'BjSidemenu'] },
+  { label: 'BjSkiplink', path: '/integrations/react/skiplink', section: 'React', keywords: ['skiplink', 'react', 'BjSkiplink'] },
+  { label: 'BjSummary', path: '/integrations/react/summary', section: 'React', keywords: ['summary', 'sommaire', 'react', 'BjSummary'] },
+  { label: 'BjContent', path: '/integrations/react/content', section: 'React', keywords: ['content', 'éditorial', 'react', 'BjContent'] },
+  { label: 'BjDashboardSidebar', path: '/integrations/react/dashboard-sidebar', section: 'React', keywords: ['dashboard', 'sidebar', 'react', 'BjDashboardSidebar'] },
+  { label: 'BjChartBar', path: '/integrations/react/chart-bar', section: 'React', keywords: ['chart', 'bar', 'graphique', 'react', 'BjChartBar'] },
+  { label: 'BjChartLine', path: '/integrations/react/chart-line', section: 'React', keywords: ['chart', 'line', 'graphique', 'react', 'BjChartLine'] },
+  { label: 'BjChartPie', path: '/integrations/react/chart-pie', section: 'React', keywords: ['chart', 'pie', 'camembert', 'react', 'BjChartPie'] },
 
   // Modèles
   { label: 'Page d\'accueil', path: '/modeles/page-accueil', section: 'Modèles', keywords: ['template', 'modèle', 'accueil', 'home'] },

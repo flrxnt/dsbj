@@ -119,6 +119,7 @@ export function BjConsent({
         <div
           className={['bj-consent-banner', className].filter(Boolean).join(' ')}
           data-bj-consent-banner
+          data-bj-expanded=""
           role="dialog"
           aria-label="Consentement aux cookies"
           {...rest}

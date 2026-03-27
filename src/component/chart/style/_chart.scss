@@ -1,0 +1,226 @@
+.bj-chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bj-spacing-3v);
+  padding: var(--bj-spacing-4v);
+  background-color: var(--bj-bg-elevated);
+  border-radius: var(--bj-radius-md);
+  border: 1px solid var(--bj-border-subtle);
+}
+
+.bj-chart__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--bj-spacing-3v);
+}
+
+.bj-chart__title {
+  font-size: var(--bj-fs-md);
+  font-weight: var(--bj-fw-bold);
+  color: var(--bj-text-title);
+}
+
+.bj-chart__subtitle {
+  font-size: var(--bj-fs-sm);
+  color: var(--bj-text-alt);
+}
+
+.bj-chart__body {
+  position: relative;
+  width: 100%;
+  min-height: 12rem;
+}
+
+.bj-chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bj-spacing-3v);
+  font-size: var(--bj-fs-xs);
+  color: var(--bj-text-alt);
+}
+
+.bj-chart__legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--bj-spacing-1v);
+}
+
+.bj-chart__legend-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+// Bar chart
+.bj-chart-bar {
+  display: flex;
+  align-items: stretch;
+  gap: var(--bj-spacing-2v);
+  height: 100%;
+  min-height: 12rem;
+  padding-top: var(--bj-spacing-2v);
+
+  &--horizontal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--bj-spacing-1v5);
+  }
+}
+
+.bj-chart-bar__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--bj-spacing-1v);
+  flex: 1;
+  min-width: 0;
+}
+
+.bj-chart-bar__value {
+  font-size: var(--bj-fs-xs);
+  font-weight: var(--bj-fw-semibold);
+  color: var(--bj-text-title);
+  flex-shrink: 0;
+}
+
+.bj-chart-bar__bar-area {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
+}
+
+.bj-chart-bar__bar {
+  width: 100%;
+  max-width: 3rem;
+  min-height: 0.25rem;
+  border-radius: var(--bj-radius-sm) var(--bj-radius-sm) 0 0;
+  background-color: var(--bj-action-high);
+  transition: height var(--bj-duration-moderate) var(--bj-easing);
+}
+
+.bj-chart-bar__label {
+  font-size: var(--bj-fs-xs);
+  color: var(--bj-text-alt);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+
+// Horizontal variant rows
+.bj-chart-bar__row {
+  display: flex;
+  align-items: center;
+  gap: var(--bj-spacing-2v);
+  width: 100%;
+}
+
+.bj-chart-bar__track {
+  flex: 1;
+  height: 1.5rem;
+  background-color: var(--bj-bg-alt);
+  border-radius: var(--bj-radius-sm);
+  overflow: hidden;
+}
+
+.bj-chart-bar__fill {
+  height: 100%;
+  border-radius: var(--bj-radius-sm);
+  background-color: var(--bj-action-high);
+  transition: width var(--bj-duration-moderate) var(--bj-easing);
+}
+
+// Line chart
+.bj-chart-line {
+  position: relative;
+  width: 100%;
+  min-height: 12rem;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.bj-chart-line__path {
+  fill: none;
+  stroke: var(--bj-action-high);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bj-chart-line__area {
+  opacity: 0.1;
+  fill: var(--bj-action-high);
+}
+
+.bj-chart-line__dot {
+  fill: var(--bj-bg-elevated);
+  stroke: var(--bj-action-high);
+  stroke-width: 2;
+  r: 4;
+  transition: r var(--bj-duration-fast) var(--bj-easing);
+
+  &:hover { r: 6; }
+}
+
+.bj-chart-line__grid {
+  stroke: var(--bj-border-subtle);
+  stroke-dasharray: 4 4;
+}
+
+.bj-chart-line__axis {
+  font-size: var(--bj-fs-xs);
+  fill: var(--bj-text-alt);
+}
+
+// Pie chart
+.bj-chart-pie {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 12rem;
+
+  svg {
+    display: block;
+    width: 100%;
+    max-width: 16rem;
+    height: auto;
+  }
+}
+
+.bj-chart-pie__slice {
+  transition: opacity var(--bj-duration-fast) var(--bj-easing);
+  cursor: default;
+
+  &:hover { opacity: 0.8; }
+}
+
+.bj-chart-pie__label {
+  font-size: var(--bj-fs-xs);
+  fill: var(--bj-bg-elevated);
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.bj-chart-pie--donut .bj-chart-pie__center {
+  fill: var(--bj-bg-elevated);
+}
+
+.bj-chart-pie__center-text {
+  font-size: var(--bj-fs-lg);
+  font-weight: var(--bj-fw-bold);
+  fill: var(--bj-text-title);
+  text-anchor: middle;
+  dominant-baseline: central;
+}

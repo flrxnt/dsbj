@@ -743,4 +743,106 @@ export const COMPONENTS: ComponentData[] = [
   </div>
 </div>`,
   },
+  {
+    name: 'Dashboard Sidebar',
+    slug: 'dashboard-sidebar',
+    category: 'Navigation',
+    description: 'Barre latérale de navigation pour tableaux de bord avec sections, liens dépliables et mode compact.',
+    classes: ['bj-dashboard-sidebar', 'bj-dashboard-sidebar--compact', 'bj-dashboard-sidebar__brand', 'bj-dashboard-sidebar__brand-img', 'bj-dashboard-sidebar__brand-text', 'bj-dashboard-sidebar__nav', 'bj-dashboard-sidebar__section', 'bj-dashboard-sidebar__section-title', 'bj-dashboard-sidebar__list', 'bj-dashboard-sidebar__item', 'bj-dashboard-sidebar__link', 'bj-dashboard-sidebar__link--active', 'bj-dashboard-sidebar__link-icon', 'bj-dashboard-sidebar__link-label', 'bj-dashboard-sidebar__btn', 'bj-dashboard-sidebar__sublist', 'bj-dashboard-sidebar__footer'],
+    aria: ['aria-label="Navigation du tableau de bord"', 'aria-current="page"', 'aria-expanded', 'aria-controls'],
+    jsHooks: [],
+    markup: `<aside class="bj-dashboard-sidebar" aria-label="Navigation du tableau de bord">
+  <a href="/" class="bj-dashboard-sidebar__brand">
+    <img class="bj-dashboard-sidebar__brand-img" src="/logo.svg" alt="">
+    <span class="bj-dashboard-sidebar__brand-text">Mon App</span>
+  </a>
+  <nav class="bj-dashboard-sidebar__nav">
+    <div class="bj-dashboard-sidebar__section">
+      <p class="bj-dashboard-sidebar__section-title">Général</p>
+      <ul class="bj-dashboard-sidebar__list">
+        <li class="bj-dashboard-sidebar__item">
+          <a href="#" class="bj-dashboard-sidebar__link bj-dashboard-sidebar__link--active" aria-current="page">
+            <i class="ri-dashboard-line bj-dashboard-sidebar__link-icon" aria-hidden="true"></i>
+            <span class="bj-dashboard-sidebar__link-label">Tableau de bord</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</aside>`,
+  },
+  {
+    name: 'Chart Bar',
+    slug: 'chart-bar',
+    category: 'Contenu',
+    description: 'Graphique en barres verticales ou horizontales en SVG natif.',
+    classes: ['bj-chart', 'bj-chart__header', 'bj-chart__title', 'bj-chart__subtitle', 'bj-chart__body', 'bj-chart__legend', 'bj-chart__legend-item', 'bj-chart__legend-dot', 'bj-chart-bar', 'bj-chart-bar--horizontal', 'bj-chart-bar__col', 'bj-chart-bar__bar-area', 'bj-chart-bar__bar', 'bj-chart-bar__label', 'bj-chart-bar__value', 'bj-chart-bar__row', 'bj-chart-bar__track', 'bj-chart-bar__fill'],
+    aria: ['role="img"', 'aria-label'],
+    jsHooks: [],
+    markup: `<div class="bj-chart">
+  <div class="bj-chart__header">
+    <h3 class="bj-chart__title">Ventes mensuelles</h3>
+  </div>
+  <div class="bj-chart__body">
+    <div class="bj-chart-bar" role="img" aria-label="Graphique barres des ventes">
+      <div class="bj-chart-bar__col">
+        <div class="bj-chart-bar__value">120</div>
+        <div class="bj-chart-bar__bar-area">
+          <div class="bj-chart-bar__bar" style="height: 60%"></div>
+        </div>
+        <div class="bj-chart-bar__label">Jan</div>
+      </div>
+      <div class="bj-chart-bar__col">
+        <div class="bj-chart-bar__value">200</div>
+        <div class="bj-chart-bar__bar-area">
+          <div class="bj-chart-bar__bar" style="height: 100%"></div>
+        </div>
+        <div class="bj-chart-bar__label">Fév</div>
+      </div>
+    </div>
+  </div>
+</div>`,
+  },
+  {
+    name: 'Chart Line',
+    slug: 'chart-line',
+    category: 'Contenu',
+    description: 'Graphique en lignes avec points et aire optionnelle en SVG natif.',
+    classes: ['bj-chart', 'bj-chart-line', 'bj-chart-line__path', 'bj-chart-line__area', 'bj-chart-line__dot', 'bj-chart-line__grid', 'bj-chart-line__axis'],
+    aria: ['role="img"', 'aria-label'],
+    jsHooks: [],
+    markup: `<div class="bj-chart">
+  <div class="bj-chart__header">
+    <h3 class="bj-chart__title">Évolution</h3>
+  </div>
+  <div class="bj-chart__body">
+    <div class="bj-chart-line" role="img" aria-label="Graphique ligne évolution">
+      <svg viewBox="0 0 300 150">
+        <polyline class="bj-chart-line__path" points="0,120 75,80 150,100 225,40 300,60" />
+      </svg>
+    </div>
+  </div>
+</div>`,
+  },
+  {
+    name: 'Chart Pie',
+    slug: 'chart-pie',
+    category: 'Contenu',
+    description: 'Graphique camembert ou donut en SVG natif.',
+    classes: ['bj-chart', 'bj-chart-pie', 'bj-chart-pie--donut', 'bj-chart-pie__slice', 'bj-chart-pie__label', 'bj-chart-pie__center', 'bj-chart-pie__center-text'],
+    aria: ['role="img"', 'aria-label'],
+    jsHooks: [],
+    markup: `<div class="bj-chart">
+  <div class="bj-chart__header">
+    <h3 class="bj-chart__title">Répartition</h3>
+  </div>
+  <div class="bj-chart__body">
+    <div class="bj-chart-pie" role="img" aria-label="Graphique camembert répartition">
+      <svg viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="80" fill="none" stroke="var(--bj-action-high)" stroke-width="40" stroke-dasharray="251 503" transform="rotate(-90 100 100)" />
+      </svg>
+    </div>
+  </div>
+</div>`,
+  },
 ];

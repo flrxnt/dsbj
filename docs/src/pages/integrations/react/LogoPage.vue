@@ -1,0 +1,94 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import DocsCode from '@docs/components/DocsCode.vue'
+import DocsPreview from '@docs/components/DocsPreview.vue'
+import DocsSection from '@docs/components/DocsSection.vue'
+import DocsPropsTable from '@docs/components/DocsPropsTable.vue'
+
+const { t } = useI18n({
+  messages: {
+    fr: {
+      title: 'BjLogo',
+      desc: 'Bloc logo institutionnel React : taille, lien, image, devise, tagline et contenu enfant.',
+      'section-usage': 'Utilisation',
+      'section-preview': 'Aperçu',
+      'section-props': 'Props',
+      'prop-size': 'md (défaut), lg ou xl.',
+      'prop-href': 'Si défini, enveloppe le sigle dans un lien.',
+      'prop-motto': 'Courte devise sous le bloc.',
+      'prop-tagline': 'Sous-ligne descriptive.',
+      'prop-src': 'URL de l\'image du sigle.',
+      'prop-alt': 'Texte alternatif de l\'image (défaut : « Logo »).',
+      'prop-children': 'Contenu à la place de l\'image si src est absent.',
+      'logo-line1': 'République',
+      'logo-line2': 'du Bénin',
+      'logo-tagline': 'Portail des démarches',
+    },
+    en: {
+      title: 'BjLogo',
+      desc: 'React institutional logo block: size, link, image, motto, tagline, and children content.',
+      'section-usage': 'Usage',
+      'section-preview': 'Preview',
+      'section-props': 'Props',
+      'prop-size': 'md (default), lg, or xl.',
+      'prop-href': 'When set, wraps the mark in a link.',
+      'prop-motto': 'Short motto below the block.',
+      'prop-tagline': 'Descriptive subline.',
+      'prop-src': 'Coat of arms or mark image URL.',
+      'prop-alt': 'Image alt text (default: "Logo").',
+      'prop-children': 'Content instead of the image when src is omitted.',
+      'logo-line1': 'Republic',
+      'logo-line2': 'of Benin',
+      'logo-tagline': 'Procedures portal',
+    },
+  },
+})
+
+const codeUsage = `import { BjLogo } from '@flrxnt/dsbj/react'
+
+export function Example() {
+  return (
+    <BjLogo
+      size="md"
+      href="/"
+      src="/sigle.svg"
+      alt="République du Bénin"
+      tagline="Portail des démarches"
+    />
+  )
+}`
+
+const propsRows = computed(() => [
+  { name: 'size', description: t('prop-size') },
+  { name: 'href', description: t('prop-href') },
+  { name: 'motto', description: t('prop-motto') },
+  { name: 'tagline', description: t('prop-tagline') },
+  { name: 'src', description: t('prop-src') },
+  { name: 'alt', description: t('prop-alt') },
+  { name: 'children', description: t('prop-children') },
+])
+</script>
+
+<template>
+  <h1 class="bj-h1" style="margin-top: var(--bj-spacing-4v)">{{ t('title') }}</h1>
+  <p class="bj-text-lg" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc') }}</p>
+
+  <DocsSection id="react-logo-usage" :title="t('section-usage')">
+    <DocsCode :code="codeUsage" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-logo-preview" :title="t('section-preview')">
+    <DocsPreview>
+      <div class="bj-logo">
+        <img src="/sigle.svg" alt="" class="bj-logo__img">
+        <p>{{ t('logo-line1') }}<br>{{ t('logo-line2') }}</p>
+        <p class="bj-logo__tagline">{{ t('logo-tagline') }}</p>
+      </div>
+    </DocsPreview>
+  </DocsSection>
+
+  <DocsSection id="react-logo-props" :title="t('section-props')">
+    <DocsPropsTable :headers="['Prop', 'Description']" :rows="propsRows" />
+  </DocsSection>
+</template>

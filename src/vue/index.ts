@@ -65,6 +65,15 @@ export { default as BjRichEditor } from './components/BjRichEditor.vue'
 // Regulatory
 export { default as BjConsent } from './components/BjConsent.vue'
 
+// Dashboard
+export { default as BjDashboardSidebar } from './components/BjDashboardSidebar.vue'
+
+// Charts
+export { default as BjChart } from './components/BjChart.vue'
+export { default as BjChartBar } from './components/BjChartBar.vue'
+export { default as BjChartLine } from './components/BjChartLine.vue'
+export { default as BjChartPie } from './components/BjChartPie.vue'
+
 // Composables
 export { useModal } from './composables/useModal'
 export { useAccordion } from './composables/useAccordion'

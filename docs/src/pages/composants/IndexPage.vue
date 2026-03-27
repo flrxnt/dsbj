@@ -116,6 +116,13 @@ const { t } = useI18n({
       'card-consent-title': 'Consentement',
       'card-consent-desc':
         'Bandeau cookies et choix utilisateur.',
+      'sec-dashboard': 'Dashboard',
+      'card-dashboard-sidebar-title': 'Dashboard Sidebar',
+      'card-dashboard-sidebar-desc':
+        'Barre latérale de navigation pour tableaux de bord.',
+      'card-chart-title': 'Charts',
+      'card-chart-desc':
+        'Graphiques barres, lignes et camemberts en SVG natif.',
     },
     en: {
       title: 'Components',
@@ -215,6 +222,13 @@ const { t } = useI18n({
       'card-gallery-desc': 'Image grid with fullscreen viewer.',
       'card-consent-title': 'Consent',
       'card-consent-desc': 'Cookie banner and user choices.',
+      'sec-dashboard': 'Dashboard',
+      'card-dashboard-sidebar-title': 'Dashboard Sidebar',
+      'card-dashboard-sidebar-desc':
+        'Sidebar navigation for dashboards.',
+      'card-chart-title': 'Charts',
+      'card-chart-desc':
+        'Bar, line and pie charts in native SVG.',
     },
   },
 })
@@ -598,6 +612,30 @@ const { t } = useI18n({
       icon="ri-shield-check-line"
       :title="t('card-consent-title')"
       :description="t('card-consent-desc')"
+    />
+  </div>
+
+  <h2
+    class="bj-h3"
+    style="
+      margin-top: var(--bj-spacing-8v);
+      margin-bottom: var(--bj-spacing-3v);
+    "
+  >
+    {{ t('sec-dashboard') }}
+  </h2>
+  <div class="docs-cards">
+    <DocsCard
+      to="/composants/dashboard-sidebar"
+      icon="ri-layout-left-line"
+      :title="t('card-dashboard-sidebar-title')"
+      :description="t('card-dashboard-sidebar-desc')"
+    />
+    <DocsCard
+      to="/composants/chart"
+      icon="ri-bar-chart-2-line"
+      :title="t('card-chart-title')"
+      :description="t('card-chart-desc')"
     />
   </div>
 </template>

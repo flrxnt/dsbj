@@ -22,7 +22,7 @@ interface PageMeta {
 }
 
 const PAGE_DESCRIPTIONS: Record<string, PageMeta> = {
-  'index.html': { description: 'DSBJ - Le Design Système officiel de la République du Bénin. 46 composants HTML/CSS/JS accessibles pour construire des interfaces numériques gouvernementales.', priority: '1.0' },
+  'index.html': { description: 'DSBJ - Le Design Système officiel de la République du Bénin. 51 composants HTML/CSS/JS accessibles pour construire des interfaces numériques gouvernementales.', priority: '1.0' },
   'premiers-pas/index.html': { description: 'Premiers pas avec le DSBJ : présentation du Design Système du Bénin, guide de démarrage pour les équipes de développement.', priority: '0.8' },
   'premiers-pas/installation.html': { description: 'Installer le DSBJ via npm, CDN ou téléchargement. Paquet @flrxnt/dsbj avec CSS, JS ES module et UMD.', priority: '0.8' },
   'premiers-pas/utilisation.html': { description: 'Guide d\'utilisation du DSBJ : structure HTML de base, préfixe CSS bj-, thème sombre, initialisation JavaScript.', priority: '0.8' },
@@ -38,7 +38,7 @@ const PAGE_DESCRIPTIONS: Record<string, PageMeta> = {
   'fondamentaux/medias.html': { description: 'Médias dans le DSBJ : ratios d\'images responsive, intégration vidéo et bonnes pratiques.', priority: '0.5' },
   'fondamentaux/classes-utilitaires.html': { description: 'Classes utilitaires du DSBJ : espacement, couleur, texte, flexbox, affichage et accessibilité.', priority: '0.6' },
   'fondamentaux/principes.html': { description: 'Principes de conception du DSBJ : accessibilité, cohérence, sobriété numérique et identité du Bénin.', priority: '0.5' },
-  'composants/index.html': { description: 'Bibliothèque de 46 composants HTML/CSS du DSBJ : navigation, formulaires, contenu, interactifs et réglementaire.', priority: '0.8' },
+  'composants/index.html': { description: 'Bibliothèque de 51 composants HTML/CSS du DSBJ : navigation, formulaires, contenu, interactifs et réglementaire.', priority: '0.8' },
   'composants/header.html': { description: 'Composant Header du DSBJ : en-tête institutionnel avec logo République du Bénin, navigation et menu mobile.', priority: '0.6' },
   'composants/footer.html': { description: 'Composant Footer du DSBJ : pied de page avec liens légaux, partenaires et mentions.', priority: '0.6' },
   'composants/navigation.html': { description: 'Composant Navigation du DSBJ : menus et listes de liens de navigation accessibles.', priority: '0.6' },

@@ -327,6 +327,16 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('./pages/composants/RichEditorPage.vue'),
     meta: { layout: 'docs', section: 'composants', titleKey: 'route.rich-editor', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.rich-editor' }] },
   },
+  {
+    path: '/composants/dashboard-sidebar',
+    component: () => import('./pages/composants/DashboardSidebarPage.vue'),
+    meta: { layout: 'docs', section: 'composants', titleKey: 'route.dashboard-sidebar', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.dashboard-sidebar' }] },
+  },
+  {
+    path: '/composants/chart',
+    component: () => import('./pages/composants/ChartPage.vue'),
+    meta: { layout: 'docs', section: 'composants', titleKey: 'route.chart', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.chart' }] },
+  },
 
   // Intégrations
   {
@@ -565,6 +575,26 @@ export const routes: RouteRecordRaw[] = [
     meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-rich-editor', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.rich-editor' }] },
   },
   {
+    path: '/integrations/vue/dashboard-sidebar',
+    component: () => import('./pages/integrations/vue/DashboardSidebarPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-dashboard-sidebar', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.dashboard-sidebar' }] },
+  },
+  {
+    path: '/integrations/vue/chart-bar',
+    component: () => import('./pages/integrations/vue/ChartBarPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-chart-bar', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.chart-bar' }] },
+  },
+  {
+    path: '/integrations/vue/chart-line',
+    component: () => import('./pages/integrations/vue/ChartLinePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-chart-line', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.chart-line' }] },
+  },
+  {
+    path: '/integrations/vue/chart-pie',
+    component: () => import('./pages/integrations/vue/ChartPiePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-chart-pie', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.chart-pie' }] },
+  },
+  {
     path: '/integrations/react',
     component: () => import('./pages/integrations/react/IndexPage.vue'),
     meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.integrations-react', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react' }] },
@@ -768,6 +798,56 @@ export const routes: RouteRecordRaw[] = [
     path: '/integrations/react/rich-editor',
     component: () => import('./pages/integrations/react/RichEditorPage.vue'),
     meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-rich-editor', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.rich-editor' }] },
+  },
+  {
+    path: '/integrations/react/logo',
+    component: () => import('./pages/integrations/react/LogoPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-logo', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.logo' }] },
+  },
+  {
+    path: '/integrations/react/navigation',
+    component: () => import('./pages/integrations/react/NavigationPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-navigation', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.navigation' }] },
+  },
+  {
+    path: '/integrations/react/sidemenu',
+    component: () => import('./pages/integrations/react/SidemenuPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-sidemenu', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.sidemenu' }] },
+  },
+  {
+    path: '/integrations/react/skiplink',
+    component: () => import('./pages/integrations/react/SkiplinkPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-skiplink', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.skiplink' }] },
+  },
+  {
+    path: '/integrations/react/summary',
+    component: () => import('./pages/integrations/react/SummaryPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-summary', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.summary' }] },
+  },
+  {
+    path: '/integrations/react/content',
+    component: () => import('./pages/integrations/react/ContentPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-content', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.content' }] },
+  },
+  {
+    path: '/integrations/react/dashboard-sidebar',
+    component: () => import('./pages/integrations/react/DashboardSidebarPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-dashboard-sidebar', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.dashboard-sidebar' }] },
+  },
+  {
+    path: '/integrations/react/chart-bar',
+    component: () => import('./pages/integrations/react/ChartBarPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-chart-bar', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.chart-bar' }] },
+  },
+  {
+    path: '/integrations/react/chart-line',
+    component: () => import('./pages/integrations/react/ChartLinePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-chart-line', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.chart-line' }] },
+  },
+  {
+    path: '/integrations/react/chart-pie',
+    component: () => import('./pages/integrations/react/ChartPiePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-chart-pie', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.chart-pie' }] },
   },
 
   // Showcases

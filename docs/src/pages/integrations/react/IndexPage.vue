@@ -12,6 +12,7 @@ const { t } = useI18n({
       'section-content': 'Contenu',
       'section-interactive': 'Interactifs',
       'section-nav': 'Navigation',
+      'section-dashboard': 'Dashboard',
     },
     en: {
       title: 'React',
@@ -21,6 +22,7 @@ const { t } = useI18n({
       'section-content': 'Content',
       'section-interactive': 'Interactive',
       'section-nav': 'Navigation',
+      'section-dashboard': 'Dashboard',
     },
   },
 })
@@ -85,5 +87,19 @@ const { t } = useI18n({
     <DocsCard to="/integrations/react/pagination" icon="ri-more-line" title="Pagination" description="Pagination contrôlée." />
     <DocsCard to="/integrations/react/stepper" icon="ri-list-ordered" title="Stepper" description="Indicateur d’étapes." />
     <DocsCard to="/integrations/react/banner" icon="ri-image-line" title="Banner" description="Bannière hero." />
+    <DocsCard to="/integrations/react/logo" icon="ri-government-line" title="Logo" description="Logo institutionnel." />
+    <DocsCard to="/integrations/react/navigation" icon="ri-compass-3-line" title="Navigation" description="Liste de navigation principale." />
+    <DocsCard to="/integrations/react/sidemenu" icon="ri-menu-unfold-line" title="Sidemenu" description="Menu latéral." />
+    <DocsCard to="/integrations/react/skiplink" icon="ri-skip-forward-line" title="Skiplink" description="Liens d'évitement." />
+    <DocsCard to="/integrations/react/summary" icon="ri-list-unordered" title="Summary" description="Sommaire avec ancres." />
+    <DocsCard to="/integrations/react/content" icon="ri-article-line" title="Content" description="Contenu éditorial." />
+  </div>
+
+  <h2 class="bj-h3" style="margin-top: var(--bj-spacing-8v)">{{ t('section-dashboard') }}</h2>
+  <div class="docs-cards">
+    <DocsCard to="/integrations/react/dashboard-sidebar" icon="ri-layout-left-line" title="DashboardSidebar" description="Barre latérale de navigation dashboard." />
+    <DocsCard to="/integrations/react/chart-bar" icon="ri-bar-chart-2-line" title="ChartBar" description="Graphique en barres." />
+    <DocsCard to="/integrations/react/chart-line" icon="ri-line-chart-line" title="ChartLine" description="Graphique en lignes." />
+    <DocsCard to="/integrations/react/chart-pie" icon="ri-pie-chart-2-line" title="ChartPie" description="Graphique camembert / donut." />
   </div>
 </template>

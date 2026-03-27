@@ -1,6 +1,6 @@
 # DSBJ - Design Système du Bénin
 
-> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 46 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
+> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 51 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
 
 Informations clés :
 - Package npm : `@flrxnt/dsbj` (ES module + UMD + CSS)
@@ -94,6 +94,14 @@ Informations clés :
 ## Composants - Réglementaire
 
 - [Consentement](https://design.gouv.example/docs/composants/consent.html): bj-consent-banner, bj-consent-manager, bandeau cookies RGPD
+
+## Composants - Dashboard
+
+- [Dashboard Sidebar](https://design.gouv.example/docs/composants/dashboard-sidebar.html): bj-dashboard-sidebar, bj-dashboard-sidebar--compact, bj-dashboard-sidebar__brand, bj-dashboard-sidebar__link, aria-current="page"
+- [Chart Bar](https://design.gouv.example/docs/composants/chart.html): bj-chart, bj-chart-bar, bj-chart-bar--horizontal, bj-chart-bar__col, bj-chart-bar__bar
+- [Chart Line](https://design.gouv.example/docs/composants/chart.html): bj-chart-line, bj-chart-line__path, bj-chart-line__area, bj-chart-line__dot
+- [Chart Pie](https://design.gouv.example/docs/composants/chart.html): bj-chart-pie, bj-chart-pie--donut, bj-chart-pie__slice, bj-chart-pie__center
+- [Chart](https://design.gouv.example/docs/composants/chart.html): bj-chart, bj-chart__header, bj-chart__title, bj-chart__body, bj-chart__legend
 
 ## Modèles de pages
 
