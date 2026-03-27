@@ -15,6 +15,9 @@ const { t } = useI18n({
         'Liens de texte soulignés aux couleurs d’action du DSBJ, avec variantes de taille et disposition d’icônes. Un lien ouvrant un nouvel onglet affiche automatiquement une icône « externe » lorsque <code class="bj-text-sm">target="_blank"</code> est utilisé.',
       'section-exemple': 'Exemple',
       'section-variantes': 'Variantes',
+      'section-tailles': 'Tailles',
+      'section-icones-tailles': 'Icônes × tailles',
+      'section-reset-icones': 'Reset avec icônes',
       'section-classes-css': 'Classes CSS',
       'section-accessibilite': 'Accessibilité',
       'classes-footnote':
@@ -35,6 +38,9 @@ const { t } = useI18n({
         'Underlined text links in DSBJ action colors, with size variants and icon placement. Links that open a new tab automatically show an “external” icon when <code class="bj-text-sm">target="_blank"</code> is used.',
       'section-exemple': 'Example',
       'section-variantes': 'Variants',
+      'section-tailles': 'Sizes',
+      'section-icones-tailles': 'Icons × sizes',
+      'section-reset-icones': 'Reset with icons',
       'section-classes-css': 'CSS classes',
       'section-accessibilite': 'Accessibility',
       'classes-footnote':
@@ -57,6 +63,22 @@ const codeExemple = `<a href="#" class="bj-link">Consulter la démarche</a>`
 const codeVariantes = `<a href="#" class="bj-link bj-link--sm">…</a>
 <a href="#" class="bj-link bj-link--icon-left"><i class="ri-arrow-left-line"></i> …</a>
 <a href="https://…" class="bj-link" target="_blank" rel="noopener noreferrer">…</a>`
+
+const codeTailles = `<a href="#" class="bj-link bj-link--sm">Petit</a>
+<a href="#" class="bj-link">Moyen (défaut)</a>
+<a href="#" class="bj-link bj-link--lg">Grand</a>`
+
+const codeIconesTailles = `<!-- Icône à gauche : sm, md, lg -->
+<a href="#" class="bj-link bj-link--icon-left bj-link--sm"><i class="ri-arrow-left-line"></i> …</a>
+<a href="#" class="bj-link bj-link--icon-left"><i class="ri-arrow-left-line"></i> …</a>
+<a href="#" class="bj-link bj-link--icon-left bj-link--lg"><i class="ri-arrow-left-line"></i> …</a>
+<!-- Icône à droite : sm, md, lg -->
+<a href="#" class="bj-link bj-link--icon-right bj-link--sm">… <i class="ri-arrow-right-line"></i></a>
+<a href="#" class="bj-link bj-link--icon-right">… <i class="ri-arrow-right-line"></i></a>
+<a href="#" class="bj-link bj-link--icon-right bj-link--lg">… <i class="ri-arrow-right-line"></i></a>`
+
+const codeResetIcones = `<a href="#" class="bj-link bj-link--reset bj-link--icon-left"><i class="ri-arrow-left-line"></i> …</a>
+<a href="#" class="bj-link bj-link--reset bj-link--icon-right">… <i class="ri-arrow-right-line"></i></a>`
 
 const propsRows = computed(() => [
   {
@@ -130,6 +152,94 @@ const propsRows = computed(() => [
       >
     </DocsPreview>
     <DocsCode :code="codeVariantes" />
+  </DocsSection>
+
+  <DocsSection id="tailles-link" :title="t('section-tailles')">
+    <DocsPreview
+      style="
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--bj-spacing-4v);
+        align-items: center;
+      "
+    >
+      <a href="#" class="bj-link bj-link--sm">Petit</a>
+      <a href="#" class="bj-link">Moyen (défaut)</a>
+      <a href="#" class="bj-link bj-link--lg">Grand</a>
+    </DocsPreview>
+    <DocsCode :code="codeTailles" />
+  </DocsSection>
+
+  <DocsSection id="icones-tailles-link" :title="t('section-icones-tailles')">
+    <DocsPreview
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: var(--bj-spacing-4v);
+        align-items: flex-start;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--bj-spacing-3v);
+          align-items: center;
+        "
+      >
+        <a href="#" class="bj-link bj-link--icon-left bj-link--sm"
+          ><i class="ri-arrow-left-line"></i> Gauche sm</a
+        >
+        <a href="#" class="bj-link bj-link--icon-left"
+          ><i class="ri-arrow-left-line"></i> Gauche md</a
+        >
+        <a href="#" class="bj-link bj-link--icon-left bj-link--lg"
+          ><i class="ri-arrow-left-line"></i> Gauche lg</a
+        >
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--bj-spacing-3v);
+          align-items: center;
+        "
+      >
+        <a href="#" class="bj-link bj-link--icon-right bj-link--sm"
+          >Droite sm <i class="ri-arrow-right-line"></i
+        ></a>
+        <a href="#" class="bj-link bj-link--icon-right"
+          >Droite md <i class="ri-arrow-right-line"></i
+        ></a>
+        <a href="#" class="bj-link bj-link--icon-right bj-link--lg"
+          >Droite lg <i class="ri-arrow-right-line"></i
+        ></a>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeIconesTailles" />
+  </DocsSection>
+
+  <DocsSection id="reset-icones-link" :title="t('section-reset-icones')">
+    <DocsPreview
+      style="
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--bj-spacing-4v);
+        align-items: center;
+      "
+    >
+      <p class="bj-text-md" style="margin: 0">
+        <a href="#" class="bj-link bj-link--reset bj-link--icon-left"
+          ><i class="ri-arrow-left-line"></i> Reset et icône à gauche</a
+        >
+      </p>
+      <p class="bj-text-md" style="margin: 0">
+        <a href="#" class="bj-link bj-link--reset bj-link--icon-right"
+          >Reset et icône à droite <i class="ri-arrow-right-line"></i
+        ></a>
+      </p>
+    </DocsPreview>
+    <DocsCode :code="codeResetIcones" />
   </DocsSection>
 
   <DocsSection id="classes-link" :title="t('section-classes-css')">

@@ -22,6 +22,8 @@ const { t } = useI18n({
       'prop-search-input': 'Champ.',
       'prop-search-btn': 'Bouton.',
       'prop-search-lg': 'Grande taille.',
+      'prop-search-md':
+        'Conteneur <code>form</code> avec <code>role="search"</code> ; taille médiane par défaut (aucun modificateur de taille).',
       'a11y-note':
         '<code>role="search"</code> sur le <code>form</code>. Libellé accessible au champ ; <code>bj-sr-only</code> pour le texte du bouton icône.',
     },
@@ -31,23 +33,40 @@ const { t } = useI18n({
       'section-example': 'Example',
       'section-variants': 'Variants',
       'section-variants-body':
-        '<code>bj-search--lg</code> for a taller layout.',
+        '<code>bj-search--lg</code> for a taller layout. The Vue default size is <code>md</code>: no modifier class (only <code>bj-search</code>).',
+      'section-button-label':
+        'Button label',
+      'section-button-label-body':
+        'The submit button text is free-form (Vue <code>buttonLabel</code>). You can show only an icon by hiding the label with <code>bj-sr-only</code>.',
       'section-css': 'CSS classes',
       'section-a11y': 'Accessibility',
       'prop-search': 'Container.',
       'prop-search-input': 'Field.',
       'prop-search-btn': 'Button.',
       'prop-search-lg': 'Large size.',
+      'prop-search-md':
+        '<code>form</code> wrapper with <code>role="search"</code>; medium size is the default (no size modifier).',
       'a11y-note':
         '<code>role="search"</code> on the <code>form</code>. Accessible label on the field; <code>bj-sr-only</code> for icon-only button text.',
     },
   },
 })
 
-const codeExample = '<form class="bj-search" role="search">…</form>'
+const codeExample = `<form class="bj-search" role="search" action="/recherche" method="get">
+  <input class="bj-search__input" type="search" name="q" placeholder="Rechercher…" />
+  <button type="submit" class="bj-search__btn">
+    <span class="bj-sr-only">Lancer la recherche</span>
+    <i class="ri-search-line" aria-hidden="true"></i>
+  </button>
+</form>
+
+<form class="bj-search bj-search--lg" role="search">
+  <input class="bj-search__input" type="search" placeholder="Recherche large" />
+  <button type="submit" class="bj-search__btn">Rechercher</button>
+</form>`
 
 const propsRows = computed(() => [
-  { name: 'bj-search', description: t('prop-search') },
+  { name: 'bj-search', description: t('prop-search-md') },
   { name: 'bj-search__input', description: t('prop-search-input') },
   { name: 'bj-search__btn', description: t('prop-search-btn') },
   { name: 'bj-search--lg', description: t('prop-search-lg') },
@@ -95,11 +114,19 @@ const propsRows = computed(() => [
           aria-label="Recherche large"
         />
         <button type="submit" class="bj-search__btn">
-          Rechercher
+          Lancer la recherche
         </button>
       </form>
     </DocsPreview>
     <DocsCode :code="codeExample" />
+  </DocsSection>
+
+  <DocsSection id="sec-bouton" :title="t('section-button-label')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-button-label-body')"
+    />
   </DocsSection>
 
   <DocsSection id="sec-variantes" :title="t('section-variants')">

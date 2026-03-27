@@ -10,32 +10,74 @@ const { t } = useI18n({
   messages: {
     fr: {
       title: 'BjAlert',
-      desc: 'Alerte Vue avec variantes sémantiques, titre optionnel, taille compacte et bouton de fermeture.',
+      desc: 'Alerte Vue avec variantes sémantiques, taille compacte, titre optionnel, fermeture optionnelle et événement close.',
       'section-usage': 'Utilisation',
-      'section-preview': 'Aperçu (HTML)',
+      'section-variants': 'Variantes',
+      'section-sizes': 'Tailles',
+      'section-variant-size': 'Variantes × tailles',
+      'section-title-closable': 'Titre et fermeture',
+      'section-slot': 'Contenu (slot par défaut)',
+      'section-events': 'Événements',
       'section-props': 'Props',
-      'prop-variant': 'info, success, warning ou error.',
-      'prop-size': 'md (défaut) ou sm.',
-      'prop-closable': 'Affiche le bouton de fermeture.',
+      'section-emits': 'Émissions',
+      'prop-variant': 'info (défaut), success, warning ou error — icône et couleurs sémantiques.',
+      'prop-size': 'md (défaut) ou sm — densité du bloc.',
+      'prop-closable': 'Affiche le bouton de fermeture ; masque l’alerte et émet close au clic.',
       'prop-title': 'Titre au-dessus du contenu du slot.',
+      'prop-attrs': 'Attributs HTML transmis au div racine (role="alert" est déjà défini).',
+      'emit-close': 'Émis après fermeture locale lorsque closable est actif.',
+      'slot-desc': 'Le message principal passe dans le slot par défaut (texte ou markup léger).',
+      'events-desc':
+        'Écoutez <code>{\'@\'}close</code> pour journaliser, synchroniser un état parent ou annuler une action après fermeture.',
+      'ex-info': 'Information',
+      'ex-success': 'Succès',
+      'ex-warning': 'Attention',
+      'ex-error': 'Erreur',
+      'ex-body-info': 'Votre session expirera dans 5 minutes.',
+      'ex-body-success': 'Votre dossier a été enregistré.',
+      'ex-body-warning': 'Vérifiez les champs avant de valider.',
+      'ex-body-error': 'La soumission a échoué. Réessayez.',
+      'ex-title-dismiss': 'Fermable',
+      'ex-body-dismiss': 'Cette alerte peut être masquée par l’utilisateur.',
     },
     en: {
       title: 'BjAlert',
-      desc: 'Vue alert with semantic variants, optional title, compact size, and close button.',
+      desc: 'Vue alert with semantic variants, compact size, optional title, optional dismiss, and close emit.',
       'section-usage': 'Usage',
-      'section-preview': 'Preview (HTML)',
+      'section-variants': 'Variants',
+      'section-sizes': 'Sizes',
+      'section-variant-size': 'Variants × sizes',
+      'section-title-closable': 'Title and dismiss',
+      'section-slot': 'Content (default slot)',
+      'section-events': 'Events',
       'section-props': 'Props',
-      'prop-variant': 'info, success, warning, or error.',
-      'prop-size': 'md (default) or sm.',
-      'prop-closable': 'Shows the close button.',
+      'section-emits': 'Emits',
+      'prop-variant': 'info (default), success, warning, or error — icon and semantic colors.',
+      'prop-size': 'md (default) or sm — block density.',
+      'prop-closable': 'Shows the dismiss button; hides the alert and emits close on click.',
       'prop-title': 'Title above the default slot content.',
+      'prop-attrs': 'HTML attributes forwarded to the root div (role="alert" is already set).',
+      'emit-close': 'Emitted after local dismiss when closable is enabled.',
+      'slot-desc': 'The main message goes in the default slot (text or light markup).',
+      'events-desc':
+        'Listen for <code>{\'@\'}close</code> to log, sync parent state, or run follow-up after dismiss.',
+      'ex-info': 'Information',
+      'ex-success': 'Success',
+      'ex-warning': 'Warning',
+      'ex-error': 'Error',
+      'ex-body-info': 'Your session will expire in 5 minutes.',
+      'ex-body-success': 'Your file has been saved.',
+      'ex-body-warning': 'Review the fields before submitting.',
+      'ex-body-error': 'Submission failed. Please try again.',
+      'ex-title-dismiss': 'Dismissible',
+      'ex-body-dismiss': 'This alert can be dismissed by the user.',
     },
   },
 })
 
 const codeUsage = `<script setup>
 import { BjAlert } from '@flrxnt/dsbj/vue'
-<\/script>
+<\\/script>
 
 <template>
   <BjAlert variant="success" title="Succès">
@@ -43,12 +85,49 @@ import { BjAlert } from '@flrxnt/dsbj/vue'
   </BjAlert>
 </template>`
 
+const codeVariants = `<BjAlert variant="info" title="Information">Message info.</BjAlert>
+<BjAlert variant="success" title="Succès">Message succès.</BjAlert>
+<BjAlert variant="warning" title="Attention">Message avertissement.</BjAlert>
+<BjAlert variant="error" title="Erreur">Message erreur.</BjAlert>`
+
+const codeSizes = `<BjAlert variant="warning" size="sm" title="Compact">Alerte sm.</BjAlert>
+<BjAlert variant="warning" size="md" title="Par défaut">Alerte md (défaut).</BjAlert>`
+
+const codeVariantSize = `<!-- success sm / md -->
+<BjAlert variant="success" size="sm" title="sm">Corps sm.</BjAlert>
+<BjAlert variant="success" title="md">Corps md.</BjAlert>
+<!-- error sm / md -->
+<BjAlert variant="error" size="sm" title="sm">Erreur sm.</BjAlert>
+<BjAlert variant="error" title="md">Erreur md.</BjAlert>`
+
+const codeTitleClosable = `<BjAlert variant="info" title="À lire" closable @close="onAlertClose">
+  Contenu important pour l’utilisateur.
+</BjAlert>`
+
+const codeSlot = `<BjAlert variant="warning">
+  <p>Paragraphe dans le slot.</p>
+  <p class="bj-text-sm">Ligne secondaire.</p>
+</BjAlert>`
+
+const codeEvents = `<script setup>
+function onAlertClose() {
+  console.log('Alerte fermée')
+}
+<\\/script>
+
+<template>
+  <BjAlert closable variant="info" @close="onAlertClose">Message</BjAlert>
+</template>`
+
 const propsRows = computed(() => [
   { name: 'variant', description: t('prop-variant') },
   { name: 'size', description: t('prop-size') },
   { name: 'closable', description: t('prop-closable') },
   { name: 'title', description: t('prop-title') },
+  { name: '(div attrs)', description: t('prop-attrs') },
 ])
+
+const emitRows = computed(() => [{ name: 'close', description: t('emit-close') }])
 </script>
 
 <template>
@@ -59,18 +138,125 @@ const propsRows = computed(() => [
     <DocsCode :code="codeUsage" lang="html" />
   </DocsSection>
 
-  <DocsSection id="vue-alert-preview" :title="t('section-preview')">
-    <DocsPreview>
-      <div class="bj-alert bj-alert--success" role="alert">
+  <DocsSection id="vue-alert-variants" :title="t('section-variants')">
+    <DocsPreview style="display: flex; flex-direction: column; gap: var(--bj-spacing-3v)">
+      <div class="bj-alert" role="alert">
+        <i class="bj-alert__icon ri-information-line" aria-hidden="true" />
         <div class="bj-alert__body">
-          <p class="bj-alert__title">Succès</p>
-          <p class="bj-alert__text">Votre dossier a été enregistré.</p>
+          <p class="bj-alert__title">{{ t('ex-info') }}</p>
+          <div class="bj-alert__text">{{ t('ex-body-info') }}</div>
+        </div>
+      </div>
+      <div class="bj-alert bj-alert--success" role="alert">
+        <i class="bj-alert__icon ri-checkbox-circle-line" aria-hidden="true" />
+        <div class="bj-alert__body">
+          <p class="bj-alert__title">{{ t('ex-success') }}</p>
+          <div class="bj-alert__text">{{ t('ex-body-success') }}</div>
+        </div>
+      </div>
+      <div class="bj-alert bj-alert--warning" role="alert">
+        <i class="bj-alert__icon ri-alert-line" aria-hidden="true" />
+        <div class="bj-alert__body">
+          <p class="bj-alert__title">{{ t('ex-warning') }}</p>
+          <div class="bj-alert__text">{{ t('ex-body-warning') }}</div>
+        </div>
+      </div>
+      <div class="bj-alert bj-alert--error" role="alert">
+        <i class="bj-alert__icon ri-error-warning-line" aria-hidden="true" />
+        <div class="bj-alert__body">
+          <p class="bj-alert__title">{{ t('ex-error') }}</p>
+          <div class="bj-alert__text">{{ t('ex-body-error') }}</div>
         </div>
       </div>
     </DocsPreview>
+    <DocsCode :code="codeVariants" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-alert-sizes" :title="t('section-sizes')">
+    <DocsPreview style="display: flex; flex-direction: column; gap: var(--bj-spacing-3v)">
+      <div class="bj-alert bj-alert--warning bj-alert--sm" role="alert">
+        <i class="bj-alert__icon ri-alert-line" aria-hidden="true" />
+        <div class="bj-alert__body">
+          <p class="bj-alert__title">sm</p>
+          <div class="bj-alert__text">Alerte compacte.</div>
+        </div>
+      </div>
+      <div class="bj-alert bj-alert--warning" role="alert">
+        <i class="bj-alert__icon ri-alert-line" aria-hidden="true" />
+        <div class="bj-alert__body">
+          <p class="bj-alert__title">md</p>
+          <div class="bj-alert__text">Taille par défaut.</div>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeSizes" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-alert-variant-size" :title="t('section-variant-size')">
+    <DocsPreview
+      style="
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+        gap: var(--bj-spacing-3v);
+      "
+    >
+      <div v-for="v in ['success', 'error']" :key="v" class="bj-alert" :class="[`bj-alert--${v}`, 'bj-alert--sm']" role="alert">
+        <i
+          class="bj-alert__icon"
+          :class="v === 'success' ? 'ri-checkbox-circle-line' : 'ri-error-warning-line'"
+          aria-hidden="true"
+        />
+        <div class="bj-alert__body">
+          <p class="bj-alert__title">{{ v }} sm</p>
+          <div class="bj-alert__text">…</div>
+        </div>
+      </div>
+      <div v-for="v in ['success', 'error']" :key="`${v}-md`" class="bj-alert" :class="`bj-alert--${v}`" role="alert">
+        <i
+          class="bj-alert__icon"
+          :class="v === 'success' ? 'ri-checkbox-circle-line' : 'ri-error-warning-line'"
+          aria-hidden="true"
+        />
+        <div class="bj-alert__body">
+          <p class="bj-alert__title">{{ v }} md</p>
+          <div class="bj-alert__text">…</div>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeVariantSize" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-alert-title-closable" :title="t('section-title-closable')">
+    <DocsPreview>
+      <div class="bj-alert bj-alert--info" role="alert">
+        <i class="bj-alert__icon ri-information-line" aria-hidden="true" />
+        <div class="bj-alert__body">
+          <p class="bj-alert__title">{{ t('ex-title-dismiss') }}</p>
+          <div class="bj-alert__text">{{ t('ex-body-dismiss') }}</div>
+        </div>
+        <button type="button" class="bj-alert__close" aria-label="Fermer">
+          <i class="ri-close-line" aria-hidden="true" />
+        </button>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeTitleClosable" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-alert-slot" :title="t('section-slot')">
+    <p class="bj-text-md" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('slot-desc') }}</p>
+    <DocsCode :code="codeSlot" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-alert-events" :title="t('section-events')">
+    <p class="bj-text-md" style="max-width: 44rem; color: var(--bj-text-alt)" v-html="t('events-desc')" />
+    <DocsCode :code="codeEvents" lang="html" />
   </DocsSection>
 
   <DocsSection id="vue-alert-props" :title="t('section-props')">
     <DocsPropsTable :headers="['Prop', 'Description']" :rows="propsRows" />
+  </DocsSection>
+
+  <DocsSection id="vue-alert-emits" :title="t('section-emits')">
+    <DocsPropsTable :headers="['Émission', 'Description']" :rows="emitRows" />
   </DocsSection>
 </template>

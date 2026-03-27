@@ -13,14 +13,29 @@ const { t } = useI18n({
       title: 'Infobulle',
       desc:
         'Texte court au survol ou au focus ; positions haut, bas, gauche, droite.',
-      'section-example': 'Exemple',
+      'section-overview': 'Aperçu',
+      'overview-intro':
+        'Chaque position correspond à une classe modificateur sur',
+      'section-top': 'Position haut (défaut)',
+      'top-intro':
+        'Sans modificateur : le contenu s’affiche au-dessus du libellé.',
+      'section-bottom': 'Position bas',
+      'bottom-intro': 'Classe',
+      'section-left': 'Position gauche',
+      'left-intro': 'Classe',
+      'section-right': 'Position droite',
+      'right-intro': 'Classe',
       'section-variants': 'Variantes',
       'section-classes-css': 'Classes CSS',
       'section-a11y': 'Accessibilité',
       'variants-p-1': 'Sur le contenu pour affichage programmatique.',
-      'prop-container': 'Conteneur.',
-      'prop-content': 'Texte.',
-      'prop-position': 'Position.',
+      'th-class-attr': 'Classe',
+      'th-description': 'Description',
+      'prop-container': 'Conteneur (position par défaut : haut, sans modificateur).',
+      'prop-content-row':
+        'Texte de l’infobulle sur l’élément enfant ; y placer role="tooltip".',
+      'prop-position-row':
+        'bj-tooltip--bottom, bj-tooltip--left, bj-tooltip--right ; sans classe = position haut.',
       'a11y-note':
         'Ne pas réserver une information critique au seul survol.',
     },
@@ -28,29 +43,66 @@ const { t } = useI18n({
       title: 'Tooltip',
       desc:
         'Short text on hover or focus; top, bottom, left, and right positions.',
-      'section-example': 'Example',
+      'section-overview': 'Overview',
+      'overview-intro': 'Each position maps to a modifier on',
+      'section-top': 'Top (default)',
+      'top-intro': 'No modifier: content appears above the label.',
+      'section-bottom': 'Bottom position',
+      'bottom-intro': 'Use',
+      'section-left': 'Left position',
+      'left-intro': 'Use',
+      'section-right': 'Right position',
+      'right-intro': 'Use',
       'section-variants': 'Variants',
       'section-classes-css': 'CSS classes',
       'section-a11y': 'Accessibility',
       'variants-p-1': 'on the content for programmatic display.',
-      'prop-container': 'Wrapper.',
-      'prop-content': 'Text.',
-      'prop-position': 'Position.',
+      'th-class-attr': 'Class',
+      'th-description': 'Description',
+      'prop-container': 'Wrapper (default position is top, no modifier).',
+      'prop-content-row':
+        'Tooltip copy on the child element; add role="tooltip" there.',
+      'prop-position-row':
+        'bj-tooltip--bottom, bj-tooltip--left, bj-tooltip--right; omit modifier for top.',
       'a11y-note': 'Do not rely on hover alone for critical information.',
     },
   },
 })
 
-const codeTooltip = `<span class="bj-tooltip">…
-  <span class="bj-tooltip__content" role="tooltip">…</span>
+const codeTop = `<span class="bj-tooltip">
+  Libellé
+  <span class="bj-tooltip__content" role="tooltip">Texte au-dessus</span>
 </span>`
+
+const codeBottom = `<span class="bj-tooltip bj-tooltip--bottom">
+  Libellé
+  <span class="bj-tooltip__content" role="tooltip">Texte en dessous</span>
+</span>`
+
+const codeLeft = `<span class="bj-tooltip bj-tooltip--left">
+  Libellé
+  <span class="bj-tooltip__content" role="tooltip">À gauche</span>
+</span>`
+
+const codeRight = `<span class="bj-tooltip bj-tooltip--right">
+  Libellé
+  <span class="bj-tooltip__content" role="tooltip">À droite</span>
+</span>`
+
+const propsTableHeaders = computed((): [string, string] => [
+  t('th-class-attr'),
+  t('th-description'),
+])
 
 const propsRows = computed(() => [
   { name: 'bj-tooltip', description: t('prop-container') },
-  { name: 'bj-tooltip__content', description: t('prop-content') },
+  {
+    name: 'bj-tooltip__content + role="tooltip"',
+    description: t('prop-content-row'),
+  },
   {
     name: 'bj-tooltip--bottom / bj-tooltip--left / bj-tooltip--right',
-    description: t('prop-position'),
+    description: t('prop-position-row'),
   },
 ])
 </script>
@@ -66,13 +118,18 @@ const propsRows = computed(() => [
     {{ t('desc') }}
   </p>
 
-  <DocsSection id="sec-exemple" :title="t('section-example')">
+  <DocsSection id="sec-apercu" :title="t('section-overview')">
+    <p class="bj-text-md" style="color: var(--bj-text-alt); max-width: 44rem">
+      {{ t('overview-intro') }}
+      <code>bj-tooltip</code>.
+    </p>
     <DocsPreview
       style="
         display: flex;
         flex-wrap: wrap;
         gap: var(--bj-spacing-6v);
         align-items: center;
+        min-height: 6rem;
       "
     >
       <span class="bj-tooltip">
@@ -92,7 +149,71 @@ const propsRows = computed(() => [
         <span class="bj-tooltip__content" role="tooltip">Texte</span>
       </span>
     </DocsPreview>
-    <DocsCode :code="codeTooltip" />
+  </DocsSection>
+
+  <DocsSection id="sec-top" :title="t('section-top')">
+    <p class="bj-text-md" style="color: var(--bj-text-alt); max-width: 44rem">
+      {{ t('top-intro') }}
+    </p>
+    <DocsPreview style="padding: var(--bj-spacing-6v) 0">
+      <span class="bj-tooltip">
+        Survoler ou focus
+        <span class="bj-tooltip__content" role="tooltip">Infobulle en haut</span>
+      </span>
+    </DocsPreview>
+    <DocsCode :code="codeTop" />
+  </DocsSection>
+
+  <DocsSection id="sec-bottom" :title="t('section-bottom')">
+    <p class="bj-text-md" style="color: var(--bj-text-alt); max-width: 44rem">
+      {{ t('bottom-intro') }}
+      <code>bj-tooltip--bottom</code>.
+    </p>
+    <DocsPreview style="padding: var(--bj-spacing-6v) 0">
+      <span class="bj-tooltip bj-tooltip--bottom">
+        Bas
+        <span class="bj-tooltip__content" role="tooltip">Sous le libellé</span>
+      </span>
+    </DocsPreview>
+    <DocsCode :code="codeBottom" />
+  </DocsSection>
+
+  <DocsSection id="sec-left" :title="t('section-left')">
+    <p class="bj-text-md" style="color: var(--bj-text-alt); max-width: 44rem">
+      {{ t('left-intro') }}
+      <code>bj-tooltip--left</code>.
+    </p>
+    <DocsPreview
+      style="
+        padding: var(--bj-spacing-4v) var(--bj-spacing-10v);
+        min-height: 4rem;
+      "
+    >
+      <span class="bj-tooltip bj-tooltip--left">
+        Gauche
+        <span class="bj-tooltip__content" role="tooltip">À côté</span>
+      </span>
+    </DocsPreview>
+    <DocsCode :code="codeLeft" />
+  </DocsSection>
+
+  <DocsSection id="sec-right" :title="t('section-right')">
+    <p class="bj-text-md" style="color: var(--bj-text-alt); max-width: 44rem">
+      {{ t('right-intro') }}
+      <code>bj-tooltip--right</code>.
+    </p>
+    <DocsPreview
+      style="
+        padding: var(--bj-spacing-4v) var(--bj-spacing-10v);
+        min-height: 4rem;
+      "
+    >
+      <span class="bj-tooltip bj-tooltip--right">
+        Droite
+        <span class="bj-tooltip__content" role="tooltip">À côté</span>
+      </span>
+    </DocsPreview>
+    <DocsCode :code="codeRight" />
   </DocsSection>
 
   <DocsSection id="sec-variantes" :title="t('section-variants')">
@@ -103,7 +224,7 @@ const propsRows = computed(() => [
   </DocsSection>
 
   <DocsSection id="sec-classes-css" :title="t('section-classes-css')">
-    <DocsPropsTable :rows="propsRows" />
+    <DocsPropsTable :headers="propsTableHeaders" :rows="propsRows" />
   </DocsSection>
 
   <DocsSection id="sec-accessibilité" :title="t('section-a11y')">

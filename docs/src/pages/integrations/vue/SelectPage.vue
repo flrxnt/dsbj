@@ -10,29 +10,41 @@ const { t } = useI18n({
   messages: {
     fr: {
       title: 'BjSelect',
-      desc: 'Liste d\u00e9roulante Vue avec lib\u00e9ll\u00e9, aide, placeholder, options et messages de validation. Supporte un mode recherche avec dropdown custom.',
+      desc: 'Liste déroulante Vue avec libellé, aide, placeholder, options, messages d’erreur, mode désactivé, mode recherche (dropdown custom) et slot pour options supplémentaires.',
       'section-usage': 'Utilisation',
+      'section-native-preview': 'Select natif (aperçu)',
+      'section-error-message': 'Erreur et message',
+      'section-disabled': 'Désactivé',
+      'section-slot': 'Slot — options supplémentaires',
       'section-searchable': 'Mode recherche',
-      'section-preview': 'Aper\u00e7u',
+      'section-searchable-props': 'Recherche : searchPlaceholder et noResults',
+      'section-searchable-disabled': 'Recherche désactivée',
       'section-props': 'Props',
-      'prop-modelValue': 'Valeur s\u00e9lectionn\u00e9e (v-model), cha\u00eene.',
-      'prop-label': 'Lib\u00e9ll\u00e9 au-dessus du select (associ\u00e9 via for/id).',
-      'prop-hint': 'Texte d\u2019aide sous le lib\u00e9ll\u00e9.',
-      'prop-options': 'Tableau d\u2019objets avec value, label et disabled optionnel.',
-      'prop-error': 'Met le champ en \u00e9tat d\u2019erreur visuelle.',
+      'prop-modelValue': 'Valeur sélectionnée (v-model), chaîne.',
+      'prop-label': 'Libellé au-dessus du select (associé via for/id).',
+      'prop-hint': 'Texte d’aide sous le libellé.',
+      'prop-options': 'Tableau d’objets avec value, label et disabled optionnel.',
+      'prop-error': 'Met le champ en état d’erreur visuelle.',
       'prop-message': 'Message sous le champ (couleur selon error).',
-      'prop-disabled': 'D\u00e9sactive le select.',
-      'prop-placeholder': 'Option initiale vide et d\u00e9sactiv\u00e9e avec ce lib\u00e9ll\u00e9.',
+      'prop-disabled': 'Désactive le select.',
+      'prop-placeholder': 'Option initiale vide et désactivée avec ce libellé.',
       'prop-searchable': 'Active le mode recherche : remplace le select natif par un dropdown custom avec filtre.',
-      'prop-searchPlaceholder': 'Placeholder du champ de recherche (d\u00e9faut : \u00ab Rechercher\u2026 \u00bb).',
-      'prop-noResults': 'Texte affich\u00e9 quand aucune option ne correspond.',
+      'prop-searchPlaceholder': 'Placeholder du champ de recherche (défaut : « Rechercher… »).',
+      'prop-noResults': 'Texte affiché quand aucune option ne correspond.',
+      'slot-desc':
+        'Le slot par défaut est rendu à l’intérieur du <code>&lt;select&gt;</code> natif (après les <code>&lt;option&gt;</code> générées), pour des options HTML personnalisées.',
     },
     en: {
       title: 'BjSelect',
-      desc: 'Vue select with label, hint, placeholder, options, and validation messaging. Supports a searchable mode with a custom dropdown.',
+      desc: 'Vue select with label, hint, placeholder, options, error messaging, disabled state, searchable custom dropdown, and a slot for extra options.',
       'section-usage': 'Usage',
+      'section-native-preview': 'Native select (preview)',
+      'section-error-message': 'Error and message',
+      'section-disabled': 'Disabled',
+      'section-slot': 'Slot — extra options',
       'section-searchable': 'Searchable mode',
-      'section-preview': 'Preview',
+      'section-searchable-props': 'Search: searchPlaceholder and noResults',
+      'section-searchable-disabled': 'Searchable disabled',
       'section-props': 'Props',
       'prop-modelValue': 'Selected value (v-model), string.',
       'prop-label': 'Label above the select (linked via for/id).',
@@ -43,8 +55,10 @@ const { t } = useI18n({
       'prop-disabled': 'Disables the select.',
       'prop-placeholder': 'Initial empty disabled option with this label.',
       'prop-searchable': 'Enables searchable mode: replaces native select with a custom dropdown + filter.',
-      'prop-searchPlaceholder': 'Placeholder for the search input (default: "Rechercher\u2026").',
+      'prop-searchPlaceholder': 'Placeholder for the search input (default: "Rechercher…").',
       'prop-noResults': 'Text shown when no option matches.',
+      'slot-desc':
+        'The default slot is rendered inside the native <code>&lt;select&gt;</code> (after generated <code>&lt;option&gt;</code> elements) for custom HTML options.',
     },
   },
 })
@@ -55,8 +69,8 @@ import { BjSelect } from '@flrxnt/dsbj/vue'
 
 const dept = ref('')
 const options = [
-  { value: 'dg', label: 'Direction g\u00e9n\u00e9rale' },
-  { value: 'dr', label: 'Direction r\u00e9gionale' },
+  { value: 'dg', label: 'Direction générale' },
+  { value: 'dr', label: 'Direction régionale' },
 ]
 <\/script>
 
@@ -65,10 +79,31 @@ const options = [
     v-model="dept"
     label="Direction"
     hint="Choisir une direction dans la liste"
-    placeholder="S\u00e9lectionner\u2026"
+    placeholder="Sélectionner…"
     :options="options"
   />
 </template>`
+
+const codeError = `<BjSelect
+  v-model="role"
+  label="Rôle"
+  placeholder="Sélectionner…"
+  :options="roles"
+  :error="true"
+  message="Veuillez choisir un rôle."
+/>`
+
+const codeDisabled = `<BjSelect
+  v-model="fixed"
+  label="Statut"
+  :options="statuses"
+  :disabled="true"
+  placeholder="Verrouillé"
+/>`
+
+const codeSlot = `<BjSelect v-model="x" label="Pays" placeholder="Liste + slot" :options="countries">
+  <option value="other">Autre (slot)</option>
+</BjSelect>`
 
 const codeSearchable = `<script setup>
 import { ref } from 'vue'
@@ -79,8 +114,6 @@ const cities = [
   { value: 'cotonou', label: 'Cotonou' },
   { value: 'porto', label: 'Porto-Novo' },
   { value: 'parakou', label: 'Parakou' },
-  { value: 'abomey', label: 'Abomey-Calavi' },
-  { value: 'djougou', label: 'Djougou' },
 ]
 <\/script>
 
@@ -88,11 +121,29 @@ const cities = [
   <BjSelect
     v-model="city"
     label="Commune"
-    placeholder="S\u00e9lectionner\u2026"
+    placeholder="Sélectionner…"
     :options="cities"
     searchable
   />
 </template>`
+
+const codeSearchableProps = `<BjSelect
+  v-model="city"
+  label="Commune"
+  searchable
+  search-placeholder="Filtrer les communes…"
+  no-results="Aucune commune ne correspond."
+  :options="cities"
+/>`
+
+const codeSearchableDisabled = `<BjSelect
+  v-model="city"
+  label="Commune"
+  searchable
+  :disabled="true"
+  placeholder="Sélectionner…"
+  :options="cities"
+/>`
 
 const propsRows = computed(() => [
   { name: 'modelValue', description: t('prop-modelValue') },
@@ -117,7 +168,7 @@ const propsRows = computed(() => [
     <DocsCode :code="codeUsage" lang="html" />
   </DocsSection>
 
-  <DocsSection id="vue-select-preview" :title="t('section-preview')">
+  <DocsSection id="vue-select-native-preview" :title="t('section-native-preview')">
     <DocsPreview>
       <div class="bj-select-group" style="max-width: 24rem">
         <label class="bj-label" for="vue-sel-prev">Direction</label>
@@ -129,6 +180,47 @@ const propsRows = computed(() => [
         </select>
       </div>
     </DocsPreview>
+  </DocsSection>
+
+  <DocsSection id="vue-select-error" :title="t('section-error-message')">
+    <DocsPreview>
+      <div class="bj-select-group" style="max-width: 24rem">
+        <label class="bj-label" for="vue-sel-err">Rôle</label>
+        <select id="vue-sel-err" class="bj-select bj-select--error">
+          <option value="" disabled selected>Sélectionner…</option>
+          <option value="admin">Administrateur</option>
+        </select>
+        <p class="bj-message bj-message--error">Veuillez choisir un rôle.</p>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeError" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-select-disabled" :title="t('section-disabled')">
+    <DocsPreview>
+      <div class="bj-select-group" style="max-width: 24rem">
+        <label class="bj-label" for="vue-sel-dis">Statut</label>
+        <select id="vue-sel-dis" class="bj-select" disabled>
+          <option value="ok" selected>Actif</option>
+        </select>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeDisabled" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-select-slot" :title="t('section-slot')">
+    <p class="bj-text" style="max-width: 44rem; margin-bottom: var(--bj-spacing-3v)" v-html="t('slot-desc')" />
+    <DocsPreview>
+      <div class="bj-select-group" style="max-width: 24rem">
+        <label class="bj-label" for="vue-sel-slot">Pays</label>
+        <select id="vue-sel-slot" class="bj-select">
+          <option value="" disabled selected>Liste + slot</option>
+          <option value="bj">Bénin</option>
+          <option value="other">Autre (slot)</option>
+        </select>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeSlot" lang="html" />
   </DocsSection>
 
   <DocsSection id="vue-select-searchable" :title="t('section-searchable')">
@@ -147,13 +239,45 @@ const propsRows = computed(() => [
               <li class="bj-select-custom__option" role="option">Cotonou</li>
               <li class="bj-select-custom__option" role="option">Porto-Novo</li>
               <li class="bj-select-custom__option" role="option">Parakou</li>
-              <li class="bj-select-custom__option" role="option">Abomey-Calavi</li>
-              <li class="bj-select-custom__option" role="option">Djougou</li>
             </ul>
           </div>
         </div>
       </div>
     </DocsPreview>
+  </DocsSection>
+
+  <DocsSection id="vue-select-searchable-props" :title="t('section-searchable-props')">
+    <DocsPreview style="min-height: 14rem">
+      <div class="bj-select-group bj-select--error" style="max-width: 24rem">
+        <label class="bj-label" for="vue-sel-sp">Commune</label>
+        <div class="bj-select-custom bj-select-custom--open">
+          <button id="vue-sel-sp" type="button" class="bj-select-custom__trigger" role="combobox" aria-expanded="true">
+            <span>—</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true" />
+          </button>
+          <div class="bj-select-custom__panel" style="position: relative">
+            <input class="bj-select-custom__search" type="text" placeholder="Filtrer les communes…" />
+            <p class="bj-select-custom__no-results">Aucune commune ne correspond.</p>
+          </div>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeSearchableProps" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-select-searchable-disabled" :title="t('section-searchable-disabled')">
+    <DocsPreview>
+      <div class="bj-select-group" style="max-width: 24rem">
+        <label class="bj-label" for="vue-sel-sd">Commune</label>
+        <div class="bj-select-custom">
+          <button id="vue-sel-sd" type="button" class="bj-select-custom__trigger" disabled>
+            <span>Sélectionner…</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeSearchableDisabled" lang="html" />
   </DocsSection>
 
   <DocsSection id="vue-select-props" :title="t('section-props')">

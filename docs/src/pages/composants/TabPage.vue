@@ -32,6 +32,20 @@ const { t } = useI18n({
       'prop-tab': 'Bouton d’onglet (role="tab").',
       'prop-panel':
         'Panneau de contenu (role="tabpanel") ; visibilité pilotée par data-bj-expanded.',
+      'prop-tab-active':
+        'Modificateur CSS optionnel sur l’onglet sélectionné (équivalent visuel à aria-selected="true").',
+      'prop-panel-active':
+        'Modificateur CSS optionnel sur le panneau visible (équivalent à data-bj-expanded).',
+      'section-many': 'Nombreux onglets (défilement)',
+      'many-intro-before': 'La liste',
+      'many-intro':
+        'autorise le défilement horizontal lorsque les libellés dépassent la largeur (mobile ou intitulés longs).',
+      'section-static': 'Marquage sans script',
+      'static-intro':
+        'Sans JavaScript, reproduisez l’état actif avec',
+      'static-intro-2': 'sur l’onglet courant,',
+      'static-intro-3': 'sur les autres, et',
+      'static-intro-4': 'sur le panneau affiché.',
       'a11y-1': 'Utilisez',
       'a11y-2': 'sur la liste,',
       'a11y-3': 'sur chaque bouton et',
@@ -67,6 +81,19 @@ const { t } = useI18n({
       'prop-tab': 'Tab button (role="tab").',
       'prop-panel':
         'Content panel (role="tabpanel"); visibility controlled by data-bj-expanded.',
+      'prop-tab-active':
+        'Optional CSS modifier on the selected tab (same look as aria-selected="true").',
+      'prop-panel-active':
+        'Optional CSS modifier on the visible panel (same as data-bj-expanded).',
+      'section-many': 'Many tabs (horizontal scroll)',
+      'many-intro-before': 'The tab bar',
+      'many-intro':
+        'scrolls horizontally when labels exceed the width (mobile or long titles).',
+      'section-static': 'Markup without JavaScript',
+      'static-intro': 'Without JavaScript, mirror the active state with',
+      'static-intro-2': 'on the current tab,',
+      'static-intro-3': 'on the others, and',
+      'static-intro-4': 'on the visible panel.',
       'a11y-1': 'Use',
       'a11y-2': 'on the list,',
       'a11y-3': 'on each button and',
@@ -83,14 +110,33 @@ const { t } = useI18n({
 })
 
 const codeExemple = `<div class="bj-tabs" data-bj-tabs>
-  <div class="bj-tabs__list" role="tablist">
-    <button class="bj-tabs__tab" data-bj-tab role="tab">Onglet 1</button>
-    <button class="bj-tabs__tab" data-bj-tab role="tab">Onglet 2</button>
-    <button class="bj-tabs__tab" data-bj-tab role="tab">Onglet 3</button>
+  <div class="bj-tabs__list" role="tablist" aria-label="Exemple">
+    <button type="button" class="bj-tabs__tab" data-bj-tab role="tab" aria-selected="true" tabindex="0">Onglet 1</button>
+    <button type="button" class="bj-tabs__tab" data-bj-tab role="tab" aria-selected="false" tabindex="-1">Onglet 2</button>
+    <button type="button" class="bj-tabs__tab" data-bj-tab role="tab" aria-selected="false" tabindex="-1">Onglet 3</button>
   </div>
-  <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel"><p>Contenu du premier onglet...</p></div>
-  <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel"><p>Contenu du deuxième onglet...</p></div>
-  <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel"><p>Contenu du troisième onglet...</p></div>
+  <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel" data-bj-expanded><p>Contenu du premier onglet…</p></div>
+  <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel"><p>Contenu du deuxième onglet…</p></div>
+  <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel"><p>Contenu du troisième onglet…</p></div>
+</div>`
+
+const codeManyTabs = `<div class="bj-tabs" data-bj-tabs>
+  <div class="bj-tabs__list" role="tablist" aria-label="Étapes">
+    <button type="button" class="bj-tabs__tab" data-bj-tab role="tab" aria-selected="true" tabindex="0">Étape 1 — Identité</button>
+    <button type="button" class="bj-tabs__tab" data-bj-tab role="tab" aria-selected="false" tabindex="-1">Étape 2 — Coordonnées</button>
+    <!-- … jusqu’à 6–8 onglets selon le parcours -->
+  </div>
+  <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel" data-bj-expanded>…</div>
+  …
+</div>`
+
+const codeStatic = `<div class="bj-tabs">
+  <div class="bj-tabs__list" role="tablist" aria-label="Sans script">
+    <button type="button" class="bj-tabs__tab bj-tabs__tab--active" role="tab" aria-selected="true" tabindex="0">Actif</button>
+    <button type="button" class="bj-tabs__tab" role="tab" aria-selected="false" tabindex="-1">Inactif</button>
+  </div>
+  <div class="bj-tabs__panel bj-tabs__panel--active" role="tabpanel" data-bj-expanded><p>Panneau visible</p></div>
+  <div class="bj-tabs__panel" role="tabpanel"><p>Masqué</p></div>
 </div>`
 
 const propsTableHeaders = computed((): [string, string] => [
@@ -111,6 +157,14 @@ const propsRows = computed(() => [
   {
     name: 'bj-tabs__panel + data-bj-tab-panel',
     description: t('prop-panel'),
+  },
+  {
+    name: 'bj-tabs__tab--active',
+    description: t('prop-tab-active'),
+  },
+  {
+    name: 'bj-tabs__panel--active',
+    description: t('prop-panel-active'),
   },
 ])
 </script>
@@ -139,6 +193,8 @@ const propsRows = computed(() => [
             class="bj-tabs__tab"
             data-bj-tab
             role="tab"
+            aria-selected="true"
+            tabindex="0"
           >
             Onglet 1
           </button>
@@ -147,6 +203,8 @@ const propsRows = computed(() => [
             class="bj-tabs__tab"
             data-bj-tab
             role="tab"
+            aria-selected="false"
+            tabindex="-1"
           >
             Onglet 2
           </button>
@@ -155,11 +213,18 @@ const propsRows = computed(() => [
             class="bj-tabs__tab"
             data-bj-tab
             role="tab"
+            aria-selected="false"
+            tabindex="-1"
           >
             Onglet 3
           </button>
         </div>
-        <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel">
+        <div
+          class="bj-tabs__panel"
+          data-bj-tab-panel
+          role="tabpanel"
+          data-bj-expanded
+        >
           <p class="bj-text-sm">Contenu du premier onglet…</p>
         </div>
         <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel">
@@ -171,6 +236,157 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeExemple" />
+  </DocsSection>
+
+  <DocsSection id="sec-nombreux" :title="t('section-many')">
+    <p class="bj-text-md" style="color: var(--bj-text-alt); max-width: 44rem">
+      {{ t('many-intro-before') }} <code>bj-tabs__list</code> {{ t('many-intro') }}
+    </p>
+    <DocsPreview style="max-width: 22rem">
+      <div class="bj-tabs" data-bj-tabs>
+        <div
+          class="bj-tabs__list"
+          role="tablist"
+          aria-label="Parcours démarche"
+        >
+          <button
+            type="button"
+            class="bj-tabs__tab"
+            data-bj-tab
+            role="tab"
+            aria-selected="true"
+            tabindex="0"
+          >
+            1. Identité
+          </button>
+          <button
+            type="button"
+            class="bj-tabs__tab"
+            data-bj-tab
+            role="tab"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            2. Domicile
+          </button>
+          <button
+            type="button"
+            class="bj-tabs__tab"
+            data-bj-tab
+            role="tab"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            3. Pièces
+          </button>
+          <button
+            type="button"
+            class="bj-tabs__tab"
+            data-bj-tab
+            role="tab"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            4. Récapitulatif
+          </button>
+          <button
+            type="button"
+            class="bj-tabs__tab"
+            data-bj-tab
+            role="tab"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            5. Signature
+          </button>
+          <button
+            type="button"
+            class="bj-tabs__tab"
+            data-bj-tab
+            role="tab"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            6. Envoi
+          </button>
+        </div>
+        <div
+          class="bj-tabs__panel"
+          data-bj-tab-panel
+          role="tabpanel"
+          data-bj-expanded
+        >
+          <p class="bj-text-sm">Première étape du formulaire multi-onglets.</p>
+        </div>
+        <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel">
+          <p class="bj-text-sm">Étape suivante.</p>
+        </div>
+        <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel">
+          <p class="bj-text-sm">Pièces jointes.</p>
+        </div>
+        <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel">
+          <p class="bj-text-sm">Récapitulatif.</p>
+        </div>
+        <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel">
+          <p class="bj-text-sm">Signature.</p>
+        </div>
+        <div class="bj-tabs__panel" data-bj-tab-panel role="tabpanel">
+          <p class="bj-text-sm">Confirmation d’envoi.</p>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeManyTabs" />
+  </DocsSection>
+
+  <DocsSection id="sec-statique" :title="t('section-static')">
+    <p class="bj-text-md" style="color: var(--bj-text-alt)">
+      {{ t('static-intro') }}
+      <code>aria-selected="true"</code>
+      {{ t('static-intro-2') }}
+      <code>tabindex="0"</code> /
+      <code>tabindex="-1"</code>
+      {{ t('static-intro-3') }}
+      <code>data-bj-expanded</code>
+      {{ t('static-intro-4') }}
+      Les classes
+      <code>bj-tabs__tab--active</code> et
+      <code>bj-tabs__panel--active</code> reprennent le même style que le script.
+    </p>
+    <DocsPreview>
+      <div class="bj-tabs">
+        <div class="bj-tabs__list" role="tablist" aria-label="Onglets statiques">
+          <button
+            type="button"
+            class="bj-tabs__tab bj-tabs__tab--active"
+            role="tab"
+            aria-selected="true"
+            tabindex="0"
+          >
+            Actif
+          </button>
+          <button
+            type="button"
+            class="bj-tabs__tab"
+            role="tab"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            Inactif
+          </button>
+        </div>
+        <div
+          class="bj-tabs__panel bj-tabs__panel--active"
+          role="tabpanel"
+          data-bj-expanded
+        >
+          <p class="bj-text-sm">Panneau visible sans data-bj-tabs.</p>
+        </div>
+        <div class="bj-tabs__panel" role="tabpanel">
+          <p class="bj-text-sm">Ce panneau reste masqué par le CSS.</p>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeStatic" />
   </DocsSection>
 
   <DocsSection id="sec-clavier" :title="t('section-keyboard')">

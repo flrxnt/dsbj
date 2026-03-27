@@ -12,7 +12,7 @@ const { t } = useI18n({
     fr: {
       title: 'Pied de page',
       desc:
-        'Liens d\'information, partenaires et mentions légales ; bande tricolore en bas.',
+        'Liens d\u2019information, partenaires et mentions légales ; bande tricolore en bas.',
       'sec-minimal': 'Footer minimal',
       'sec-minimal-p':
         'Version la plus simple : uniquement les liens légaux obligatoires et la mention de copyright. Idéal pour les applications internes ou les pages simples.',
@@ -28,6 +28,9 @@ const { t } = useI18n({
       'sec-complet': 'Footer complet',
       'sec-complet-p':
         'Combinaison de toutes les sections : 4 colonnes de liens, bloc partenaires et barre inférieure avec liens légaux détaillés. Convient aux portails institutionnels majeurs.',
+      'section-vue': 'Composant Vue BjFooter',
+      'section-vue-p':
+        'Le composant <code>BjFooter</code> n\u2019expose que la structure <code>bj-footer</code>, <code>bj-footer__top</code> (slot <code>top</code> optionnel) et <code>bj-footer__bottom</code> (slot <code>bottom</code> + défaut). Les colonnes de liens utilisent <code>bj-footer__list</code> et <code>bj-footer__link</code> ; il n\u2019existe pas de classes <code>bj-footer__brand</code> ou <code>bj-footer__links</code> dans le DS.',
       'section-classes-css': 'Classes CSS',
       'section-accessibilite': 'Accessibilité',
       'a11y-note':
@@ -65,6 +68,9 @@ const { t } = useI18n({
       'sec-complet': 'Complete footer',
       'sec-complet-p':
         'Combines all sections: four link columns, partners block and bottom bar with detailed legal links. Suited to major institutional portals.',
+      'section-vue': 'BjFooter Vue component',
+      'section-vue-p':
+        'The <code>BjFooter</code> component only wraps <code>bj-footer</code>, optional <code>bj-footer__top</code> (<code>top</code> slot) and <code>bj-footer__bottom</code> (<code>bottom</code> slot + default). Link columns use <code>bj-footer__list</code> and <code>bj-footer__link</code>; there are no <code>bj-footer__brand</code> or <code>bj-footer__links</code> classes in the design system.',
       'section-classes-css': 'CSS classes',
       'section-accessibilite': 'Accessibility',
       'a11y-note':
@@ -314,6 +320,14 @@ const propsRows = computed(() => [
   >
     {{ t('desc') }}
   </p>
+
+  <DocsSection id="sec-vue" :title="t('section-vue')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt); margin-bottom: var(--bj-spacing-4v)"
+      v-html="t('section-vue-p')"
+    />
+  </DocsSection>
 
   <DocsSection id="sec-minimal" :title="t('sec-minimal')">
     <p class="bj-text-md" style="color: var(--bj-text-alt)">

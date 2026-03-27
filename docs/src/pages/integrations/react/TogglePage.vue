@@ -25,6 +25,16 @@ const { t } = useI18n({
       'prop-children': 'Contenu du libellé ; remplace label si présent.',
       'prop-className': 'Classe CSS sur l’élément label racine.',
       'prop-rest': 'Autres attributs HTML natifs du input (type, size et role sont réservés).',
+      'section-label-left': 'Libellé à gauche',
+      'section-children': 'Enfants comme libellé',
+      'section-disabled': 'Désactivé',
+      'section-combinations': 'Combinaisons',
+      'section-callbacks': 'Contrôle et callbacks',
+      'desc-label-left': 'labelLeft applique bj-toggle--label-left (interrupteur à droite).',
+      'desc-children': 'children remplace label.',
+      'desc-disabled': 'checked et disabled sur le switch.',
+      'desc-combinations': 'border + labelLeft + hint sur le même composant.',
+      'desc-callbacks': 'checked et onChange avec e.target.checked ; id explicite pour l’accessibilité.',
     },
     en: {
       title: 'BjToggle',
@@ -43,6 +53,16 @@ const { t } = useI18n({
       'prop-children': 'Label content; overrides label when provided.',
       'prop-className': 'CSS class on the root label element.',
       'prop-rest': 'Other native input HTML attributes (type, size, and role are reserved).',
+      'section-label-left': 'Label on the left',
+      'section-children': 'Children as label',
+      'section-disabled': 'Disabled',
+      'section-combinations': 'Combinations',
+      'section-callbacks': 'Controlled and callbacks',
+      'desc-label-left': 'labelLeft adds bj-toggle--label-left (switch on the right).',
+      'desc-children': 'children replaces label.',
+      'desc-disabled': 'checked and disabled on the switch.',
+      'desc-combinations': 'border, labelLeft, and hint together.',
+      'desc-callbacks': 'checked and onChange with e.target.checked; explicit id for a11y.',
     },
   },
 })
@@ -59,6 +79,73 @@ export default function Example() {
       label="Notifications par e-mail"
       hint="Résumé quotidien"
       border
+    />
+  )
+}`
+
+const codeLabelLeft = `import { useState } from 'react'
+import { BjToggle } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  const [on, setOn] = useState(false)
+  return (
+    <BjToggle
+      labelLeft
+      border
+      checked={on}
+      onChange={(e) => setOn(e.target.checked)}
+      label="Mode sombre"
+    />
+  )
+}`
+
+const codeChildren = `import { useState } from 'react'
+import { BjToggle } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  const [on, setOn] = useState(true)
+  return (
+    <BjToggle checked={on} onChange={(e) => setOn(e.target.checked)} border>
+      Activer les <strong>alertes</strong>
+    </BjToggle>
+  )
+}`
+
+const codeDisabled = `import { BjToggle } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  return <BjToggle checked label="Fonctionnalité verrouillée" disabled border />
+}`
+
+const codeCombinations = `import { useState } from 'react'
+import { BjToggle } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  const [v, setV] = useState(true)
+  return (
+    <BjToggle
+      id="notify-toggle"
+      border
+      labelLeft
+      checked={v}
+      onChange={(e) => setV(e.target.checked)}
+      label="Notifications push"
+      hint="Uniquement sur cet appareil"
+    />
+  )
+}`
+
+const codeCallbacks = `import { useState } from 'react'
+import { BjToggle } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  const [enabled, setEnabled] = useState(false)
+  return (
+    <BjToggle
+      id="feature-flag"
+      checked={enabled}
+      onChange={(e) => setEnabled(e.target.checked)}
+      label="Fonction expérimentale"
     />
   )
 }`
@@ -103,6 +190,58 @@ const propsRows = computed(() => [
         </span>
       </label>
     </DocsPreview>
+  </DocsSection>
+
+  <DocsSection id="react-toggle-label-left" :title="t('section-label-left')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-label-left') }}</p>
+    <DocsPreview>
+      <label class="bj-toggle bj-toggle--border bj-toggle--label-left" for="react-tog-ll">
+        <input id="react-tog-ll" type="checkbox" class="bj-toggle__input" role="switch" checked aria-checked="true" />
+        <span class="bj-toggle__label">Mode sombre</span>
+      </label>
+    </DocsPreview>
+    <DocsCode :code="codeLabelLeft" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-toggle-children" :title="t('section-children')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-children') }}</p>
+    <DocsPreview>
+      <label class="bj-toggle bj-toggle--border" for="react-tog-ch">
+        <input id="react-tog-ch" type="checkbox" class="bj-toggle__input" role="switch" checked aria-checked="true" />
+        <span class="bj-toggle__label">Activer les <strong>alertes</strong></span>
+      </label>
+    </DocsPreview>
+    <DocsCode :code="codeChildren" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-toggle-disabled" :title="t('section-disabled')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-disabled') }}</p>
+    <DocsPreview>
+      <label class="bj-toggle bj-toggle--border" for="react-tog-dis">
+        <input id="react-tog-dis" type="checkbox" class="bj-toggle__input" role="switch" checked disabled aria-checked="true" />
+        <span class="bj-toggle__label">Fonctionnalité verrouillée</span>
+      </label>
+    </DocsPreview>
+    <DocsCode :code="codeDisabled" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-toggle-combinations" :title="t('section-combinations')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-combinations') }}</p>
+    <DocsPreview>
+      <label class="bj-toggle bj-toggle--border bj-toggle--label-left" for="react-tog-combo">
+        <input id="react-tog-combo" type="checkbox" class="bj-toggle__input" role="switch" checked aria-checked="true" />
+        <span class="bj-toggle__label">
+          Notifications push
+          <span class="bj-toggle__hint">Uniquement sur cet appareil</span>
+        </span>
+      </label>
+    </DocsPreview>
+    <DocsCode :code="codeCombinations" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-toggle-callbacks" :title="t('section-callbacks')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-callbacks') }}</p>
+    <DocsCode :code="codeCallbacks" lang="tsx" />
   </DocsSection>
 
   <DocsSection id="react-toggle-props" :title="t('section-props')">

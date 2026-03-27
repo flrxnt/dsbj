@@ -16,6 +16,10 @@ const { t } = useI18n({
       'section-variants': 'Variantes',
       'section-variants-body':
         '<code>bj-toggle--border</code>, <code>bj-toggle--label-left</code>. Conteneur avec <code>data-bj-toggle</code>.',
+      'section-disabled':
+        'Désactivé et états combinés',
+      'section-disabled-body':
+        'L’attribut <code>disabled</code> sur l’input désactive l’interrupteur. Vous pouvez combiner <code>bj-toggle--border</code> et <code>bj-toggle--label-left</code>. Le composant Vue expose aussi <code>aria-checked</code> sur le switch.',
       'section-css': 'Classes CSS',
       'section-a11y': 'Accessibilité',
       'prop-toggle': 'Label conteneur.',
@@ -23,6 +27,10 @@ const { t } = useI18n({
       'prop-toggle-label': 'Texte.',
       'prop-toggle-hint': 'Aide.',
       'prop-data-toggle': 'Point d’ancrage JS.',
+      'prop-toggle-border':
+        'Bordure autour du bloc (interrupteur + libellé).',
+      'prop-toggle-label-left':
+        'Libellé à gauche du switch.',
       'a11y-note':
         '<code>role="switch"</code> lorsque pertinent ; libellé explicite sur l’état ou l’action.',
     },
@@ -33,6 +41,10 @@ const { t } = useI18n({
       'section-variants': 'Variants',
       'section-variants-body':
         '<code>bj-toggle--border</code>, <code>bj-toggle--label-left</code>. Wrapper with <code>data-bj-toggle</code>.',
+      'section-disabled':
+        'Disabled and combined layouts',
+      'section-disabled-body':
+        'The <code>disabled</code> attribute on the input disables the switch. You can combine <code>bj-toggle--border</code> and <code>bj-toggle--label-left</code>. The Vue component also sets <code>aria-checked</code> on the switch.',
       'section-css': 'CSS classes',
       'section-a11y': 'Accessibility',
       'prop-toggle': 'Container label.',
@@ -40,6 +52,10 @@ const { t } = useI18n({
       'prop-toggle-label': 'Text.',
       'prop-toggle-hint': 'Hint.',
       'prop-data-toggle': 'JS hook attribute.',
+      'prop-toggle-border':
+        'Border around the block (switch + label).',
+      'prop-toggle-label-left':
+        'Label on the left of the switch.',
       'a11y-note':
         '<code>role="switch"</code> when appropriate; explicit label for state or action.',
     },
@@ -47,12 +63,27 @@ const { t } = useI18n({
 })
 
 const codeExample = `<label class="bj-toggle" data-bj-toggle>
-  <input class="bj-toggle__input" type="checkbox" role="switch">
-  <span class="bj-toggle__label">…</span>
+  <input class="bj-toggle__input" type="checkbox" role="switch" checked aria-checked="true" />
+  <span class="bj-toggle__label">Notifications push</span>
+</label>
+<label class="bj-toggle bj-toggle--border" data-bj-toggle>
+  <input class="bj-toggle__input" type="checkbox" role="switch" />
+  <span class="bj-toggle__label">Option encadrée</span>
+</label>
+<label class="bj-toggle bj-toggle--label-left" data-bj-toggle>
+  <input class="bj-toggle__input" type="checkbox" role="switch" />
+  <span class="bj-toggle__label">Libellé à gauche</span>
+</label>`
+
+const codeToggleDisabled = `<label class="bj-toggle bj-toggle--border bj-toggle--label-left" data-bj-toggle>
+  <input class="bj-toggle__input" type="checkbox" role="switch" checked disabled aria-checked="true" />
+  <span class="bj-toggle__label">Lecture seule (activé)</span>
 </label>`
 
 const propsRows = computed(() => [
   { name: 'bj-toggle', description: t('prop-toggle') },
+  { name: 'bj-toggle--border', description: t('prop-toggle-border') },
+  { name: 'bj-toggle--label-left', description: t('prop-toggle-label-left') },
   { name: 'bj-toggle__input', description: t('prop-toggle-input') },
   { name: 'bj-toggle__label', description: t('prop-toggle-label') },
   { name: 'bj-toggle__hint', description: t('prop-toggle-hint') },
@@ -79,6 +110,7 @@ const propsRows = computed(() => [
           role="switch"
           name="xt1"
           checked
+          aria-checked="true"
         />
         <span class="bj-toggle__label">Notifications push</span>
       </label>
@@ -88,6 +120,7 @@ const propsRows = computed(() => [
           type="checkbox"
           role="switch"
           name="xt2"
+          aria-checked="false"
         />
         <span class="bj-toggle__label">Mode renforcé</span>
         <span class="bj-toggle__hint"
@@ -100,6 +133,7 @@ const propsRows = computed(() => [
           type="checkbox"
           role="switch"
           name="xt3"
+          aria-checked="false"
         />
         <span class="bj-toggle__label">Option encadrée</span>
       </label>
@@ -109,11 +143,44 @@ const propsRows = computed(() => [
           type="checkbox"
           role="switch"
           name="xt4"
+          aria-checked="false"
         />
         <span class="bj-toggle__label">Libellé à gauche</span>
       </label>
     </DocsPreview>
     <DocsCode :code="codeExample" />
+  </DocsSection>
+
+  <DocsSection id="sec-desactive" :title="t('section-disabled')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-disabled-body')"
+    />
+    <DocsPreview>
+      <label class="bj-toggle" data-bj-toggle>
+        <input
+          class="bj-toggle__input"
+          type="checkbox"
+          role="switch"
+          disabled
+          aria-checked="false"
+        />
+        <span class="bj-toggle__label">Désactivé (inactif)</span>
+      </label>
+      <label class="bj-toggle bj-toggle--border bj-toggle--label-left" data-bj-toggle>
+        <input
+          class="bj-toggle__input"
+          type="checkbox"
+          role="switch"
+          checked
+          disabled
+          aria-checked="true"
+        />
+        <span class="bj-toggle__label">Désactivé (actif)</span>
+      </label>
+    </DocsPreview>
+    <DocsCode :code="codeToggleDisabled" />
   </DocsSection>
 
   <DocsSection id="sec-variantes" :title="t('section-variants')">

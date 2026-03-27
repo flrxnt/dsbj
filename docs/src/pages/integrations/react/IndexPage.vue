@@ -63,6 +63,8 @@ const { t } = useI18n({
     <DocsCard to="/integrations/react/notice" icon="ri-information-line" title="Notice" description="Bandeau d’information." />
     <DocsCard to="/integrations/react/tile" icon="ri-grid-line" title="Tile" description="Tuile de navigation." />
     <DocsCard to="/integrations/react/table" icon="ri-table-line" title="Table" description="Tableau de données." />
+    <DocsCard to="/integrations/react/skeleton" icon="ri-loader-4-line" title="Skeleton" description="Placeholder de chargement." />
+    <DocsCard to="/integrations/react/content" icon="ri-article-line" title="Content" description="Contenu éditorial typographique." />
   </div>
 
   <h2 class="bj-h3" style="margin-top: var(--bj-spacing-8v)">{{ t('section-interactive') }}</h2>
@@ -92,7 +94,6 @@ const { t } = useI18n({
     <DocsCard to="/integrations/react/sidemenu" icon="ri-menu-unfold-line" title="Sidemenu" description="Menu latéral." />
     <DocsCard to="/integrations/react/skiplink" icon="ri-skip-forward-line" title="Skiplink" description="Liens d'évitement." />
     <DocsCard to="/integrations/react/summary" icon="ri-list-unordered" title="Summary" description="Sommaire avec ancres." />
-    <DocsCard to="/integrations/react/content" icon="ri-article-line" title="Content" description="Contenu éditorial." />
   </div>
 
   <h2 class="bj-h3" style="margin-top: var(--bj-spacing-8v)">{{ t('section-dashboard') }}</h2>

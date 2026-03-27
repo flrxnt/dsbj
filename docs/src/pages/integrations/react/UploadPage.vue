@@ -24,6 +24,16 @@ const { t } = useI18n({
       'prop-icon': 'Classe d’icône Remix dans la zone (défaut ri-upload-2-line).',
       'prop-onChange': 'Appelé avec le FileList après sélection ou dépôt.',
       'prop-className': 'Classe CSS sur le conteneur bj-upload-group.',
+      'section-error': 'Erreur et message',
+      'section-multiple': 'Fichiers multiples',
+      'section-text-icon': 'Texte et icône',
+      'section-combinations': 'Combinaisons',
+      'section-callbacks': 'Callback onChange',
+      'desc-error': 'error et message sous la zone.',
+      'desc-multiple': 'multiple avec accept pour plusieurs fichiers.',
+      'desc-text-icon': 'text et icon personnalisent la zone.',
+      'desc-combinations': 'label, hint, accept, multiple, error et onChange ensemble.',
+      'desc-callbacks': 'onChange reçoit le FileList ou null après sélection ou dépôt.',
     },
     en: {
       title: 'BjUpload',
@@ -41,6 +51,16 @@ const { t } = useI18n({
       'prop-icon': 'Remix icon class in the zone (default ri-upload-2-line).',
       'prop-onChange': 'Called with the FileList after pick or drop.',
       'prop-className': 'CSS class on the bj-upload-group wrapper.',
+      'section-error': 'Error and message',
+      'section-multiple': 'Multiple files',
+      'section-text-icon': 'Text and icon',
+      'section-combinations': 'Combinations',
+      'section-callbacks': 'onChange callback',
+      'desc-error': 'error and message below the zone.',
+      'desc-multiple': 'multiple with accept for several files.',
+      'desc-text-icon': 'text and icon customize the drop zone.',
+      'desc-combinations': 'label, hint, accept, multiple, error, and onChange together.',
+      'desc-callbacks': 'onChange receives the FileList or null after pick or drop.',
     },
   },
 })
@@ -59,6 +79,78 @@ export default function Example() {
       onChange={onFiles}
     />
   )
+}`
+
+const codeError = `import { BjUpload } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  return (
+    <BjUpload
+      label="Justificatif"
+      error
+      message="Le fichier est trop volumineux."
+      onChange={() => {}}
+    />
+  )
+}`
+
+const codeMultiple = `import { BjUpload } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  return (
+    <BjUpload
+      label="Photos"
+      hint="Jusqu\u2019à 5 images"
+      accept="image/*"
+      multiple
+      onChange={(files) => console.log(files?.length)}
+    />
+  )
+}`
+
+const codeTextIcon = `import { BjUpload } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  return (
+    <BjUpload
+      text="D\u00e9posez votre CV ici"
+      icon="ri-file-upload-line"
+      accept=".pdf"
+      onChange={() => {}}
+    />
+  )
+}`
+
+const codeCombinations = `import { BjUpload } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  return (
+    <BjUpload
+      label="Pi\u00e8ces jointes"
+      hint="PDF, 10 Mo max par fichier"
+      accept=".pdf"
+      multiple
+      error
+      message="Au moins un PDF requis."
+      text="Ajouter des PDF"
+      icon="ri-attachment-2"
+      onChange={(files) => {
+        if (files) console.log(Array.from(files).map((f) => f.name))
+      }}
+    />
+  )
+}`
+
+const codeCallbacks = `import { BjUpload } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  function handleFiles(files: FileList | null) {
+    if (!files?.length) return
+    for (const file of Array.from(files)) {
+      console.log(file.name, file.size)
+    }
+  }
+  return <BjUpload label="Import" accept="image/*" onChange={handleFiles} />
 }`
 
 const propsRows = computed(() => [
@@ -95,6 +187,74 @@ const propsRows = computed(() => [
         </div>
       </div>
     </DocsPreview>
+  </DocsSection>
+
+  <DocsSection id="react-upload-error" :title="t('section-error')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-error') }}</p>
+    <DocsPreview>
+      <div class="bj-upload-group bj-upload-group--error" style="max-width: 28rem">
+        <label class="bj-label" for="react-up-err">Justificatif</label>
+        <div class="bj-upload" role="button" tabindex="0">
+          <i class="bj-upload__icon ri-upload-2-line" aria-hidden="true" />
+          <span class="bj-upload__text">Glissez un fichier ou cliquez pour parcourir</span>
+          <input id="react-up-err" type="file" />
+        </div>
+        <p class="bj-message bj-message--error">Le fichier est trop volumineux.</p>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeError" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-upload-multiple" :title="t('section-multiple')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-multiple') }}</p>
+    <DocsPreview>
+      <div class="bj-upload-group" style="max-width: 28rem">
+        <label class="bj-label" for="react-up-mul">Photos</label>
+        <span class="bj-hint">Jusqu'à 5 images</span>
+        <div class="bj-upload" role="button" tabindex="0">
+          <i class="bj-upload__icon ri-upload-2-line" aria-hidden="true" />
+          <span class="bj-upload__text">Glissez un fichier ou cliquez pour parcourir</span>
+          <input id="react-up-mul" type="file" accept="image/*" multiple />
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeMultiple" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-upload-text-icon" :title="t('section-text-icon')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-text-icon') }}</p>
+    <DocsPreview>
+      <div class="bj-upload-group" style="max-width: 28rem">
+        <div class="bj-upload" role="button" tabindex="0">
+          <i class="bj-upload__icon ri-file-upload-line" aria-hidden="true" />
+          <span class="bj-upload__text">Déposez votre CV ici</span>
+          <input type="file" accept=".pdf" />
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeTextIcon" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-upload-combinations" :title="t('section-combinations')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-combinations') }}</p>
+    <DocsPreview>
+      <div class="bj-upload-group bj-upload-group--error" style="max-width: 28rem">
+        <label class="bj-label" for="react-up-combo">Pièces jointes</label>
+        <span class="bj-hint">PDF, 10 Mo max par fichier</span>
+        <div class="bj-upload" role="button" tabindex="0">
+          <i class="bj-upload__icon ri-attachment-2" aria-hidden="true" />
+          <span class="bj-upload__text">Ajouter des PDF</span>
+          <input id="react-up-combo" type="file" accept=".pdf" multiple />
+        </div>
+        <p class="bj-message bj-message--error">Au moins un PDF requis.</p>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeCombinations" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-upload-callbacks" :title="t('section-callbacks')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-callbacks') }}</p>
+    <DocsCode :code="codeCallbacks" lang="tsx" />
   </DocsSection>
 
   <DocsSection id="react-upload-props" :title="t('section-props')">

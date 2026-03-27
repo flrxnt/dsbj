@@ -27,6 +27,7 @@ const { t } = useI18n({
       'sec-attrs': 'Attributs JavaScript',
       'sec-a11y': 'Accessibilité',
       'th-attribute': 'Attribut',
+      'th-class': 'Classe',
       'th-description': 'Description',
       'class-banner': 'Bannière fixée en bas de page',
       'class-body': 'Corps de la bannière',
@@ -49,7 +50,7 @@ const { t } = useI18n({
       'attr-accept': 'Sur le bouton « Tout accepter »',
       'attr-refuse': 'Sur le bouton « Tout refuser »',
       'attr-customize-1':
-        'Sur le bouton « Personnaliser » (associer data-bj-modal-open="id" à l’identifiant de la modale)',
+        'Sur le bouton « Personnaliser » : associer data-bj-modal-open à l’id du gestionnaire (bj-consent-manager) si ouverture via modale DSBJ.',
       'attr-expanded':
         'Rend la bannière visible (utile pour forcer l’affichage en démo ou après rechargement)',
       'a11y-1':
@@ -58,8 +59,17 @@ const { t } = useI18n({
         ' ferme la modale lorsque le script DSBJ est actif. Les préférences par service utilisent des cases à cocher natives à l’intérieur d’un ',
       'a11y-3':
         ', ce qui préserve une association explicite entre le libellé et le contrôle. Les choix de consentement sont persistés dans localStorage sous la clé ',
-      'a11y-4': '.',
+      'a11y-4': ' (clé utilisée par la bannière de démonstration du site docs).',
       'kbd-esc': 'Échap',
+      'class-bj-toggle':
+        'Interrupteur sur chaque ligne de service (voir composant Toggle).',
+      'sec-services': 'Liste de services (exemple)',
+      'sec-services-p-1':
+        'En personnalisation, chaque traceur ou famille de cookies est une ligne',
+      'sec-services-p-2':
+        'avec nom, description courte et',
+      'sec-services-p-3':
+        '. Réutilisez le bloc suivant pour rester aligné avec le DSBJ.',
     },
     en: {
       title: 'Consent banner (cookies)',
@@ -78,6 +88,7 @@ const { t } = useI18n({
       'sec-attrs': 'JavaScript attributes',
       'sec-a11y': 'Accessibility',
       'th-attribute': 'Attribute',
+      'th-class': 'Class',
       'th-description': 'Description',
       'class-banner': 'Banner fixed to the bottom of the page',
       'class-body': 'Banner body',
@@ -100,7 +111,7 @@ const { t } = useI18n({
       'attr-accept': 'On the “Accept all” button',
       'attr-refuse': 'On the “Reject all” button',
       'attr-customize-1':
-        'On the “Customize” button (pair data-bj-modal-open="id" with the modal’s id)',
+        'On the “Customize” button: set data-bj-modal-open to the consent manager id when using the DSBJ modal opener.',
       'attr-expanded':
         'Shows the banner (useful to force display in demos or after reload)',
       'a11y-1':
@@ -109,8 +120,16 @@ const { t } = useI18n({
         ' key closes the modal when the DSBJ script is active. Per-service preferences use native checkboxes inside a ',
       'a11y-3':
         ', keeping an explicit label–control association. Consent choices are stored in localStorage under the key ',
-      'a11y-4': '.',
+      'a11y-4': ' (key used by the docs site demo banner).',
       'kbd-esc': 'Escape',
+      'class-bj-toggle':
+        'Per-service switch (see the Toggle component).',
+      'sec-services': 'Service list (example)',
+      'sec-services-p-1':
+        'In the customization flow, each tracker or cookie family is one',
+      'sec-services-p-2': 'row with a name, short description, and',
+      'sec-services-p-3':
+        '. Reuse the snippet below to stay aligned with DSBJ.',
     },
   },
 })
@@ -132,7 +151,58 @@ const consentBannerCode = `<div style="position: relative; background: var(--bj-
   </div>
 </div>`
 
-const consentManagerCode = `<div class="bj-consent-manager" id="id-modale-consentement" role="dialog" aria-modal="true" aria-labelledby="consent-manager-title">
+const consentServiceListCode = `<div class="bj-consent-manager__body">
+  <div class="bj-consent-service">
+    <div class="bj-consent-service__info">
+      <p class="bj-consent-service__name">Strictly necessary</p>
+      <p class="bj-consent-service__desc">Required for security and basic features. Always on.</p>
+    </div>
+    <div class="bj-consent-service__toggle">
+      <label class="bj-toggle">
+        <input type="checkbox" class="bj-toggle__input" checked disabled />
+        <span class="bj-toggle__slider"></span>
+      </label>
+    </div>
+  </div>
+  <div class="bj-consent-service">
+    <div class="bj-consent-service__info">
+      <p class="bj-consent-service__name">Audience measurement</p>
+      <p class="bj-consent-service__desc">Anonymous statistics to improve content.</p>
+    </div>
+    <div class="bj-consent-service__toggle">
+      <label class="bj-toggle">
+        <input type="checkbox" class="bj-toggle__input" />
+        <span class="bj-toggle__slider"></span>
+      </label>
+    </div>
+  </div>
+  <div class="bj-consent-service">
+    <div class="bj-consent-service__info">
+      <p class="bj-consent-service__name">Personalization</p>
+      <p class="bj-consent-service__desc">Remember preferences and contextual content.</p>
+    </div>
+    <div class="bj-consent-service__toggle">
+      <label class="bj-toggle">
+        <input type="checkbox" class="bj-toggle__input" />
+        <span class="bj-toggle__slider"></span>
+      </label>
+    </div>
+  </div>
+  <div class="bj-consent-service">
+    <div class="bj-consent-service__info">
+      <p class="bj-consent-service__name">Social &amp; sharing</p>
+      <p class="bj-consent-service__desc">Embeds and share buttons from third-party platforms.</p>
+    </div>
+    <div class="bj-consent-service__toggle">
+      <label class="bj-toggle">
+        <input type="checkbox" class="bj-toggle__input" />
+        <span class="bj-toggle__slider"></span>
+      </label>
+    </div>
+  </div>
+</div>`
+
+const consentManagerCode = `<div class="bj-consent-manager" id="id-modale-consentement" role="dialog" aria-modal="true" aria-labelledby="consent-manager-title" style="display: flex">
   <div class="bj-consent-manager__dialog">
     <div class="bj-consent-manager__header">
       <h2 class="bj-consent-manager__title" id="consent-manager-title">Personnaliser les cookies</h2>
@@ -162,8 +232,13 @@ const consentManagerCode = `<div class="bj-consent-manager" id="id-modale-consen
   </div>
 </div>`
 
-const attrsTableHeaders = computed((): [string, string] => [
+const tableHeadersAttr = computed((): [string, string] => [
   t('th-attribute'),
+  t('th-description'),
+])
+
+const tableHeadersClass = computed((): [string, string] => [
+  t('th-class'),
   t('th-description'),
 ])
 
@@ -202,6 +277,10 @@ const classesRows = computed(() => [
   {
     name: 'bj-consent-service__toggle',
     description: t('class-s-toggle'),
+  },
+  {
+    name: 'bj-toggle / bj-toggle__input',
+    description: t('class-bj-toggle'),
   },
 ])
 
@@ -259,6 +338,8 @@ const attrsRows = computed(() => [
       >
         <div
           class="bj-consent-banner"
+          data-bj-consent-banner
+          data-bj-expanded
           style="
             position: relative;
             display: block;
@@ -275,9 +356,9 @@ const attrsRows = computed(() => [
             </div>
             <p class="bj-consent-banner__text">
               Ce site utilise des cookies pour améliorer votre expérience de
-              navigation, mesurer l'audience du site et vous proposer des
+              navigation, mesurer l’audience du site et vous proposer des
               contenus adaptés. En cliquant sur « Tout accepter », vous acceptez
-              l'utilisation de l'ensemble des cookies. Vous pouvez également
+              l’utilisation de l’ensemble des cookies. Vous pouvez également
               personnaliser vos choix en cliquant sur « Personnaliser ».
             </p>
             <div class="bj-consent-banner__actions">
@@ -314,6 +395,7 @@ const attrsRows = computed(() => [
     </p>
     <DocsPreview style="position: relative">
       <div
+        class="bj-consent-manager"
         style="
           position: relative;
           min-height: 28rem;
@@ -322,6 +404,7 @@ const attrsRows = computed(() => [
           display: flex;
           align-items: center;
           justify-content: center;
+          padding: var(--bj-spacing-4v);
         "
       >
         <div
@@ -381,7 +464,7 @@ const attrsRows = computed(() => [
                 <p class="bj-consent-service__name">Réseaux sociaux</p>
                 <p class="bj-consent-service__desc">
                   Permettent le partage de contenus sur les réseaux sociaux et
-                  l'affichage de publications.
+                  l’affichage de publications.
                 </p>
               </div>
               <div class="bj-consent-service__toggle">
@@ -403,13 +486,108 @@ const attrsRows = computed(() => [
     <DocsCode :code="consentManagerCode" />
   </DocsSection>
 
+  <DocsSection id="sec-services-liste" :title="t('sec-services')">
+    <p
+      class="bj-text-md"
+      style="
+        color: var(--bj-text-alt);
+        margin-bottom: var(--bj-spacing-3v);
+        max-width: 44rem;
+      "
+    >
+      {{ t('sec-services-p-1') }}
+      <code>bj-consent-service</code>
+      {{ t('sec-services-p-2') }}
+      <code>bj-toggle</code>
+      {{ t('sec-services-p-3') }}
+    </p>
+    <DocsPreview style="position: relative">
+      <div
+        style="
+          max-width: 40rem;
+          margin: 0 auto;
+          background: var(--bj-bg-elevated);
+          border-radius: var(--bj-radius-md);
+          box-shadow: var(--bj-shadow-lg);
+          border: 1px solid var(--bj-border-subtle);
+        "
+      >
+        <div class="bj-consent-manager__body" style="max-height: none">
+          <div class="bj-consent-service">
+            <div class="bj-consent-service__info">
+              <p class="bj-consent-service__name">Cookies strictement nécessaires</p>
+              <p class="bj-consent-service__desc">
+                Sécurité, session et préférences légales. Toujours actifs.
+              </p>
+            </div>
+            <div class="bj-consent-service__toggle">
+              <label class="bj-toggle"
+                ><input
+                  type="checkbox"
+                  class="bj-toggle__input"
+                  checked
+                  disabled /><span class="bj-toggle__slider"></span
+              ></label>
+            </div>
+          </div>
+          <div class="bj-consent-service">
+            <div class="bj-consent-service__info">
+              <p class="bj-consent-service__name">Mesure d’audience</p>
+              <p class="bj-consent-service__desc">
+                Statistiques anonymisées pour améliorer les contenus publics.
+              </p>
+            </div>
+            <div class="bj-consent-service__toggle">
+              <label class="bj-toggle"
+                ><input type="checkbox" class="bj-toggle__input" /><span
+                  class="bj-toggle__slider"
+                ></span
+              ></label>
+            </div>
+          </div>
+          <div class="bj-consent-service">
+            <div class="bj-consent-service__info">
+              <p class="bj-consent-service__name">Personnalisation</p>
+              <p class="bj-consent-service__desc">
+                Mémorise la langue, le thème ou le contexte d’affichage.
+              </p>
+            </div>
+            <div class="bj-consent-service__toggle">
+              <label class="bj-toggle"
+                ><input type="checkbox" class="bj-toggle__input" /><span
+                  class="bj-toggle__slider"
+                ></span
+              ></label>
+            </div>
+          </div>
+          <div class="bj-consent-service">
+            <div class="bj-consent-service__info">
+              <p class="bj-consent-service__name">Réseaux sociaux &amp; partage</p>
+              <p class="bj-consent-service__desc">
+                Lecteurs intégrés et boutons de partage fournis par des tiers.
+              </p>
+            </div>
+            <div class="bj-consent-service__toggle">
+              <label class="bj-toggle"
+                ><input type="checkbox" class="bj-toggle__input" /><span
+                  class="bj-toggle__slider"
+                ></span
+              ></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="consentServiceListCode" />
+  </DocsSection>
+
   <DocsSection id="sec-classes-css" :title="t('sec-classes-css')">
     <DocsPropsTable :rows="classesRows" />
   </DocsSection>
 
   <DocsSection id="sec-attributs-js" :title="t('sec-attrs')">
     <DocsPropsTable
-      :headers="attrsTableHeaders"
+      :headers="tableHeadersAttr"
       :rows="attrsRows"
     />
   </DocsSection>

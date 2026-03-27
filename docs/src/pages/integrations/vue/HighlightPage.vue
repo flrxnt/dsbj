@@ -10,23 +10,35 @@ const { t } = useI18n({
   messages: {
     fr: {
       title: 'BjHighlight',
-      desc: 'Encadré de mise en exergue avec bordure gauche et taille de texte configurable.',
+      desc: 'Encadré de mise en exergue avec bordure gauche ; taille sm, md (défaut) ou lg pour le padding et la typographie.',
       'section-usage': 'Utilisation',
-      'section-preview': 'Aperçu',
+      'section-sizes': 'Tailles',
+      'section-matrix': 'Tailles × contenu',
+      'section-slot': 'Slot par défaut',
       'section-props': 'Props',
-      'prop-size': 'sm, md (défaut) ou lg — padding et taille de police.',
+      'prop-size': 'sm, md (défaut) ou lg.',
+      'slot-desc': 'Placez paragraphes, listes ou liens dans le slot par défaut.',
       'ex-p': 'Ce paragraphe est mis en exergue pour faciliter la lecture des points clés.',
       'code-p': 'Ce paragraphe est mis en exergue pour faciliter la lecture des points clés.',
+      'label-sm': 'sm',
+      'label-md': 'md',
+      'label-lg': 'lg',
     },
     en: {
       title: 'BjHighlight',
-      desc: 'Emphasis block with a left border and configurable text size.',
+      desc: 'Emphasis block with a left border; sm, md (default), or lg for padding and type scale.',
       'section-usage': 'Usage',
-      'section-preview': 'Preview',
+      'section-sizes': 'Sizes',
+      'section-matrix': 'Sizes × content',
+      'section-slot': 'Default slot',
       'section-props': 'Props',
-      'prop-size': 'sm, md (default), or lg — padding and font size.',
+      'prop-size': 'sm, md (default), or lg.',
+      'slot-desc': 'Put paragraphs, lists, or links in the default slot.',
       'ex-p': 'This paragraph is highlighted to make key points easier to read.',
       'code-p': 'This paragraph is highlighted to make key points easier to read.',
+      'label-sm': 'sm',
+      'label-md': 'md',
+      'label-lg': 'lg',
     },
   },
 })
@@ -44,6 +56,22 @@ import { BjHighlight } from '@flrxnt/dsbj/vue'
 </template>`
 })
 
+const codeSizes = `<BjHighlight size="sm"><p>Texte sm.</p></BjHighlight>
+<BjHighlight size="md"><p>Texte md (défaut).</p></BjHighlight>
+<BjHighlight size="lg"><p>Texte lg.</p></BjHighlight>`
+
+const codeMatrix = `<BjHighlight size="sm"><p>sm</p></BjHighlight>
+<BjHighlight size="sm"><p class="bj-text-sm">sm + classe texte petite</p></BjHighlight>
+<BjHighlight size="lg"><p>lg</p><p class="bj-text-sm">Sous-ligne lg</p></BjHighlight>`
+
+const codeSlot = `<BjHighlight>
+  <p>Titre implicite via style.</p>
+  <ul>
+    <li>Point un</li>
+    <li>Point deux</li>
+  </ul>
+</BjHighlight>`
+
 const propsRows = computed(() => [{ name: 'size', description: t('prop-size') }])
 </script>
 
@@ -55,12 +83,35 @@ const propsRows = computed(() => [{ name: 'size', description: t('prop-size') }]
     <DocsCode :code="codeUsage" lang="html" />
   </DocsSection>
 
-  <DocsSection id="vue-highlight-preview" :title="t('section-preview')">
-    <DocsPreview>
+  <DocsSection id="vue-highlight-sizes" :title="t('section-sizes')">
+    <DocsPreview style="display: flex; flex-direction: column; gap: var(--bj-spacing-3v); max-width: 40rem">
+      <div class="bj-highlight bj-highlight--sm">
+        <p class="bj-text-sm">{{ t('label-sm') }} — {{ t('ex-p') }}</p>
+      </div>
+      <div class="bj-highlight">
+        <p>{{ t('label-md') }} — {{ t('ex-p') }}</p>
+      </div>
       <div class="bj-highlight bj-highlight--lg">
-        <p>{{ t('ex-p') }}</p>
+        <p>{{ t('label-lg') }} — {{ t('ex-p') }}</p>
       </div>
     </DocsPreview>
+    <DocsCode :code="codeSizes" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-highlight-matrix" :title="t('section-matrix')">
+    <DocsPreview style="display: flex; flex-direction: column; gap: var(--bj-spacing-3v); max-width: 40rem">
+      <div class="bj-highlight bj-highlight--sm"><p>sm — court</p></div>
+      <div class="bj-highlight bj-highlight--lg">
+        <p>lg — bloc principal</p>
+        <p class="bj-text-sm">Sous-texte</p>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeMatrix" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-highlight-slot" :title="t('section-slot')">
+    <p class="bj-text-md" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('slot-desc') }}</p>
+    <DocsCode :code="codeSlot" lang="html" />
   </DocsSection>
 
   <DocsSection id="vue-highlight-props" :title="t('section-props')">

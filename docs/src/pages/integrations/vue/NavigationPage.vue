@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { BjNavigation } from '@flrxnt/dsbj/vue'
 import DocsCode from '@docs/components/DocsCode.vue'
 import DocsPreview from '@docs/components/DocsPreview.vue'
 import DocsSection from '@docs/components/DocsSection.vue'
@@ -10,28 +11,36 @@ const { t } = useI18n({
   messages: {
     fr: {
       title: 'BjNavigation',
-      desc: 'Conteneur de navigation : liste de liens via le slot par défaut (structure .bj-nav__item / .bj-nav__link).',
+      desc: 'Conteneur de navigation : le slot par défaut doit fournir des éléments li.bj-nav__item contenant des liens .bj-nav__link (liste ul gérée par le composant).',
       'section-usage': 'Utilisation',
       'section-preview': 'Aperçu',
       'section-props': 'Props',
+      'section-one-item': 'Un lien',
+      'section-multi': 'Plusieurs liens',
+      'section-current': 'Lien courant (aria-current)',
       'prop-default':
-        'Slot par défaut : éléments li.bj-nav__item à placer dans le ul interne.',
+        'Slot par défaut : uniquement des li avec les classes DSBJ ; pas de ul à ajouter manuellement.',
       'nav-aria': 'Navigation',
       'nav-home': 'Accueil',
       'nav-services': 'Services',
       'nav-contact': 'Contact',
+      'nav-about': 'À propos',
     },
     en: {
       title: 'BjNavigation',
-      desc: 'Navigation wrapper: link list via the default slot (.bj-nav__item / .bj-nav__link structure).',
+      desc: 'Navigation wrapper: the default slot must provide li.bj-nav__item elements with .bj-nav__link anchors (the ul is rendered by the component).',
       'section-usage': 'Usage',
       'section-preview': 'Preview',
       'section-props': 'Props',
-      'prop-default': 'Default slot: li.bj-nav__item nodes inside the internal ul.',
+      'section-one-item': 'Single link',
+      'section-multi': 'Multiple links',
+      'section-current': 'Current link (aria-current)',
+      'prop-default': 'Default slot: only li nodes with DSBJ classes; do not add a ul manually.',
       'nav-aria': 'Navigation',
       'nav-home': 'Home',
       'nav-services': 'Services',
       'nav-contact': 'Contact',
+      'nav-about': 'About',
     },
   },
 })
@@ -51,6 +60,28 @@ import { BjNavigation } from '@flrxnt/dsbj/vue'
   </BjNavigation>
 </template>`
 
+const codeOne = `<BjNavigation>
+  <li class="bj-nav__item">
+    <a class="bj-nav__link" href="#">Accueil</a>
+  </li>
+</BjNavigation>`
+
+const codeMulti = `<BjNavigation>
+  <li class="bj-nav__item"><a class="bj-nav__link" href="#">Accueil</a></li>
+  <li class="bj-nav__item"><a class="bj-nav__link" href="#">Services</a></li>
+  <li class="bj-nav__item"><a class="bj-nav__link" href="#">Contact</a></li>
+  <li class="bj-nav__item"><a class="bj-nav__link" href="#">À propos</a></li>
+</BjNavigation>`
+
+const codeCurrent = `<BjNavigation>
+  <li class="bj-nav__item">
+    <a class="bj-nav__link" href="/">Accueil</a>
+  </li>
+  <li class="bj-nav__item">
+    <a class="bj-nav__link" href="/ici" aria-current="page">Page courante</a>
+  </li>
+</BjNavigation>`
+
 const propsRows = computed(() => [{ name: 'default', description: t('prop-default') }])
 </script>
 
@@ -64,20 +95,66 @@ const propsRows = computed(() => [{ name: 'default', description: t('prop-defaul
 
   <DocsSection id="vue-navigation-preview" :title="t('section-preview')">
     <DocsPreview>
-      <nav class="bj-nav" :aria-label="t('nav-aria')">
-        <ul class="bj-nav__list">
-          <li class="bj-nav__item">
-            <a class="bj-nav__link" href="#">{{ t('nav-home') }}</a>
-          </li>
-          <li class="bj-nav__item">
-            <a class="bj-nav__link" href="#">{{ t('nav-services') }}</a>
-          </li>
-          <li class="bj-nav__item">
-            <a class="bj-nav__link" href="#">{{ t('nav-contact') }}</a>
-          </li>
-        </ul>
-      </nav>
+      <BjNavigation :aria-label="t('nav-aria')">
+        <li class="bj-nav__item">
+          <a class="bj-nav__link" href="#" @click.prevent>{{ t('nav-home') }}</a>
+        </li>
+        <li class="bj-nav__item">
+          <a class="bj-nav__link" href="#" @click.prevent>{{ t('nav-services') }}</a>
+        </li>
+        <li class="bj-nav__item">
+          <a class="bj-nav__link" href="#" @click.prevent>{{ t('nav-contact') }}</a>
+        </li>
+      </BjNavigation>
     </DocsPreview>
+  </DocsSection>
+
+  <DocsSection id="vue-navigation-one" :title="t('section-one-item')">
+    <DocsPreview>
+      <BjNavigation>
+        <li class="bj-nav__item">
+          <a class="bj-nav__link" href="#" @click.prevent>{{ t('nav-home') }}</a>
+        </li>
+      </BjNavigation>
+    </DocsPreview>
+    <DocsCode :code="codeOne" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-navigation-multi" :title="t('section-multi')">
+    <DocsPreview>
+      <BjNavigation>
+        <li class="bj-nav__item">
+          <a class="bj-nav__link" href="#" @click.prevent>{{ t('nav-home') }}</a>
+        </li>
+        <li class="bj-nav__item">
+          <a class="bj-nav__link" href="#" @click.prevent>{{ t('nav-services') }}</a>
+        </li>
+        <li class="bj-nav__item">
+          <a class="bj-nav__link" href="#" @click.prevent>{{ t('nav-contact') }}</a>
+        </li>
+        <li class="bj-nav__item">
+          <a class="bj-nav__link" href="#" @click.prevent>{{ t('nav-about') }}</a>
+        </li>
+      </BjNavigation>
+    </DocsPreview>
+    <DocsCode :code="codeMulti" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-navigation-current" :title="t('section-current')">
+    <DocsPreview>
+      <BjNavigation>
+        <li class="bj-nav__item">
+          <a class="bj-nav__link" href="#" @click.prevent>{{ t('nav-home') }}</a>
+        </li>
+        <li class="bj-nav__item">
+          <a class="bj-nav__link" href="#" aria-current="page" @click.prevent>{{ t('nav-services') }}</a>
+        </li>
+        <li class="bj-nav__item">
+          <a class="bj-nav__link" href="#" @click.prevent>{{ t('nav-contact') }}</a>
+        </li>
+      </BjNavigation>
+    </DocsPreview>
+    <DocsCode :code="codeCurrent" lang="html" />
   </DocsSection>
 
   <DocsSection id="vue-navigation-props" :title="t('section-props')">

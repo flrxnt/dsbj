@@ -19,8 +19,14 @@ const { t } = useI18n({
       'section-accessibilite': 'Accessibilité',
       'variantes-intro':
         'Tailles <code class="bj-text-sm">bj-logo--lg</code> et <code class="bj-text-sm">bj-logo--xl</code>, lien cliquable, sous-titre (tagline).',
+      'section-motto': 'Devise (motto)',
+      'section-motto-p':
+        'La classe <code>bj-logo__motto</code> affiche la devise sous le bloc principal (voir commentaires dans la feuille de style du logo).',
+      'section-combo': 'Combinaisons taille × textes',
+      'section-combo-p':
+        'Vous pouvez combiner <code>bj-logo--lg</code> ou <code>bj-logo--xl</code> avec <code>bj-logo__tagline</code> et <code>bj-logo__motto</code> sur le même <code>bj-logo</code>. La taille par défaut correspond au rendu sans modificateur (équivalent <code>md</code> côté composant Vue).',
       'variantes-footnote':
-        'La barre tricolore en pseudo-élément évoque les couleurs nationales ; combinez-la toujours avec le texte officiel pour l’identification.',
+        'La barre tricolore en pseudo-élément évoque les couleurs nationales ; combinez-la toujours avec le texte officiel pour l\u2019identification.',
       'prop-bj-logo':
         'Bloc principal : bande tricolore et texte en capitales.',
       'prop-bj-logo--lg':
@@ -33,8 +39,10 @@ const { t } = useI18n({
         'Image du sigle (armoiries) remplaçant la bande tricolore CSS.',
       'prop-bj-logo__tagline':
         'Sous-ligne descriptive (non en capitales, couleur secondaire).',
+      'prop-bj-logo__motto':
+        'Devise nationale en italique (texte plus petit).',
       'a11y-note':
-        'Lorsque le logo est un lien vers l’accueil, renseignez un intitulé explicite (<code>aria-label</code> sur le lien ou texte visible adjacent). La bande tricolore est décorative ; le texte « République du Bénin » porte l’information. Vérifiez le contraste du tagline sur le fond choisi.',
+        'Lorsque le logo est un lien vers l\u2019accueil, renseignez un intitulé explicite (<code>aria-label</code> sur le lien ou texte visible adjacent). La bande tricolore est décorative ; le texte « République du Bénin » porte l\u2019information. Vérifiez le contraste du tagline sur le fond choisi.',
     },
     en: {
       title: 'Logo',
@@ -46,6 +54,12 @@ const { t } = useI18n({
       'section-accessibilite': 'Accessibility',
       'variantes-intro':
         'Sizes <code class="bj-text-sm">bj-logo--lg</code> and <code class="bj-text-sm">bj-logo--xl</code>, clickable link, subtitle (tagline).',
+      'section-motto': 'Motto',
+      'section-motto-p':
+        '<code>bj-logo__motto</code> shows the national motto below the main block (see logo stylesheet comments).',
+      'section-combo': 'Size × text combinations',
+      'section-combo-p':
+        'Combine <code>bj-logo--lg</code> or <code>bj-logo--xl</code> with <code>bj-logo__tagline</code> and <code>bj-logo__motto</code> on the same <code>bj-logo</code>. Default size is the base class without a modifier (Vue <code>md</code>).',
       'variantes-footnote':
         'The tricolor bar as a pseudo-element evokes national colors; always pair it with the official text for identification.',
       'prop-bj-logo':
@@ -60,6 +74,8 @@ const { t } = useI18n({
         'Coat of arms image replacing the CSS tricolor band.',
       'prop-bj-logo__tagline':
         'Descriptive subline (not uppercase, secondary color).',
+      'prop-bj-logo__motto':
+        'National motto in italic (smaller text).',
       'a11y-note':
         'When the logo links home, provide a clear accessible name (<code>aria-label</code> on the link or adjacent visible text). The tricolor band is decorative; “République du Bénin” carries the information. Check tagline contrast on the chosen background.',
     },
@@ -79,16 +95,31 @@ const codeVariantes = `<div class="bj-logo bj-logo--lg">
   <img src="/sigle.svg" alt="" class="bj-logo__img">
   <p>République<br>du Bénin</p>
 </div>
-<a href="/" class="bj-logo__link">
-  <div class="bj-logo">
+<div class="bj-logo">
+  <a href="/" class="bj-logo__link" aria-label="Accueil — République du Bénin">
     <img src="/sigle.svg" alt="" class="bj-logo__img">
     <p>République<br>du Bénin</p>
-  </div>
-</a>
+  </a>
+</div>
 <div class="bj-logo bj-logo--lg">
   <img src="/sigle.svg" alt="" class="bj-logo__img">
   <p>République<br>du Bénin</p>
-  <span class="bj-logo__tagline">Portail des démarches</span>
+  <p class="bj-logo__tagline">Portail des démarches</p>
+</div>`
+
+const codeMotto = `<div class="bj-logo bj-logo--lg">
+  <img src="/sigle.svg" alt="" class="bj-logo__img">
+  <p>République<br>du Bénin</p>
+  <p class="bj-logo__motto">Fraternité, Justice, Travail</p>
+</div>`
+
+const codeCombo = `<div class="bj-logo bj-logo--xl">
+  <a href="/" class="bj-logo__link" aria-label="Accueil">
+    <img src="/sigle.svg" alt="" class="bj-logo__img">
+    <p>République<br>du Bénin</p>
+  </a>
+  <p class="bj-logo__tagline">Service public numérique</p>
+  <p class="bj-logo__motto">Fraternité, Justice, Travail</p>
 </div>`
 
 const propsRows = computed(() => [
@@ -115,6 +146,10 @@ const propsRows = computed(() => [
   {
     name: 'bj-logo__tagline',
     description: t('prop-bj-logo__tagline'),
+  },
+  {
+    name: 'bj-logo__motto',
+    description: t('prop-bj-logo__motto'),
   },
 ])
 </script>

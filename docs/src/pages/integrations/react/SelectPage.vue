@@ -31,6 +31,19 @@ const { t } = useI18n({
       'prop-id': 'Identifiant du select ; sinon g\u00e9n\u00e9r\u00e9 automatiquement.',
       'prop-children': 'Options ou n\u0153uds React suppl\u00e9mentaires (mode natif uniquement).',
       'prop-rest': 'Autres attributs HTML natifs du select.',
+      'prop-className': 'Classe CSS sur le select (mode natif) ou sur le groupe (mode searchable).',
+      'section-onvalue': 'onChange et onValueChange',
+      'section-error': 'Erreur et message',
+      'section-disabled-native': 'Désactivé et enfants',
+      'section-searchable-i18n': 'Recherche : textes et filtre',
+      'section-combinations': 'Combinaisons',
+      'section-callbacks': 'Patron contrôlé',
+      'desc-onvalue': 'onChange reçoit l’événement natif ; onValueChange reçoit la chaîne (natif et searchable).',
+      'desc-error': 'error et message ensemble pour la validation.',
+      'desc-disabled-native': 'placeholder, options désactivées et children en option natives.',
+      'desc-searchable-i18n': 'searchPlaceholder, noResults et filtre sur le libellé.',
+      'desc-combinations': 'Select avec hint, placeholder, erreur et option désactivée.',
+      'desc-callbacks': 'value + onChange ou onValueChange pour un état contrôlé.',
     },
     en: {
       title: 'BjSelect',
@@ -55,6 +68,19 @@ const { t } = useI18n({
       'prop-id': 'Select id; auto-generated when omitted.',
       'prop-children': 'Extra option nodes (native mode only).',
       'prop-rest': 'Other native select HTML attributes.',
+      'prop-className': 'CSS class on the select (native mode) or on the group (searchable mode).',
+      'section-onvalue': 'onChange and onValueChange',
+      'section-error': 'Error and message',
+      'section-disabled-native': 'Disabled and children',
+      'section-searchable-i18n': 'Search: copy and filtering',
+      'section-combinations': 'Combinations',
+      'section-callbacks': 'Controlled pattern',
+      'desc-onvalue': 'onChange receives the native event; onValueChange receives the string (native and searchable).',
+      'desc-error': 'error and message together for validation feedback.',
+      'desc-disabled-native': 'placeholder, disabled options, and optional native children.',
+      'desc-searchable-i18n': 'searchPlaceholder, noResults, and label-based filtering.',
+      'desc-combinations': 'Select with hint, placeholder, error, and a disabled option.',
+      'desc-callbacks': 'value with onChange or onValueChange for controlled state.',
     },
   },
 })
@@ -105,6 +131,107 @@ export default function Example() {
   )
 }`
 
+const codeOnValue = `import { useState } from 'react'
+import { BjSelect } from '@flrxnt/dsbj/react'
+
+const options = [{ value: 'a', label: 'Option A' }, { value: 'b', label: 'Option B' }]
+
+export default function Example() {
+  const [v, setV] = useState('')
+  return (
+    <BjSelect
+      value={v}
+      onChange={(e) => console.log('native', e.target.value)}
+      onValueChange={setV}
+      options={options}
+      label="Les deux callbacks"
+    />
+  )
+}`
+
+const codeError = `import { useState } from 'react'
+import { BjSelect } from '@flrxnt/dsbj/react'
+
+const options = [{ value: 'x', label: 'Choix' }]
+
+export default function Example() {
+  const [v, setV] = useState('')
+  return (
+    <BjSelect
+      value={v}
+      onValueChange={setV}
+      label="Champ requis"
+      error={!v}
+      message={v ? '' : 'Veuillez sélectionner une valeur.'}
+      placeholder="Sélectionner…"
+      options={options}
+    />
+  )
+}`
+
+const codeDisabledChildren = `import { useState } from 'react'
+import { BjSelect } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  const [v, setV] = useState('')
+  return (
+    <BjSelect value={v} onValueChange={setV} label="Groupes" disabled placeholder="Choisir…">
+      <optgroup label="Groupe 1">
+        <option value="1">Un</option>
+        <option value="2">Deux</option>
+      </optgroup>
+    </BjSelect>
+  )
+}`
+
+const codeSearchableI18n = `import { useState } from 'react'
+import { BjSelect } from '@flrxnt/dsbj/react'
+
+const options = [
+  { value: 'cotonou', label: 'Cotonou' },
+  { value: 'porto', label: 'Porto-Novo' },
+]
+
+export default function Example() {
+  const [city, setCity] = useState('')
+  return (
+    <BjSelect
+      value={city}
+      onValueChange={setCity}
+      searchable
+      searchPlaceholder="Filter cities…"
+      noResults="No match"
+      options={options}
+      label="City"
+    />
+  )
+}`
+
+const codeCombinations = `import { useState } from 'react'
+import { BjSelect } from '@flrxnt/dsbj/react'
+
+const options = [
+  { value: 'std', label: 'Standard' },
+  { value: 'prem', label: 'Premium', disabled: true },
+  { value: 'ent', label: 'Enterprise' },
+]
+
+export default function Example() {
+  const [plan, setPlan] = useState('')
+  return (
+    <BjSelect
+      value={plan}
+      onValueChange={setPlan}
+      label="Offre"
+      hint="Premium sur demande"
+      placeholder="Choisir une offre…"
+      options={options}
+      error={!plan}
+      message={plan ? \`Sélection : \${plan}\` : 'Requis.'}
+    />
+  )
+}`
+
 const propsRows = computed(() => [
   { name: 'value', description: t('prop-value') },
   { name: 'onChange', description: t('prop-onChange') },
@@ -121,6 +248,7 @@ const propsRows = computed(() => [
   { name: 'noResults', description: t('prop-noResults') },
   { name: 'id', description: t('prop-id') },
   { name: 'children', description: t('prop-children') },
+  { name: 'className', description: t('prop-className') },
   { name: '\u2026', description: t('prop-rest') },
 ])
 </script>
@@ -145,6 +273,71 @@ const propsRows = computed(() => [
         </select>
       </div>
     </DocsPreview>
+  </DocsSection>
+
+  <DocsSection id="react-select-onvalue" :title="t('section-onvalue')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-onvalue') }}</p>
+    <DocsCode :code="codeOnValue" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-select-error" :title="t('section-error')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-error') }}</p>
+    <DocsPreview>
+      <div class="bj-select-group" style="max-width: 24rem">
+        <label class="bj-label" for="react-sel-err">Champ requis</label>
+        <select id="react-sel-err" class="bj-select bj-select--error" aria-invalid="true" aria-describedby="react-sel-err-msg">
+          <option value="" disabled selected>Sélectionner…</option>
+          <option value="x">Choix</option>
+        </select>
+        <p id="react-sel-err-msg" class="bj-message bj-message--error">Veuillez sélectionner une valeur.</p>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeError" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-select-disabled-children" :title="t('section-disabled-native')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-disabled-native') }}</p>
+    <DocsPreview>
+      <div class="bj-select-group" style="max-width: 24rem">
+        <label class="bj-label" for="react-sel-dis">Groupes</label>
+        <select id="react-sel-dis" class="bj-select" disabled>
+          <option value="" disabled selected>Choisir…</option>
+          <optgroup label="Groupe 1">
+            <option value="1">Un</option>
+            <option value="2">Deux</option>
+          </optgroup>
+        </select>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeDisabledChildren" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-select-searchable-i18n" :title="t('section-searchable-i18n')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-searchable-i18n') }}</p>
+    <DocsCode :code="codeSearchableI18n" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-select-combinations" :title="t('section-combinations')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-combinations') }}</p>
+    <DocsPreview>
+      <div class="bj-select-group" style="max-width: 24rem">
+        <label class="bj-label" for="react-sel-combo">Offre</label>
+        <span class="bj-hint">Premium sur demande</span>
+        <select id="react-sel-combo" class="bj-select bj-select--error" aria-invalid="true">
+          <option value="" disabled selected>Choisir une offre…</option>
+          <option value="std">Standard</option>
+          <option value="prem" disabled>Premium</option>
+          <option value="ent">Enterprise</option>
+        </select>
+        <p class="bj-message bj-message--error">Requis.</p>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeCombinations" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-select-callbacks" :title="t('section-callbacks')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-callbacks') }}</p>
+    <DocsCode :code="codeUsage" lang="tsx" />
   </DocsSection>
 
   <DocsSection id="react-select-searchable" :title="t('section-searchable')">

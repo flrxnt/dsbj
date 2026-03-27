@@ -19,6 +19,12 @@ const { t } = useI18n({
       'section-accessibilite': 'Accessibilité',
       'variantes-desc':
         '<code>bj-radio-group--inline</code> pour aligner les options sur une ligne lorsque les libellés sont courts.',
+      'section-name-value':
+        '<code>name</code>, <code>value</code> et choix sélectionné',
+      'section-name-value-body':
+        'Toutes les options d’un même ensemble partagent le même <code>name</code>. Chaque option a un <code>value</code> distinct. L’option sélectionnée porte <code>checked</code>.',
+      'prop-bj-radio-input':
+        'Bouton\u00a0: <code>type="radio"</code>, <code>name</code>, <code>value</code>, <code>checked</code>, <code>disabled</code>.',
       'prop-bj-radio-group': 'Groupe vertical.',
       'prop-bj-radio-group--inline': 'Groupe horizontal.',
       'prop-bj-radio-group__legend': 'Question posée.',
@@ -37,6 +43,12 @@ const { t } = useI18n({
       'section-accessibilite': 'Accessibility',
       'variantes-desc':
         '<code>bj-radio-group--inline</code> to align options on one line when labels are short.',
+      'section-name-value':
+        '<code>name</code>, <code>value</code>, and selected option',
+      'section-name-value-body':
+        'Every option in a set shares the same <code>name</code>. Each option has its own <code>value</code>. The selected option has the <code>checked</code> attribute.',
+      'prop-bj-radio-input':
+        'Control: <code>type="radio"</code>, <code>name</code>, <code>value</code>, <code>checked</code>, <code>disabled</code>.',
       'prop-bj-radio-group': 'Vertical group.',
       'prop-bj-radio-group--inline': 'Horizontal group.',
       'prop-bj-radio-group__legend': 'Question asked.',
@@ -49,8 +61,29 @@ const { t } = useI18n({
   },
 })
 
-const codeExample =
-  '<fieldset class="bj-radio-group">…</fieldset>'
+const codeExample = `<fieldset class="bj-radio-group">
+  <legend class="bj-radio-group__legend">Type de demande</legend>
+  <label class="bj-radio">
+    <input type="radio" name="demande" value="nouvelle" checked />
+    <span class="bj-radio__label">Nouvelle demande</span>
+  </label>
+  <label class="bj-radio">
+    <input type="radio" name="demande" value="renouv" />
+    <span class="bj-radio__label">Renouvellement</span>
+  </label>
+</fieldset>
+
+<fieldset class="bj-radio-group bj-radio-group--inline">
+  <legend class="bj-radio-group__legend">Civilité</legend>
+  <label class="bj-radio">
+    <input type="radio" name="civ" value="m" />
+    <span class="bj-radio__label">M.</span>
+  </label>
+  <label class="bj-radio">
+    <input type="radio" name="civ" value="f" />
+    <span class="bj-radio__label">Mme</span>
+  </label>
+</fieldset>`
 
 const propsRows = computed(() => [
   { name: 'bj-radio-group', description: t('prop-bj-radio-group') },
@@ -65,6 +98,7 @@ const propsRows = computed(() => [
   { name: 'bj-radio', description: t('prop-bj-radio') },
   { name: 'bj-radio__label', description: t('prop-bj-radio__label') },
   { name: 'bj-radio__hint', description: t('prop-bj-radio__hint') },
+  { name: '(input radio)', description: t('prop-bj-radio-input') },
 ])
 </script>
 
@@ -123,6 +157,28 @@ const propsRows = computed(() => [
       </fieldset>
     </DocsPreview>
     <DocsCode :code="codeExample" />
+  </DocsSection>
+
+  <DocsSection id="sec-name-value" :title="t('section-name-value')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-name-value-body')"
+    />
+    <DocsPreview>
+      <fieldset class="bj-radio-group">
+        <legend class="bj-radio-group__legend">Mode de réception</legend>
+        <label class="bj-radio">
+          <input type="radio" name="demo_recv" value="mail" checked />
+          <span class="bj-radio__label">Courriel</span>
+        </label>
+        <label class="bj-radio">
+          <input type="radio" name="demo_recv" value="courrier" />
+          <span class="bj-radio__label">Courrier postal</span>
+          <span class="bj-radio__hint">Délai supplémentaire.</span>
+        </label>
+      </fieldset>
+    </DocsPreview>
   </DocsSection>
 
   <DocsSection id="sec-variantes" :title="t('section-variantes')">

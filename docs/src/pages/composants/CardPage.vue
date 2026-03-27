@@ -25,6 +25,12 @@ const { t } = useI18n({
       'section-grid': 'Grille de cartes',
       'para-grid':
         'Trois cartes sur une ligne desktop avec <code>bj-grid-row</code> et <code>bj-col-4</code> (se réorganisent sur petits écrans).',
+      'section-link': 'Carte entièrement cliquable',
+      'para-link':
+        'Sur une balise <code>&lt;a&gt;</code>, ajoutez <code>bj-card bj-card--link</code> pour le survol et le curseur lien (équivalent Vue <code>link</code>).',
+      'section-combo-modifiers': 'Combinaisons de modificateurs',
+      'para-combo-modifiers':
+        'Les modificateurs <code>bj-card--horizontal</code>, <code>bj-card--flat</code> et <code>bj-card--highlight</code> se cumulent : testez les paires et triplets selon la maquette.',
       'section-classes': 'Classes CSS',
       'section-a11y': 'Accessibilité',
       'a11y-note':
@@ -69,6 +75,12 @@ const { t } = useI18n({
       'section-grid': 'Card grid',
       'para-grid':
         'Three cards per row on desktop with <code>bj-grid-row</code> and <code>bj-col-4</code> (they reflow on small screens).',
+      'section-link': 'Fully clickable card',
+      'para-link':
+        'On an <code>&lt;a&gt;</code>, use <code>bj-card bj-card--link</code> for link hover and cursor (Vue <code>link</code> prop).',
+      'section-combo-modifiers': 'Modifier combinations',
+      'para-combo-modifiers':
+        '<code>bj-card--horizontal</code>, <code>bj-card--flat</code>, and <code>bj-card--highlight</code> stack—use pairs and triplets as the layout needs.',
       'section-classes': 'CSS classes',
       'section-a11y': 'Accessibility',
       'a11y-note':
@@ -124,6 +136,24 @@ const codeGrid = `<div class="bj-grid-row bj-grid-row--gutters">
   <div class="bj-col-4"><article class="bj-card">…</article></div>
   <div class="bj-col-4"><article class="bj-card">…</article></div>
 </div>`
+
+const codeLink = `<a href="#" class="bj-card bj-card--link">
+  <div class="bj-card__body">
+    <div class="bj-card__title">Titre du lien</div>
+    <p class="bj-card__desc">Toute la carte est cliquable.</p>
+  </div>
+</a>`
+
+const codeCombosCard = `<!-- horizontal + flat -->
+<article class="bj-card bj-card--horizontal bj-card--flat">…</article>
+<!-- horizontal + highlight -->
+<article class="bj-card bj-card--horizontal bj-card--highlight">…</article>
+<!-- flat + highlight -->
+<article class="bj-card bj-card--flat bj-card--highlight">…</article>
+<!-- horizontal + flat + highlight -->
+<article class="bj-card bj-card--horizontal bj-card--flat bj-card--highlight">…</article>
+<!-- lien + horizontal -->
+<a href="#" class="bj-card bj-card--link bj-card--horizontal">…</a>`
 
 const propsRows = computed(() => [
   { name: 'bj-card', description: t('prop-bj-card') },
@@ -357,6 +387,135 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeGrid" />
+  </DocsSection>
+
+  <DocsSection id="sec-card-link" :title="t('section-link')">
+    <p
+      class="bj-text-md"
+      style="max-width: 44rem; color: var(--bj-text-alt)"
+    >
+      <span v-html="t('para-link')" />
+    </p>
+    <DocsPreview>
+      <a
+        href="#"
+        class="bj-card bj-card--link"
+        style="max-width: 20rem; text-decoration: none; color: inherit"
+      >
+        <div class="bj-card__body">
+          <div class="bj-card__title">Portail des démarches</div>
+          <p class="bj-card__desc">
+            Accéder au catalogue : toute la surface de la carte est
+            un lien unique.
+          </p>
+        </div>
+      </a>
+    </DocsPreview>
+    <DocsCode :code="codeLink" />
+  </DocsSection>
+
+  <DocsSection
+    id="sec-card-combo-modifiers"
+    :title="t('section-combo-modifiers')"
+  >
+    <p
+      class="bj-text-md"
+      style="max-width: 44rem; color: var(--bj-text-alt)"
+    >
+      <span v-html="t('para-combo-modifiers')" />
+    </p>
+    <DocsPreview
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: var(--bj-spacing-4v);
+        align-items: flex-start;
+      "
+    >
+      <article class="bj-card bj-card--horizontal bj-card--flat">
+        <div
+          class="bj-card__img"
+          style="background: #3d5a80"
+          role="img"
+          aria-label=""
+        ></div>
+        <div class="bj-card__body">
+          <div class="bj-card__title">Horizontal + plat</div>
+          <p class="bj-card__desc">
+            Visuel à gauche, sans ombre ni bordure pleine.
+          </p>
+        </div>
+      </article>
+      <article
+        class="bj-card bj-card--horizontal bj-card--highlight"
+        style="max-width: 36rem"
+      >
+        <div
+          class="bj-card__img"
+          style="background: #5c4d3c"
+          role="img"
+          aria-label=""
+        ></div>
+        <div class="bj-card__body">
+          <div class="bj-card__title">Horizontal + mise en avant</div>
+          <p class="bj-card__desc">
+            Bandeau d’accent à gauche sur une carte horizontale.
+          </p>
+        </div>
+      </article>
+      <article
+        class="bj-card bj-card--flat bj-card--highlight"
+        style="max-width: 22rem"
+      >
+        <div class="bj-card__body">
+          <div class="bj-card__detail">À la une</div>
+          <div class="bj-card__title">Plat + surligné</div>
+          <p class="bj-card__desc">
+            Sans relief de carte, avec bordure gauche colorée.
+          </p>
+        </div>
+      </article>
+      <article
+        class="bj-card bj-card--horizontal bj-card--flat bj-card--highlight"
+        style="max-width: 38rem"
+      >
+        <div
+          class="bj-card__img"
+          style="background: #2a6f4a"
+          role="img"
+          aria-label=""
+        ></div>
+        <div class="bj-card__body">
+          <div class="bj-card__title">Triple modificateur</div>
+          <p class="bj-card__desc">
+            Horizontal, plat et highlight combinés.
+          </p>
+        </div>
+      </article>
+      <a
+        href="#"
+        class="bj-card bj-card--link bj-card--horizontal"
+        style="
+          max-width: 36rem;
+          text-decoration: none;
+          color: inherit;
+        "
+      >
+        <div
+          class="bj-card__img"
+          style="background: #4a3728"
+          role="img"
+          aria-label=""
+        ></div>
+        <div class="bj-card__body">
+          <div class="bj-card__title">Lien + horizontal</div>
+          <p class="bj-card__desc">
+            <code>bj-card--link</code> avec disposition horizontale.
+          </p>
+        </div>
+      </a>
+    </DocsPreview>
+    <DocsCode :code="codeCombosCard" />
   </DocsSection>
 
   <DocsSection id="classes-card" :title="t('section-classes')">

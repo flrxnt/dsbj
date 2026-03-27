@@ -16,6 +16,10 @@ const { t } = useI18n({
       'section-variants': 'Variantes',
       'section-variants-body':
         '<code>bj-upload-group--error</code>, <code>bj-upload__file</code>, <code>bj-upload__file-remove</code>.',
+      'section-complete':
+        'Groupe complet (libellé, aide, texte, icône, formats)',
+      'section-complete-body':
+        'Le composant Vue compose <code>bj-upload-group</code>, <code>bj-label</code>, <code>bj-hint</code>, zone <code>bj-upload</code> avec <code>bj-upload__icon</code> (classe d’icône Remix en plus), <code>bj-upload__text</code>, <code>bj-upload__hint</code>, <code>input type="file"</code> avec <code>accept</code> et <code>multiple</code>, puis message <code>bj-message--info</code> ou <code>bj-message--error</code>.',
       'section-css': 'Classes CSS',
       'section-a11y': 'Accessibilité',
       'prop-upload-group': 'Groupe.',
@@ -27,6 +31,12 @@ const { t } = useI18n({
         'Contenu.',
       'prop-upload-file':
         'Fichier choisi.',
+      'prop-upload-label':
+        'Libellé et aide (comme les autres champs).',
+      'prop-upload-message':
+        'Message sous la zone\u00a0: <code>bj-message--info</code> ou <code>bj-message--error</code>.',
+      'prop-upload-multiple':
+        'Attributs <code>accept</code> et <code>multiple</code> sur <code>input type="file"</code>.',
       'a11y-note':
         'Reliez l’input à une étiquette (<code>aria-labelledby</code> ou <code>label</code>). Décrivez formats et tailles dans le texte visible.',
     },
@@ -37,6 +47,10 @@ const { t } = useI18n({
       'section-variants': 'Variants',
       'section-variants-body':
         '<code>bj-upload-group--error</code>, <code>bj-upload__file</code>, <code>bj-upload__file-remove</code>.',
+      'section-complete':
+        'Full group (label, hint, text, icon, formats)',
+      'section-complete-body':
+        'The Vue component uses <code>bj-upload-group</code>, <code>bj-label</code>, <code>bj-hint</code>, a <code>bj-upload</code> zone with <code>bj-upload__icon</code> (plus a Remix icon class), <code>bj-upload__text</code>, <code>bj-upload__hint</code>, a file <code>input</code> with <code>accept</code> and <code>multiple</code>, then <code>bj-message--info</code> or <code>bj-message--error</code>.',
       'section-css': 'CSS classes',
       'section-a11y': 'Accessibility',
       'prop-upload-group': 'Group.',
@@ -48,6 +62,12 @@ const { t } = useI18n({
         'Content.',
       'prop-upload-file':
         'Chosen file.',
+      'prop-upload-label':
+        'Label and hint (same as other fields).',
+      'prop-upload-message':
+        'Message below the zone: <code>bj-message--info</code> or <code>bj-message--error</code>.',
+      'prop-upload-multiple':
+        '<code>accept</code> and <code>multiple</code> on the file <code>input</code>.',
       'a11y-note':
         'Link the input to a label (<code>aria-labelledby</code> or <code>label</code>). Describe allowed formats and sizes in visible text.',
     },
@@ -55,12 +75,20 @@ const { t } = useI18n({
 })
 
 const codeExample = `<div class="bj-upload-group">
-  <label class="bj-upload" style="position:relative;">
-    <input type="file"> …
-  </label>
+  <label class="bj-label" for="uf">Justificatif</label>
+  <span class="bj-hint">PDF ou image, 5 Mo max.</span>
+  <div class="bj-upload" role="button" tabindex="0">
+    <i class="ri-upload-2-line bj-upload__icon" aria-hidden="true"></i>
+    <span class="bj-upload__text">Glissez un fichier ou cliquez pour parcourir</span>
+    <span class="bj-upload__hint">Formats acceptés sur cette étape.</span>
+    <input id="uf" type="file" accept=".pdf,image/*" multiple />
+  </div>
+  <p class="bj-message bj-message--info" role="status">Vous pouvez ajouter jusqu’à 3 fichiers.</p>
 </div>`
 
 const propsRows = computed(() => [
+  { name: 'bj-label', description: t('prop-upload-label') },
+  { name: 'bj-hint', description: t('prop-upload-label') },
   { name: 'bj-upload-group', description: t('prop-upload-group') },
   {
     name: 'bj-upload-group--error',
@@ -74,6 +102,14 @@ const propsRows = computed(() => [
   {
     name: 'bj-upload__text / bj-upload__hint / bj-upload__icon',
     description: t('prop-upload-content'),
+  },
+  {
+    name: '(input file: accept, multiple)',
+    description: t('prop-upload-multiple'),
+  },
+  {
+    name: 'bj-message--info / bj-message--error',
+    description: t('prop-upload-message'),
   },
   {
     name: 'bj-upload__file / bj-upload__file-remove',
@@ -97,6 +133,7 @@ const propsRows = computed(() => [
     <DocsPreview>
       <div class="bj-upload-group">
         <span id="ex-ul1" class="bj-label">Justificatif</span>
+        <span class="bj-hint">PDF ou image — 5&nbsp;Mo max.</span>
         <label
           class="bj-upload"
           style="position: relative"
@@ -106,6 +143,7 @@ const propsRows = computed(() => [
             type="file"
             name="xf1"
             accept=".pdf,image/*"
+            multiple
             aria-labelledby="ex-ul1"
           />
           <i
@@ -116,9 +154,12 @@ const propsRows = computed(() => [
             >Glisser-déposer ou parcourir</span
           >
           <span class="bj-upload__hint"
-            >PDF ou image - 5&nbsp;Mo max.</span
+            >Plusieurs fichiers possibles.</span
           >
         </label>
+        <p class="bj-message bj-message--info" role="status">
+          Jusqu’à 3 pièces pour cette étape.
+        </p>
       </div>
       <div class="bj-upload-group">
         <span id="ex-ul2" class="bj-label">État actif (démo)</span>
@@ -131,6 +172,21 @@ const propsRows = computed(() => [
           <span class="bj-upload__text"
             >Classe <code>bj-upload--drag-over</code></span
           >
+        </label>
+      </div>
+      <div class="bj-upload-group">
+        <span id="ex-ul1b" class="bj-label">Autre icône</span>
+        <label
+          class="bj-upload"
+          style="position: relative"
+          aria-labelledby="ex-ul1b"
+        >
+          <input type="file" aria-labelledby="ex-ul1b" />
+          <i
+            class="ri-attachment-2 bj-upload__icon"
+            aria-hidden="true"
+          ></i>
+          <span class="bj-upload__text">Pièces jointes</span>
         </label>
       </div>
       <div class="bj-upload-group bj-upload-group--error">
@@ -163,6 +219,14 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeExample" />
+  </DocsSection>
+
+  <DocsSection id="sec-complet" :title="t('section-complete')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-complete-body')"
+    />
   </DocsSection>
 
   <DocsSection id="sec-variantes" :title="t('section-variants')">

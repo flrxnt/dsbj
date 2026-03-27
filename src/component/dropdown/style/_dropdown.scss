@@ -104,3 +104,13 @@
   padding: var(--bj-spacing-1v) var(--bj-spacing-3v);
   font-size: var(--bj-fs-xs);
 }
+
+.bj-dropdown--lg .bj-dropdown__menu {
+  min-width: 15rem;
+}
+
+.bj-dropdown--lg .bj-dropdown__item > button,
+.bj-dropdown--lg .bj-dropdown__item > a {
+  padding: var(--bj-spacing-3v) var(--bj-spacing-5v);
+  font-size: var(--bj-fs-md);
+}

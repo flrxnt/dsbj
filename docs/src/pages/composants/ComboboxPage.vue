@@ -18,6 +18,15 @@ const { t } = useI18n({
         'Le combobox supporte les états d\u2019erreur et de désactivation, ainsi qu\u2019un message « aucun résultat » configurable.',
       'section-css': 'Classes CSS',
       'section-a11y': 'Accessibilité',
+      'prop-label-hint-cb': 'Libellé et aide sous le champ.',
+      'prop-message-cb':
+        'Message\u00a0: <code>bj-message--info</code> ou <code>bj-message--error</code>.',
+      'section-no-results': 'Aucun résultat',
+      'section-no-results-body':
+        'Liste ouverte mais filtre vide\u00a0: bloc <code>bj-combobox__listbox</code> avec <code>bj-combobox__no-results</code> (texte configurable côté Vue via <code>noResults</code>).',
+      'section-info-msg': 'Message informatif',
+      'section-info-msg-body':
+        'Hors erreur, un message d’aide utilise <code>bj-message bj-message--info</code>.',
       'prop-combobox': 'Conteneur principal.',
       'prop-input-wrap': 'Enveloppe de l\u2019input et de l\u2019icône.',
       'prop-input': 'Champ texte avec role="combobox".',
@@ -40,6 +49,15 @@ const { t } = useI18n({
         'The combobox supports error and disabled states, along with a configurable "no results" message.',
       'section-css': 'CSS classes',
       'section-a11y': 'Accessibility',
+      'prop-label-hint-cb': 'Label and hint above the field.',
+      'prop-message-cb':
+        'Message: <code>bj-message--info</code> or <code>bj-message--error</code>.',
+      'section-no-results': 'No results',
+      'section-no-results-body':
+        'Open list but empty filter: a <code>bj-combobox__listbox</code> wrapper with <code>bj-combobox__no-results</code> (Vue <code>noResults</code> text).',
+      'section-info-msg': 'Informational message',
+      'section-info-msg-body':
+        'When not in error, help copy uses <code>bj-message bj-message--info</code>.',
       'prop-combobox': 'Main container.',
       'prop-input-wrap': 'Input + icon wrapper.',
       'prop-input': 'Text input with role="combobox".',
@@ -55,6 +73,25 @@ const { t } = useI18n({
     },
   },
 })
+
+const codeNoResults = `<div class="bj-combobox bj-combobox--open">
+  <div class="bj-combobox__input-wrap">
+    <input class="bj-combobox__input" type="text" role="combobox" aria-expanded="true" value="zzz" />
+    <i class="ri-arrow-down-s-line bj-combobox__icon" aria-hidden="true"></i>
+  </div>
+  <div class="bj-combobox__listbox">
+    <p class="bj-combobox__no-results">Aucun résultat</p>
+  </div>
+</div>`
+
+const codeInfoMsg = `<div class="bj-combobox">
+  <label class="bj-label" for="cbi">Service</label>
+  <div class="bj-combobox__input-wrap">
+    <input id="cbi" class="bj-combobox__input" type="text" role="combobox" placeholder="Rechercher…" />
+    <i class="ri-arrow-down-s-line bj-combobox__icon" aria-hidden="true"></i>
+  </div>
+  <p class="bj-message bj-message--info" role="status">Choisissez un service dans la liste.</p>
+</div>`
 
 const codeExample = `<div class="bj-combobox">
   <label class="bj-label" for="cb1">Ville</label>
@@ -72,6 +109,8 @@ const codeExample = `<div class="bj-combobox">
 </div>`
 
 const propsRows = computed(() => [
+  { name: 'bj-label', description: t('prop-label-hint-cb') },
+  { name: 'bj-hint', description: t('prop-label-hint-cb') },
   { name: 'bj-combobox', description: t('prop-combobox') },
   { name: 'bj-combobox__input-wrap', description: t('prop-input-wrap') },
   { name: 'bj-combobox__input', description: t('prop-input') },
@@ -82,6 +121,10 @@ const propsRows = computed(() => [
   { name: 'bj-combobox__no-results', description: t('prop-no-results') },
   { name: 'bj-combobox--error', description: t('prop-error') },
   { name: 'bj-combobox--open', description: t('prop-open') },
+  {
+    name: 'bj-message--info / bj-message--error',
+    description: t('prop-message-cb'),
+  },
 ])
 </script>
 
@@ -120,15 +163,79 @@ const propsRows = computed(() => [
     <DocsCode :code="codeExample" />
   </DocsSection>
 
+  <DocsSection id="sec-no-results" :title="t('section-no-results')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-no-results-body')"
+    />
+    <DocsPreview style="min-height: 12rem">
+      <div class="bj-combobox bj-combobox--open" style="max-width: 24rem">
+        <label class="bj-label" for="demo-cb-nr">Ville</label>
+        <div class="bj-combobox__input-wrap">
+          <input
+            id="demo-cb-nr"
+            class="bj-combobox__input"
+            type="text"
+            role="combobox"
+            aria-expanded="true"
+            value="zzz"
+          />
+          <i class="ri-arrow-down-s-line bj-combobox__icon" aria-hidden="true" />
+        </div>
+        <div class="bj-combobox__listbox" style="position: relative">
+          <p class="bj-combobox__no-results">Aucun résultat</p>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeNoResults" />
+  </DocsSection>
+
+  <DocsSection id="sec-info-msg" :title="t('section-info-msg')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-info-msg-body')"
+    />
+    <DocsPreview>
+      <div class="bj-combobox" style="max-width: 24rem">
+        <label class="bj-label" for="demo-cb-info">Service</label>
+        <div class="bj-combobox__input-wrap">
+          <input
+            id="demo-cb-info"
+            class="bj-combobox__input"
+            type="text"
+            role="combobox"
+            placeholder="Rechercher…"
+          />
+          <i class="ri-arrow-down-s-line bj-combobox__icon" aria-hidden="true" />
+        </div>
+        <p class="bj-message bj-message--info" role="status">
+          Choisissez un service dans la liste.
+        </p>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeInfoMsg" />
+  </DocsSection>
+
   <DocsSection id="sec-variantes" :title="t('section-variants')">
-    <p class="bj-text-md" style="color: var(--bj-text-alt)">
-      {{ t('section-variants-body') }}
-    </p>
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-variants-body')"
+    />
     <DocsPreview>
       <div class="bj-combobox bj-combobox--error" style="max-width: 24rem">
         <label class="bj-label" for="demo-cb2">Commune (erreur)</label>
         <div class="bj-combobox__input-wrap">
-          <input id="demo-cb2" class="bj-combobox__input" type="text" placeholder="Rechercher…" />
+          <input
+            id="demo-cb2"
+            class="bj-combobox__input"
+            type="text"
+            role="combobox"
+            aria-invalid="true"
+            placeholder="Rechercher…"
+          />
           <i class="ri-arrow-down-s-line bj-combobox__icon" aria-hidden="true" />
         </div>
         <p class="bj-message bj-message--error" role="alert">Champ obligatoire.</p>
@@ -136,7 +243,14 @@ const propsRows = computed(() => [
       <div class="bj-combobox" style="max-width: 24rem">
         <label class="bj-label" for="demo-cb3">Désactivé</label>
         <div class="bj-combobox__input-wrap">
-          <input id="demo-cb3" class="bj-combobox__input" type="text" disabled placeholder="Non modifiable" />
+          <input
+            id="demo-cb3"
+            class="bj-combobox__input"
+            type="text"
+            role="combobox"
+            disabled
+            placeholder="Non modifiable"
+          />
           <i class="ri-arrow-down-s-line bj-combobox__icon" aria-hidden="true" />
         </div>
       </div>

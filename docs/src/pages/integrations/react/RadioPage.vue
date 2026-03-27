@@ -25,6 +25,14 @@ const { t } = useI18n({
       'prop-children': 'Contenu du libellé ; remplace label si présent.',
       'prop-className': 'Classe CSS sur l’élément label racine.',
       'prop-rest': 'Autres attributs HTML natifs du input non couverts par les props du composant.',
+      'section-disabled': 'Option désactivée',
+      'section-children': 'Enfants comme libellé',
+      'section-combinations': 'Groupe complet',
+      'section-callbacks': 'Contrôle et callbacks',
+      'desc-disabled': 'Une option peut être disabled dans le même name.',
+      'desc-children': 'children remplace label pour du contenu riche.',
+      'desc-combinations': 'Trois radios partageant name et un état unique.',
+      'desc-callbacks': 'checked selon la value choisie ; onChange met à jour l’état (value et name requis).',
     },
     en: {
       title: 'BjRadio',
@@ -43,6 +51,14 @@ const { t } = useI18n({
       'prop-children': 'Label content; overrides label when provided.',
       'prop-className': 'CSS class on the root label element.',
       'prop-rest': 'Other native input HTML attributes not covered by the component props.',
+      'section-disabled': 'Disabled option',
+      'section-children': 'Children as label',
+      'section-combinations': 'Full radio group',
+      'section-callbacks': 'Controlled and callbacks',
+      'desc-disabled': 'One option may be disabled while sharing the same name.',
+      'desc-children': 'children replaces label for rich content.',
+      'desc-combinations': 'Three radios sharing name and a single piece of state.',
+      'desc-callbacks': 'checked from the selected value; onChange updates state (value and name required).',
     },
   },
 })
@@ -69,6 +85,63 @@ export default function Example() {
         label="Formule professionnelle"
         hint="Facturation annuelle"
       />
+    </>
+  )
+}`
+
+const codeDisabled = `import { useState } from 'react'
+import { BjRadio } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  const [tier, setTier] = useState('free')
+  return (
+    <>
+      <BjRadio name="tier" value="free" checked={tier === 'free'} onChange={() => setTier('free')} label="Gratuit" />
+      <BjRadio name="tier" value="pro" checked={tier === 'pro'} onChange={() => setTier('pro')} label="Pro" />
+      <BjRadio name="tier" value="legacy" checked={tier === 'legacy'} onChange={() => setTier('legacy')} label="Legacy" disabled />
+    </>
+  )
+}`
+
+const codeChildren = `import { useState } from 'react'
+import { BjRadio } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  const [v, setV] = useState('a')
+  return (
+    <BjRadio name="pick" value="a" checked={v === 'a'} onChange={() => setV('a')}>
+      Option <em>A</em>
+    </BjRadio>
+  )
+}`
+
+const codeCombinations = `import { useState } from 'react'
+import { BjRadio } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  const [region, setRegion] = useState('north')
+  return (
+    <fieldset>
+      <legend class="bj-label">Région</legend>
+      <BjRadio id="rad-n" name="region" value="north" checked={region === 'north'} onChange={() => setRegion('north')} label="Nord" />
+      <BjRadio id="rad-s" name="region" value="south" checked={region === 'south'} onChange={() => setRegion('south')} label="Sud" hint="Bord maritime" />
+      <BjRadio id="rad-c" name="region" value="center" checked={region === 'center'} onChange={() => setRegion('center')} label="Centre" />
+    </fieldset>
+  )
+}`
+
+const codeCallbacks = `import { useState } from 'react'
+import { BjRadio } from '@flrxnt/dsbj/react'
+
+export default function Example() {
+  const [plan, setPlan] = useState('basic')
+  function pick(next: string) {
+    setPlan(next)
+  }
+  return (
+    <>
+      <BjRadio name="plan" value="basic" checked={plan === 'basic'} onChange={() => pick('basic')} label="Basic" />
+      <BjRadio name="plan" value="pro" checked={plan === 'pro'} onChange={() => pick('pro')} label="Pro" />
     </>
   )
 }`
@@ -112,6 +185,65 @@ const propsRows = computed(() => [
         </label>
       </div>
     </DocsPreview>
+  </DocsSection>
+
+  <DocsSection id="react-radio-disabled" :title="t('section-disabled')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-disabled') }}</p>
+    <DocsPreview>
+      <div style="display: flex; flex-direction: column; gap: var(--bj-spacing-2v)">
+        <label class="bj-radio" for="react-rad-d1">
+          <input id="react-rad-d1" type="radio" name="tier-react-prev" value="free" checked />
+          <span class="bj-radio__label">Gratuit</span>
+        </label>
+        <label class="bj-radio" for="react-rad-d2">
+          <input id="react-rad-d2" type="radio" name="tier-react-prev" value="pro" />
+          <span class="bj-radio__label">Pro</span>
+        </label>
+        <label class="bj-radio" for="react-rad-d3">
+          <input id="react-rad-d3" type="radio" name="tier-react-prev" value="legacy" disabled />
+          <span class="bj-radio__label">Legacy</span>
+        </label>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeDisabled" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-radio-children" :title="t('section-children')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-children') }}</p>
+    <DocsPreview>
+      <label class="bj-radio" for="react-rad-ch">
+        <input id="react-rad-ch" type="radio" name="pick-react-prev" value="a" checked />
+        <span class="bj-radio__label">Option <em>A</em></span>
+      </label>
+    </DocsPreview>
+    <DocsCode :code="codeChildren" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-radio-combinations" :title="t('section-combinations')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-combinations') }}</p>
+    <DocsPreview>
+      <fieldset style="border: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--bj-spacing-2v)">
+        <legend class="bj-label" style="margin-bottom: var(--bj-spacing-1v)">Région</legend>
+        <label class="bj-radio" for="react-rad-r1">
+          <input id="react-rad-r1" type="radio" name="region-react-prev" value="north" checked />
+          <span class="bj-radio__label">Nord</span>
+        </label>
+        <label class="bj-radio" for="react-rad-r2">
+          <input id="react-rad-r2" type="radio" name="region-react-prev" value="south" />
+          <span class="bj-radio__label">Sud<span class="bj-radio__hint">Bord maritime</span></span>
+        </label>
+        <label class="bj-radio" for="react-rad-r3">
+          <input id="react-rad-r3" type="radio" name="region-react-prev" value="center" />
+          <span class="bj-radio__label">Centre</span>
+        </label>
+      </fieldset>
+    </DocsPreview>
+    <DocsCode :code="codeCombinations" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-radio-callbacks" :title="t('section-callbacks')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-callbacks') }}</p>
+    <DocsCode :code="codeCallbacks" lang="tsx" />
   </DocsSection>
 
   <DocsSection id="react-radio-props" :title="t('section-props')">

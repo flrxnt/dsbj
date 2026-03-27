@@ -14,7 +14,10 @@ const { t } = useI18n({
       title: 'BjRichEditor',
       desc: 'Composant Vue WYSIWYG pour la saisie de contenu riche. Basé sur contenteditable, sans dépendance externe. Supporte v-model, toolbar configurable et raccourcis clavier (Ctrl+B, Ctrl+I, Ctrl+U, Ctrl+Z, Ctrl+Y).',
       'section-usage': 'Utilisation',
+      'section-v-model': 'v-model et contenu HTML',
       'section-preview': 'Aperçu interactif (toolbar complète)',
+      'section-markup': 'Aperçu HTML (toolbar réduite)',
+      'section-toolbar-height': 'Toolbar × hauteur',
       'section-toolbar-custom': 'Toolbar personnalisée',
       'section-disabled': 'État désactivé',
       'section-prefilled': 'Contenu pré-rempli',
@@ -23,7 +26,11 @@ const { t } = useI18n({
       'section-props': 'Props',
       'section-accessibilite': 'Accessibilité',
       'a11y-note': 'Le composant expose <code>role="textbox"</code> et <code>aria-multiline="true"</code> sur la zone éditable. La toolbar a <code>role="toolbar"</code> avec <code>aria-label</code>. Chaque bouton a un <code>aria-label</code> descriptif. En état <code>disabled</code>, le composant passe <code>contenteditable="false"</code> et réduit l\'opacité.',
-      'prop-modelValue': 'Contenu HTML (v-model).',
+      'prop-modelValue': 'Contenu HTML (v-model) ; le composant émet update:modelValue à chaque modification.',
+      'emit-desc':
+        'Le contenu éditable déclenche <code>update:modelValue</code> avec le HTML interne (sanitisé côté lecture de la prop).',
+      'markup-desc':
+        'Structure principale : <code>bj-rich-editor</code>, <code>bj-rich-editor__toolbar</code>, <code>bj-rich-editor__content</code> avec <code>data-placeholder</code> quand vide.',
       'prop-placeholder': 'Texte indicatif quand l\'éditeur est vide.',
       'prop-disabled': 'Désactive l\'éditeur.',
       'prop-toolbar': 'Liste des outils à afficher. Par défaut, tous sont affichés.',
@@ -33,7 +40,10 @@ const { t } = useI18n({
       title: 'BjRichEditor',
       desc: 'Vue WYSIWYG component for rich content editing. Based on contenteditable, no external dependency. Supports v-model, configurable toolbar and keyboard shortcuts (Ctrl+B, Ctrl+I, Ctrl+U, Ctrl+Z, Ctrl+Y).',
       'section-usage': 'Usage',
+      'section-v-model': 'v-model and HTML content',
       'section-preview': 'Interactive preview (full toolbar)',
+      'section-markup': 'HTML preview (reduced toolbar)',
+      'section-toolbar-height': 'Toolbar × height',
       'section-toolbar-custom': 'Custom toolbar',
       'section-disabled': 'Disabled state',
       'section-prefilled': 'Pre-filled content',
@@ -42,7 +52,11 @@ const { t } = useI18n({
       'section-props': 'Props',
       'section-accessibilite': 'Accessibility',
       'a11y-note': 'The component exposes <code>role="textbox"</code> and <code>aria-multiline="true"</code> on the editable area. The toolbar has <code>role="toolbar"</code> with <code>aria-label</code>. Each button has a descriptive <code>aria-label</code>. When <code>disabled</code>, the component sets <code>contenteditable="false"</code> and reduces opacity.',
-      'prop-modelValue': 'HTML content (v-model).',
+      'prop-modelValue': 'HTML content (v-model); emits update:modelValue on edits.',
+      'emit-desc':
+        'The editable area emits <code>update:modelValue</code> with inner HTML (sanitized when the prop is applied).',
+      'markup-desc':
+        'Main structure: <code>bj-rich-editor</code>, <code>bj-rich-editor__toolbar</code>, <code>bj-rich-editor__content</code> with <code>data-placeholder</code> when empty.',
       'prop-placeholder': 'Placeholder text when the editor is empty.',
       'prop-disabled': 'Disables the editor.',
       'prop-toolbar': 'List of toolbar tools to display. All shown by default.',
@@ -61,6 +75,25 @@ const content = ref('<p>Contenu initial</p>')
 <template>
   <BjRichEditor v-model="content" placeholder="Saisissez votre texte..." />
 </template>`
+
+const codeVModel = `<script setup lang="ts">
+import { ref, watch } from 'vue'
+import { BjRichEditor } from '@flrxnt/dsbj/vue'
+
+const html = ref('<p>Départ</p>')
+watch(html, (v) => console.log('update:modelValue', v))
+<\/script>
+
+<template>
+  <BjRichEditor v-model="html" placeholder="Éditez ici…" />
+</template>`
+
+const codeToolbarHeight = `<BjRichEditor
+  v-model="content"
+  :toolbar="['bold', 'italic', 'link', 'undo', 'redo']"
+  height="18rem"
+  placeholder="Toolbar minimale + zone haute…"
+/>`
 
 const codeToolbarCustom = `<BjRichEditor
   v-model="content"
@@ -144,6 +177,11 @@ const propsRows = computed(() => [
 
   <DocsSection id="vue-editor-usage" :title="t('section-usage')">
     <DocsCode :code="codeUsage" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-editor-v-model" :title="t('section-v-model')">
+    <p class="bj-text" style="max-width: 44rem; margin-bottom: var(--bj-spacing-3v)" v-html="t('emit-desc')" />
+    <DocsCode :code="codeVModel" lang="html" />
   </DocsSection>
 
   <DocsSection id="vue-editor-preview" :title="t('section-preview')">

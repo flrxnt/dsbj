@@ -15,6 +15,11 @@ const { t } = useI18n({
         'Mot-clé ou filtre affiché comme une pastille ; peut être statique, lien ou bouton. Variantes sémantiques et tag fermable pour les facettes de recherche.',
       'section-exemple': 'Exemple',
       'section-variantes': 'Variantes',
+      'section-elements-html': 'Éléments HTML',
+      'section-tailles': 'Tailles',
+      'section-tags-fermables': 'Tags fermables',
+      'section-combinaisons': 'Combinaisons',
+      'section-liste-tags': 'Liste de tags',
       'section-classes-css': 'Classes CSS',
       'section-accessibilite': 'Accessibilité',
       'a11y-note':
@@ -35,6 +40,11 @@ const { t } = useI18n({
         'Keyword or filter shown as a pill; can be static, link or button. Semantic variants and dismissible tag for search facets.',
       'section-exemple': 'Example',
       'section-variantes': 'Variants',
+      'section-elements-html': 'HTML elements',
+      'section-tailles': 'Sizes',
+      'section-tags-fermables': 'Dismissible tags',
+      'section-combinaisons': 'Combinations',
+      'section-liste-tags': 'Tag list',
       'section-classes-css': 'CSS classes',
       'section-accessibilite': 'Accessibility',
       'a11y-note':
@@ -60,6 +70,29 @@ const codeVariantes = `<div class="bj-tags">
   Filtre
   <button type="button" class="bj-tag__close" aria-label="Retirer le filtre">…</button>
 </span>`
+
+const codeElementsHtml = `<span class="bj-tag">…</span>
+<a href="#" class="bj-tag">…</a>
+<button type="button" class="bj-tag">…</button>`
+
+const codeTaillesTag = `<!-- sm puis md pour chaque variante -->
+<span class="bj-tag bj-tag--sm">Défaut</span>
+<span class="bj-tag">Défaut</span>`
+
+const codeTagsFermables = `<span class="bj-tag bj-tag--dismiss">
+  Filtre
+  <button type="button" class="bj-tag__close" aria-label="Retirer le filtre">…</button>
+</span>`
+
+const codeCombinaisonsTag = `<span class="bj-tag bj-tag--sm bj-tag--dismiss bj-tag--info">
+  …
+  <button type="button" class="bj-tag__close" aria-label="…">…</button>
+</span>`
+
+const codeListeTags = `<div class="bj-tags" role="list">
+  <span class="bj-tag" role="listitem">…</span>
+  <span class="bj-tag bj-tag--action" role="listitem">…</span>
+</div>`
 
 const propsRows = computed(() => [
   {
@@ -132,6 +165,210 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeVariantes" />
+  </DocsSection>
+
+  <DocsSection id="elements-html-tag" :title="t('section-elements-html')">
+    <DocsPreview
+      style="
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--bj-spacing-3v);
+        align-items: center;
+      "
+    >
+      <span class="bj-tag">Span</span>
+      <a href="#" class="bj-tag">Lien (a)</a>
+      <button type="button" class="bj-tag">Bouton</button>
+    </DocsPreview>
+    <DocsCode :code="codeElementsHtml" />
+  </DocsSection>
+
+  <DocsSection id="tailles-tag" :title="t('section-tailles')">
+    <DocsPreview
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: var(--bj-spacing-4v);
+        align-items: flex-start;
+      "
+    >
+      <div
+        class="bj-text-sm"
+        style="color: var(--bj-text-mention); margin: 0"
+      >
+        sm
+      </div>
+      <div class="bj-tags" role="list">
+        <span class="bj-tag bj-tag--sm" role="listitem">Défaut</span>
+        <span class="bj-tag bj-tag--action bj-tag--sm" role="listitem">Action</span>
+        <span class="bj-tag bj-tag--info bj-tag--sm" role="listitem">Info</span>
+        <span class="bj-tag bj-tag--success bj-tag--sm" role="listitem">Succès</span>
+        <span class="bj-tag bj-tag--warning bj-tag--sm" role="listitem">Attention</span>
+        <span class="bj-tag bj-tag--error bj-tag--sm" role="listitem">Erreur</span>
+      </div>
+      <div
+        class="bj-text-sm"
+        style="color: var(--bj-text-mention); margin: 0"
+      >
+        md (défaut)
+      </div>
+      <div class="bj-tags" role="list">
+        <span class="bj-tag" role="listitem">Défaut</span>
+        <span class="bj-tag bj-tag--action" role="listitem">Action</span>
+        <span class="bj-tag bj-tag--info" role="listitem">Info</span>
+        <span class="bj-tag bj-tag--success" role="listitem">Succès</span>
+        <span class="bj-tag bj-tag--warning" role="listitem">Attention</span>
+        <span class="bj-tag bj-tag--error" role="listitem">Erreur</span>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeTaillesTag" />
+  </DocsSection>
+
+  <DocsSection id="tags-fermables-tag" :title="t('section-tags-fermables')">
+    <DocsPreview class="bj-tags" role="list">
+      <span class="bj-tag bj-tag--dismiss" role="listitem">
+        Défaut
+        <button
+          type="button"
+          class="bj-tag__close"
+          aria-label="Retirer le tag Défaut"
+        >
+          <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+      </span>
+      <span class="bj-tag bj-tag--action bj-tag--dismiss" role="listitem">
+        Action
+        <button
+          type="button"
+          class="bj-tag__close"
+          aria-label="Retirer le tag Action"
+        >
+          <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+      </span>
+      <span class="bj-tag bj-tag--info bj-tag--dismiss" role="listitem">
+        Info
+        <button
+          type="button"
+          class="bj-tag__close"
+          aria-label="Retirer le tag Info"
+        >
+          <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+      </span>
+      <span class="bj-tag bj-tag--success bj-tag--dismiss" role="listitem">
+        Succès
+        <button
+          type="button"
+          class="bj-tag__close"
+          aria-label="Retirer le tag Succès"
+        >
+          <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+      </span>
+      <span class="bj-tag bj-tag--warning bj-tag--dismiss" role="listitem">
+        Attention
+        <button
+          type="button"
+          class="bj-tag__close"
+          aria-label="Retirer le tag Attention"
+        >
+          <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+      </span>
+      <span class="bj-tag bj-tag--error bj-tag--dismiss" role="listitem">
+        Erreur
+        <button
+          type="button"
+          class="bj-tag__close"
+          aria-label="Retirer le tag Erreur"
+        >
+          <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+      </span>
+    </DocsPreview>
+    <DocsCode :code="codeTagsFermables" />
+  </DocsSection>
+
+  <DocsSection id="combinaisons-tag" :title="t('section-combinaisons')">
+    <DocsPreview class="bj-tags" role="list">
+      <span class="bj-tag bj-tag--sm bj-tag--dismiss" role="listitem">
+        Défaut
+        <button
+          type="button"
+          class="bj-tag__close"
+          aria-label="Retirer le tag Défaut"
+        >
+          <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+      </span>
+      <span class="bj-tag bj-tag--sm bj-tag--action bj-tag--dismiss" role="listitem">
+        Action
+        <button
+          type="button"
+          class="bj-tag__close"
+          aria-label="Retirer le tag Action"
+        >
+          <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+      </span>
+      <span class="bj-tag bj-tag--sm bj-tag--info bj-tag--dismiss" role="listitem">
+        Info
+        <button
+          type="button"
+          class="bj-tag__close"
+          aria-label="Retirer le tag Info"
+        >
+          <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+      </span>
+      <span class="bj-tag bj-tag--sm bj-tag--success bj-tag--dismiss" role="listitem">
+        Succès
+        <button
+          type="button"
+          class="bj-tag__close"
+          aria-label="Retirer le tag Succès"
+        >
+          <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+      </span>
+      <span class="bj-tag bj-tag--sm bj-tag--warning bj-tag--dismiss" role="listitem">
+        Attention
+        <button
+          type="button"
+          class="bj-tag__close"
+          aria-label="Retirer le tag Attention"
+        >
+          <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+      </span>
+      <span class="bj-tag bj-tag--sm bj-tag--error bj-tag--dismiss" role="listitem">
+        Erreur
+        <button
+          type="button"
+          class="bj-tag__close"
+          aria-label="Retirer le tag Erreur"
+        >
+          <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+      </span>
+    </DocsPreview>
+    <DocsCode :code="codeCombinaisonsTag" />
+  </DocsSection>
+
+  <DocsSection id="liste-tags-tag" :title="t('section-liste-tags')">
+    <DocsPreview>
+      <div class="bj-tags" role="list">
+        <span class="bj-tag" role="listitem">Public</span>
+        <span class="bj-tag bj-tag--action" role="listitem">Prioritaire</span>
+        <span class="bj-tag bj-tag--info" role="listitem">Brouillon</span>
+        <span class="bj-tag bj-tag--success" role="listitem">Validé</span>
+        <span class="bj-tag bj-tag--warning" role="listitem">En attente</span>
+        <span class="bj-tag bj-tag--error" role="listitem">Rejeté</span>
+        <span class="bj-tag bj-tag--sm" role="listitem">Compact</span>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeListeTags" />
   </DocsSection>
 
   <DocsSection id="classes-tag" :title="t('section-classes-css')">

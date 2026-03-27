@@ -10,47 +10,53 @@ const { t } = useI18n({
   messages: {
     fr: {
       title: 'BjQuote',
-      desc: 'Citation avec guillemets typographiques, auteur et source optionnels, image optionnelle, variante accent pour la bordure.',
+      desc: 'Citation en figure avec blockquote ; texte via prop text ou slot (le slot remplace text), auteur et source optionnels, image optionnelle, variante accent.',
       'section-usage': 'Utilisation',
-      'section-preview': 'Aperçu',
+      'section-accent': 'accent',
+      'section-text-slot': 'Prop text et slot',
+      'section-caption': 'Auteur et source',
+      'section-image': 'Image',
+      'section-full': 'Exemple complet',
       'section-props': 'Props',
-      'prop-accent': 'Si vrai, applique la bordure gauche accent (rouge Bénin).',
-      'prop-text': 'Texte de la citation si le slot par défaut est vide.',
-      'prop-author': 'Nom affiché dans la légende.',
-      'prop-source': 'Référence (ouvrage, date) sous l’auteur.',
-      'prop-image': 'URL de l’image ronde au-dessus du bloc de citation.',
+      'prop-accent': 'Si vrai, bordure gauche accent (rouge Bénin).',
+      'prop-text': 'Texte de citation si le slot par défaut est vide.',
+      'prop-author': 'Nom dans figcaption.',
+      'prop-source': 'Référence (publication, date) à côté de l’auteur.',
+      'prop-image': 'URL de l’image affichée au-dessus du blockquote.',
+      'slot-desc':
+        'Si le slot par défaut contient du contenu, il remplace entièrement la prop <code>text</code> (le blockquote affiche le slot).',
       'ex-quote': 'L’accessibilité et la clarté guident chaque service public numérique.',
       'ex-author': 'Ministère du numérique',
       'ex-source': 'Rapport annuel 2024',
-      'code-quote': 'L’accessibilité et la clarté guident chaque service public numérique.',
-      'code-author': 'Ministère du numérique',
-      'code-source': 'Rapport annuel 2024',
     },
     en: {
       title: 'BjQuote',
-      desc: 'Quote with typographic quotation marks, optional author and source, optional image, and accent border variant.',
+      desc: 'Quote as a figure with blockquote; text from text prop or default slot (slot overrides text), optional author, source, image, and accent variant.',
       'section-usage': 'Usage',
-      'section-preview': 'Preview',
+      'section-accent': 'accent',
+      'section-text-slot': 'text prop and slot',
+      'section-caption': 'Author and source',
+      'section-image': 'Image',
+      'section-full': 'Full example',
       'section-props': 'Props',
-      'prop-accent': 'If true, uses the accent (Benin red) left border.',
+      'prop-accent': 'If true, accent (Benin red) left border.',
       'prop-text': 'Quote text when the default slot is empty.',
-      'prop-author': 'Name shown in the caption.',
-      'prop-source': 'Reference (publication, date) below the author.',
-      'prop-image': 'URL of the round image above the quote.',
+      'prop-author': 'Name in figcaption.',
+      'prop-source': 'Reference next to the author.',
+      'prop-image': 'Image URL shown above the blockquote.',
+      'slot-desc':
+        'If the default slot has content, it replaces the <code>text</code> prop (the blockquote renders the slot).',
       'ex-quote': 'Accessibility and clarity guide every digital public service.',
       'ex-author': 'Ministry of Digital Affairs',
       'ex-source': 'Annual report 2024',
-      'code-quote': 'Accessibility and clarity guide every digital public service.',
-      'code-author': 'Ministry of Digital Affairs',
-      'code-source': 'Annual report 2024',
     },
   },
 })
 
 const codeUsage = computed(() => {
-  const q = t('code-quote').replace(/"/g, '&quot;')
-  const a = t('code-author').replace(/"/g, '&quot;')
-  const s = t('code-source').replace(/"/g, '&quot;')
+  const q = t('ex-quote').replace(/"/g, '&quot;')
+  const a = t('ex-author').replace(/"/g, '&quot;')
+  const s = t('ex-source').replace(/"/g, '&quot;')
   return `<script setup>
 import { BjQuote } from '@flrxnt/dsbj/vue'
 <\\/script>
@@ -60,12 +66,41 @@ import { BjQuote } from '@flrxnt/dsbj/vue'
 </template>`
 })
 
+const codeAccent = `<BjQuote accent text="Citation avec accent." author="Auteur" />
+<BjQuote text="Citation sans accent." author="Auteur" />`
+
+const codeSlot = `<!-- Slot remplace text -->
+<BjQuote accent :author="author" :source="source">
+  <em>Citation</em> avec <strong>markup</strong> dans le slot.
+</BjQuote>
+
+<!-- Prop text si slot vide -->
+<BjQuote text="Citation simple." author="Auteur" />`
+
+const codeCaption = `<BjQuote text="…" author="Nom seul" />
+<BjQuote text="…" author="Nom" source="Ouvrage, 2024" />`
+
+const codeImage = `<BjQuote
+  image="https://picsum.photos/96/96"
+  text="Citation avec portrait."
+  author="Prénom Nom"
+/>`
+
+const codeFull = `<BjQuote
+  accent
+  image="https://picsum.photos/96/96"
+  :text="text"
+  :author="author"
+  :source="source"
+/>`
+
 const propsRows = computed(() => [
   { name: 'accent', description: t('prop-accent') },
   { name: 'text', description: t('prop-text') },
   { name: 'author', description: t('prop-author') },
   { name: 'source', description: t('prop-source') },
   { name: 'image', description: t('prop-image') },
+  { name: '(default slot)', description: t('slot-desc') },
 ])
 </script>
 
@@ -77,8 +112,8 @@ const propsRows = computed(() => [
     <DocsCode :code="codeUsage" lang="html" />
   </DocsSection>
 
-  <DocsSection id="vue-quote-preview" :title="t('section-preview')">
-    <DocsPreview>
+  <DocsSection id="vue-quote-accent" :title="t('section-accent')">
+    <DocsPreview style="display: flex; flex-direction: column; gap: var(--bj-spacing-4v); max-width: 36rem">
       <figure class="bj-quote bj-quote--accent">
         <blockquote class="bj-quote__text">{{ t('ex-quote') }}</blockquote>
         <figcaption>
@@ -86,10 +121,44 @@ const propsRows = computed(() => [
           <span class="bj-quote__source">{{ t('ex-source') }}</span>
         </figcaption>
       </figure>
+      <figure class="bj-quote">
+        <blockquote class="bj-quote__text">{{ t('ex-quote') }}</blockquote>
+        <figcaption>
+          <span class="bj-quote__author">{{ t('ex-author') }}</span>
+        </figcaption>
+      </figure>
     </DocsPreview>
+    <DocsCode :code="codeAccent" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-quote-text-slot" :title="t('section-text-slot')">
+    <p class="bj-text-md" style="max-width: 44rem; color: var(--bj-text-alt)" v-html="t('slot-desc')" />
+    <DocsCode :code="codeSlot" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-quote-caption" :title="t('section-caption')">
+    <DocsCode :code="codeCaption" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-quote-image" :title="t('section-image')">
+    <DocsPreview style="max-width: 24rem">
+      <figure class="bj-quote bj-quote--accent">
+        <img class="bj-quote__image" src="https://picsum.photos/96/96" alt="" />
+        <blockquote class="bj-quote__text">{{ t('ex-quote') }}</blockquote>
+        <figcaption>
+          <span class="bj-quote__author">{{ t('ex-author') }}</span>
+          <span class="bj-quote__source">{{ t('ex-source') }}</span>
+        </figcaption>
+      </figure>
+    </DocsPreview>
+    <DocsCode :code="codeImage" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-quote-full" :title="t('section-full')">
+    <DocsCode :code="codeFull" lang="html" />
   </DocsSection>
 
   <DocsSection id="vue-quote-props" :title="t('section-props')">
-    <DocsPropsTable :headers="['Prop', 'Description']" :rows="propsRows" />
+    <DocsPropsTable :headers="['Prop / slot', 'Description']" :rows="propsRows" />
   </DocsSection>
 </template>

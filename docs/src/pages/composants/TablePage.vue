@@ -11,7 +11,7 @@ const { t } = useI18n({
   messages: {
     fr: {
       title: 'Tableau',
-      desc: 'Présentation tabulaire pour suivis de dossiers, listes réglementaires et données chiffrées. Encapsulez le tableau dans <code>bj-table-wrapper</code> pour autoriser le défilement horizontal sur mobile sans casser la mise en page.',
+      desc: 'Présentation tabulaire pour suivis de dossiers, listes réglementaires et données chiffrées. Encapsulez le tableau dans <code>bj-table-wrapper</code> pour autoriser le défilement horizontal sur mobile sans casser la mise en page. Largeurs fixes : <code>bj-table--layout-fixed</code> (prop Vue <code>fixedLayout</code>) — pas de classe <code>bj-table--fixed</code>.',
       'section-default': 'Tableau par défaut',
       'section-bordered': 'Tableau bordé',
       'para-bordered':
@@ -26,6 +26,12 @@ const { t } = useI18n({
         'Tableau interactif (tri, filtre, pagination)',
       'para-interactive':
         'Ajoutez <code>data-bj-table</code> sur le wrapper, <code>data-bj-table-sort</code> sur les en-têtes triables, <code>data-bj-table-filter</code> sur un champ de recherche, et <code>data-bj-table-paginate="5"</code> pour paginer.',
+      'section-fixed': 'Colonnes à largeur fixe',
+      'para-fixed':
+        '<code>bj-table--layout-fixed</code> applique <code>table-layout: fixed</code> pour stabiliser les colonnes sur des tableaux avec beaucoup de texte.',
+      'section-modifiers-matrix': 'Combinaisons bordé / rayé / fixe',
+      'para-modifiers-matrix':
+        'Les modificateurs <code>bj-table--bordered</code>, <code>bj-table--striped</code> et <code>bj-table--layout-fixed</code> sont indépendants et cumulables.',
       'section-classes': 'Classes CSS',
       'section-a11y': 'Accessibilité',
       'a11y-note':
@@ -39,12 +45,22 @@ const { t } = useI18n({
         'Lignes du corps en alternance de fond.',
       'prop-bj-table-layout-fixed':
         'Largeurs de colonnes fixes (table-layout: fixed).',
+      'prop-bj-table-sortable':
+        'À combiner avec <code>data-bj-table-sort</code> sur les en-têtes : styles des colonnes triables.',
       'prop-bj-table-no-caption':
         'Masque visuellement la légende tout en la conservant pour l’accessibilité (équivalent sr-only).',
+      'prop-bj-table-header':
+        'Zone au-dessus du tableau (filtre, compteur) — utilisée par le script tableau interactif.',
+      'prop-bj-table-footer':
+        'Zone sous le tableau (pagination) — remplie par le script interactif.',
+      'prop-bj-table-search':
+        'Champ de recherche avec <code>data-bj-table-filter</code>.',
+      'prop-bj-table-count':
+        'Compteur de lignes mis à jour par le script interactif.',
     },
     en: {
       title: 'Table',
-      desc: 'Tabular layout for case tracking, regulatory lists, and numeric data. Wrap the table in <code>bj-table-wrapper</code> so horizontal scrolling works on small screens without breaking the layout.',
+      desc: 'Tabular layout for case tracking, regulatory lists, and numeric data. Wrap the table in <code>bj-table-wrapper</code> so horizontal scrolling works on small screens without breaking the layout. Fixed widths: <code>bj-table--layout-fixed</code> (Vue <code>fixedLayout</code> prop)—not <code>bj-table--fixed</code>.',
       'section-default': 'Default table',
       'section-bordered': 'Bordered table',
       'para-bordered':
@@ -59,6 +75,12 @@ const { t } = useI18n({
         'Interactive table (sort, filter, pagination)',
       'para-interactive':
         'Add <code>data-bj-table</code> on the wrapper, <code>data-bj-table-sort</code> on sortable headers, <code>data-bj-table-filter</code> on a search field, and <code>data-bj-table-paginate="5"</code> to paginate.',
+      'section-fixed': 'Fixed column widths',
+      'para-fixed':
+        '<code>bj-table--layout-fixed</code> sets <code>table-layout: fixed</code> to stabilise columns when cells hold lots of text.',
+      'section-modifiers-matrix': 'Bordered / striped / fixed combinations',
+      'para-modifiers-matrix':
+        '<code>bj-table--bordered</code>, <code>bj-table--striped</code>, and <code>bj-table--layout-fixed</code> are independent and can be combined.',
       'section-classes': 'CSS classes',
       'section-a11y': 'Accessibility',
       'a11y-note':
@@ -71,8 +93,18 @@ const { t } = useI18n({
       'prop-bj-table-striped': 'Alternating body row backgrounds.',
       'prop-bj-table-layout-fixed':
         'Fixed column widths (table-layout: fixed).',
+      'prop-bj-table-sortable':
+        'Use with <code>data-bj-table-sort</code> on headers for sortable column styling.',
       'prop-bj-table-no-caption':
         'Hides the caption visually while keeping it for accessibility (sr-only equivalent).',
+      'prop-bj-table-header':
+        'Area above the table (filter, count)—used by the interactive table script.',
+      'prop-bj-table-footer':
+        'Area below the table (pagination)—filled by the interactive script.',
+      'prop-bj-table-search':
+        'Search field with <code>data-bj-table-filter</code>.',
+      'prop-bj-table-count':
+        'Row count element updated by the interactive script.',
     },
   },
 })
@@ -94,6 +126,18 @@ const codeDefault = `<div class="bj-table-wrapper">
 const codeBordered = `<table class="bj-table bj-table--bordered">…</table>`
 
 const codeStriped = `<table class="bj-table bj-table--striped">…</table>`
+
+const codeFixed = `<div class="bj-table-wrapper">
+  <table class="bj-table bj-table--layout-fixed">
+    <thead>…</thead>
+    <tbody>…</tbody>
+  </table>
+</div>`
+
+const codeModifiersMatrix = `<table class="bj-table bj-table--bordered bj-table--striped bj-table--layout-fixed">
+  <thead>…</thead>
+  <tbody>…</tbody>
+</table>`
 
 const codeCaption = `<table class="bj-table">
   <caption>Dossiers déposés au guichet unique - mars 2025</caption>
@@ -138,8 +182,28 @@ const propsRows = computed(() => [
     description: t('prop-bj-table-layout-fixed'),
   },
   {
+    name: 'bj-table--sortable',
+    description: t('prop-bj-table-sortable'),
+  },
+  {
     name: 'bj-table--no-caption',
     description: t('prop-bj-table-no-caption'),
+  },
+  {
+    name: 'bj-table__header',
+    description: t('prop-bj-table-header'),
+  },
+  {
+    name: 'bj-table__footer',
+    description: t('prop-bj-table-footer'),
+  },
+  {
+    name: 'bj-table__search',
+    description: t('prop-bj-table-search'),
+  },
+  {
+    name: 'bj-table__count',
+    description: t('prop-bj-table-count'),
   },
 ])
 </script>
@@ -297,6 +361,89 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeStriped" />
+  </DocsSection>
+
+  <DocsSection id="sec-table-fixed" :title="t('section-fixed')">
+    <p
+      class="bj-text-md"
+      style="max-width: 44rem; color: var(--bj-text-alt)"
+    >
+      <span v-html="t('para-fixed')" />
+    </p>
+    <DocsPreview>
+      <div class="bj-table-wrapper">
+        <table class="bj-table bj-table--layout-fixed">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 28%">Référence</th>
+              <th scope="col">Intitulé long poussant les autres colonnes</th>
+              <th scope="col" style="width: 22%">Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>BJ-2025-0142</td>
+              <td>
+                Demande de passeport biométrique avec texte supplémentaire
+                pour tester le comportement des largeurs.
+              </td>
+              <td>En instruction</td>
+            </tr>
+            <tr>
+              <td>BJ-2025-0189</td>
+              <td>Autorisation d’occupation du domaine public</td>
+              <td>Complété</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeFixed" />
+  </DocsSection>
+
+  <DocsSection
+    id="sec-table-modifiers-matrix"
+    :title="t('section-modifiers-matrix')"
+  >
+    <p
+      class="bj-text-md"
+      style="max-width: 44rem; color: var(--bj-text-alt)"
+    >
+      <span v-html="t('para-modifiers-matrix')" />
+    </p>
+    <DocsPreview>
+      <div class="bj-table-wrapper">
+        <table
+          class="bj-table bj-table--bordered bj-table--striped bj-table--layout-fixed"
+        >
+          <thead>
+            <tr>
+              <th scope="col" style="width: 26%">Réf.</th>
+              <th scope="col">Libellé</th>
+              <th scope="col" style="width: 20%">État</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>A-101</td>
+              <td>Dossier bordé, rayé, largeurs fixes</td>
+              <td>OK</td>
+            </tr>
+            <tr>
+              <td>A-102</td>
+              <td>Combinaison des trois modificateurs</td>
+              <td>OK</td>
+            </tr>
+            <tr>
+              <td>A-103</td>
+              <td>Ligne paire (fond rayé)</td>
+              <td>Vue</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeModifiersMatrix" />
   </DocsSection>
 
   <DocsSection id="sec-table-caption" :title="t('section-caption')">

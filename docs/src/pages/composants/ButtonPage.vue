@@ -48,6 +48,12 @@ const { t } = useI18n({
       'prop-bj-btn-loading':
         'État de chargement : désactive le bouton et affiche un spinner animé à la place du texte.',
       'section-chargement': 'Chargement',
+      'section-variantes-tailles': 'Variantes × tailles',
+      'section-icones-variantes': 'Boutons icône par variante',
+      'section-groupe-vertical': 'Groupe vertical',
+      'section-groupe-compact': 'Groupe compact',
+      'section-desactive-variantes': 'Désactivé par variante',
+      'section-pleine-largeur': 'Pleine largeur par variante',
     },
     en: {
       title: 'Button',
@@ -84,6 +90,12 @@ const { t } = useI18n({
       'prop-bj-btn-loading':
         'Loading state: disables the button and displays an animated spinner instead of text.',
       'section-chargement': 'Loading',
+      'section-variantes-tailles': 'Variants × sizes',
+      'section-icones-variantes': 'Icon buttons by variant',
+      'section-groupe-vertical': 'Vertical group',
+      'section-groupe-compact': 'Compact group',
+      'section-desactive-variantes': 'Disabled by variant',
+      'section-pleine-largeur': 'Full width by variant',
     },
   },
 })
@@ -122,6 +134,68 @@ const codeChargement = `<button class="bj-btn bj-btn--loading" aria-busy="true">
 const codeEtats = `<button class="bj-btn">Normal</button>
 <button class="bj-btn" disabled>Désactivé</button>
 <a class="bj-btn" href="#">Lien bouton</a>`
+
+const codeVariantesTailles = `<!-- Primaire -->
+<button class="bj-btn bj-btn--sm">Primaire sm</button>
+<button class="bj-btn">Primaire md</button>
+<button class="bj-btn bj-btn--lg">Primaire lg</button>
+<!-- Secondaire -->
+<button class="bj-btn bj-btn--secondary bj-btn--sm">Secondaire sm</button>
+<button class="bj-btn bj-btn--secondary">Secondaire md</button>
+<button class="bj-btn bj-btn--secondary bj-btn--lg">Secondaire lg</button>
+<!-- Tertiaire -->
+<button class="bj-btn bj-btn--tertiary bj-btn--sm">Tertiaire sm</button>
+<button class="bj-btn bj-btn--tertiary">Tertiaire md</button>
+<button class="bj-btn bj-btn--tertiary bj-btn--lg">Tertiaire lg</button>
+<!-- Accent -->
+<button class="bj-btn bj-btn--accent bj-btn--sm">Accent sm</button>
+<button class="bj-btn bj-btn--accent">Accent md</button>
+<button class="bj-btn bj-btn--accent bj-btn--lg">Accent lg</button>
+<!-- Contraste -->
+<button class="bj-btn bj-btn--contrast bj-btn--sm">Contraste sm</button>
+<button class="bj-btn bj-btn--contrast">Contraste md</button>
+<button class="bj-btn bj-btn--contrast bj-btn--lg">Contraste lg</button>`
+
+const codeIconesVariantes = `<button class="bj-btn bj-btn--icon bj-btn--sm" aria-label="Primary sm"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--icon" aria-label="Primary md"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--icon bj-btn--lg" aria-label="Primary lg"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--secondary bj-btn--icon bj-btn--sm" aria-label="Secondary sm"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--secondary bj-btn--icon" aria-label="Secondary md"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--secondary bj-btn--icon bj-btn--lg" aria-label="Secondary lg"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--tertiary bj-btn--icon bj-btn--sm" aria-label="Tertiary sm"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--tertiary bj-btn--icon" aria-label="Tertiary md"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--tertiary bj-btn--icon bj-btn--lg" aria-label="Tertiary lg"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--accent bj-btn--icon bj-btn--sm" aria-label="Accent sm"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--accent bj-btn--icon" aria-label="Accent md"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--accent bj-btn--icon bj-btn--lg" aria-label="Accent lg"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--contrast bj-btn--icon bj-btn--sm" aria-label="Contrast sm"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--contrast bj-btn--icon" aria-label="Contrast md"><i class="ri-search-line"></i></button>
+<button class="bj-btn bj-btn--contrast bj-btn--icon bj-btn--lg" aria-label="Contrast lg"><i class="ri-search-line"></i></button>`
+
+const codeGroupeVertical = `<div class="bj-btn-group bj-btn-group--vertical">
+  <button class="bj-btn">Premier</button>
+  <button class="bj-btn bj-btn--secondary">Deuxième</button>
+  <button class="bj-btn bj-btn--tertiary">Troisième</button>
+</div>`
+
+const codeGroupeCompact = `<div class="bj-btn-group bj-btn-group--inline-sm">
+  <button class="bj-btn bj-btn--sm">A</button>
+  <button class="bj-btn bj-btn--secondary bj-btn--sm">B</button>
+  <button class="bj-btn bj-btn--tertiary bj-btn--sm">C</button>
+</div>`
+
+const codeDesactiveVariantes = `<button class="bj-btn" disabled>Primaire</button>
+<button class="bj-btn bj-btn--secondary" disabled>Secondaire</button>
+<button class="bj-btn bj-btn--tertiary" disabled>Tertiaire</button>
+<button class="bj-btn bj-btn--accent" disabled>Accent</button>
+<button class="bj-btn bj-btn--contrast" disabled>Contraste</button>
+<a class="bj-btn bj-btn--disabled" href="#" aria-disabled="true">Lien désactivé</a>`
+
+const codePleineLargeur = `<button class="bj-btn bj-btn--full">Primaire pleine largeur</button>
+<button class="bj-btn bj-btn--secondary bj-btn--full">Secondaire pleine largeur</button>
+<button class="bj-btn bj-btn--tertiary bj-btn--full">Tertiaire pleine largeur</button>
+<button class="bj-btn bj-btn--accent bj-btn--full">Accent pleine largeur</button>
+<button class="bj-btn bj-btn--contrast bj-btn--full">Contraste pleine largeur</button>`
 
 const propsRows = computed(() => [
   {
@@ -242,6 +316,57 @@ const propsRows = computed(() => [
     <DocsCode :code="codeTailles" />
   </DocsSection>
 
+  <DocsSection id="variantes-tailles-btn" :title="t('section-variantes-tailles')">
+    <DocsPreview
+      style="
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: var(--bj-spacing-3v);
+        align-items: center;
+        justify-items: start;
+      "
+    >
+      <button type="button" class="bj-btn bj-btn--sm">Primaire sm</button>
+      <button type="button" class="bj-btn">Primaire md</button>
+      <button type="button" class="bj-btn bj-btn--lg">Primaire lg</button>
+      <button type="button" class="bj-btn bj-btn--secondary bj-btn--sm">
+        Secondaire sm
+      </button>
+      <button type="button" class="bj-btn bj-btn--secondary">
+        Secondaire md
+      </button>
+      <button type="button" class="bj-btn bj-btn--secondary bj-btn--lg">
+        Secondaire lg
+      </button>
+      <button type="button" class="bj-btn bj-btn--tertiary bj-btn--sm">
+        Tertiaire sm
+      </button>
+      <button type="button" class="bj-btn bj-btn--tertiary">
+        Tertiaire md
+      </button>
+      <button type="button" class="bj-btn bj-btn--tertiary bj-btn--lg">
+        Tertiaire lg
+      </button>
+      <button type="button" class="bj-btn bj-btn--accent bj-btn--sm">
+        Accent sm
+      </button>
+      <button type="button" class="bj-btn bj-btn--accent">Accent md</button>
+      <button type="button" class="bj-btn bj-btn--accent bj-btn--lg">
+        Accent lg
+      </button>
+      <button type="button" class="bj-btn bj-btn--contrast bj-btn--sm">
+        Contraste sm
+      </button>
+      <button type="button" class="bj-btn bj-btn--contrast">
+        Contraste md
+      </button>
+      <button type="button" class="bj-btn bj-btn--contrast bj-btn--lg">
+        Contraste lg
+      </button>
+    </DocsPreview>
+    <DocsCode :code="codeVariantesTailles" />
+  </DocsSection>
+
   <DocsSection id="icones-btn" :title="t('section-icones')">
     <DocsPreview
       style="
@@ -270,6 +395,121 @@ const propsRows = computed(() => [
     <DocsCode :code="codeIcones" />
   </DocsSection>
 
+  <DocsSection id="icones-variantes-btn" :title="t('section-icones-variantes')">
+    <DocsPreview
+      style="
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: var(--bj-spacing-3v);
+        align-items: center;
+        justify-items: start;
+      "
+    >
+      <button
+        type="button"
+        class="bj-btn bj-btn--icon bj-btn--sm"
+        aria-label="Primaire sm"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="bj-btn bj-btn--icon" aria-label="Primaire md">
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="bj-btn bj-btn--icon bj-btn--lg"
+        aria-label="Primaire lg"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="bj-btn bj-btn--secondary bj-btn--icon bj-btn--sm"
+        aria-label="Secondaire sm"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="bj-btn bj-btn--secondary bj-btn--icon"
+        aria-label="Secondaire md"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="bj-btn bj-btn--secondary bj-btn--icon bj-btn--lg"
+        aria-label="Secondaire lg"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="bj-btn bj-btn--tertiary bj-btn--icon bj-btn--sm"
+        aria-label="Tertiaire sm"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="bj-btn bj-btn--tertiary bj-btn--icon"
+        aria-label="Tertiaire md"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="bj-btn bj-btn--tertiary bj-btn--icon bj-btn--lg"
+        aria-label="Tertiaire lg"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="bj-btn bj-btn--accent bj-btn--icon bj-btn--sm"
+        aria-label="Accent sm"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="bj-btn bj-btn--accent bj-btn--icon"
+        aria-label="Accent md"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="bj-btn bj-btn--accent bj-btn--icon bj-btn--lg"
+        aria-label="Accent lg"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="bj-btn bj-btn--contrast bj-btn--icon bj-btn--sm"
+        aria-label="Contraste sm"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="bj-btn bj-btn--contrast bj-btn--icon"
+        aria-label="Contraste md"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="bj-btn bj-btn--contrast bj-btn--icon bj-btn--lg"
+        aria-label="Contraste lg"
+      >
+        <i class="ri-search-line" aria-hidden="true"></i>
+      </button>
+    </DocsPreview>
+    <DocsCode :code="codeIconesVariantes" />
+  </DocsSection>
+
   <DocsSection id="groupe-btn" :title="t('section-groupe')">
     <DocsPreview>
       <div class="bj-btn-group">
@@ -283,6 +523,36 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeGroupe" />
+  </DocsSection>
+
+  <DocsSection id="groupe-vertical-btn" :title="t('section-groupe-vertical')">
+    <DocsPreview>
+      <div class="bj-btn-group bj-btn-group--vertical">
+        <button type="button" class="bj-btn">Premier</button>
+        <button type="button" class="bj-btn bj-btn--secondary">
+          Deuxième
+        </button>
+        <button type="button" class="bj-btn bj-btn--tertiary">
+          Troisième
+        </button>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeGroupeVertical" />
+  </DocsSection>
+
+  <DocsSection id="groupe-compact-btn" :title="t('section-groupe-compact')">
+    <DocsPreview>
+      <div class="bj-btn-group bj-btn-group--inline-sm">
+        <button type="button" class="bj-btn bj-btn--sm">A</button>
+        <button type="button" class="bj-btn bj-btn--secondary bj-btn--sm">
+          B
+        </button>
+        <button type="button" class="bj-btn bj-btn--tertiary bj-btn--sm">
+          C
+        </button>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeGroupeCompact" />
   </DocsSection>
 
   <DocsSection id="chargement-btn" :title="t('section-chargement')">
@@ -365,6 +635,69 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeEtats" />
+  </DocsSection>
+
+  <DocsSection id="desactive-variantes-btn" :title="t('section-desactive-variantes')">
+    <DocsPreview
+      style="
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--bj-spacing-3v);
+        align-items: center;
+      "
+    >
+      <button type="button" class="bj-btn" disabled>Primaire</button>
+      <button type="button" class="bj-btn bj-btn--secondary" disabled>
+        Secondaire
+      </button>
+      <button type="button" class="bj-btn bj-btn--tertiary" disabled>
+        Tertiaire
+      </button>
+      <button type="button" class="bj-btn bj-btn--accent" disabled>
+        Accent
+      </button>
+      <button type="button" class="bj-btn bj-btn--contrast" disabled>
+        Contraste
+      </button>
+      <a
+        class="bj-btn bj-btn--disabled"
+        href="#"
+        aria-disabled="true"
+      >
+        Lien désactivé
+      </a>
+    </DocsPreview>
+    <DocsCode :code="codeDesactiveVariantes" />
+  </DocsSection>
+
+  <DocsSection id="pleine-largeur-btn" :title="t('section-pleine-largeur')">
+    <DocsPreview
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: var(--bj-spacing-3v);
+        width: 100%;
+        max-width: 22rem;
+        align-items: stretch;
+      "
+    >
+      <button type="button" class="bj-btn bj-btn--full">
+        Primaire pleine largeur
+      </button>
+      <button type="button" class="bj-btn bj-btn--secondary bj-btn--full">
+        Secondaire pleine largeur
+      </button>
+      <button type="button" class="bj-btn bj-btn--tertiary bj-btn--full">
+        Tertiaire pleine largeur
+      </button>
+      <button type="button" class="bj-btn bj-btn--accent bj-btn--full">
+        Accent pleine largeur
+      </button>
+      <button type="button" class="bj-btn bj-btn--contrast bj-btn--full">
+        Contraste pleine largeur
+      </button>
+    </DocsPreview>
+    <DocsCode :code="codePleineLargeur" />
   </DocsSection>
 
   <DocsSection id="classes-btn" :title="t('section-classes-css')">

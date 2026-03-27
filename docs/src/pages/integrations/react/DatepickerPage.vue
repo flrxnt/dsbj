@@ -26,6 +26,18 @@ const { t } = useI18n({
       'prop-disabled': 'Desactive le champ et le bouton calendrier.',
       'prop-size': 'Taille : sm ou md (defaut md).',
       'prop-mode': 'Mode de selection : date, month ou year.',
+      'prop-id': 'Identifiant du champ texte ; sinon g\u00e9n\u00e9r\u00e9 automatiquement.',
+      'prop-className': 'Classe CSS sur le conteneur bj-datepicker.',
+      'section-hint': 'Libelle et hint',
+      'section-size': 'Taille sm',
+      'section-disabled': 'Desactive',
+      'section-combinations': 'Combinaisons',
+      'section-callbacks': 'Valeur et onChange',
+      'desc-hint': 'label et hint au-dessus du champ en lecture seule.',
+      'desc-size': 'size sm applique bj-datepicker--sm.',
+      'desc-disabled': 'disabled sur l\u2019input et le bouton calendrier.',
+      'desc-combinations': 'mode month avec min, max, hint et placeholder personnalise.',
+      'desc-callbacks': 'value controlee et onChange(value: string) a la selection.',
     },
     en: {
       title: 'BjDatepicker',
@@ -45,6 +57,18 @@ const { t } = useI18n({
       'prop-disabled': 'Disables the field and calendar button.',
       'prop-size': 'Size: sm or md (default md).',
       'prop-mode': 'Selection mode: date, month, or year.',
+      'prop-id': 'Text field id; auto-generated when omitted.',
+      'prop-className': 'CSS class on the bj-datepicker wrapper.',
+      'section-hint': 'Label and hint',
+      'section-size': 'Small size',
+      'section-disabled': 'Disabled',
+      'section-combinations': 'Combinations',
+      'section-callbacks': 'Value and onChange',
+      'desc-hint': 'label and hint above the read-only field.',
+      'desc-size': 'size sm applies bj-datepicker--sm.',
+      'desc-disabled': 'disables the input and calendar button.',
+      'desc-combinations': 'month mode with min, max, hint, and custom placeholder.',
+      'desc-callbacks': 'controlled value and onChange(value: string) on pick.',
     },
   },
 })
@@ -95,6 +119,70 @@ export default function App() {
   )
 }`
 
+const codeHint = `import { useState } from 'react'
+import { BjDatepicker } from '@flrxnt/dsbj/react'
+
+export default function App() {
+  const [date, setDate] = useState('')
+  return (
+    <BjDatepicker
+      id="birth-react"
+      value={date}
+      onChange={setDate}
+      label="Date de naissance"
+      hint="Format JJ/MM/AAAA affiche apres selection"
+      placeholder="Choisir une date"
+    />
+  )
+}`
+
+const codeSizeSm = `import { useState } from 'react'
+import { BjDatepicker } from '@flrxnt/dsbj/react'
+
+export default function App() {
+  const [d, setD] = useState('')
+  return <BjDatepicker value={d} onChange={setD} size="sm" label="Compact" />
+}`
+
+const codeDisabled = `import { BjDatepicker } from '@flrxnt/dsbj/react'
+
+export default function App() {
+  return (
+    <BjDatepicker value="01/01/2024" onChange={() => {}} label="Verrouille" disabled />
+  )
+}`
+
+const codeCombinations = `import { useState } from 'react'
+import { BjDatepicker } from '@flrxnt/dsbj/react'
+
+export default function App() {
+  const [m, setM] = useState('')
+  return (
+    <BjDatepicker
+      mode="month"
+      value={m}
+      onChange={setM}
+      label="Periode"
+      hint="Mois comptable"
+      min="01/01/2020"
+      max="12/12/2030"
+      placeholder="MM/AAAA"
+    />
+  )
+}`
+
+const codeCallbacks = `import { useState } from 'react'
+import { BjDatepicker } from '@flrxnt/dsbj/react'
+
+export default function App() {
+  const [value, setValue] = useState('')
+  function onPick(next: string) {
+    console.log('picked', next)
+    setValue(next)
+  }
+  return <BjDatepicker value={value} onChange={onPick} label="Echeance" mode="date" />
+}`
+
 const propsRows = computed(() => [
   { name: 'value', description: t('prop-value') },
   { name: 'onChange', description: t('prop-onChange') },
@@ -106,6 +194,8 @@ const propsRows = computed(() => [
   { name: 'max', description: t('prop-max') },
   { name: 'disabled', description: t('prop-disabled') },
   { name: 'size', description: t('prop-size') },
+  { name: 'id', description: t('prop-id') },
+  { name: 'className', description: t('prop-className') },
 ])
 </script>
 
@@ -115,6 +205,69 @@ const propsRows = computed(() => [
 
   <DocsSection id="react-datepicker-usage" :title="t('section-usage')">
     <DocsCode :code="codeUsage" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-datepicker-hint" :title="t('section-hint')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-hint') }}</p>
+    <DocsPreview>
+      <div class="bj-datepicker" style="max-width: 18rem">
+        <label class="bj-label" for="react-dp-hint">Date de naissance</label>
+        <span class="bj-hint">Format JJ/MM/AAAA affiché après sélection</span>
+        <div class="bj-datepicker__field">
+          <input id="react-dp-hint" class="bj-datepicker__input" type="text" readonly placeholder="Choisir une date" />
+          <button type="button" class="bj-datepicker__trigger" aria-label="Calendrier"><i class="ri-calendar-line" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeHint" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-datepicker-size" :title="t('section-size')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-size') }}</p>
+    <DocsPreview>
+      <div class="bj-datepicker bj-datepicker--sm" style="max-width: 16rem">
+        <label class="bj-label" for="react-dp-sm">Compact</label>
+        <div class="bj-datepicker__field">
+          <input id="react-dp-sm" class="bj-datepicker__input" type="text" readonly placeholder="JJ/MM/AAAA" />
+          <button type="button" class="bj-datepicker__trigger" aria-label="Calendrier"><i class="ri-calendar-line" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeSizeSm" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-datepicker-disabled" :title="t('section-disabled')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-disabled') }}</p>
+    <DocsPreview>
+      <div class="bj-datepicker" style="max-width: 18rem">
+        <label class="bj-label" for="react-dp-dis">Verrouillé</label>
+        <div class="bj-datepicker__field">
+          <input id="react-dp-dis" class="bj-datepicker__input" type="text" readonly value="01/01/2024" disabled />
+          <button type="button" class="bj-datepicker__trigger" disabled aria-label="Calendrier"><i class="ri-calendar-line" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeDisabled" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-datepicker-combinations" :title="t('section-combinations')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-combinations') }}</p>
+    <DocsPreview>
+      <div class="bj-datepicker" style="max-width: 18rem">
+        <label class="bj-label" for="react-dp-combo">Période</label>
+        <span class="bj-hint">Mois comptable</span>
+        <div class="bj-datepicker__field">
+          <input id="react-dp-combo" class="bj-datepicker__input" type="text" readonly placeholder="MM/AAAA" value="03/2026" />
+          <button type="button" class="bj-datepicker__trigger" aria-label="Calendrier"><i class="ri-calendar-line" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeCombinations" lang="tsx" />
+  </DocsSection>
+
+  <DocsSection id="react-datepicker-callbacks" :title="t('section-callbacks')">
+    <p class="bj-text" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc-callbacks') }}</p>
+    <DocsCode :code="codeCallbacks" lang="tsx" />
   </DocsSection>
 
   <DocsSection id="react-datepicker-preview" :title="t('section-preview')">

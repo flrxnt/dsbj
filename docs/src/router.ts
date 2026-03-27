@@ -515,6 +515,11 @@ export const routes: RouteRecordRaw[] = [
     meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-skeleton', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.skeleton' }] },
   },
   {
+    path: '/integrations/vue/content',
+    component: () => import('./pages/integrations/vue/ContentPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-content', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.content' }] },
+  },
+  {
     path: '/integrations/vue/header',
     component: () => import('./pages/integrations/vue/HeaderPage.vue'),
     meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-header', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.header' }] },

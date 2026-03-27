@@ -17,6 +17,15 @@ const { t } = useI18n({
       'section-icon': 'Champ avec icône',
       'section-textarea': 'Zone de texte',
       'section-disabled': 'Champ désactivé',
+      'section-types': 'Types de champ (<code>type</code>)',
+      'section-types-body':
+        'Les classes <code>bj-input</code> s’appliquent à tout <code>input</code> ou <code>textarea</code> ; le comportement (clavier, validation native) vient de l’attribut <code>type</code> HTML.',
+      'section-sizes': 'Tailles (<code>bj-input--sm</code>)',
+      'section-sizes-body':
+        'Par défaut, la taille correspond au gabarit médium (sans modificateur). <code>bj-input--sm</code> compacte le padding et la taille de police.',
+      'section-info-message': 'Message informatif',
+      'section-info-message-body':
+        'Sans modificateur sur le groupe, un retour neutre utilise <code>bj-message bj-message--info</code> (équivalent à l’état <code>default</code> du composant Vue).',
       'section-css': 'Classes CSS',
       'section-a11y': 'Accessibilité',
       'prop-input-group':
@@ -31,7 +40,9 @@ const { t } = useI18n({
         'Messages de retour sous le champ.',
       'prop-input-wrap': 'Conteneur pour champ avec icône.',
       'prop-input-wrap-icon':
-        'Icône positionnée (alternative au marquage avec élément i).',
+        'À placer sur l’élément d’icône dans <code>bj-input-wrap</code> pour le positionnement à droite.',
+      'prop-input-type':
+        'Valeurs usuelles\u00a0: <code>text</code>, <code>email</code>, <code>number</code>, <code>password</code>, <code>tel</code>, <code>url</code>, <code>search</code>, etc. Pas de classe dédiée par type.',
       'a11y-note':
         'Associez toujours un <code>label</code> explicite au champ (<code>for</code> / <code>id</code>). Liez le texte d’aide et les messages de validation au champ avec <code>aria-describedby</code> (identifiants uniques sur les éléments décrits). En cas d’erreur, utilisez <code>aria-invalid="true"</code> et un message en <code>role="alert"</code> ou <code>role="status"</code> selon le contexte.',
     },
@@ -43,6 +54,15 @@ const { t } = useI18n({
       'section-icon': 'Input with icon',
       'section-textarea': 'Text area',
       'section-disabled': 'Disabled field',
+      'section-types': 'Input <code>type</code> values',
+      'section-types-body':
+        'Apply <code>bj-input</code> to any <code>input</code> or <code>textarea</code>; keyboard behavior and native validation come from the HTML <code>type</code> attribute.',
+      'section-sizes': 'Sizes (<code>bj-input--sm</code>)',
+      'section-sizes-body':
+        'The default size is the medium layout (no modifier). <code>bj-input--sm</code> reduces padding and font size.',
+      'section-info-message': 'Informational message',
+      'section-info-message-body':
+        'With no state modifier on the group, neutral feedback uses <code>bj-message bj-message--info</code> (same as the Vue component’s <code>default</code> state).',
       'section-css': 'CSS classes',
       'section-a11y': 'Accessibility',
       'prop-input-group':
@@ -55,7 +75,9 @@ const { t } = useI18n({
       'prop-message': 'Feedback messages below the field.',
       'prop-input-wrap': 'Wrapper for input with icon.',
       'prop-input-wrap-icon':
-        'Positioned icon (alternative to marking up with an <code>i</code> element).',
+        'Apply to the icon element inside <code>bj-input-wrap</code> for right-aligned placement.',
+      'prop-input-type':
+        'Common values: <code>text</code>, <code>email</code>, <code>number</code>, <code>password</code>, <code>tel</code>, <code>url</code>, <code>search</code>, etc. There is no per-type CSS class.',
       'a11y-note':
         'Always associate an explicit <code>label</code> with the field (<code>for</code> / <code>id</code>). Link hint text and validation messages with <code>aria-describedby</code> (unique ids on the described elements). On error, use <code>aria-invalid="true"</code> and a message with <code>role="alert"</code> or <code>role="status"</code> as appropriate.',
     },
@@ -70,22 +92,68 @@ const codeDefault = `<div class="bj-input-group">
 
 const codeValidation = `<!-- Succès -->
 <div class="bj-input-group bj-input-group--valid">
-  …
-  <p class="bj-message bj-message--valid" id="msg-ok" role="status">…</p>
+  <label class="bj-label" for="ifu">N° IFU</label>
+  <input class="bj-input" id="ifu" type="text" aria-describedby="msg-ok">
+  <p class="bj-message bj-message--valid" id="msg-ok" role="status">Numéro vérifié.</p>
 </div>
 
 <!-- Erreur -->
 <div class="bj-input-group bj-input-group--error">
-  …
-  <p class="bj-message bj-message--error" id="msg-err" role="alert">…</p>
+  <label class="bj-label" for="dob">Date de naissance</label>
+  <input class="bj-input" id="dob" type="text" aria-invalid="true" aria-describedby="msg-err">
+  <p class="bj-message bj-message--error" id="msg-err" role="alert">Format attendu : JJ/MM/AAAA.</p>
+</div>
+
+<!-- États + taille compacte -->
+<div class="bj-input-group bj-input-group--valid">
+  <input class="bj-input bj-input--sm" type="text" value="OK" readonly aria-describedby="msg-ok-sm">
+  <p class="bj-message bj-message--valid" id="msg-ok-sm" role="status">Validé.</p>
+</div>
+<div class="bj-input-group bj-input-group--error">
+  <input class="bj-input bj-input--sm" type="text" aria-invalid="true" aria-describedby="msg-err-sm">
+  <p class="bj-message bj-message--error" id="msg-err-sm" role="alert">Erreur.</p>
 </div>`
 
-const codeIcon =
-  '<div class="bj-input-wrap"><i class="ri-search-line"></i><input class="bj-input" type="search" placeholder="Rechercher..."></div>'
+const codeTypes = `<!-- Les classes restent identiques ; seul type change -->
+<input class="bj-input" type="email" inputmode="email" autocomplete="email" placeholder="vous@exemple.bj">
+<input class="bj-input" type="number" inputmode="decimal" placeholder="0">
+<input class="bj-input" type="password" autocomplete="current-password" placeholder="Mot de passe">
+<input class="bj-input" type="tel" inputmode="tel" autocomplete="tel" placeholder="+229 …">
+<input class="bj-input" type="url" inputmode="url" autocomplete="url" placeholder="https://…">`
+
+const codeSizes = `<!-- md (défaut) : classe bj-input seule -->
+<input class="bj-input" type="text" placeholder="Taille par défaut">
+<!-- sm -->
+<input class="bj-input bj-input--sm" type="text" placeholder="Taille compacte">
+<textarea class="bj-input bj-input--sm" rows="3" placeholder="Zone compacte"></textarea>`
+
+const codeInfoMessage = `<div class="bj-input-group">
+  <label class="bj-label" for="ex-info">Identifiant fiscal</label>
+  <input class="bj-input" type="text" id="ex-info" aria-describedby="ex-info-msg">
+  <p id="ex-info-msg" class="bj-message bj-message--info" role="status">Ce champ est prérempli à partir de votre profil.</p>
+</div>`
+
+const codeIcon = `<!-- Icône à droite (md) -->
+<div class="bj-input-wrap">
+  <i class="ri-search-line bj-input-wrap__icon" aria-hidden="true"></i>
+  <input class="bj-input" type="search" placeholder="Rechercher…">
+</div>
+<!-- Même disposition, champ compact -->
+<div class="bj-input-wrap">
+  <i class="ri-mail-line bj-input-wrap__icon" aria-hidden="true"></i>
+  <input class="bj-input bj-input--sm" type="email" placeholder="Courriel">
+</div>`
 
 const codeTextarea = `<div class="bj-input-group">
   <label class="bj-label" for="motif">Motif de la demande</label>
-  <textarea class="bj-input" id="motif" rows="4"></textarea>
+  <textarea class="bj-input" id="motif" rows="4" placeholder="Votre message…"></textarea>
+</div>
+
+<!-- Zone en erreur (bordure héritée du groupe) -->
+<div class="bj-input-group bj-input-group--error">
+  <label class="bj-label" for="just">Justification</label>
+  <textarea class="bj-input" id="just" rows="3" aria-invalid="true" aria-describedby="just-msg"></textarea>
+  <p id="just-msg" class="bj-message bj-message--error" role="alert">Minimum 20 caractères.</p>
 </div>`
 
 const codeDisabled =
@@ -115,6 +183,10 @@ const propsRows = computed(() => [
   {
     name: 'bj-input-wrap__icon',
     description: t('prop-input-wrap-icon'),
+  },
+  {
+    name: '(attribut type)',
+    description: t('prop-input-type'),
   },
 ])
 </script>
@@ -151,6 +223,153 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeDefault" />
+  </DocsSection>
+
+  <DocsSection id="sec-types" :title="t('section-types')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-types-body')"
+    />
+    <DocsPreview>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: var(--bj-spacing-4v);
+          max-width: 28rem;
+        "
+      >
+        <div class="bj-input-group" style="margin-bottom: 0">
+          <label class="bj-label" for="input-t-email">Courriel</label>
+          <input
+            id="input-t-email"
+            class="bj-input"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="vous@exemple.bj"
+          />
+        </div>
+        <div class="bj-input-group" style="margin-bottom: 0">
+          <label class="bj-label" for="input-t-num">Montant</label>
+          <input
+            id="input-t-num"
+            class="bj-input"
+            type="number"
+            inputmode="decimal"
+            placeholder="0"
+          />
+        </div>
+        <div class="bj-input-group" style="margin-bottom: 0">
+          <label class="bj-label" for="input-t-pass">Mot de passe</label>
+          <input
+            id="input-t-pass"
+            class="bj-input"
+            type="password"
+            autocomplete="current-password"
+            placeholder="••••••••"
+          />
+        </div>
+        <div class="bj-input-group" style="margin-bottom: 0">
+          <label class="bj-label" for="input-t-tel">Téléphone</label>
+          <input
+            id="input-t-tel"
+            class="bj-input"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            placeholder="+229 …"
+          />
+        </div>
+        <div class="bj-input-group" style="margin-bottom: 0">
+          <label class="bj-label" for="input-t-url">Site web</label>
+          <input
+            id="input-t-url"
+            class="bj-input"
+            type="url"
+            inputmode="url"
+            autocomplete="url"
+            placeholder="https://…"
+          />
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeTypes" />
+  </DocsSection>
+
+  <DocsSection id="sec-tailles" :title="t('section-sizes')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-sizes-body')"
+    />
+    <DocsPreview>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: var(--bj-spacing-4v);
+          max-width: 28rem;
+        "
+      >
+        <div class="bj-input-group" style="margin-bottom: 0">
+          <label class="bj-label" for="input-sz-md">Par défaut (md)</label>
+          <input
+            id="input-sz-md"
+            class="bj-input"
+            type="text"
+            placeholder="Taille standard"
+          />
+        </div>
+        <div class="bj-input-group" style="margin-bottom: 0">
+          <label class="bj-label" for="input-sz-sm">Compact (sm)</label>
+          <input
+            id="input-sz-sm"
+            class="bj-input bj-input--sm"
+            type="text"
+            placeholder="Taille compacte"
+          />
+        </div>
+        <div class="bj-input-group" style="margin-bottom: 0">
+          <label class="bj-label" for="input-sz-ta">Textarea sm</label>
+          <textarea
+            id="input-sz-ta"
+            class="bj-input bj-input--sm"
+            rows="3"
+            placeholder="Zone multiligne compacte"
+          ></textarea>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeSizes" />
+  </DocsSection>
+
+  <DocsSection id="sec-message-info" :title="t('section-info-message')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-info-message-body')"
+    />
+    <DocsPreview>
+      <div class="bj-input-group">
+        <label class="bj-label" for="input-info">Identifiant fiscal</label>
+        <input
+          id="input-info"
+          class="bj-input"
+          type="text"
+          aria-describedby="input-info-msg"
+        />
+        <p
+          id="input-info-msg"
+          class="bj-message bj-message--info"
+          role="status"
+        >
+          Ce champ est prérempli à partir de votre profil.
+        </p>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeInfoMessage" />
   </DocsSection>
 
   <DocsSection id="sec-validation" :title="t('section-validation')">
@@ -194,19 +413,77 @@ const propsRows = computed(() => [
           Format attendu&nbsp;: JJ/MM/AAAA.
         </p>
       </div>
+      <div class="bj-input-group bj-input-group--valid">
+        <label class="bj-label" for="input-val-ok-sm">Code (compact)</label>
+        <input
+          id="input-val-ok-sm"
+          class="bj-input bj-input--sm"
+          type="text"
+          value="OK"
+          readonly
+          aria-describedby="input-val-ok-sm-msg"
+        />
+        <p
+          id="input-val-ok-sm-msg"
+          class="bj-message bj-message--valid"
+          role="status"
+        >
+          Validé.
+        </p>
+      </div>
+      <div class="bj-input-group bj-input-group--error">
+        <label class="bj-label" for="input-val-err-sm">Champ (compact)</label>
+        <input
+          id="input-val-err-sm"
+          class="bj-input bj-input--sm"
+          type="text"
+          aria-invalid="true"
+          aria-describedby="input-val-err-sm-msg"
+        />
+        <p
+          id="input-val-err-sm-msg"
+          class="bj-message bj-message--error"
+          role="alert"
+        >
+          Saisie invalide.
+        </p>
+      </div>
     </DocsPreview>
     <DocsCode :code="codeValidation" />
   </DocsSection>
 
   <DocsSection id="sec-icone" :title="t('section-icon')">
     <DocsPreview>
-      <div class="bj-input-wrap">
-        <i class="ri-search-line" aria-hidden="true"></i>
-        <input
-          class="bj-input"
-          type="search"
-          placeholder="Rechercher…"
-        />
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: var(--bj-spacing-3v);
+          max-width: 28rem;
+        "
+      >
+        <div class="bj-input-wrap">
+          <i
+            class="ri-search-line bj-input-wrap__icon"
+            aria-hidden="true"
+          ></i>
+          <input
+            class="bj-input"
+            type="search"
+            placeholder="Rechercher…"
+          />
+        </div>
+        <div class="bj-input-wrap">
+          <i
+            class="ri-mail-line bj-input-wrap__icon"
+            aria-hidden="true"
+          ></i>
+          <input
+            class="bj-input bj-input--sm"
+            type="email"
+            placeholder="Courriel"
+          />
+        </div>
       </div>
     </DocsPreview>
     <DocsCode :code="codeIcon" />

@@ -10,39 +10,53 @@ const { t } = useI18n({
   messages: {
     fr: {
       title: 'BjDatepicker',
-      desc: 'Selecteur de date Vue avec calendrier, selection du mois/annee, format JJ/MM/AAAA, bornes min/max et taille sm ou md.',
+      desc: 'Sélecteur de date Vue avec calendrier, modes date / mois / année, format JJ/MM/AAAA (ou MM/AAAA, AAAA), bornes min/max, taille sm ou md, placeholder, libellé, aide et état désactivé.',
       'section-usage': 'Utilisation',
       'section-preview': 'Aperçu — Date',
       'section-month': 'Mode mois',
       'section-year': 'Mode année',
+      'section-sizes': 'Tailles (sm / md)',
+      'section-mode-size': 'Mode × taille',
+      'section-placeholder-hint': 'Placeholder et hint',
+      'section-min-max': 'Min et max',
+      'section-disabled': 'Désactivé',
       'section-props': 'Props',
-      'prop-modelValue': 'Valeur selectionnee (v-model). Format selon le mode : JJ/MM/AAAA, MM/AAAA ou AAAA.',
-      'prop-label': 'Libelle au-dessus du champ.',
-      'prop-hint': 'Texte d aide sous le libelle.',
-      'prop-placeholder': 'Placeholder du champ texte.',
-      'prop-min': 'Date minimale selectionnable (JJ/MM/AAAA).',
-      'prop-max': 'Date maximale selectionnable (JJ/MM/AAAA).',
-      'prop-disabled': 'Desactive le champ et le bouton calendrier.',
-      'prop-size': 'Taille : sm ou md (defaut md).',
-      'prop-mode': 'Mode de selection : date, month ou year.',
+      'prop-modelValue': 'Valeur sélectionnée (v-model). Format selon le mode : JJ/MM/AAAA, MM/AAAA ou AAAA.',
+      'prop-label': 'Libellé au-dessus du champ.',
+      'prop-hint': 'Texte d’aide sous le libellé.',
+      'prop-placeholder': 'Placeholder du champ texte (sinon JJ/MM/AAAA, MM/AAAA ou AAAA selon le mode).',
+      'prop-min': 'Date minimale sélectionnable (JJ/MM/AAAA).',
+      'prop-max': 'Date maximale sélectionnable (JJ/MM/AAAA).',
+      'prop-disabled': 'Désactive le champ et le bouton calendrier.',
+      'prop-size': 'Taille : sm (bj-datepicker--sm) ou md (défaut).',
+      'prop-mode': 'Mode de sélection : date, month ou year.',
+      'label-sm': 'sm',
+      'label-md': 'md',
     },
     en: {
       title: 'BjDatepicker',
-      desc: 'Vue date picker with calendar, month/year selection, DD/MM/YYYY format, min/max bounds, and sm or md size.',
+      desc: 'Vue date picker with calendar, date / month / year modes, DD/MM/YYYY (or MM/YYYY, YYYY) format, min/max bounds, sm or md size, placeholder, label, hint, and disabled state.',
       'section-usage': 'Usage',
       'section-preview': 'Preview — Date',
       'section-month': 'Month mode',
       'section-year': 'Year mode',
+      'section-sizes': 'Sizes (sm / md)',
+      'section-mode-size': 'Mode × size',
+      'section-placeholder-hint': 'Placeholder and hint',
+      'section-min-max': 'Min and max',
+      'section-disabled': 'Disabled',
       'section-props': 'Props',
       'prop-modelValue': 'Selected value (v-model). Format depends on mode: DD/MM/YYYY, MM/YYYY or YYYY.',
       'prop-label': 'Label above the field.',
       'prop-hint': 'Help text below the label.',
-      'prop-placeholder': 'Text field placeholder.',
+      'prop-placeholder': 'Text field placeholder (otherwise default by mode).',
       'prop-min': 'Earliest selectable date (DD/MM/YYYY).',
       'prop-max': 'Latest selectable date (DD/MM/YYYY).',
       'prop-disabled': 'Disables the field and calendar button.',
-      'prop-size': 'Size: sm or md (default md).',
+      'prop-size': 'Size: sm (bj-datepicker--sm) or md (default).',
       'prop-mode': 'Selection mode: date, month, or year.',
+      'label-sm': 'sm',
+      'label-md': 'md',
     },
   },
 })
@@ -71,11 +85,7 @@ const month = ref('')
 <\/script>
 
 <template>
-  <BjDatepicker
-    v-model="month"
-    mode="month"
-    label="Mois de facturation"
-  />
+  <BjDatepicker v-model="month" mode="month" label="Mois de facturation" />
 </template>`
 
 const codeYear = `<script setup>
@@ -86,12 +96,30 @@ const year = ref('')
 <\/script>
 
 <template>
-  <BjDatepicker
-    v-model="year"
-    mode="year"
-    label="Annee fiscale"
-  />
+  <BjDatepicker v-model="year" mode="year" label="Année fiscale" />
 </template>`
+
+const codeSizes = `<BjDatepicker v-model="d1" label="Date (sm)" size="sm" />
+<BjDatepicker v-model="d2" label="Date (md)" size="md" />`
+
+const codeModeSize = `<BjDatepicker v-model="m1" mode="month" label="Mois" size="sm" />
+<BjDatepicker v-model="y1" mode="year" label="Année" size="md" />`
+
+const codePlaceholderHint = `<BjDatepicker
+  v-model="evt"
+  label="Événement"
+  hint="Choisissez une date dans la plage autorisée"
+  placeholder="Choisir une date…"
+/>`
+
+const codeMinMax = `<BjDatepicker
+  v-model="stay"
+  label="Séjour"
+  min="01/06/2026"
+  max="30/09/2026"
+/>`
+
+const codeDisabled = `<BjDatepicker v-model="fixed" label="Date fixe" :disabled="true" />`
 
 const propsRows = computed(() => [
   { name: 'modelValue', description: t('prop-modelValue') },
@@ -230,6 +258,86 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeYear" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-datepicker-sizes" :title="t('section-sizes')">
+    <DocsPreview style="display: flex; flex-direction: column; gap: var(--bj-spacing-4v); max-width: 18rem">
+      <div class="bj-datepicker bj-datepicker--sm">
+        <label class="bj-label">{{ t('label-sm') }}</label>
+        <div class="bj-datepicker__field">
+          <input class="bj-datepicker__input" type="text" readonly placeholder="JJ/MM/AAAA" value="" />
+          <button type="button" class="bj-datepicker__trigger" aria-label="Calendrier"><i class="ri-calendar-line" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="bj-datepicker">
+        <label class="bj-label">{{ t('label-md') }}</label>
+        <div class="bj-datepicker__field">
+          <input class="bj-datepicker__input" type="text" readonly placeholder="JJ/MM/AAAA" value="" />
+          <button type="button" class="bj-datepicker__trigger" aria-label="Calendrier"><i class="ri-calendar-line" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeSizes" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-datepicker-mode-size" :title="t('section-mode-size')">
+    <DocsPreview style="display: flex; flex-direction: column; gap: var(--bj-spacing-3v); max-width: 18rem">
+      <div class="bj-datepicker bj-datepicker--sm">
+        <label class="bj-label">Mois (sm)</label>
+        <div class="bj-datepicker__field">
+          <input class="bj-datepicker__input" type="text" readonly placeholder="MM/AAAA" value="01/2026" />
+          <button type="button" class="bj-datepicker__trigger" aria-label="Calendrier"><i class="ri-calendar-line" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="bj-datepicker">
+        <label class="bj-label">Année (md)</label>
+        <div class="bj-datepicker__field">
+          <input class="bj-datepicker__input" type="text" readonly placeholder="AAAA" value="2026" />
+          <button type="button" class="bj-datepicker__trigger" aria-label="Calendrier"><i class="ri-calendar-line" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeModeSize" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-datepicker-placeholder-hint" :title="t('section-placeholder-hint')">
+    <DocsPreview>
+      <div class="bj-datepicker" style="max-width: 18rem">
+        <label class="bj-label">Événement</label>
+        <span class="bj-hint">Choisissez une date dans la plage autorisée</span>
+        <div class="bj-datepicker__field">
+          <input class="bj-datepicker__input" type="text" readonly placeholder="Choisir une date…" value="" />
+          <button type="button" class="bj-datepicker__trigger" aria-label="Calendrier"><i class="ri-calendar-line" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codePlaceholderHint" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-datepicker-min-max" :title="t('section-min-max')">
+    <DocsPreview>
+      <div class="bj-datepicker" style="max-width: 18rem">
+        <label class="bj-label">Séjour</label>
+        <div class="bj-datepicker__field">
+          <input class="bj-datepicker__input" type="text" readonly placeholder="JJ/MM/AAAA" value="15/07/2026" />
+          <button type="button" class="bj-datepicker__trigger" aria-label="Calendrier"><i class="ri-calendar-line" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeMinMax" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-datepicker-disabled" :title="t('section-disabled')">
+    <DocsPreview>
+      <div class="bj-datepicker" style="max-width: 18rem">
+        <label class="bj-label">Date fixe</label>
+        <div class="bj-datepicker__field">
+          <input class="bj-datepicker__input" type="text" readonly disabled value="01/01/2026" />
+          <button type="button" class="bj-datepicker__trigger" disabled aria-label="Calendrier"><i class="ri-calendar-line" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeDisabled" lang="html" />
   </DocsSection>
 
   <DocsSection id="vue-datepicker-props" :title="t('section-props')">

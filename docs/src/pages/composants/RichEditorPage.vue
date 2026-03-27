@@ -16,6 +16,13 @@ const { t } = useI18n({
       'section-structure': 'Structure complète',
       'section-toolbar': 'Barre d\'outils',
       'section-disabled': 'État désactivé',
+      'section-placeholder-height':
+        'Placeholder et hauteur',
+      'section-placeholder-height-body':
+        'Le composant Vue fixe le texte fantôme via l’attribut <code>data-placeholder</code> sur <code>bj-rich-editor__content</code> (style CSS <code>::before</code>). La hauteur minimale éditable correspond à la prop <code>height</code>, rendue en <code>min-height</code> inline sur la même zone. Une barre d’outils réduite correspond à la prop <code>toolbar</code> (sous-ensemble de <code>TOOLBAR_ALL</code>).',
+      'section-toolbar-subset': 'Barre d’outils partielle',
+      'section-toolbar-subset-body':
+        'En HTML/CSS, reproduisez seulement les groupes nécessaires\u00a0; chaque bouton reste un <code>bj-rich-editor__toolbar-btn</code> dans un <code>bj-rich-editor__toolbar-group</code>.',
       'section-prefilled': 'Contenu pré-rempli',
       'section-color-picker': 'Sélecteur de couleur',
       'section-classes-css': 'Classes CSS',
@@ -32,6 +39,10 @@ const { t } = useI18n({
       'cls-toolbar-separator': 'Séparateur vertical entre groupes.',
       'cls-toolbar-select': 'Menu déroulant dans la toolbar (ex: titres).',
       'cls-content': 'Zone de contenu éditable.',
+      'cls-content-placeholder':
+        'Attribut <code>data-placeholder</code> sur la zone éditable (texte vide).',
+      'cls-content-height':
+        'Hauteur\u00a0: <code>min-height</code> inline (équivalent prop <code>height</code> Vue).',
       'cls-color-picker': 'Conteneur du sélecteur de couleur.',
     },
     en: {
@@ -41,6 +52,13 @@ const { t } = useI18n({
       'section-structure': 'Full structure',
       'section-toolbar': 'Toolbar',
       'section-disabled': 'Disabled state',
+      'section-placeholder-height':
+        'Placeholder and height',
+      'section-placeholder-height-body':
+        'The Vue component sets ghost text with the <code>data-placeholder</code> attribute on <code>bj-rich-editor__content</code> (styled via CSS <code>::before</code>). Minimum editable height comes from the <code>height</code> prop, applied as inline <code>min-height</code> on that node. A smaller toolbar mirrors the <code>toolbar</code> prop (subset of <code>TOOLBAR_ALL</code>).',
+      'section-toolbar-subset': 'Partial toolbar',
+      'section-toolbar-subset-body':
+        'In HTML/CSS, include only the groups you need; each control stays a <code>bj-rich-editor__toolbar-btn</code> inside a <code>bj-rich-editor__toolbar-group</code>.',
       'section-prefilled': 'Pre-filled content',
       'section-color-picker': 'Color picker',
       'section-classes-css': 'CSS classes',
@@ -57,6 +75,10 @@ const { t } = useI18n({
       'cls-toolbar-separator': 'Vertical separator between groups.',
       'cls-toolbar-select': 'Dropdown menu in the toolbar (e.g. headings).',
       'cls-content': 'Editable content area.',
+      'cls-content-placeholder':
+        '<code>data-placeholder</code> on the editable region (empty state).',
+      'cls-content-height':
+        'Height: inline <code>min-height</code> (Vue <code>height</code> prop).',
       'cls-color-picker': 'Color picker container.',
     },
   },
@@ -195,6 +217,22 @@ const codeToolbar = `<!-- Bouton normal -->
   <input type="color" value="#000000" aria-label="Choisir la couleur">
 </div>`
 
+const codePlaceholderHeight = `<div class="bj-rich-editor" style="max-width: 40rem">
+  <div class="bj-rich-editor__toolbar" role="toolbar" aria-label="Éditeur">
+    <div class="bj-rich-editor__toolbar-group">
+      <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Gras"><i class="ri-bold" aria-hidden="true"></i></button>
+      <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Italique"><i class="ri-italic" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <div class="bj-rich-editor__content"
+       contenteditable="true"
+       role="textbox"
+       aria-multiline="true"
+       data-placeholder="Saisissez votre message…"
+       style="min-height: 12rem">
+  </div>
+</div>`
+
 const codeRaccourcis = `Ctrl/Cmd + B → Gras
 Ctrl/Cmd + I → Italique
 Ctrl/Cmd + U → Souligné
@@ -212,6 +250,14 @@ const propsRows = computed(() => [
   { name: 'bj-rich-editor__toolbar-separator', description: t('cls-toolbar-separator') },
   { name: 'bj-rich-editor__toolbar-select', description: t('cls-toolbar-select') },
   { name: 'bj-rich-editor__content', description: t('cls-content') },
+  {
+    name: 'data-placeholder (content)',
+    description: t('cls-content-placeholder'),
+  },
+  {
+    name: 'min-height / height',
+    description: t('cls-content-height'),
+  },
   { name: 'bj-rich-editor__color-picker', description: t('cls-color-picker') },
 ])
 </script>
@@ -302,6 +348,47 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeStructure" />
+  </DocsSection>
+
+  <DocsSection
+    id="placeholder-height-editor"
+    :title="t('section-placeholder-height')"
+  >
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-placeholder-height-body')"
+    />
+    <DocsPreview>
+      <div class="bj-rich-editor" style="max-width: 40rem">
+        <div class="bj-rich-editor__toolbar" role="toolbar" aria-label="Éditeur">
+          <div class="bj-rich-editor__toolbar-group">
+            <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Gras"><i class="ri-bold" aria-hidden="true"></i></button>
+            <button type="button" class="bj-rich-editor__toolbar-btn" aria-label="Italique"><i class="ri-italic" aria-hidden="true"></i></button>
+          </div>
+        </div>
+        <div
+          class="bj-rich-editor__content"
+          contenteditable="true"
+          role="textbox"
+          aria-multiline="true"
+          data-placeholder="Saisissez votre message…"
+          style="min-height: 12rem"
+        />
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codePlaceholderHeight" />
+  </DocsSection>
+
+  <DocsSection
+    id="toolbar-subset-editor"
+    :title="t('section-toolbar-subset')"
+  >
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-toolbar-subset-body')"
+    />
   </DocsSection>
 
   <DocsSection id="toolbar-editor" :title="t('section-toolbar')">

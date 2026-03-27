@@ -39,10 +39,29 @@ import { BjTooltip } from '@flrxnt/dsbj/vue'
   </BjTooltip>
 </template>`
 
+const codePositions = `<BjTooltip text="Au-dessus" position="top"><button type="button" class="bj-btn">Top</button></BjTooltip>
+<BjTooltip text="En dessous" position="bottom"><button type="button" class="bj-btn">Bottom</button></BjTooltip>
+<BjTooltip text="À gauche" position="left"><button type="button" class="bj-btn">Left</button></BjTooltip>
+<BjTooltip text="À droite" position="right"><button type="button" class="bj-btn">Right</button></BjTooltip>`
+
+const codeCombos = `<!-- Lien + droite -->
+<BjTooltip text="Ouvrir dans un nouvel onglet" position="right">
+  <a href="/doc" class="bj-link">Documentation</a>
+</BjTooltip>
+
+<!-- Icône seule + bas -->
+<BjTooltip text="Paramètres" position="bottom">
+  <button type="button" class="bj-btn bj-btn--icon-only" aria-label="Paramètres">
+    <i class="ri-settings-3-line" aria-hidden="true"></i>
+  </button>
+</BjTooltip>`
+
 const propsRows = computed(() => [
   { name: 'text', description: t('prop-text') },
   { name: 'position', description: t('prop-position') },
 ])
+
+const slotRows = computed(() => [{ name: 'default', description: t('slot-default') }])
 </script>
 
 <template>
@@ -60,6 +79,45 @@ const propsRows = computed(() => [
         <span class="bj-tooltip__content" role="tooltip">Texte d’aide contextuelle</span>
       </span>
     </DocsPreview>
+  </DocsSection>
+
+  <DocsSection id="vue-tooltip-positions" :title="t('section-positions')">
+    <p class="bj-text-sm" style="max-width: 44rem; margin-bottom: var(--bj-spacing-2v)">{{ t('positions-code-intro') }}</p>
+    <DocsCode :code="codePositions" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-tooltip-positions-preview" :title="t('section-positions-preview')">
+    <DocsPreview style="display: flex; flex-wrap: wrap; gap: var(--bj-spacing-4v); align-items: center; padding: var(--bj-spacing-4v)">
+      <span class="bj-tooltip bj-tooltip--bottom">
+        <button type="button" class="bj-btn bj-btn--sm">bottom</button>
+        <span class="bj-tooltip__content" role="tooltip">Infobulle bas</span>
+      </span>
+      <span class="bj-tooltip bj-tooltip--left">
+        <button type="button" class="bj-btn bj-btn--sm">left</button>
+        <span class="bj-tooltip__content" role="tooltip">Infobulle gauche</span>
+      </span>
+      <span class="bj-tooltip bj-tooltip--right">
+        <button type="button" class="bj-btn bj-btn--sm">right</button>
+        <span class="bj-tooltip__content" role="tooltip">Infobulle droite</span>
+      </span>
+    </DocsPreview>
+  </DocsSection>
+
+  <DocsSection id="vue-tooltip-combos" :title="t('section-combos')">
+    <p class="bj-text-sm" style="max-width: 44rem; margin-bottom: var(--bj-spacing-2v)">{{ t('combos-intro') }}</p>
+    <DocsCode :code="codeCombos" lang="html" />
+  </DocsSection>
+
+  <DocsSection id="vue-tooltip-slots" :title="t('section-slots')">
+    <DocsPropsTable :headers="['Slot', 'Description']" :rows="slotRows" />
+  </DocsSection>
+
+  <DocsSection id="vue-tooltip-emits" :title="t('section-no-emits')">
+    <p class="bj-text-sm" style="max-width: 44rem">{{ t('no-emits-desc') }}</p>
+  </DocsSection>
+
+  <DocsSection id="vue-tooltip-vmodel" :title="t('section-no-vmodel')">
+    <p class="bj-text-sm" style="max-width: 44rem">{{ t('no-vmodel-desc') }}</p>
   </DocsSection>
 
   <DocsSection id="vue-tooltip-props" :title="t('section-props')">

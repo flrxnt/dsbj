@@ -12,17 +12,26 @@ const { t } = useI18n({
     fr: {
       title: 'Bannière',
       desc:
-        'Section hero pleine largeur avec image de fond, titre, description et appel à l’action. Idéale pour les pages d’accueil, les annonces et les mises en avant promotionnelles.',
+        'Section hero pleine largeur avec image de fond, titre, description et appel à l\u2019action. Les modificateurs de taille (<code>bj-banner--sm</code>, <code>bj-banner--lg</code>), d\u2019alignement (<code>bj-banner--center</code>, <code>bj-banner--right</code>), d\u2019overlay (<code>bj-banner--light</code>, <code>bj-banner--dark</code>) et de thème (<code>bj-banner--plain</code>, <code>bj-banner--green</code>, etc.) se cumulent sur <code>bj-banner</code>, comme le composant Vue <code>BjBanner</code>.',
       'sec-base': 'Exemple de base',
       'sec-sizes': 'Tailles',
       'sec-sizes-p-1': 'Les modificateurs ',
       'sec-sizes-p-2': ' et ',
       'sec-sizes-p-3': ' ajustent la hauteur minimale.',
       'sec-align': 'Alignement centré',
+      'sec-right': 'Alignement à droite',
+      'sec-right-p':
+        '<code>bj-banner--right</code> pousse le bloc <code>bj-banner__body</code> à droite et inverse le dégradé de l\u2019overlay.',
+      'sec-light': 'Overlay clair',
+      'sec-light-p':
+        '<code>bj-banner--light</code> éclaircit l\u2019overlay et passe le texte du corps en couleur par défaut (images de fond sombres).',
+      'sec-combo': 'Combinaisons (taille × alignement × overlay)',
+      'sec-combo-p':
+        'Exemples de cumul : compacte + centrée + overlay clair ; grande + alignée à droite + overlay sombre par défaut.',
       'sec-plain': 'Sans image',
       'sec-plain-p-1': 'La variante ',
       'sec-plain-p-2':
-        ' utilise un fond uni et masque l’overlay. Combinable avec les couleurs nationales.',
+        ' utilise un fond uni et masque l\u2019overlay. Combinable avec les couleurs nationales.',
       'sec-classes': 'Classes CSS',
       'sec-a11y': 'Accessibilité',
       'prop-banner': 'Conteneur principal pleine largeur.',
@@ -41,14 +50,15 @@ const { t } = useI18n({
       'prop-light': 'Overlay clair pour images sombres.',
       'prop-dark': 'Overlay sombre uniforme.',
       'prop-plain': 'Fond uni sans image (couleur action-high).',
-      'prop-colors':
-        'Bordure basse aux couleurs nationales.',
-      'a11y-1': 'L’image décorative de fond doit porter un attribut ',
+      'prop-green': 'Accent bordure basse vert Bénin.',
+      'prop-yellow': 'Accent bordure basse jaune Bénin.',
+      'prop-red': 'Accent bordure basse rouge Bénin.',
+      'a11y-1': 'L\u2019image décorative de fond doit porter un attribut ',
       'a11y-alt-mid':
-        ' vide. Si l’image véhicule un sens, décrivez-la dans ',
+        ' vide. Si l\u2019image véhicule un sens, décrivez-la dans ',
       'a11y-2a': '. Utilisez une balise sémantique ',
       'a11y-2b':
-        ' ou role="banner" avec un aria-label descriptif pour nommer la zone. Les boutons CTA doivent être des liens ou boutons natifs avec un texte explicite. Vérifiez le contraste entre le texte et l’overlay sur les images claires.',
+        ' ou role="banner" avec un aria-label descriptif pour nommer la zone. Les boutons CTA doivent être des liens ou boutons natifs avec un texte explicite. Vérifiez le contraste entre le texte et l\u2019overlay sur les images claires.',
     },
     en: {
       title: 'Banner',
@@ -60,6 +70,15 @@ const { t } = useI18n({
       'sec-sizes-p-2': ' and ',
       'sec-sizes-p-3': ' modifiers adjust the minimum height.',
       'sec-align': 'Centered alignment',
+      'sec-right': 'Right alignment',
+      'sec-right-p':
+        '<code>bj-banner--right</code> pushes <code>bj-banner__body</code> to the right and flips the overlay gradient.',
+      'sec-light': 'Light overlay',
+      'sec-light-p':
+        '<code>bj-banner--light</code> lightens the overlay and sets body text to the default colour (dark photos).',
+      'sec-combo': 'Combinations (size × alignment × overlay)',
+      'sec-combo-p':
+        'Stacking examples: small + centered + light overlay; large + right + default dark overlay.',
       'sec-plain': 'Without image',
       'sec-plain-p-1': 'The ',
       'sec-plain-p-2':
@@ -80,7 +99,9 @@ const { t } = useI18n({
       'prop-light': 'Light overlay for dark images.',
       'prop-dark': 'Uniform dark overlay.',
       'prop-plain': 'Solid background without image (action-high colour).',
-      'prop-colors': 'Bottom border in national colours.',
+      'prop-green': 'Green Benin bottom border accent.',
+      'prop-yellow': 'Yellow Benin bottom border accent.',
+      'prop-red': 'Red Benin bottom border accent.',
       'a11y-1': 'Decorative background images should use an empty ',
       'a11y-alt-mid':
         ' attribute. If the image conveys meaning, describe it in ',
@@ -117,7 +138,7 @@ const codeSizes = `<div class="bj-banner bj-banner--sm">
   <div class="bj-banner__overlay"></div>
   <div class="bj-banner__body">
     <h2 class="bj-banner__title">Bannière grande</h2>
-    <p class="bj-banner__text">Variante haute pour les pages d'accueil.</p>
+    <p class="bj-banner__text">Variante haute pour les pages d\u2019accueil.</p>
     <div class="bj-banner__actions">
       <a href="#" class="bj-btn bj-btn--inverse">Action principale</a>
       <a href="#" class="bj-btn bj-btn--tertiary-inverse">En savoir plus</a>
@@ -162,10 +183,9 @@ const propsRows = computed(() => [
   { name: 'bj-banner--light', description: t('prop-light') },
   { name: 'bj-banner--dark', description: t('prop-dark') },
   { name: 'bj-banner--plain', description: t('prop-plain') },
-  {
-    name: 'bj-banner--green / --yellow / --red',
-    description: t('prop-colors'),
-  },
+  { name: 'bj-banner--green', description: t('prop-green') },
+  { name: 'bj-banner--yellow', description: t('prop-yellow') },
+  { name: 'bj-banner--red', description: t('prop-red') },
 ])
 </script>
 
@@ -241,7 +261,7 @@ const propsRows = computed(() => [
         <div class="bj-banner__body">
           <h2 class="bj-banner__title">Bannière grande</h2>
           <p class="bj-banner__text">
-            Variante haute pour les pages d'accueil.
+            Variante haute pour les pages d’accueil.
           </p>
           <div class="bj-banner__actions">
             <a href="#" class="bj-btn bj-btn--inverse"
@@ -278,6 +298,92 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeAlign" />
+  </DocsSection>
+
+  <DocsSection id="sec-banner-right" :title="t('sec-right')">
+    <p
+      class="bj-text-md"
+      style="max-width: 44rem; color: var(--bj-text-alt); margin-bottom: var(--bj-spacing-4v)"
+      v-html="t('sec-right-p')"
+    />
+    <DocsPreview>
+      <div class="bj-banner bj-banner--right">
+        <img
+          class="bj-banner__img"
+          src="https://picsum.photos/1200/500?random=3"
+          alt=""
+        />
+        <div class="bj-banner__overlay"></div>
+        <div class="bj-banner__body">
+          <h2 class="bj-banner__title">Alignée à droite</h2>
+          <p class="bj-banner__text">Texte et CTA sur le côté droit.</p>
+          <div class="bj-banner__actions">
+            <a href="#" class="bj-btn bj-btn--inverse">Continuer</a>
+          </div>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeRight" />
+  </DocsSection>
+
+  <DocsSection id="sec-banner-light" :title="t('sec-light')">
+    <p
+      class="bj-text-md"
+      style="max-width: 44rem; color: var(--bj-text-alt); margin-bottom: var(--bj-spacing-4v)"
+      v-html="t('sec-light-p')"
+    />
+    <DocsPreview>
+      <div class="bj-banner bj-banner--light">
+        <img
+          class="bj-banner__img"
+          src="https://picsum.photos/1200/500?random=4"
+          alt=""
+        />
+        <div class="bj-banner__overlay"></div>
+        <div class="bj-banner__body">
+          <h2 class="bj-banner__title">Overlay clair</h2>
+          <p class="bj-banner__text">Pour photographies très sombres.</p>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeLight" />
+  </DocsSection>
+
+  <DocsSection id="sec-banner-combo" :title="t('sec-combo')">
+    <p
+      class="bj-text-md"
+      style="max-width: 44rem; color: var(--bj-text-alt); margin-bottom: var(--bj-spacing-4v)"
+      v-html="t('sec-combo-p')"
+    />
+    <DocsPreview
+      style="display: flex; flex-direction: column; gap: var(--bj-spacing-4v)"
+    >
+      <div class="bj-banner bj-banner--sm bj-banner--center bj-banner--light">
+        <img
+          class="bj-banner__img"
+          src="https://picsum.photos/1200/400?random=5"
+          alt=""
+        />
+        <div class="bj-banner__overlay"></div>
+        <div class="bj-banner__body">
+          <h2 class="bj-banner__title">Compact + centré + clair</h2>
+          <p class="bj-banner__text">Trois modificateurs cumulés.</p>
+        </div>
+      </div>
+      <div class="bj-banner bj-banner--lg bj-banner--right">
+        <img
+          class="bj-banner__img"
+          src="https://picsum.photos/1200/800?random=6"
+          alt=""
+        />
+        <div class="bj-banner__overlay"></div>
+        <div class="bj-banner__body">
+          <h2 class="bj-banner__title">Grande + droite</h2>
+          <p class="bj-banner__text">Hauteur large, contenu à droite.</p>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeCombo" />
   </DocsSection>
 
   <DocsSection id="sec-banner-plain" :title="t('sec-plain')">

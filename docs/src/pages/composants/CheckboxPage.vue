@@ -16,6 +16,10 @@ const { t } = useI18n({
       'section-variants': 'Variantes',
       'section-variants-body':
         '<code>bj-checkbox__hint</code> pour préciser contraintes ou formats.',
+      'section-name-value':
+        'Attributs <code>name</code>, <code>value</code> et état coché',
+      'section-name-value-body':
+        'Utilisez <code>name</code> pour regrouper les envois ; <code>value</code> identifie la case dans le groupe. L’état visuel coché est l’attribut HTML <code>checked</code>.',
       'section-css': 'Classes CSS',
       'section-a11y': 'Accessibilité',
       'prop-checkbox-group': 'Conteneur.',
@@ -23,6 +27,8 @@ const { t } = useI18n({
       'prop-checkbox': 'Label englobant.',
       'prop-checkbox-label': 'Texte.',
       'prop-checkbox-hint': 'Aide.',
+      'prop-checkbox-input':
+        'Case\u00a0: <code>type="checkbox"</code>, <code>name</code>, <code>value</code>, <code>checked</code>, <code>disabled</code>.',
       'a11y-note':
         'Pour plusieurs cases liées, préférez <code>fieldset</code> et <code>legend</code>.',
     },
@@ -40,6 +46,8 @@ const { t } = useI18n({
       'prop-checkbox': 'Wrapping label.',
       'prop-checkbox-label': 'Text.',
       'prop-checkbox-hint': 'Hint.',
+      'prop-checkbox-input':
+        'Box: <code>type="checkbox"</code>, <code>name</code>, <code>value</code>, <code>checked</code>, <code>disabled</code>.',
       'a11y-note':
         'For related checkboxes, prefer <code>fieldset</code> and <code>legend</code>.',
     },
@@ -47,9 +55,23 @@ const { t } = useI18n({
 })
 
 const codeExample = `<fieldset class="bj-checkbox-group">
-  <legend class="bj-checkbox-group__legend">…</legend>
-  <label class="bj-checkbox">…</label>
+  <legend class="bj-checkbox-group__legend">Pièces fournies</legend>
+  <label class="bj-checkbox">
+    <input type="checkbox" name="docs" value="id" />
+    <span class="bj-checkbox__label">Pièce d’identité</span>
+  </label>
+  <label class="bj-checkbox">
+    <input type="checkbox" name="docs" value="dom" checked />
+    <span class="bj-checkbox__label">Justificatif</span>
+    <span class="bj-checkbox__hint">PDF ou image, 5 Mo max.</span>
+  </label>
 </fieldset>`
+
+const codeNameValue = `<!-- Case seule avec nom / valeur -->
+<label class="bj-checkbox">
+  <input type="checkbox" name="accept_cgu" value="1" checked />
+  <span class="bj-checkbox__label">J’accepte les conditions</span>
+</label>`
 
 const propsRows = computed(() => [
   { name: 'bj-checkbox-group', description: t('prop-checkbox-group') },
@@ -60,6 +82,7 @@ const propsRows = computed(() => [
   { name: 'bj-checkbox', description: t('prop-checkbox') },
   { name: 'bj-checkbox__label', description: t('prop-checkbox-label') },
   { name: 'bj-checkbox__hint', description: t('prop-checkbox-hint') },
+  { name: '(input checkbox)', description: t('prop-checkbox-input') },
 ])
 </script>
 
@@ -108,6 +131,30 @@ const propsRows = computed(() => [
       </fieldset>
     </DocsPreview>
     <DocsCode :code="codeExample" />
+  </DocsSection>
+
+  <DocsSection id="sec-name-value" :title="t('section-name-value')">
+    <p
+      class="bj-text-md"
+      style="color: var(--bj-text-alt)"
+      v-html="t('section-name-value-body')"
+    />
+    <DocsPreview>
+      <label class="bj-checkbox">
+        <input type="checkbox" name="demo_cgu" value="1" checked />
+        <span class="bj-checkbox__label"
+          >J’accepte les conditions d’utilisation</span
+        >
+      </label>
+      <label class="bj-checkbox">
+        <input type="checkbox" name="demo_news" value="yes" />
+        <span class="bj-checkbox__label">Newsletter (facultatif)</span>
+        <span class="bj-checkbox__hint"
+          >Vous pouvez vous désabonner à tout moment.</span
+        >
+      </label>
+    </DocsPreview>
+    <DocsCode :code="codeNameValue" />
   </DocsSection>
 
   <DocsSection id="sec-variantes" :title="t('section-variants')">

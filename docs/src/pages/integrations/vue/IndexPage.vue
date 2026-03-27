@@ -63,6 +63,8 @@ const { t } = useI18n({
     <DocsCard to="/integrations/vue/notice" icon="ri-information-line" title="BjNotice" description="Bandeau d'information." />
     <DocsCard to="/integrations/vue/tile" icon="ri-grid-line" title="BjTile" description="Tuile de navigation." />
     <DocsCard to="/integrations/vue/table" icon="ri-table-line" title="BjTable" description="Tableau de données." />
+    <DocsCard to="/integrations/vue/skeleton" icon="ri-loader-4-line" title="BjSkeleton" description="Placeholder de chargement." />
+    <DocsCard to="/integrations/vue/content" icon="ri-article-line" title="BjContent" description="Contenu éditorial typographique." />
   </div>
 
   <h2 class="bj-h3" style="margin-top: var(--bj-spacing-8v)">{{ t('section-interactive') }}</h2>

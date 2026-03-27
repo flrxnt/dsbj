@@ -10,7 +10,7 @@ const { t } = useI18n({
   messages: {
     fr: {
       title: 'BjSkiplink',
-      desc: 'Liens d'évitement React affichés au focus clavier pour accéder rapidement au contenu principal.',
+      desc: "Liens d'évitement React affichés au focus clavier pour accéder rapidement au contenu principal.",
       'section-usage': 'Utilisation',
       'section-preview': 'Aperçu',
       'section-props': 'Props',

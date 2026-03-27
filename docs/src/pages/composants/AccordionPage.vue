@@ -48,6 +48,16 @@ const { t } = useI18n({
         'vers le bouton améliore l’annonce dans les lecteurs d’écran.',
       'kbd-enter': 'Entrée',
       'kbd-space': 'Espace',
+      'section-static': 'État ouvert sans script',
+      'static-intro':
+        'Sans JavaScript, ajoutez la classe modificateur sur l’item et laissez le panneau ouvert avec',
+      'section-group-open': 'Groupe avec premier panneau ouvert',
+      'group-open-intro':
+        'Combinez',
+      'group-open-intro-2':
+        'sur l’item initialement déployé avec',
+      'group-open-intro-3':
+        'sur le panneau : le script conserve le comportement exclusif tout en affichant une réponse par défaut.',
     },
     en: {
       title: 'Accordion',
@@ -85,6 +95,14 @@ const { t } = useI18n({
       'a11y-8': 'pointing to the button improves screen reader announcements.',
       'kbd-enter': 'Enter',
       'kbd-space': 'Space',
+      'section-static': 'Open state without JavaScript',
+      'static-intro':
+        'Without JavaScript, add the modifier class on the item and keep the panel open with',
+      'section-group-open': 'Group with first panel open',
+      'group-open-intro': 'Combine',
+      'group-open-intro-2': 'on the initially expanded item with',
+      'group-open-intro-3':
+        'on the panel: the script keeps exclusive behaviour while showing a default answer.',
     },
   },
 })
@@ -94,13 +112,30 @@ const codeSimple = `<div class="bj-accordion">
   <div id="acc-body" class="bj-accordion__body" data-bj-expanded><p>Contenu de l'accordéon. Peut contenir du texte, des listes, des images ou tout autre contenu HTML.</p></div>
 </div>`
 
-const codeGroupe = `<div data-bj-accordion-group>
+const codeGroupe = `<div class="bj-accordions" data-bj-accordion-group>
   <div class="bj-accordion">
-    <button class="bj-accordion__btn" data-bj-accordion-btn aria-expanded="false" aria-controls="grp1">Question 1</button>
-    <div id="grp1" class="bj-accordion__body"><p>Réponse 1...</p></div>
+    <button type="button" class="bj-accordion__btn" id="btn-grp1" data-bj-accordion-btn aria-expanded="false" aria-controls="grp1">Question 1</button>
+    <div id="grp1" class="bj-accordion__body" role="region" aria-labelledby="btn-grp1"><p>Réponse 1…</p></div>
   </div>
-  <div class="bj-accordion">...</div>
-  <div class="bj-accordion">...</div>
+  <div class="bj-accordion">…</div>
+</div>`
+
+const codeStaticExpanded = `<div class="bj-accordion bj-accordion--expanded">
+  <button type="button" id="btn-static" class="bj-accordion__btn" aria-expanded="true" aria-controls="acc-static">Titre</button>
+  <div id="acc-static" class="bj-accordion__body" data-bj-expanded role="region" aria-labelledby="btn-static">
+    <p>Contenu visible sans script.</p>
+  </div>
+</div>`
+
+const codeGroupFirstOpen = `<div class="bj-accordions" data-bj-accordion-group>
+  <div class="bj-accordion bj-accordion--expanded">
+    <button type="button" class="bj-accordion__btn" data-bj-accordion-btn aria-expanded="true" aria-controls="g1">Déployé par défaut</button>
+    <div id="g1" class="bj-accordion__body" data-bj-expanded role="region">…</div>
+  </div>
+  <div class="bj-accordion">
+    <button type="button" class="bj-accordion__btn" data-bj-accordion-btn aria-expanded="false" aria-controls="g2">Fermé</button>
+    <div id="g2" class="bj-accordion__body" role="region">…</div>
+  </div>
 </div>`
 
 const propsTableHeaders = computed((): [string, string] => [
@@ -263,6 +298,99 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeGroupe" />
+  </DocsSection>
+
+  <DocsSection id="sec-groupe-ouvert" :title="t('section-group-open')">
+    <p class="bj-text-md" style="color: var(--bj-text-alt); max-width: 44rem">
+      {{ t('group-open-intro') }}
+      <code>bj-accordion--expanded</code>
+      {{ t('group-open-intro-2') }}
+      <code>data-bj-expanded</code>
+      {{ t('group-open-intro-3') }}
+    </p>
+    <DocsPreview>
+      <div class="bj-accordions" data-bj-accordion-group>
+        <div class="bj-accordion bj-accordion--expanded">
+          <button
+            type="button"
+            class="bj-accordion__btn"
+            id="doc-grp-open-btn1"
+            data-bj-accordion-btn
+            aria-expanded="true"
+            aria-controls="doc-grp-open-1"
+          >
+            Section ouverte au chargement
+          </button>
+          <div
+            id="doc-grp-open-1"
+            class="bj-accordion__body"
+            role="region"
+            aria-labelledby="doc-grp-open-btn1"
+            data-bj-expanded
+          >
+            <p class="bj-text-sm">
+              Utile pour une FAQ où la première réponse doit être visible tout
+              de suite tout en gardant un seul panneau ouvert.
+            </p>
+          </div>
+        </div>
+        <div class="bj-accordion">
+          <button
+            type="button"
+            class="bj-accordion__btn"
+            id="doc-grp-open-btn2"
+            data-bj-accordion-btn
+            aria-expanded="false"
+            aria-controls="doc-grp-open-2"
+          >
+            Autre question
+          </button>
+          <div
+            id="doc-grp-open-2"
+            class="bj-accordion__body"
+            role="region"
+            aria-labelledby="doc-grp-open-btn2"
+          >
+            <p class="bj-text-sm">Contenu masqué jusqu’au clic.</p>
+          </div>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeGroupFirstOpen" />
+  </DocsSection>
+
+  <DocsSection id="sec-statique" :title="t('section-static')">
+    <p class="bj-text-md" style="color: var(--bj-text-alt)">
+      {{ t('static-intro') }}
+      <code>data-bj-expanded</code>
+      .
+    </p>
+    <DocsPreview>
+      <div class="bj-accordion bj-accordion--expanded">
+        <button
+          type="button"
+          id="doc-acc-static-btn"
+          class="bj-accordion__btn"
+          aria-expanded="true"
+          aria-controls="doc-acc-static-body"
+        >
+          Section toujours déployée (démo)
+        </button>
+        <div
+          id="doc-acc-static-body"
+          class="bj-accordion__body"
+          data-bj-expanded
+          role="region"
+          aria-labelledby="doc-acc-static-btn"
+        >
+          <p class="bj-text-sm">
+            Utile pour du contenu statique ou en attendant l’hydratation du
+            script accordéon.
+          </p>
+        </div>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeStaticExpanded" />
   </DocsSection>
 
   <DocsSection id="sec-classes-css" :title="t('section-classes-css')">

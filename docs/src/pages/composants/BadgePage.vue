@@ -15,6 +15,10 @@ const { t } = useI18n({
         'Étiquette compacte en capitales pour un statut, une catégorie ou une nouveauté. Peut inclure une icône via la classe utilitaire <code class="bj-text-sm">bj-icon</code>.',
       'section-exemple': 'Exemple',
       'section-variantes': 'Variantes',
+      'section-tailles': 'Tailles',
+      'section-avec-icone': 'Avec icône',
+      'section-sans-icone': 'Sans icône',
+      'section-combinaisons': 'Combinaisons variantes × tailles',
       'section-classes-css': 'Classes CSS',
       'section-accessibilite': 'Accessibilité',
       'a11y-note':
@@ -35,6 +39,10 @@ const { t } = useI18n({
         'Compact uppercase label for status, category or what’s new. Can include an icon via the <code class="bj-text-sm">bj-icon</code> utility.',
       'section-exemple': 'Example',
       'section-variantes': 'Variants',
+      'section-tailles': 'Sizes',
+      'section-avec-icone': 'With icon',
+      'section-sans-icone': 'Without icon',
+      'section-combinaisons': 'Variant × size combinations',
       'section-classes-css': 'CSS classes',
       'section-accessibilite': 'Accessibility',
       'a11y-note':
@@ -59,6 +67,27 @@ const codeVariantes = `<span class="bj-badge bj-badge--info">…</span>
 <span class="bj-badge bj-badge--success">…</span>
 <span class="bj-badge bj-badge--new">Nouveau</span>
 <span class="bj-badge bj-badge--sm">…</span>`
+
+const codeTailles = `<!-- sm : les 6 variantes -->
+<span class="bj-badge bj-badge--sm">Neutre</span>
+<span class="bj-badge bj-badge--info bj-badge--sm">Info</span>
+<!-- … success, warning, error, new -->
+<!-- md (défaut) : mêmes variantes sans bj-badge--sm -->
+<span class="bj-badge">Neutre</span>
+<span class="bj-badge bj-badge--info">Info</span>`
+
+const codeAvecIcone = `<span class="bj-badge"><i class="ri-price-tag-3-line bj-icon bj-icon--sm" aria-hidden="true"></i> Neutre</span>
+<span class="bj-badge bj-badge--info"><i class="ri-information-line bj-icon bj-icon--sm" aria-hidden="true"></i> Info</span>
+<span class="bj-badge bj-badge--success"><i class="ri-checkbox-circle-line bj-icon bj-icon--sm" aria-hidden="true"></i> Succès</span>`
+
+const codeSansIcone = `<span class="bj-badge bj-badge--no-icon">
+  <i class="ri-price-tag-3-line bj-icon bj-icon--sm" aria-hidden="true"></i>
+  Texte seul
+</span>`
+
+const codeCombinaisons = `<!-- Grille 6 variantes × 2 tailles (sm / md) -->
+<span class="bj-badge bj-badge--info bj-badge--sm">Info</span>
+<span class="bj-badge bj-badge--info">Info</span>`
 
 const propsRows = computed(() => [
   {
@@ -125,6 +154,144 @@ const propsRows = computed(() => [
       <span class="bj-badge bj-badge--sm">Très petit</span>
     </DocsPreview>
     <DocsCode :code="codeVariantes" />
+  </DocsSection>
+
+  <DocsSection id="tailles-badge" :title="t('section-tailles')">
+    <DocsPreview
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: var(--bj-spacing-4v);
+        align-items: flex-start;
+      "
+    >
+      <div
+        class="bj-text-sm"
+        style="color: var(--bj-text-mention); margin: 0"
+      >
+        sm
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--bj-spacing-2v);
+          align-items: center;
+        "
+      >
+        <span class="bj-badge bj-badge--sm">Neutre</span>
+        <span class="bj-badge bj-badge--info bj-badge--sm">Info</span>
+        <span class="bj-badge bj-badge--success bj-badge--sm">Succès</span>
+        <span class="bj-badge bj-badge--warning bj-badge--sm">Attention</span>
+        <span class="bj-badge bj-badge--error bj-badge--sm">Erreur</span>
+        <span class="bj-badge bj-badge--new bj-badge--sm">Nouveau</span>
+      </div>
+      <div
+        class="bj-text-sm"
+        style="color: var(--bj-text-mention); margin: 0"
+      >
+        md (défaut)
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--bj-spacing-2v);
+          align-items: center;
+        "
+      >
+        <span class="bj-badge">Neutre</span>
+        <span class="bj-badge bj-badge--info">Info</span>
+        <span class="bj-badge bj-badge--success">Succès</span>
+        <span class="bj-badge bj-badge--warning">Attention</span>
+        <span class="bj-badge bj-badge--error">Erreur</span>
+        <span class="bj-badge bj-badge--new">Nouveau</span>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeTailles" />
+  </DocsSection>
+
+  <DocsSection id="avec-icone-badge" :title="t('section-avec-icone')">
+    <DocsPreview
+      style="
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--bj-spacing-2v);
+        align-items: center;
+      "
+    >
+      <span class="bj-badge"
+        ><i class="ri-price-tag-3-line bj-icon bj-icon--sm" aria-hidden="true"></i>
+        Neutre</span
+      >
+      <span class="bj-badge bj-badge--info"
+        ><i class="ri-information-line bj-icon bj-icon--sm" aria-hidden="true"></i>
+        Info</span
+      >
+      <span class="bj-badge bj-badge--success"
+        ><i class="ri-checkbox-circle-line bj-icon bj-icon--sm" aria-hidden="true"></i>
+        Succès</span
+      >
+      <span class="bj-badge bj-badge--warning"
+        ><i class="ri-error-warning-line bj-icon bj-icon--sm" aria-hidden="true"></i>
+        Attention</span
+      >
+      <span class="bj-badge bj-badge--error"
+        ><i class="ri-close-circle-line bj-icon bj-icon--sm" aria-hidden="true"></i>
+        Erreur</span
+      >
+      <span class="bj-badge bj-badge--new"
+        ><i class="ri-star-line bj-icon bj-icon--sm" aria-hidden="true"></i>
+        Nouveau</span
+      >
+    </DocsPreview>
+    <DocsCode :code="codeAvecIcone" />
+  </DocsSection>
+
+  <DocsSection id="sans-icone-badge" :title="t('section-sans-icone')">
+    <DocsPreview>
+      <span class="bj-badge bj-badge--no-icon"
+        ><i class="ri-price-tag-3-line bj-icon bj-icon--sm" aria-hidden="true"></i>
+        Texte seul (icône masquée)</span
+      >
+    </DocsPreview>
+    <DocsCode :code="codeSansIcone" />
+  </DocsSection>
+
+  <DocsSection id="combinaisons-badge" :title="t('section-combinaisons')">
+    <DocsPreview
+      style="
+        display: grid;
+        grid-template-columns: auto repeat(6, minmax(0, max-content));
+        gap: var(--bj-spacing-2v) var(--bj-spacing-3v);
+        align-items: center;
+      "
+    >
+      <span aria-hidden="true"></span>
+      <span class="bj-text-xs" style="color: var(--bj-text-mention)">Neutre</span>
+      <span class="bj-text-xs" style="color: var(--bj-text-mention)">Info</span>
+      <span class="bj-text-xs" style="color: var(--bj-text-mention)">Succès</span>
+      <span class="bj-text-xs" style="color: var(--bj-text-mention)">Attention</span>
+      <span class="bj-text-xs" style="color: var(--bj-text-mention)">Erreur</span>
+      <span class="bj-text-xs" style="color: var(--bj-text-mention)">Nouveau</span>
+
+      <span class="bj-text-xs" style="color: var(--bj-text-mention)">sm</span>
+      <span class="bj-badge bj-badge--sm">Neutre</span>
+      <span class="bj-badge bj-badge--info bj-badge--sm">Info</span>
+      <span class="bj-badge bj-badge--success bj-badge--sm">Succès</span>
+      <span class="bj-badge bj-badge--warning bj-badge--sm">Attention</span>
+      <span class="bj-badge bj-badge--error bj-badge--sm">Erreur</span>
+      <span class="bj-badge bj-badge--new bj-badge--sm">Nouveau</span>
+
+      <span class="bj-text-xs" style="color: var(--bj-text-mention)">md</span>
+      <span class="bj-badge">Neutre</span>
+      <span class="bj-badge bj-badge--info">Info</span>
+      <span class="bj-badge bj-badge--success">Succès</span>
+      <span class="bj-badge bj-badge--warning">Attention</span>
+      <span class="bj-badge bj-badge--error">Erreur</span>
+      <span class="bj-badge bj-badge--new">Nouveau</span>
+    </DocsPreview>
+    <DocsCode :code="codeCombinaisons" />
   </DocsSection>
 
   <DocsSection id="classes-badge" :title="t('section-classes-css')">

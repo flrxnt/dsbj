@@ -2,7 +2,7 @@
 export interface BjDropdownProps {
   align?: 'left' | 'right'
   direction?: 'down' | 'up'
-  size?: 'sm' | 'md'
+  size?: 'sm' | 'md' | 'lg'
 }
 </script>
 
@@ -29,6 +29,7 @@ const classes = computed(() => [
   props.align === 'right' && 'bj-dropdown--right',
   props.direction === 'up' && 'bj-dropdown--up',
   props.size === 'sm' && 'bj-dropdown--sm',
+  props.size === 'lg' && 'bj-dropdown--lg',
 ])
 
 function open() {

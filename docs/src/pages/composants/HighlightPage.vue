@@ -11,30 +11,36 @@ const { t } = useI18n({
   messages: {
     fr: {
       title: 'Mise en exergue',
-      desc: 'Paragraphe ou extrait mis en valeur par une bordure gauche et une taille de texte plus grande, sans changer le ton sémantique d’une alerte.',
-      'section-example': 'Exemple',
-      'section-variants': 'Variantes',
+      desc: 'Paragraphe ou extrait mis en valeur par une bordure gauche et une taille de texte plus grande : <code>bj-highlight</code> (taille <code>md</code> par défaut, sans classe supplémentaire), <code>bj-highlight--sm</code>, <code>bj-highlight--lg</code>.',
+      'section-example': 'Exemple (taille moyenne par défaut)',
+      'section-variants': 'Tailles sm et lg',
+      'section-matrix': 'Tailles × exemples',
+      'para-matrix':
+        'Les trois niveaux côte à côte : compact pour encarts, médium par défaut, large pour accroche en tête d’article.',
       'section-classes': 'Classes CSS',
       'section-a11y': 'Accessibilité',
       'a11y-note':
         'Préférez un paragraphe <code>&lt;p&gt;</code> à l’intérieur du bloc pour une structure lisible. Ne confondez pas mise en exergue et message d’état : n’utilisez pas <code>role="alert"</code> ici. Le contraste du texte sur le fond de page doit rester conforme WCAG.',
       'prop-bj-highlight':
-        'Bordure gauche grise foncée, texte en taille intermédiaire élargie.',
+        'Taille médiane par défaut : bordure gauche grise foncée, corps de texte élargi (aucune classe <code>bj-highlight--md</code> — le médium est l’absence de <code>--sm</code> / <code>--lg</code>).',
       'prop-bj-highlight-sm': 'Padding et corps de texte réduits.',
       'prop-bj-highlight-lg':
         'Corps de texte très large (affichage).',
     },
     en: {
       title: 'Highlight',
-      desc: 'Paragraph or excerpt emphasised with a left border and larger type, without taking on alert semantics.',
-      'section-example': 'Example',
-      'section-variants': 'Variants',
+      desc: 'Paragraph or excerpt emphasised with a left border and larger type: <code>bj-highlight</code> (<code>md</code> default—no extra size class), <code>bj-highlight--sm</code>, <code>bj-highlight--lg</code>.',
+      'section-example': 'Example (default medium size)',
+      'section-variants': 'Small and large sizes',
+      'section-matrix': 'Sizes × examples',
+      'para-matrix':
+        'All three levels: compact for sidebars, medium by default, large for a lead paragraph.',
       'section-classes': 'CSS classes',
       'section-a11y': 'Accessibility',
       'a11y-note':
         'Prefer a <code>&lt;p&gt;</code> inside the block for clear structure. Do not confuse a highlight with a status message: do not use <code>role="alert"</code> here. Text contrast against the page background must meet WCAG.',
       'prop-bj-highlight':
-        'Dark grey left border, body text at an enlarged intermediate size.',
+        'Default medium size: dark grey left border, enlarged body text (no <code>bj-highlight--md</code> class—medium means neither <code>--sm</code> nor <code>--lg</code>).',
       'prop-bj-highlight-sm': 'Reduced padding and body text.',
       'prop-bj-highlight-lg': 'Very large body text (display).',
     },
@@ -47,6 +53,13 @@ const codeExemple = `<div class="bj-highlight">
 
 const codeVariantes = `<div class="bj-highlight bj-highlight--sm"><p>…</p></div>
 <div class="bj-highlight bj-highlight--lg"><p>…</p></div>`
+
+const codeMatrix = `<!-- sm -->
+<div class="bj-highlight bj-highlight--sm"><p>Compact</p></div>
+<!-- md (défaut) -->
+<div class="bj-highlight"><p>Par défaut</p></div>
+<!-- lg -->
+<div class="bj-highlight bj-highlight--lg"><p>Accroche</p></div>`
 
 const propsRows = computed(() => [
   {
@@ -72,7 +85,7 @@ const propsRows = computed(() => [
     class="bj-text-lg"
     style="max-width: 44rem; color: var(--bj-text-alt)"
   >
-    {{ t('desc') }}
+    <span v-html="t('desc')" />
   </p>
 
   <DocsSection id="exemple-highlight" :title="t('section-example')">
@@ -106,6 +119,33 @@ const propsRows = computed(() => [
       </div>
     </DocsPreview>
     <DocsCode :code="codeVariantes" />
+  </DocsSection>
+
+  <DocsSection id="highlight-matrix" :title="t('section-matrix')">
+    <p
+      class="bj-text-md"
+      style="max-width: 44rem; color: var(--bj-text-alt)"
+    >
+      <span v-html="t('para-matrix')" />
+    </p>
+    <DocsPreview
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: var(--bj-spacing-4v);
+      "
+    >
+      <div class="bj-highlight bj-highlight--sm">
+        <p>Sm — encart latéral ou métadonnée mise en avant.</p>
+      </div>
+      <div class="bj-highlight">
+        <p>Md — taille par défaut du composant Vue (<code>size="md"</code>).</p>
+      </div>
+      <div class="bj-highlight bj-highlight--lg">
+        <p>Lg — chapô ou citation institutionnelle très visible.</p>
+      </div>
+    </DocsPreview>
+    <DocsCode :code="codeMatrix" />
   </DocsSection>
 
   <DocsSection id="classes-highlight" :title="t('section-classes')">
