@@ -4,6 +4,16 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.4.1] - 2026-03-27
+
+### Ajouté
+
+- Enhance documentation with new Dashboard components and charts
+
+### Modifié
+
+- Update vitest and related dependencies to version 4.1.2 in package.json and bun.lock
+
 ## [1.4.0] - 2026-03-27
 
 ### Ajouté
