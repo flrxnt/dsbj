@@ -25,11 +25,11 @@
       "style": "./dist/dsbj.css"
     },
     "./vue": {
-      "import": "./src/vue/index.ts",
+      "import": "./dist/dsbj-vue.mjs",
       "types": "./src/vue/index.ts"
     },
     "./react": {
-      "import": "./src/react/index.ts",
+      "import": "./dist/dsbj-react.mjs",
       "types": "./src/react/index.ts"
     },
     "./css": "./dist/dsbj.css",
@@ -44,6 +44,9 @@
   "sideEffects": [
     "**/*.css",
     "**/*.scss",
+    "dist/dsbj.es.js",
+    "dist/dsbj-vue.mjs",
+    "dist/dsbj-react.mjs",
     "src/index.ts",
     "src/js/*.ts"
   ],
@@ -52,7 +55,9 @@
   ],
   "scripts": {
     "dev": "vite --config vite.docs.config.ts",
-    "build": "vite build && bun run build:reset",
+    "build": "vite build && vite build --config vite.vue.config.ts && vite build --config vite.react.config.ts && bun run build:reset",
+    "build:vue": "vite build --config vite.vue.config.ts",
+    "build:react": "vite build --config vite.react.config.ts",
     "build:reset": "bunx sass-embedded src/dsbj-reset.scss dist/dsbj-reset.css --style=compressed --no-source-map",
     "pwa:icons": "bun scripts/generate-pwa-icons.ts",
     "build:docs": "bun scripts/build-docs.ts",
