@@ -4,6 +4,13 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.4.2] - 2026-03-29
+
+### Ajouté
+
+- Add Chat Bubble component and update documentation
+- Enhance documentation with new Vue integration routes and localization updates
+
 ## [1.4.1] - 2026-03-27
 
 ### Ajouté
