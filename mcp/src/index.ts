@@ -186,7 +186,7 @@ Le HTML doit être accessible (WCAG 2.1 AA) et sémantique.${context}`,
   // Tools
   // -------------------------------------------------------------------------
 
-  server.tool('list-components', 'Liste les 51 composants du DSBJ groupés par catégorie', {}, async () => {
+  server.tool('list-components', 'Liste les 52 composants du DSBJ groupés par catégorie', {}, async () => {
     const grouped: Record<string, { name: string; slug: string; description: string }[]> = {};
     for (const cat of CATEGORIES) grouped[cat] = [];
     for (const c of COMPONENTS) {

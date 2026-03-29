@@ -7,7 +7,7 @@ const { t } = useI18n({
     fr: {
       title: 'Composants',
       desc:
-        'Bibliothèque de 42 composants HTML/CSS du Design Système du Bénin : navigation, formulaires, contenu, éléments interactifs et blocs réglementaires. Chaque fiche détaille les variantes, les classes et les bonnes pratiques d’accessibilité.',
+        'Bibliothèque de 41 composants HTML/CSS du Design Système du Bénin : navigation, formulaires, contenu, éléments interactifs et blocs réglementaires. Chaque fiche détaille les variantes, les classes et les bonnes pratiques d’accessibilité.',
       'sec-nav': 'Navigation',
       'sec-base': 'Base',
       'sec-form': 'Formulaires',
@@ -113,6 +113,8 @@ const { t } = useI18n({
       'card-gallery-title': 'Galerie d\'images',
       'card-gallery-desc':
         'Grille d\'images avec visionneuse plein écran.',
+      'card-chat-bubble-title': 'Bulle de chat',
+      'card-chat-bubble-desc': 'Bulle de message pour conversations.',
       'card-consent-title': 'Consentement',
       'card-consent-desc':
         'Bandeau cookies et choix utilisateur.',
@@ -127,7 +129,7 @@ const { t } = useI18n({
     en: {
       title: 'Components',
       desc:
-        'A library of 42 HTML/CSS components from the Benin Design System: navigation, forms, content, interactive patterns and regulatory blocks. Each page covers variants, classes and accessibility guidance.',
+        'A library of 41 HTML/CSS components from the Benin Design System: navigation, forms, content, interactive patterns and regulatory blocks. Each page covers variants, classes and accessibility guidance.',
       'sec-nav': 'Navigation',
       'sec-base': 'Foundations',
       'sec-form': 'Forms',
@@ -220,6 +222,8 @@ const { t } = useI18n({
       'card-marquee-desc': 'Scrolling announcements with pause.',
       'card-gallery-title': 'Image gallery',
       'card-gallery-desc': 'Image grid with fullscreen viewer.',
+      'card-chat-bubble-title': 'Chat Bubble',
+      'card-chat-bubble-desc': 'Message bubble for conversations.',
       'card-consent-title': 'Consent',
       'card-consent-desc': 'Cookie banner and user choices.',
       'sec-dashboard': 'Dashboard',
@@ -594,6 +598,12 @@ const { t } = useI18n({
       icon="ri-image-2-line"
       :title="t('card-gallery-title')"
       :description="t('card-gallery-desc')"
+    />
+    <DocsCard
+      to="/composants/chat-bubble"
+      icon="ri-chat-1-line"
+      :title="t('card-chat-bubble-title')"
+      :description="t('card-chat-bubble-desc')"
     />
   </div>
 

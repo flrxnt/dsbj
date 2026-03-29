@@ -42,6 +42,7 @@ export { default as BjTooltip } from './components/BjTooltip.vue'
 export { default as BjGallery } from './components/BjGallery.vue'
 export { default as BjMarquee } from './components/BjMarquee.vue'
 export { default as BjTreeview } from './components/BjTreeview.vue'
+export { default as BjChatBubble } from './components/BjChatBubble.vue'
 
 // Navigation
 export { default as BjHeader } from './components/BjHeader.vue'

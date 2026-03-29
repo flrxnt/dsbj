@@ -1,6 +1,6 @@
 # DSBJ - Design Système du Bénin - Documentation complète
 
-> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 51 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
+> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 52 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
 
 ## Informations générales
 
@@ -676,6 +676,23 @@ JS : `data-bj-tree-toggle`
     </ul>
   </li>
 </ul>
+```
+
+### Bulle de chat (Chat Bubble)
+
+Classes : `bj-chat-bubble`, `bj-chat-bubble__avatar`, `bj-chat-bubble__content`, `bj-chat-bubble__text`, `bj-chat-bubble__time`, `bj-chat-bubble__status`, `bj-chat-bubble__sender`, `bj-chat-bubble__meta`, `bj-chat-bubble--sent`, `bj-chat-bubble--received`, `bj-chat-bubble--system`, `bj-chat-bubble--error`
+ARIA : `role="listitem"`, `aria-label`
+
+```html
+<div role="list">
+  <div class="bj-chat-bubble bj-chat-bubble--received" role="listitem" aria-label="Message de Amina à 10:32">
+    <div class="bj-chat-bubble__content">
+      <span class="bj-chat-bubble__sender">Amina</span>
+      <div class="bj-chat-bubble__text">Bonjour !</div>
+      <div class="bj-chat-bubble__meta"><span class="bj-chat-bubble__time">10:32</span></div>
+    </div>
+  </div>
+</div>
 ```
 
 ### Consentement (RGPD)

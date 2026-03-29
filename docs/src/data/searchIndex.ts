@@ -78,6 +78,7 @@ export const searchIndex: SearchEntry[] = [
   { label: 'Bandeau défilant', path: '/composants/marquee', section: 'Composants', keywords: ['marquee', 'défilement', 'annonce', 'bj-marquee'] },
   { label: 'Galerie d\'images', path: '/composants/gallery', section: 'Composants', keywords: ['gallery', 'images', 'lightbox', 'bj-gallery'] },
   { label: 'Arborescence', path: '/composants/treeview', section: 'Composants', keywords: ['treeview', 'arbre', 'hiérarchie', 'nœuds', 'bj-treeview'] },
+  { label: 'Bulle de chat', path: '/composants/chat-bubble', section: 'Composants', keywords: ['chat-bubble', 'bulle', 'message', 'conversation', 'bj-chat-bubble'] },
 
   // Composants - Éditeur riche
   { label: 'Éditeur riche', path: '/composants/rich-editor', section: 'Composants', keywords: ['rich-editor', 'wysiwyg', 'éditeur', 'contenteditable', 'formatage', 'bj-rich-editor'] },
@@ -113,6 +114,7 @@ export const searchIndex: SearchEntry[] = [
   { label: 'BjGallery', path: '/integrations/vue/gallery', section: 'Vue', keywords: ['gallery', 'vue', 'BjGallery'] },
   { label: 'BjMarquee', path: '/integrations/vue/marquee', section: 'Vue', keywords: ['marquee', 'vue', 'BjMarquee'] },
   { label: 'BjTreeview', path: '/integrations/vue/treeview', section: 'Vue', keywords: ['treeview', 'arbre', 'vue', 'BjTreeview'] },
+  { label: 'BjChatBubble', path: '/integrations/vue/chat-bubble', section: 'Vue', keywords: ['chat-bubble', 'vue', 'BjChatBubble'] },
   { label: 'BjConsent', path: '/integrations/vue/consent', section: 'Vue', keywords: ['consent', 'cookies', 'vue', 'BjConsent'] },
   { label: 'BjCard', path: '/integrations/vue/card', section: 'Vue', keywords: ['card', 'carte', 'vue', 'BjCard'] },
   { label: 'BjAlert', path: '/integrations/vue/alert', section: 'Vue', keywords: ['alert', 'vue', 'BjAlert'] },
@@ -164,6 +166,7 @@ export const searchIndex: SearchEntry[] = [
   { label: 'BjGallery', path: '/integrations/react/gallery', section: 'React', keywords: ['gallery', 'react', 'BjGallery'] },
   { label: 'BjMarquee', path: '/integrations/react/marquee', section: 'React', keywords: ['marquee', 'react', 'BjMarquee'] },
   { label: 'BjTreeview', path: '/integrations/react/treeview', section: 'React', keywords: ['treeview', 'arbre', 'react', 'BjTreeview'] },
+  { label: 'BjChatBubble', path: '/integrations/react/chat-bubble', section: 'React', keywords: ['chat-bubble', 'react', 'BjChatBubble'] },
   { label: 'BjConsent', path: '/integrations/react/consent', section: 'React', keywords: ['consent', 'cookies', 'react', 'BjConsent'] },
   { label: 'BjAlert', path: '/integrations/react/alert', section: 'React', keywords: ['alert', 'react', 'BjAlert'] },
   { label: 'BjCard', path: '/integrations/react/card', section: 'React', keywords: ['card', 'carte', 'react', 'BjCard'] },

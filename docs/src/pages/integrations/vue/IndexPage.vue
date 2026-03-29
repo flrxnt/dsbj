@@ -13,6 +13,8 @@ const { t } = useI18n({
       'section-interactive': 'Interactifs',
       'section-nav': 'Navigation',
       'section-dashboard': 'Dashboard',
+      'card-chat-bubble-title': 'BjChatBubble',
+      'card-chat-bubble-desc': 'Bulle de message.',
     },
     en: {
       title: 'Vue 3',
@@ -23,6 +25,8 @@ const { t } = useI18n({
       'section-interactive': 'Interactive',
       'section-nav': 'Navigation',
       'section-dashboard': 'Dashboard',
+      'card-chat-bubble-title': 'BjChatBubble',
+      'card-chat-bubble-desc': 'Chat bubble component.',
     },
   },
 })
@@ -78,6 +82,7 @@ const { t } = useI18n({
     <DocsCard to="/integrations/vue/gallery" icon="ri-gallery-line" title="BjGallery" description="Galerie d'images avec lightbox." />
     <DocsCard to="/integrations/vue/marquee" icon="ri-text-wrap" title="BjMarquee" description="Bandeau défilant." />
     <DocsCard to="/integrations/vue/treeview" icon="ri-node-tree" title="BjTreeview" description="Arborescence interactive." />
+    <DocsCard to="/integrations/vue/chat-bubble" icon="ri-chat-1-line" :title="t('card-chat-bubble-title')" :description="t('card-chat-bubble-desc')" />
     <DocsCard to="/integrations/vue/consent" icon="ri-shield-check-line" title="BjConsent" description="Bannière et préférences cookies." />
   </div>
 

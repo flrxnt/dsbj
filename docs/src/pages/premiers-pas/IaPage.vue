@@ -55,7 +55,7 @@ const { t } = useI18n({
       'th-prompt': 'Prompt',
       'th-params': 'Paramètres',
       'mcp-list-components':
-        'Liste les 51 composants groupés par catégorie',
+        'Liste les 52 composants groupés par catégorie',
       'mcp-get-component':
         "Documentation complète d'un composant : classes CSS, ARIA, markup",
       'mcp-search-components':

@@ -42,6 +42,7 @@ export { BjTooltip } from './components/BjTooltip'
 export { BjGallery } from './components/BjGallery'
 export { BjMarquee } from './components/BjMarquee'
 export { BjTreeview } from './components/BjTreeview'
+export { BjChatBubble } from './components/BjChatBubble'
 
 // Navigation
 export { BjHeader } from './components/BjHeader'

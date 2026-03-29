@@ -648,6 +648,33 @@ export const COMPONENTS: ComponentData[] = [
 </ul>`,
   },
   {
+    name: 'Bulle de chat',
+    slug: 'chat-bubble',
+    category: 'Interactifs',
+    description: 'Bulle de message conversationnelle avec variantes envoyé, reçu et système.',
+    classes: ['bj-chat-bubble', 'bj-chat-bubble__avatar', 'bj-chat-bubble__content', 'bj-chat-bubble__text', 'bj-chat-bubble__time', 'bj-chat-bubble__status', 'bj-chat-bubble__sender', 'bj-chat-bubble__meta', 'bj-chat-bubble--sent', 'bj-chat-bubble--received', 'bj-chat-bubble--system', 'bj-chat-bubble--error'],
+    aria: ['role="listitem"', 'aria-label'],
+    jsHooks: [],
+    markup: `<div role="list">
+  <div class="bj-chat-bubble bj-chat-bubble--received" role="listitem" aria-label="Message de Amina à 10:32">
+    <div class="bj-chat-bubble__content">
+      <span class="bj-chat-bubble__sender">Amina</span>
+      <div class="bj-chat-bubble__text">Bonjour, comment puis-je vous aider ?</div>
+      <div class="bj-chat-bubble__meta"><span class="bj-chat-bubble__time">10:32</span></div>
+    </div>
+  </div>
+  <div class="bj-chat-bubble bj-chat-bubble--sent" role="listitem">
+    <div class="bj-chat-bubble__content">
+      <div class="bj-chat-bubble__text">J'ai une question.</div>
+      <div class="bj-chat-bubble__meta">
+        <span class="bj-chat-bubble__time">10:33</span>
+        <span class="bj-chat-bubble__status bj-chat-bubble__status--read"><i class="ri-check-double-line" aria-hidden="true"></i></span>
+      </div>
+    </div>
+  </div>
+</div>`,
+  },
+  {
     name: 'Bannière',
     slug: 'banner',
     category: 'Contenu',

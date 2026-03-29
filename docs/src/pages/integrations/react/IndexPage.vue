@@ -13,6 +13,8 @@ const { t } = useI18n({
       'section-interactive': 'Interactifs',
       'section-nav': 'Navigation',
       'section-dashboard': 'Dashboard',
+      'card-chat-bubble-title': 'BjChatBubble',
+      'card-chat-bubble-desc': 'Bulle de message.',
     },
     en: {
       title: 'React',
@@ -23,6 +25,8 @@ const { t } = useI18n({
       'section-interactive': 'Interactive',
       'section-nav': 'Navigation',
       'section-dashboard': 'Dashboard',
+      'card-chat-bubble-title': 'BjChatBubble',
+      'card-chat-bubble-desc': 'Chat bubble component.',
     },
   },
 })
@@ -78,6 +82,7 @@ const { t } = useI18n({
     <DocsCard to="/integrations/react/gallery" icon="ri-gallery-line" title="Gallery" description="Galerie avec lightbox." />
     <DocsCard to="/integrations/react/marquee" icon="ri-text-wrap" title="Marquee" description="Bandeau défilant." />
     <DocsCard to="/integrations/react/treeview" icon="ri-node-tree" title="TreeView" description="Arborescence interactive." />
+    <DocsCard to="/integrations/react/chat-bubble" icon="ri-chat-1-line" :title="t('card-chat-bubble-title')" :description="t('card-chat-bubble-desc')" />
     <DocsCard to="/integrations/react/consent" icon="ri-shield-check-line" title="Consent" description="Bannière cookies et préférences." />
   </div>
 
