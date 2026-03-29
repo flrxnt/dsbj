@@ -11,7 +11,7 @@
     "serve:dev": "bun --watch run src/index.ts --http"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.27.1",
+    "@modelcontextprotocol/sdk": "^1.28.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
