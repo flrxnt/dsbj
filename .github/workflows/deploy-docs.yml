@@ -4,11 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - 'docs/**'
-      - 'src/**'
-      - 'vite.docs.config.ts'
-      - 'scripts/build-docs.ts'
-      - 'package.json'
+      - "docs/**"
+      - "src/**"
+      - "vite.docs.config.ts"
+      - "scripts/build-docs.ts"
+      - "package.json"
 
   workflow_dispatch:
 
@@ -37,7 +37,7 @@ jobs:
       - name: Build documentation
         run: bun run build:docs
         env:
-          BASE_PATH: /dsbj/
+          BASE_PATH: /
 
       - name: Setup Pages
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
