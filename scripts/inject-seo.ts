@@ -12,7 +12,7 @@
 import { readdir, readFile, writeFile } from 'fs/promises';
 import { join, relative } from 'path';
 
-const BASE_URL = 'https://design.gouv.example';
+const BASE_URL = 'https://dsbj.site';
 const DOCS_DIR = join(import.meta.dir, '..', 'docs');
 const TODAY = new Date().toISOString().split('T')[0];
 

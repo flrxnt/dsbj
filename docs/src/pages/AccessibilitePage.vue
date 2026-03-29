@@ -101,7 +101,7 @@ const { t } = useI18n({
       <div class="bj-callout__body">
         <p class="bj-callout__title">{{ t('callout-title') }}</p>
         <p class="bj-callout__text">
-          {{ t('callout-text-before') }}<strong>design.gouv.example</strong
+          {{ t('callout-text-before') }}<strong>dsbj.site</strong
           >{{ t('callout-text-after') }}
         </p>
       </div>

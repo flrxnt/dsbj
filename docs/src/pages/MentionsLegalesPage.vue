@@ -87,7 +87,7 @@ const { t } = useI18n({
   <div class="bj-content" style="max-width: 48rem">
     <h2>{{ t('section-editor') }}</h2>
     <p>
-      {{ t('editor-p1-before') }}<strong>design.gouv.example</strong
+      {{ t('editor-p1-before') }}<strong>dsbj.site</strong
       >{{ t('editor-p1-after') }}
     </p>
 

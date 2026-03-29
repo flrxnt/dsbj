@@ -1,8 +1,8 @@
 // Extracted from docs-legacy/premiers-pas/ia.html (<div class="docs-code"> blocks)
 
-export const iaCodeLlmsUrl = "https://design.gouv.example/llms.txt"
+export const iaCodeLlmsUrl = "https://dsbj.site/llms.txt"
 
-export const iaCodeLlmsFullUrl = "https://design.gouv.example/llms-full.txt"
+export const iaCodeLlmsFullUrl = "https://dsbj.site/llms-full.txt"
 
 export const iaMdcGeneral = "---\ndescription: Conventions générales du Design Système du Bénin (DSBJ)\nglobs: [\"**/*.html\", \"**/*.scss\", \"**/*.ts\", \"**/*.css\"]\n---\n\n# DSBJ - Conventions générales\n\n## Préfixe CSS\n- Toutes les classes CSS utilisent le préfixe `bj-` (ex: `bj-btn`, `bj-card`)\n- Toutes les variables CSS utilisent `--bj-*` (ex: `--bj-spacing-4v`, `--bj-color-vert-benin-main-491`)\n- Les composants suivent la convention BEM : `bj-composant`, `bj-composant__element`, `bj-composant--modifier`\n\n## Structure des composants\n- Styles SCSS : `src/component/<name>/style/_<name>.scss`\n- JavaScript : `src/js/<name>.ts` (utilise `register()` de `src/js/core.ts`)\n- Documentation : `docs/composants/<name>.html`\n\n## Attributs data\n- Les hooks JavaScript utilisent `data-bj-*` (ex: `data-bj-accordion-btn`, `data-bj-modal-open`)\n- L'état ouvert/actif est marqué par `data-bj-expanded`\n\n## Polices et icônes\n- Corps : Montserrat (400, 500, 600, 700)\n- Titres éditoriaux : Spectral (400, 600)\n- Icônes : Remix Icon 4.1 (`ri-*`), toujours avec `aria-hidden=\"true\"` quand décoratives\n\n## Package\n- Installer avec `bun add @flrxnt/dsbj`\n- Import : `import '@flrxnt/dsbj'` (auto-init JS + CSS)\n- CSS seul : `import '@flrxnt/dsbj/css'`\n- SCSS : `@use '@flrxnt/dsbj/scss'`"
 
@@ -20,5 +20,5 @@ export const iaPromptForm = "Crée un formulaire de contact accessible avec le D
 
 export const iaPromptDashboard = "Génère un dashboard administratif avec le DSBJ :\n- Breadcrumb (bj-breadcrumb) en haut\n- Onglets (data-bj-tabs) avec 3 panneaux : Vue d'ensemble, Statistiques, Paramètres\n- Dans chaque panneau : des cartes (bj-card) et un tableau (bj-table) avec données\n- Une modale (bj-modal) de confirmation pour les actions destructives\n- Alerte de succès (bj-alert--success) après validation\nAssure-toi que les rôles ARIA sont corrects sur les onglets et la modale."
 
-export const iaPromptContexteLlm = "Tu es un développeur front-end spécialisé dans le Design Système du Bénin (DSBJ).\nVoici la documentation complète : https://design.gouv.example/llms-full.txt\n\nRègles :\n- Utilise uniquement les classes bj-* et variables --bj-*\n- Respecte WCAG 2.1 AA (ARIA, focus, contraste, hiérarchie des titres)\n- Un seul h1 par page, skip links obligatoires\n- Icônes décoratives : aria-hidden=\"true\"\n- Composants interactifs : aria-expanded, aria-controls, aria-label\n- Polices : Montserrat (corps) + Spectral (titres éditoriaux)\n- Icônes : Remix Icon (ri-*)"
+export const iaPromptContexteLlm = "Tu es un développeur front-end spécialisé dans le Design Système du Bénin (DSBJ).\nVoici la documentation complète : https://dsbj.site/llms-full.txt\n\nRègles :\n- Utilise uniquement les classes bj-* et variables --bj-*\n- Respecte WCAG 2.1 AA (ARIA, focus, contraste, hiérarchie des titres)\n- Un seul h1 par page, skip links obligatoires\n- Icônes décoratives : aria-hidden=\"true\"\n- Composants interactifs : aria-expanded, aria-controls, aria-label\n- Polices : Montserrat (corps) + Spectral (titres éditoriaux)\n- Icônes : Remix Icon (ri-*)"
 

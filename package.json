@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/flrxnt/dsbj/issues"
   },
-  "homepage": "https://github.com/flrxnt/dsbj#readme",
+  "homepage": "https://dsbj.site",
   "type": "module",
   "main": "dist/dsbj.umd.js",
   "module": "dist/dsbj.es.js",
