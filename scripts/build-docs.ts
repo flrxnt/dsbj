@@ -8,7 +8,7 @@
  */
 
 import { execSync } from 'node:child_process'
-import { readFileSync } from 'node:fs'
+import { readFileSync, copyFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 const root = new URL('..', import.meta.url).pathname.replace(/\/$/, '')
@@ -26,6 +26,15 @@ execSync('npx vite-ssg build --config vite.docs.config.ts', {
   cwd: root,
   stdio: 'inherit',
 })
+
+const siteDir = resolve(root, 'site')
+const indexPath = resolve(siteDir, 'index.html')
+const notFoundPath = resolve(siteDir, '404.html')
+
+if (existsSync(indexPath) && !existsSync(notFoundPath)) {
+  copyFileSync(indexPath, notFoundPath)
+  // console.log('\n▶  404.html créé (copie de index.html pour GitHub Pages SPA fallback)')
+}
 
 console.log(`\n✅  Site construit dans site/  (v${pkg.version})`)
 console.log('   Pour prévisualiser : bun run preview')
