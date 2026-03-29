@@ -1,6 +1,6 @@
 # DSBJ - Design Système du Bénin - Documentation complète
 
-> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 52 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
+> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 53 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
 
 ## Informations générales
 
@@ -691,6 +691,30 @@ ARIA : `role="listitem"`, `aria-label`
       <div class="bj-chat-bubble__text">Bonjour !</div>
       <div class="bj-chat-bubble__meta"><span class="bj-chat-bubble__time">10:32</span></div>
     </div>
+  </div>
+</div>
+```
+
+### Tiroir (Drawer)
+
+Classes : `bj-drawer`, `bj-drawer__overlay`, `bj-drawer__panel`, `bj-drawer__header`, `bj-drawer__title`, `bj-drawer__close`, `bj-drawer__body`, `bj-drawer__footer`, `bj-drawer--right`, `bj-drawer--sm`, `bj-drawer--lg`, `bj-drawer--full`
+ARIA : `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, `aria-label="Fermer"`
+JS : `data-bj-drawer-open`, `data-bj-drawer-close`
+
+```html
+<button type="button" class="bj-btn" data-bj-drawer-open="my-drawer">Ouvrir le tiroir</button>
+<div class="bj-drawer" id="my-drawer" role="dialog" aria-modal="true" aria-labelledby="my-drawer-t">
+  <div class="bj-drawer__overlay" data-bj-drawer-close></div>
+  <div class="bj-drawer__panel">
+    <header class="bj-drawer__header">
+      <h2 class="bj-drawer__title" id="my-drawer-t">Titre du tiroir</h2>
+      <button type="button" class="bj-drawer__close" data-bj-drawer-close aria-label="Fermer"><i class="ri-close-line" aria-hidden="true"></i></button>
+    </header>
+    <div class="bj-drawer__body"><p>Contenu du tiroir.</p></div>
+    <footer class="bj-drawer__footer">
+      <button type="button" class="bj-btn bj-btn--tertiary" data-bj-drawer-close>Annuler</button>
+      <button type="button" class="bj-btn">Valider</button>
+    </footer>
   </div>
 </div>
 ```

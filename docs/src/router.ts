@@ -342,6 +342,11 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('./pages/composants/ChatBubblePage.vue'),
     meta: { layout: 'docs', section: 'composants', titleKey: 'route.chat-bubble', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.chat-bubble' }] },
   },
+  {
+    path: '/composants/drawer',
+    component: () => import('./pages/composants/DrawerPage.vue'),
+    meta: { layout: 'docs', section: 'composants', titleKey: 'route.drawer', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.drawer' }] },
+  },
 
   // Intégrations
   {
@@ -610,6 +615,11 @@ export const routes: RouteRecordRaw[] = [
     meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-chat-bubble', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.chat-bubble' }] },
   },
   {
+    path: '/integrations/vue/drawer',
+    component: () => import('./pages/integrations/vue/DrawerPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-drawer', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.drawer' }] },
+  },
+  {
     path: '/integrations/react',
     component: () => import('./pages/integrations/react/IndexPage.vue'),
     meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.integrations-react', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react' }] },
@@ -868,6 +878,11 @@ export const routes: RouteRecordRaw[] = [
     path: '/integrations/react/chat-bubble',
     component: () => import('./pages/integrations/react/ChatBubblePage.vue'),
     meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-chat-bubble', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.chat-bubble' }] },
+  },
+  {
+    path: '/integrations/react/drawer',
+    component: () => import('./pages/integrations/react/DrawerPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-drawer', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.drawer' }] },
   },
 
   // Showcases

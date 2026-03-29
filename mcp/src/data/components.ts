@@ -872,4 +872,28 @@ export const COMPONENTS: ComponentData[] = [
   </div>
 </div>`,
   },
+  {
+    name: 'Tiroir',
+    slug: 'drawer',
+    category: 'Interactifs',
+    description: 'Panneau latéral glissant depuis le bord de l\'écran avec overlay.',
+    classes: ['bj-drawer', 'bj-drawer__overlay', 'bj-drawer__panel', 'bj-drawer__header', 'bj-drawer__title', 'bj-drawer__close', 'bj-drawer__body', 'bj-drawer__footer', 'bj-drawer--right', 'bj-drawer--sm', 'bj-drawer--lg', 'bj-drawer--full'],
+    aria: ['role="dialog"', 'aria-modal="true"', 'aria-labelledby', 'aria-label="Fermer"'],
+    jsHooks: ['data-bj-drawer-open', 'data-bj-drawer-close'],
+    markup: `<button type="button" class="bj-btn" data-bj-drawer-open="my-drawer">Ouvrir le tiroir</button>
+<div class="bj-drawer" id="my-drawer" role="dialog" aria-modal="true" aria-labelledby="my-drawer-t">
+  <div class="bj-drawer__overlay" data-bj-drawer-close></div>
+  <div class="bj-drawer__panel">
+    <header class="bj-drawer__header">
+      <h2 class="bj-drawer__title" id="my-drawer-t">Titre du tiroir</h2>
+      <button type="button" class="bj-drawer__close" data-bj-drawer-close aria-label="Fermer"><i class="ri-close-line" aria-hidden="true"></i></button>
+    </header>
+    <div class="bj-drawer__body"><p>Contenu du tiroir.</p></div>
+    <footer class="bj-drawer__footer">
+      <button type="button" class="bj-btn bj-btn--tertiary" data-bj-drawer-close>Annuler</button>
+      <button type="button" class="bj-btn">Valider</button>
+    </footer>
+  </div>
+</div>`,
+  },
 ];

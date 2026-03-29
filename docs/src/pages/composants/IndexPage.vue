@@ -115,6 +115,8 @@ const { t } = useI18n({
         'Grille d\'images avec visionneuse plein écran.',
       'card-chat-bubble-title': 'Bulle de chat',
       'card-chat-bubble-desc': 'Bulle de message pour conversations.',
+      'card-drawer-title': 'Tiroir',
+      'card-drawer-desc': 'Panneau latéral glissant depuis le bord de l\'écran.',
       'card-consent-title': 'Consentement',
       'card-consent-desc':
         'Bandeau cookies et choix utilisateur.',
@@ -224,6 +226,8 @@ const { t } = useI18n({
       'card-gallery-desc': 'Image grid with fullscreen viewer.',
       'card-chat-bubble-title': 'Chat Bubble',
       'card-chat-bubble-desc': 'Message bubble for conversations.',
+      'card-drawer-title': 'Drawer',
+      'card-drawer-desc': 'Sliding side panel from the screen edge.',
       'card-consent-title': 'Consent',
       'card-consent-desc': 'Cookie banner and user choices.',
       'sec-dashboard': 'Dashboard',
@@ -604,6 +608,12 @@ const { t } = useI18n({
       icon="ri-chat-1-line"
       :title="t('card-chat-bubble-title')"
       :description="t('card-chat-bubble-desc')"
+    />
+    <DocsCard
+      to="/composants/drawer"
+      icon="ri-side-bar-line"
+      :title="t('card-drawer-title')"
+      :description="t('card-drawer-desc')"
     />
   </div>
 

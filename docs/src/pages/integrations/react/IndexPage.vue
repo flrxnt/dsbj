@@ -83,6 +83,7 @@ const { t } = useI18n({
     <DocsCard to="/integrations/react/marquee" icon="ri-text-wrap" title="Marquee" description="Bandeau défilant." />
     <DocsCard to="/integrations/react/treeview" icon="ri-node-tree" title="TreeView" description="Arborescence interactive." />
     <DocsCard to="/integrations/react/chat-bubble" icon="ri-chat-1-line" :title="t('card-chat-bubble-title')" :description="t('card-chat-bubble-desc')" />
+    <DocsCard to="/integrations/react/drawer" icon="ri-side-bar-line" title="Drawer" description="Sliding side panel." />
     <DocsCard to="/integrations/react/consent" icon="ri-shield-check-line" title="Consent" description="Bannière cookies et préférences." />
   </div>
 

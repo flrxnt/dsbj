@@ -84,7 +84,7 @@ Pour les clients MCP qui supportent le transport Streamable HTTP :
 
 | Outil | Description | Paramètres |
 |-------|-------------|------------|
-| `list-components` | Liste les 52 composants groupés par catégorie | - |
+| `list-components` | Liste les 53 composants groupés par catégorie | - |
 | `get-component` | Documentation complète d'un composant (classes, ARIA, markup) | `componentName` |
 | `search-components` | Recherche par mot-clé dans les noms, descriptions et classes | `query` |
 | `list-foundations` | Liste les fondamentaux (couleurs, typo, grille…) | - |
@@ -136,7 +136,7 @@ mcp/
 ├── src/
 │   ├── index.ts              # Point d'entrée - outils, ressources, prompts
 │   └── data/
-│       ├── components.ts      # Catalogue des 52 composants
+│       ├── components.ts      # Catalogue des 53 composants
 │       └── foundations.ts     # Catalogue des 10 fondamentaux
 ├── package.json
 ├── tsconfig.json

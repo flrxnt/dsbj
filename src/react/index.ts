@@ -43,6 +43,7 @@ export { BjGallery } from './components/BjGallery'
 export { BjMarquee } from './components/BjMarquee'
 export { BjTreeview } from './components/BjTreeview'
 export { BjChatBubble } from './components/BjChatBubble'
+export { BjDrawer } from './components/BjDrawer'
 
 // Navigation
 export { BjHeader } from './components/BjHeader'

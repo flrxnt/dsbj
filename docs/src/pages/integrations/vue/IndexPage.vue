@@ -83,6 +83,7 @@ const { t } = useI18n({
     <DocsCard to="/integrations/vue/marquee" icon="ri-text-wrap" title="BjMarquee" description="Bandeau défilant." />
     <DocsCard to="/integrations/vue/treeview" icon="ri-node-tree" title="BjTreeview" description="Arborescence interactive." />
     <DocsCard to="/integrations/vue/chat-bubble" icon="ri-chat-1-line" :title="t('card-chat-bubble-title')" :description="t('card-chat-bubble-desc')" />
+    <DocsCard to="/integrations/vue/drawer" icon="ri-side-bar-line" title="BjDrawer" description="Tiroir latéral glissant." />
     <DocsCard to="/integrations/vue/consent" icon="ri-shield-check-line" title="BjConsent" description="Bannière et préférences cookies." />
   </div>
 

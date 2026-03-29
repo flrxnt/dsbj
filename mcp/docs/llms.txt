@@ -1,6 +1,6 @@
 # DSBJ - Design Système du Bénin
 
-> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 52 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
+> Le Design Système du Bénin (DSBJ) est le système de design officiel de la République du Bénin. Il fournit 53 composants HTML/CSS/JS réutilisables, accessibles (WCAG 2.1 AA), avec le préfixe CSS `bj-` et les variables CSS `--bj-*`. Package npm : `@flrxnt/dsbj`.
 
 Informations clés :
 - Package npm : `@flrxnt/dsbj` (ES module + UMD + CSS)
@@ -91,6 +91,7 @@ Informations clés :
 - [Galerie d'images](https://design.gouv.example/docs/composants/gallery.html): bj-gallery, bj-gallery__item, bj-gallery--cols-2/cols-4
 - [Arborescence](https://design.gouv.example/docs/composants/treeview.html): bj-tree, bj-tree__item, bj-tree__branch, bj-tree__toggle, role="tree", role="treeitem"
 - [Bulle de chat](https://design.gouv.example/docs/composants/chat-bubble.html): bj-chat-bubble, bj-chat-bubble--sent, bj-chat-bubble--received, role="listitem"
+- [Tiroir](https://design.gouv.example/docs/composants/drawer.html): bj-drawer, bj-drawer__panel, bj-drawer--right, role="dialog", aria-modal, data-bj-drawer-open
 
 ## Composants - Réglementaire
 
