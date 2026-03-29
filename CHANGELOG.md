@@ -4,6 +4,17 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.4.3] - 2026-03-29
+
+### Ajouté
+
+- Add Drawer component and update documentation
+
+### Modifié
+
+- Update dependency versions in bun.lock and package.json
+- Update dependencies to latest versions in package.json and bun.lock
+
 ## [1.4.2] - 2026-03-29
 
 ### Ajouté
