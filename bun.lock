@@ -36,16 +36,17 @@
       "name": "@flrxnt/dsbj-mcp",
       "version": "1.1.0",
       "dependencies": {
-        "@modelcontextprotocol/sdk": "latest",
-        "zod": "latest",
+        "@modelcontextprotocol/sdk": "^1.28.0",
+        "zod": "^4.3.6",
       },
       "devDependencies": {
-        "bun-types": "latest",
+        "bun-types": "^1.3.11",
       },
     },
   },
   "overrides": {
     "brace-expansion": ">=5.0.5",
+    "path-to-regexp": ">=8.4.0",
     "serialize-javascript": "^7.0.5",
   },
   "packages": {
@@ -1003,7 +1004,7 @@
 
     "path-scurry": ["path-scurry@2.0.2", "", { "dependencies": { "lru-cache": "^11.0.0", "minipass": "^7.1.2" } }, "sha512-3O/iVVsJAPsOnpwWIeD+d6z/7PmqApyQePUtCndjatj/9I5LylHvt5qluFaBT3I5h3r1ejfR056c+FCv+NnNXg=="],
 
-    "path-to-regexp": ["path-to-regexp@8.3.0", "", {}, "sha512-7jdwVIRtsP8MYpdXSwOS0YdD0Du+qOoF/AEPIt88PcCFrZCzx41oxku1jD88hZBwbNUIEfpqvuhjFaMAqMTWnA=="],
+    "path-to-regexp": ["path-to-regexp@8.4.0", "", {}, "sha512-PuseHIvAnz3bjrM2rGJtSgo1zjgxapTLZ7x2pjhzWwlp4SJQgK3f3iZIQwkpEnBaKz6seKBADpM4B4ySkuYypg=="],
 
     "pathe": ["pathe@2.0.3", "", {}, "sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w=="],
 
