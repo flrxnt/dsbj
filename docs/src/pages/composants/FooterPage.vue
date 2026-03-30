@@ -180,7 +180,7 @@ const code4Colonnes = `<footer class="bj-footer" role="contentinfo">
         <li><a class="bj-footer__bottom-link" href="/accessibilite">Accessibilité</a></li>
         <li><a class="bj-footer__bottom-link" href="/plan-du-site">Plan du site</a></li>
       </ul>
-      <p class="bj-footer__copy">République du Bénin - contenus sous licence étatique</p>
+      <p class="bj-footer__copy">Projet communautaire indépendant - non affilié au gouvernement du Bénin</p>
     </div>
   </div>
 </footer>`
@@ -276,7 +276,7 @@ const codeComplet = `<footer class="bj-footer" role="contentinfo">
         <li><a class="bj-footer__bottom-link" href="/accessibilite">Accessibilité : partiellement conforme</a></li>
         <li><a class="bj-footer__bottom-link" href="/plan-du-site">Plan du site</a></li>
       </ul>
-      <p class="bj-footer__copy">République du Bénin - contenus sous licence étatique</p>
+      <p class="bj-footer__copy">Projet communautaire indépendant - non affilié au gouvernement du Bénin</p>
     </div>
   </div>
 </footer>`
@@ -438,7 +438,7 @@ const propsRows = computed(() => [
               <li><a class="bj-footer__bottom-link" href="/accessibilite">Accessibilité</a></li>
               <li><a class="bj-footer__bottom-link" href="/plan-du-site">Plan du site</a></li>
             </ul>
-            <p class="bj-footer__copy">République du Bénin - contenus sous licence étatique</p>
+            <p class="bj-footer__copy">Projet communautaire indépendant - non affilié au gouvernement du Bénin</p>
           </div>
         </div>
       </footer>
@@ -550,7 +550,7 @@ const propsRows = computed(() => [
               <li><a class="bj-footer__bottom-link" href="/accessibilite">Accessibilité : partiellement conforme</a></li>
               <li><a class="bj-footer__bottom-link" href="/plan-du-site">Plan du site</a></li>
             </ul>
-            <p class="bj-footer__copy">République du Bénin - contenus sous licence étatique</p>
+            <p class="bj-footer__copy">Projet communautaire indépendant - non affilié au gouvernement du Bénin</p>
           </div>
         </div>
       </footer>

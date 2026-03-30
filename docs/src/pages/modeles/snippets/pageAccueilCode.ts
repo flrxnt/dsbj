@@ -128,7 +128,7 @@ export const pageAccueilCode = `<!DOCTYPE html>
           <li><a class="bj-footer__bottom-link" href="#">Données personnelles</a></li>
           <li><a class="bj-footer__bottom-link" href="#">Accessibilité</a></li>
         </ul>
-        <p class="bj-footer__copy">République du Bénin - contenus sous licence étatique</p>
+        <p class="bj-footer__copy">Projet communautaire indépendant - non affilié au gouvernement du Bénin</p>
       </div>
     </div>
   </footer>

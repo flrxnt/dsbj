@@ -34,7 +34,7 @@ const { t } = useI18n({
       'struct-li-footer-strong': 'Pied de page (Footer)',
       'struct-li-footer-before': 'Composant ',
       'struct-li-footer-after':
-        ' avec liens légaux et mention de licence étatique.',
+        ' avec liens légaux et mention d\'indépendance vis-à-vis de l\'État.',
       'section-preview': 'Aperçu du gabarit',
       'preview-intro':
         'Exemple visuel condensé des blocs centraux (sans dupliquer tout le code d’en-tête) :',
