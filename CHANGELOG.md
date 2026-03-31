@@ -4,6 +4,22 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.4.4] - 2026-03-31
+
+### Ajouté
+
+- Add functionality to copy 404.html from index.html if it doesn't exist
+- Update URLs to reflect new domain
+
+### Modifié
+
+- Update Remix Icon dependency and enhance documentation
+- Update footer copyright and licensing information in French localization
+
+### Corrigé
+
+- fix base path
+
 ## [1.4.3] - 2026-03-29
 
 ### Ajouté
