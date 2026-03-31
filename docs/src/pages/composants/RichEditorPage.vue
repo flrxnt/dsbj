@@ -44,6 +44,8 @@ const { t } = useI18n({
       'cls-content-height':
         'Hauteur\u00a0: <code>min-height</code> inline (équivalent prop <code>height</code> Vue).',
       'cls-color-picker': 'Conteneur du sélecteur de couleur.',
+      'icons-prerequisite':
+        'Les icônes de la toolbar nécessitent <a href="https://remixicon.com/" class="bj-link" target="_blank" rel="noopener">Remix Icon</a>. Ajoutez-la via CDN (<code>&lt;link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css" rel="stylesheet"&gt;</code>) ou via npm/bun (<code>import \'remixicon/fonts/remixicon.css\'</code>). Voir la page <a href="/premiers-pas/utilisation#icones" class="bj-link">Utilisation &gt; Icônes</a>.',
     },
     en: {
       title: 'Rich Editor',
@@ -80,6 +82,8 @@ const { t } = useI18n({
       'cls-content-height':
         'Height: inline <code>min-height</code> (Vue <code>height</code> prop).',
       'cls-color-picker': 'Color picker container.',
+      'icons-prerequisite':
+        'Toolbar icons require <a href="https://remixicon.com/" class="bj-link" target="_blank" rel="noopener">Remix Icon</a>. Add it via CDN (<code>&lt;link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css" rel="stylesheet"&gt;</code>) or via npm/bun (<code>import \'remixicon/fonts/remixicon.css\'</code>). See <a href="/premiers-pas/utilisation#icones" class="bj-link">Usage &gt; Icons</a>.',
     },
   },
 })
@@ -269,6 +273,13 @@ const propsRows = computed(() => [
   <p class="bj-text-lg" style="max-width: 44rem; color: var(--bj-text-alt)">
     {{ t('desc') }}
   </p>
+
+  <div class="bj-callout bj-callout--info" style="max-width: 44rem; margin-top: var(--bj-spacing-4v); margin-bottom: var(--bj-spacing-4v)">
+    <i class="ri-information-line bj-icon bj-icon--md" aria-hidden="true"></i>
+    <div>
+      <span v-html="t('icons-prerequisite')" />
+    </div>
+  </div>
 
   <DocsSection id="structure-editor" :title="t('section-structure')">
     <DocsPreview>

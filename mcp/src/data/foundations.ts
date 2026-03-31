@@ -62,7 +62,7 @@ export const FOUNDATIONS: FoundationData[] = [
     description: 'Remix Icon 4.1 comme bibliothèque d\'icônes.',
     variables: [],
     classes: ['ri-*'],
-    usage: 'Toujours ajouter aria-hidden="true" sur les icônes décoratives. Pour les boutons icône, ajouter aria-label sur le bouton parent. CDN : cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css',
+    usage: 'Toujours ajouter aria-hidden="true" sur les icônes décoratives. Pour les boutons icône, ajouter aria-label sur le bouton parent. CDN : cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css',
   },
   {
     name: 'Médias',

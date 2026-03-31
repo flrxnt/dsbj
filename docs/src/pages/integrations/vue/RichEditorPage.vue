@@ -35,6 +35,8 @@ const { t } = useI18n({
       'prop-disabled': 'Désactive l\'éditeur.',
       'prop-toolbar': 'Liste des outils à afficher. Par défaut, tous sont affichés.',
       'prop-height': 'Hauteur minimale de la zone éditable (ex: "20rem").',
+      'icons-prerequisite':
+        'Les icônes de la toolbar nécessitent <a href="https://remixicon.com/" class="bj-link" target="_blank" rel="noopener">Remix Icon</a>. Ajoutez <code>import \'remixicon/fonts/remixicon.css\'</code> dans votre projet ou chargez-la via CDN. Voir <a href="/premiers-pas/utilisation#icones" class="bj-link">Utilisation &gt; Icônes</a>.',
     },
     en: {
       title: 'BjRichEditor',
@@ -61,6 +63,8 @@ const { t } = useI18n({
       'prop-disabled': 'Disables the editor.',
       'prop-toolbar': 'List of toolbar tools to display. All shown by default.',
       'prop-height': 'Minimum height of the editable area (e.g. "20rem").',
+      'icons-prerequisite':
+        'Toolbar icons require <a href="https://remixicon.com/" class="bj-link" target="_blank" rel="noopener">Remix Icon</a>. Add <code>import \'remixicon/fonts/remixicon.css\'</code> to your project or load it via CDN. See <a href="/premiers-pas/utilisation#icones" class="bj-link">Usage &gt; Icons</a>.',
     },
   },
 })
@@ -174,6 +178,13 @@ const propsRows = computed(() => [
 <template>
   <h1 class="bj-h1" style="margin-top: var(--bj-spacing-4v)">{{ t('title') }}</h1>
   <p class="bj-text-lg" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc') }}</p>
+
+  <div class="bj-callout bj-callout--info" style="max-width: 44rem; margin-top: var(--bj-spacing-4v); margin-bottom: var(--bj-spacing-4v)">
+    <i class="ri-information-line bj-icon bj-icon--md" aria-hidden="true"></i>
+    <div>
+      <span v-html="t('icons-prerequisite')" />
+    </div>
+  </div>
 
   <DocsSection id="vue-editor-usage" :title="t('section-usage')">
     <DocsCode :code="codeUsage" lang="html" />

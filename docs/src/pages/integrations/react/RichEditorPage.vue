@@ -29,6 +29,8 @@ const { t } = useI18n({
       'prop-toolbar': 'Liste des outils à afficher. Par défaut, tous sont affichés.',
       'prop-height': 'Hauteur minimale de la zone éditable.',
       'prop-className': 'Classe CSS sur le conteneur bj-rich-editor.',
+      'icons-prerequisite':
+        'Les icônes de la toolbar nécessitent <a href="https://remixicon.com/" class="bj-link" target="_blank" rel="noopener">Remix Icon</a>. Ajoutez <code>import \'remixicon/fonts/remixicon.css\'</code> dans votre projet ou chargez-la via CDN. Voir <a href="/premiers-pas/utilisation#icones" class="bj-link">Utilisation &gt; Icônes</a>.',
       'section-combinations': 'Combinaisons',
       'section-callbacks': 'Contenu contrôlé et onChange',
       'desc-combinations': 'toolbar réduite, hauteur fixe, placeholder et valeur initiale ensemble.',
@@ -53,6 +55,8 @@ const { t } = useI18n({
       'prop-toolbar': 'List of toolbar tools to display. All shown by default.',
       'prop-height': 'Minimum height of the editable area.',
       'prop-className': 'CSS class on the bj-rich-editor wrapper.',
+      'icons-prerequisite':
+        'Toolbar icons require <a href="https://remixicon.com/" class="bj-link" target="_blank" rel="noopener">Remix Icon</a>. Add <code>import \'remixicon/fonts/remixicon.css\'</code> to your project or load it via CDN. See <a href="/premiers-pas/utilisation#icones" class="bj-link">Usage &gt; Icons</a>.',
       'section-combinations': 'Combinations',
       'section-callbacks': 'Controlled content and onChange',
       'desc-combinations': 'Reduced toolbar, fixed height, placeholder, and initial value together.',
@@ -186,6 +190,13 @@ const propsRows = computed(() => [
 <template>
   <h1 class="bj-h1" style="margin-top: var(--bj-spacing-4v)">{{ t('title') }}</h1>
   <p class="bj-text-lg" style="max-width: 44rem; color: var(--bj-text-alt)">{{ t('desc') }}</p>
+
+  <div class="bj-callout bj-callout--info" style="max-width: 44rem; margin-top: var(--bj-spacing-4v); margin-bottom: var(--bj-spacing-4v)">
+    <i class="ri-information-line bj-icon bj-icon--md" aria-hidden="true"></i>
+    <div>
+      <span v-html="t('icons-prerequisite')" />
+    </div>
+  </div>
 
   <DocsSection id="react-editor-usage" :title="t('section-usage')">
     <DocsCode :code="codeUsage" lang="tsx" />

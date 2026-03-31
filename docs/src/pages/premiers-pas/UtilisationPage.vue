@@ -65,6 +65,30 @@
     <DocsCode :code="fontsSnippet" />
   </DocsSection>
 
+  <DocsSection id="icones" :title="t('section-icons')">
+    <p style="margin-bottom: var(--bj-spacing-3v); max-width: 40rem">
+      {{ t('icons-intro-a') }}
+      <a href="https://remixicon.com/" class="bj-link" target="_blank" rel="noopener">Remix Icon</a>{{ t('icons-intro-b') }}
+    </p>
+    <p style="margin-bottom: var(--bj-spacing-3v); max-width: 40rem; font-weight: 600">
+      {{ t('icons-required') }}
+    </p>
+    <p style="margin-bottom: var(--bj-spacing-2v); max-width: 40rem">
+      {{ t('icons-cdn-label') }}
+    </p>
+    <DocsCode :code="iconsCdnSnippet" />
+    <p style="margin-top: var(--bj-spacing-4v); margin-bottom: var(--bj-spacing-2v); max-width: 40rem">
+      {{ t('icons-npm-label') }}
+    </p>
+    <DocsCode :code="iconsNpmSnippet" />
+    <p style="margin-top: var(--bj-spacing-4v); max-width: 40rem">
+      {{ t('icons-more') }}
+      <RouterLink to="/fondamentaux/icones" class="bj-link">
+        {{ t('icons-more-link') }} →
+      </RouterLink>
+    </p>
+  </DocsSection>
+
   <DocsSection id="theme-sombre" :title="t('section-theme')">
     <p style="margin-bottom: var(--bj-spacing-3v); max-width: 40rem">
       {{ t('theme-a') }}
@@ -186,6 +210,17 @@ const { t } = useI18n({
       'section-fonts': 'Polices',
       'fonts-intro':
         "Le DSBJ utilise Montserrat comme police principale. Ajoutez-la dans votre <head> si elle n'est pas d\u00e9j\u00e0 charg\u00e9e :",
+      'section-icons': 'Ic\u00f4nes',
+      'icons-intro-a':
+        "Les ic\u00f4nes utilis\u00e9es par les composants du DSBJ (\u00e9diteur riche, alertes, boutons, etc.) proviennent de ",
+      'icons-intro-b':
+        ". Cette biblioth\u00e8que n'est pas incluse dans le package DSBJ \u2014 vous devez la charger dans votre projet.",
+      'icons-required':
+        "Sans Remix Icon, les ic\u00f4nes des composants (toolbar de l'\u00e9diteur riche, etc.) ne s'afficheront pas.",
+      'icons-cdn-label': 'Via CDN (dans votre <head>) :',
+      'icons-npm-label': 'Ou via npm / bun :',
+      'icons-more': 'Pour les tailles et variantes de couleur, consultez ',
+      'icons-more-link': 'la page Ic\u00f4nes',
       'section-theme': 'Th\u00e8me sombre',
       'theme-a': "Le jeu de couleurs sombre s\u2019active en positionnant l\u2019attribut ",
       'theme-b': " sur l\u2019\u00e9l\u00e9ment racine ",
@@ -245,6 +280,17 @@ const { t } = useI18n({
       'section-fonts': 'Fonts',
       'fonts-intro':
         "DSBJ uses Montserrat as its primary font. Add it to your <head> if it's not already loaded:",
+      'section-icons': 'Icons',
+      'icons-intro-a':
+        'Icons used by DSBJ components (rich editor, alerts, buttons, etc.) come from ',
+      'icons-intro-b':
+        ". This library is not bundled with DSBJ \u2014 you must load it in your project.",
+      'icons-required':
+        'Without Remix Icon, component icons (rich editor toolbar, etc.) will not be displayed.',
+      'icons-cdn-label': 'Via CDN (in your <head>):',
+      'icons-npm-label': 'Or via npm / bun:',
+      'icons-more': 'For sizes and color variants, see ',
+      'icons-more-link': 'the Icons page',
       'section-theme': 'Dark theme',
       'theme-a': 'The dark palette is enabled by setting the ',
       'theme-b': ' attribute on the root ',
@@ -293,6 +339,15 @@ const fontsSnippet = `<link rel="preconnect" href="https://fonts.googleapis.com"
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">`
 
+const iconsCdnSnippet = `<link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css" rel="stylesheet">`
+
+const iconsNpmSnippet = `# Installation
+bun add remixicon
+# ou : npm install remixicon
+
+# Import dans votre fichier JS/TS principal
+import 'remixicon/fonts/remixicon.css';`
+
 const structureHtmlSnippet = `<!DOCTYPE html>
 <html lang="fr" data-bj-theme="light">
 <head>
@@ -302,7 +357,7 @@ const structureHtmlSnippet = `<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="chemin/vers/dsbj.css">
   <!-- Optionnel : reset global pour projets 100% DSBJ -->
   <!-- <link rel="stylesheet" href="chemin/vers/dsbj-reset.css"> -->
