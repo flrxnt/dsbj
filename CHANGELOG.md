@@ -4,6 +4,21 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.5.1] - 2026-04-01
+
+### Ajouté
+
+- fix(icons): add width/height 1em on BjSvgIcon SVG element
+
+### Modifié
+
+- refactor(icons): improve icon name mapping and clean up code
+
+### Corrigé
+
+- fix(ci): revert lodash override, raise audit level to high
+- fix: force lodash >=4.17.23 via overrides to patch prototype pollution (GHSA-xxjr-mmjv-4gpg)
+
 ## [1.5.0] - 2026-04-01
 
 ### Modifié
