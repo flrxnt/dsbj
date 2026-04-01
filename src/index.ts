@@ -17,7 +17,6 @@ import { initMarquee } from './js/marquee';
 import { initGallery } from './js/gallery';
 import { initTreeview } from './js/treeview';
 import { initDrawer } from './js/drawer';
-// import { initDrawer } from './js/drawer';
 
 export {
   initAccordion, initModal, initTab, initHeader, initNavigation,
