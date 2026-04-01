@@ -92,7 +92,7 @@
     "not dead"
   ],
   "peerDependencies": {
-    "remixicon": ">=4.0.0",
+    "remixicon": "^4.9.1",
     "vue": "^3.2.25",
     "react": "latest",
     "react-dom": "latest"
