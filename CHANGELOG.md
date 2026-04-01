@@ -4,6 +4,13 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.5.0] - 2026-04-01
+
+### Modifié
+
+- Update Remix Icon integration and enhance documentation
+- Update Remix Icon version in package.json and Rich Editor documentation
+
 ## [1.4.4] - 2026-03-31
 
 ### Ajouté
