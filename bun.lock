@@ -46,7 +46,6 @@
   },
   "overrides": {
     "brace-expansion": ">=5.0.5",
-    "lodash": "^4.17.23",
     "path-to-regexp": ">=8.4.0",
     "serialize-javascript": "^7.0.5",
   },
