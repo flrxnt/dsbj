@@ -62,7 +62,7 @@ export const iconPaths: Record<string, string> = {
 
 export function BjSvgIcon({ name, ...props }: { name: string } & React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" {...props}>
       <path d={iconPaths[name]} />
     </svg>
   )
