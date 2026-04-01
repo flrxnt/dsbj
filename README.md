@@ -224,4 +224,4 @@ Le thème sombre s'active automatiquement avec `prefers-color-scheme: dark` ou m
 
 ## Licence
 
-MIT - République du Bénin
+MIT
