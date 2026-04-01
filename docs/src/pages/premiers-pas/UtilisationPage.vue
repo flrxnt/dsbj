@@ -212,11 +212,11 @@ const { t } = useI18n({
         "Le DSBJ utilise Montserrat comme police principale. Ajoutez-la dans votre <head> si elle n'est pas d\u00e9j\u00e0 charg\u00e9e :",
       'section-icons': 'Ic\u00f4nes',
       'icons-intro-a':
-        "Les ic\u00f4nes utilis\u00e9es par les composants du DSBJ (\u00e9diteur riche, alertes, boutons, etc.) proviennent de ",
+        "Les composants Vue et React du DSBJ embarquent leurs ic\u00f4nes en SVG inline \u2014 aucune d\u00e9pendance externe n'est n\u00e9cessaire. En revanche, si vous utilisez le DSBJ en HTML/CSS pur, les ic\u00f4nes proviennent de ",
       'icons-intro-b':
-        ". Cette biblioth\u00e8que n'est pas incluse dans le package DSBJ \u2014 vous devez la charger dans votre projet.",
+        " et doivent \u00eatre charg\u00e9es s\u00e9par\u00e9ment.",
       'icons-required':
-        "Sans Remix Icon, les ic\u00f4nes des composants (toolbar de l'\u00e9diteur riche, etc.) ne s'afficheront pas.",
+        "Ceci ne concerne que l'utilisation HTML/CSS pure. Les composants Vue et React fonctionnent sans Remix Icon.",
       'icons-cdn-label': 'Via CDN (dans votre <head>) :',
       'icons-npm-label': 'Ou via npm / bun :',
       'icons-more': 'Pour les tailles et variantes de couleur, consultez ',
@@ -282,11 +282,11 @@ const { t } = useI18n({
         "DSBJ uses Montserrat as its primary font. Add it to your <head> if it's not already loaded:",
       'section-icons': 'Icons',
       'icons-intro-a':
-        'Icons used by DSBJ components (rich editor, alerts, buttons, etc.) come from ',
+        'Vue and React DSBJ components embed their icons as inline SVGs \u2014 no external dependency is needed. However, if you use DSBJ in pure HTML/CSS, icons come from ',
       'icons-intro-b':
-        ". This library is not bundled with DSBJ \u2014 you must load it in your project.",
+        ' and must be loaded separately.',
       'icons-required':
-        'Without Remix Icon, component icons (rich editor toolbar, etc.) will not be displayed.',
+        'This only applies to pure HTML/CSS usage. Vue and React components work without Remix Icon.',
       'icons-cdn-label': 'Via CDN (in your <head>):',
       'icons-npm-label': 'Or via npm / bun:',
       'icons-more': 'For sizes and color variants, see ',

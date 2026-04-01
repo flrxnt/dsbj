@@ -35,7 +35,7 @@ export function BjSearch({
       <button type="submit" className="bj-search__btn">
         {children ?? (
           <>
-            <i className="ri-search-line" aria-hidden />
+            <BjSvgIcon name="searchLine" />
             <span>{buttonLabel}</span>
           </>
         )}

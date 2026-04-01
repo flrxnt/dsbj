@@ -21,6 +21,7 @@ export interface BjSelectProps {
 
 <script setup lang="ts">
 import { computed, ref, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const props = withDefaults(defineProps<BjSelectProps>(), {
   modelValue: '',
@@ -198,7 +199,7 @@ const activeDescendant = computed(() =>
         @keydown="onTriggerKeydown"
       >
         <span>{{ selectedLabel || placeholder || '&nbsp;' }}</span>
-        <i class="ri-arrow-down-s-line" aria-hidden="true" />
+        <BjSvgIcon name="arrowDownSLine" />
       </button>
 
       <div v-if="isOpen" class="bj-select-custom__panel">

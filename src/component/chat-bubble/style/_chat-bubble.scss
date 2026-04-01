@@ -63,8 +63,10 @@
   display: inline-flex;
   align-items: center;
 
-  i {
-    font-size: 0.875rem;
+  svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    flex-shrink: 0;
   }
 }
 

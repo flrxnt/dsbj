@@ -10,6 +10,7 @@ const { t } = useI18n({
       title: 'Icônes',
       desc:
         'Les icônes proviennent de {link}, chargées via CDN. Combinez les classes Remix ({ri}) avec {bjIcon} pour les tailles et couleurs du DSBJ.',
+      'vue-react-note': 'Les composants Vue et React du DSBJ embarquent leurs icônes en SVG inline — aucune dépendance externe n\'est nécessaire. La section ci-dessous concerne uniquement l\'utilisation HTML/CSS pure.',
       'section-sizes': 'Tailles',
       'section-colors': 'Variantes de couleur',
       'section-examples': 'Exemples de pictogrammes',
@@ -20,6 +21,7 @@ const { t } = useI18n({
       title: 'Icons',
       desc:
         'Icons come from {link}, loaded via CDN. Combine Remix classes ({ri}) with {bjIcon} for DSBJ sizes and colors.',
+      'vue-react-note': 'Vue and React DSBJ components embed their icons as inline SVGs — no external dependency is needed. The section below applies only to pure HTML/CSS usage.',
       'section-sizes': 'Sizes',
       'section-colors': 'Color variants',
       'section-examples': 'Pictogram examples',
@@ -38,6 +40,14 @@ const codeIconColor =
 
 <template>
   <h1 class="bj-h1">{{ t('title') }}</h1>
+
+  <div class="bj-callout bj-callout--success" style="margin-bottom: var(--bj-spacing-4v)">
+    <div>
+      <span class="ri-checkbox-circle-line" aria-hidden="true" />
+      {{ t('vue-react-note') }}
+    </div>
+  </div>
+
   <p class="bj-text-md bj-text-alt">
     <i18n-t keypath="desc">
       <template #link>

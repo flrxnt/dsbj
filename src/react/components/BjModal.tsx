@@ -1,6 +1,8 @@
 import { useEffect, useId, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 
+import { BjSvgIcon } from '../icons'
+
 export interface BjModalProps {
   open: boolean
   onClose: () => void
@@ -61,7 +63,7 @@ export function BjModal({
               {title}
             </h2>
             <button type="button" className="bj-modal__close" aria-label="Fermer" onClick={onClose}>
-              <i className="ri-close-line" aria-hidden="true" />
+              <BjSvgIcon name="closeLine" />
             </button>
           </header>
         ) : null}

@@ -95,6 +95,12 @@
     outline: 2px solid var(--bj-action-high);
     outline-offset: 2px;
   }
+
+  svg {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+  }
 }
 
 .bj-drawer__body {

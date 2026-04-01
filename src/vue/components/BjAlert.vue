@@ -9,6 +9,7 @@ export interface BjAlertProps {
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const props = withDefaults(defineProps<BjAlertProps>(), {
   variant: 'info',
@@ -25,11 +26,11 @@ const classes = computed(() => [
   props.size === 'sm' && 'bj-alert--sm',
 ])
 
-const iconMap: Record<string, string> = {
-  info: 'ri-information-line',
-  success: 'ri-checkbox-circle-line',
-  warning: 'ri-alert-line',
-  error: 'ri-error-warning-line',
+const iconMap: Record<'info' | 'success' | 'warning' | 'error', string> = {
+  info: 'informationLine',
+  success: 'checkboxCircleLine',
+  warning: 'alertLine',
+  error: 'errorWarningLine',
 }
 
 function close() {
@@ -40,7 +41,7 @@ function close() {
 
 <template>
   <div v-if="visible" :class="classes" role="alert" v-bind="$attrs">
-    <i class="bj-alert__icon" :class="iconMap[variant]" aria-hidden="true" />
+    <span class="bj-alert__icon"><BjSvgIcon :name="iconMap[variant]" /></span>
     <div class="bj-alert__body">
       <p v-if="title" class="bj-alert__title">{{ title }}</p>
       <div class="bj-alert__text">
@@ -54,7 +55,7 @@ function close() {
       aria-label="Fermer"
       @click="close"
     >
-      <i class="ri-close-line" aria-hidden="true" />
+      <BjSvgIcon name="closeLine" />
     </button>
   </div>
 </template>

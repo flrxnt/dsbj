@@ -9,6 +9,7 @@ export interface BjPaginationProps {
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const props = withDefaults(defineProps<BjPaginationProps>(), {
   perPage: 10,
@@ -66,7 +67,7 @@ function go(page: number) {
       aria-label="Page précédente"
       @click="go(modelValue - 1)"
     >
-      <i class="ri-arrow-left-s-line" aria-hidden="true" />
+      <BjSvgIcon name="arrowLeftSLine" />
     </button>
     <template v-for="(p, i) in pages" :key="i">
       <span v-if="p === '...'" class="bj-pagination__ellipsis">...</span>
@@ -89,7 +90,7 @@ function go(page: number) {
       aria-label="Page suivante"
       @click="go(modelValue + 1)"
     >
-      <i class="ri-arrow-right-s-line" aria-hidden="true" />
+      <BjSvgIcon name="arrowRightSLine" />
     </button>
   </nav>
 </template>

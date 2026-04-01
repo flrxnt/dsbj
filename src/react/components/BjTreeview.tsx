@@ -1,5 +1,7 @@
 import { useCallback, useState, type Dispatch, type SetStateAction } from 'react'
 
+import { BjSvgIcon, remixClassToIconName } from '../icons'
+
 export type TreeNode = {
   id: string
   label: string
@@ -99,7 +101,7 @@ function BjTreeviewBranch({
                 data-bj-tree-toggle
                 onClick={() => toggleExpand(node.id)}
               >
-                <i className="ri-arrow-right-s-line" aria-hidden="true" />
+                <BjSvgIcon name="arrowRightSLine" />
               </button>
             ) : (
               <span className="bj-tree__toggle-spacer" />
@@ -112,7 +114,11 @@ function BjTreeviewBranch({
                 onChange={() => toggleCheck(node.id)}
               />
             ) : null}
-            {node.icon ? <i className={['bj-tree__icon', node.icon].filter(Boolean).join(' ')} aria-hidden="true" /> : null}
+            {node.icon ? (
+              <span className="bj-tree__icon">
+                <BjSvgIcon name={remixClassToIconName(node.icon)} />
+              </span>
+            ) : null}
             <span className="bj-tree__label">{node.label}</span>
           </div>
           {node.children?.length ? (

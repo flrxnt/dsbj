@@ -1,11 +1,5 @@
 import { useState, type HTMLAttributes, type ReactNode } from 'react'
-
-const iconMap: Record<string, string> = {
-  info: 'ri-information-line',
-  success: 'ri-checkbox-circle-line',
-  warning: 'ri-alert-line',
-  error: 'ri-error-warning-line',
-}
+import { BjSvgIcon } from '../icons'
 
 export interface BjAlertProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'title'> {
   variant?: 'info' | 'success' | 'warning' | 'error'
@@ -14,6 +8,13 @@ export interface BjAlertProps extends Omit<HTMLAttributes<HTMLDivElement>, 'chil
   title?: string
   onClose?: () => void
   children?: ReactNode
+}
+
+const iconMap: Record<NonNullable<BjAlertProps['variant']>, string> = {
+  info: 'informationLine',
+  success: 'checkboxCircleLine',
+  warning: 'alertLine',
+  error: 'errorWarningLine',
 }
 
 export function BjAlert({
@@ -46,14 +47,16 @@ export function BjAlert({
 
   return (
     <div className={cls} role="alert" {...rest}>
-      <i className={`bj-alert__icon ${iconMap[variant]}`} aria-hidden="true" />
+      <span className="bj-alert__icon">
+        <BjSvgIcon name={iconMap[variant]} />
+      </span>
       <div className="bj-alert__body">
         {title ? <p className="bj-alert__title">{title}</p> : null}
         <div className="bj-alert__text">{children}</div>
       </div>
       {closable ? (
         <button type="button" className="bj-alert__close" aria-label="Fermer" onClick={close}>
-          <i className="ri-close-line" aria-hidden="true" />
+          <BjSvgIcon name="closeLine" />
         </button>
       ) : null}
     </div>

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react'
 import { createPortal } from 'react-dom'
+import { BjSvgIcon } from '../icons'
 
 export type GalleryImage = {
   src: string
@@ -82,7 +83,7 @@ export function BjGallery({ images, cols = 3, className }: BjGalleryProps) {
           {currentIndex + 1} / {images.length}
         </span>
         <button type="button" className="bj-lightbox__close" aria-label="Fermer" onClick={closeLightbox}>
-          <i className="ri-close-line" aria-hidden="true" />
+          <BjSvgIcon name="closeLine" />
         </button>
         <button
           type="button"
@@ -90,7 +91,7 @@ export function BjGallery({ images, cols = 3, className }: BjGalleryProps) {
           aria-label="Image précédente"
           onClick={prev}
         >
-          <i className="ri-arrow-left-s-line" aria-hidden="true" />
+          <BjSvgIcon name="arrowLeftSLine" />
         </button>
         <div className="bj-lightbox__content">
           <img className="bj-lightbox__img" src={current.src} alt={current.alt ?? ''} />
@@ -102,7 +103,7 @@ export function BjGallery({ images, cols = 3, className }: BjGalleryProps) {
           aria-label="Image suivante"
           onClick={next}
         >
-          <i className="ri-arrow-right-s-line" aria-hidden="true" />
+          <BjSvgIcon name="arrowRightSLine" />
         </button>
       </div>
     ) : null

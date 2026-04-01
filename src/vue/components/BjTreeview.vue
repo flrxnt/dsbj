@@ -1,5 +1,28 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { BjSvgIcon } from '../icons'
+
+function riKebabToCamel(s: string): string {
+  return s.split('-').map((p, i) => (i === 0 ? p : p.charAt(0).toUpperCase() + p.slice(1))).join('')
+}
+
+function remixIconNameFromClassString(icon: string): string {
+  const ri = icon.trim().match(/\bri-[a-z0-9-]+\b/)?.[0]
+  if (!ri) return 'fileLine'
+  return riKebabToCamel(ri.replace(/^ri-/, ''))
+}
+
+function hasRemixIconClass(icon: string): boolean {
+  return /\bri-[a-z0-9-]+\b/.test(icon)
+}
+
+function extraClassesWithoutRi(icon: string): string {
+  return icon
+    .trim()
+    .split(/\s+/)
+    .filter(p => p && !p.startsWith('ri-'))
+    .join(' ')
+}
 
 const props = withDefaults(defineProps<BjTreeviewProps>(), {
   checkbox: false,
@@ -67,7 +90,7 @@ function isChecked(id: string) { return checked.value.has(id) }
           data-bj-tree-toggle
           @click="toggleExpand(node.id)"
         >
-          <i class="ri-arrow-right-s-line" aria-hidden="true" />
+          <BjSvgIcon name="arrowRightSLine" />
         </button>
         <span v-else class="bj-tree__toggle-spacer" />
         <input
@@ -77,7 +100,18 @@ function isChecked(id: string) { return checked.value.has(id) }
           :checked="isChecked(node.id)"
           @change="toggleCheck(node.id)"
         />
-        <i v-if="node.icon" class="bj-tree__icon" :class="node.icon" aria-hidden="true" />
+        <BjSvgIcon
+          v-if="node.icon && hasRemixIconClass(node.icon)"
+          class="bj-tree__icon"
+          :class="extraClassesWithoutRi(node.icon) || undefined"
+          :name="remixIconNameFromClassString(node.icon)"
+        />
+        <i
+          v-else-if="node.icon"
+          class="bj-tree__icon"
+          :class="node.icon"
+          aria-hidden="true"
+        />
         <span class="bj-tree__label">{{ node.label }}</span>
       </div>
       <ul

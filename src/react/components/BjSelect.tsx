@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import type * as React from 'react'
 
+import { BjSvgIcon } from '../icons'
+
 export interface BjSelectOption {
   value: string
   label: string
@@ -253,7 +255,7 @@ function SearchableSelect({
           onKeyDown={onTriggerKeyDown}
         >
           <span>{selectedLabel || placeholder || '\u00A0'}</span>
-          <i className="ri-arrow-down-s-line" aria-hidden="true" />
+          <BjSvgIcon name="arrowDownSLine" />
         </button>
 
         {isOpen ? (

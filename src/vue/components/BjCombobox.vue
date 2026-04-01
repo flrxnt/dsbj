@@ -20,6 +20,7 @@ export interface BjComboboxProps {
 
 <script setup lang="ts">
 import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const props = withDefaults(defineProps<BjComboboxProps>(), {
   modelValue: '',
@@ -170,7 +171,7 @@ const activeDescendant = computed(() =>
         @focus="onFocus"
         @keydown="onKeydown"
       />
-      <i class="ri-arrow-down-s-line bj-combobox__icon" aria-hidden="true" />
+      <span class="bj-combobox__icon"><BjSvgIcon name="arrowDownSLine" /></span>
     </div>
 
     <ul

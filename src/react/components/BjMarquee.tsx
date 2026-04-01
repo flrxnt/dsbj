@@ -1,5 +1,7 @@
 import { useState, type ReactNode } from 'react'
 
+import { BjSvgIcon } from '../icons'
+
 export interface BjMarqueeProps {
   speed?: 'slow' | 'default' | 'fast'
   reverse?: boolean
@@ -48,7 +50,7 @@ export function BjMarquee({
           aria-label={paused ? 'Reprendre le défilement' : 'Mettre en pause le défilement'}
           onClick={togglePause}
         >
-          <i className={paused ? 'ri-play-line' : 'ri-pause-line'} aria-hidden="true" />
+          <BjSvgIcon name={paused ? 'playLine' : 'pauseLine'} />
         </button>
       ) : null}
     </div>

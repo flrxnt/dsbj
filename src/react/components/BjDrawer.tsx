@@ -1,5 +1,6 @@
 import { useEffect, useId, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import { BjSvgIcon } from '../icons'
 
 export interface BjDrawerProps {
   open: boolean
@@ -68,7 +69,7 @@ export function BjDrawer({
               {title}
             </h2>
             <button type="button" className="bj-drawer__close" aria-label="Fermer" onClick={onClose}>
-              <i className="ri-close-line" aria-hidden="true" />
+              <BjSvgIcon name="closeLine" />
             </button>
           </header>
         ) : null}

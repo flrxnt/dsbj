@@ -92,7 +92,6 @@
     "not dead"
   ],
   "peerDependencies": {
-    "remixicon": "^4.9.1",
     "vue": "^3.2.25",
     "react": "latest",
     "react-dom": "latest"
@@ -103,9 +102,6 @@
     "path-to-regexp": ">=8.4.0"
   },
   "peerDependenciesMeta": {
-    "remixicon": {
-      "optional": true
-    },
     "vue": {
       "optional": true
     },

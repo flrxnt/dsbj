@@ -20,10 +20,10 @@ export interface ToastOptions {
 }
 
 const ICONS: Record<ToastType, string> = {
-  info: 'ri-information-line',
-  success: 'ri-check-line',
-  warning: 'ri-alert-line',
-  error: 'ri-close-circle-line',
+  info: 'informationLine',
+  success: 'checkLine',
+  warning: 'alertLine',
+  error: 'closeCircleLine',
 }
 
 const MAX_VISIBLE = 5

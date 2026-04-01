@@ -46,6 +46,13 @@
   font-size: 1rem;
   color: var(--bj-text-mention);
   transition: transform var(--bj-duration-fast) var(--bj-easing);
+
+  svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    display: block;
+  }
 }
 
 .bj-combobox--open .bj-combobox__icon {

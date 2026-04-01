@@ -13,11 +13,23 @@ export interface BjUploadProps {
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { BjSvgIcon } from '../icons'
+
+function riKebabToCamel(s: string): string {
+  return s.split('-').map((p, i) => (i === 0 ? p : p.charAt(0).toUpperCase() + p.slice(1))).join('')
+}
+
+function resolveIconName(icon: string): string {
+  if (icon.startsWith('ri-')) return riKebabToCamel(icon.replace(/^ri-/, ''))
+  return icon
+}
 
 const props = withDefaults(defineProps<BjUploadProps>(), {
   text: 'Glissez un fichier ou cliquez pour parcourir',
-  icon: 'ri-upload-2-line',
+  icon: 'upload2Line',
 })
+
+const iconName = computed(() => resolveIconName(props.icon))
 
 const emit = defineEmits<{
   change: [files: FileList | null]
@@ -73,7 +85,7 @@ function removeFile(index: number) {
       @dragleave="dragging = false"
       @drop.prevent="onDrop"
     >
-      <i :class="['bj-upload__icon', icon]" aria-hidden="true" />
+      <BjSvgIcon class="bj-upload__icon" :name="iconName" />
       <span class="bj-upload__text">{{ text }}</span>
       <span v-if="$slots.uploadHint" class="bj-upload__hint"><slot name="uploadHint" /></span>
       <input
@@ -89,10 +101,10 @@ function removeFile(index: number) {
       {{ message }}
     </p>
     <div v-for="(file, i) in files" :key="i" class="bj-upload__file">
-      <i class="ri-file-line" aria-hidden="true" />
+      <BjSvgIcon name="fileLine" />
       {{ file.name }}
       <button type="button" class="bj-upload__file-remove" @click="removeFile(i)" aria-label="Retirer">
-        <i class="ri-close-line" aria-hidden="true" />
+        <BjSvgIcon name="closeLine" />
       </button>
     </div>
   </div>

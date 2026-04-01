@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react'
+import { BjSvgIcon } from '../icons'
 
 export interface BjChatBubbleProps {
   variant?: 'sent' | 'received' | 'system'
@@ -10,11 +11,11 @@ export interface BjChatBubbleProps {
   className?: string
 }
 
-const STATUS_ICONS: Record<string, string> = {
-  sending: 'ri-time-line',
-  sent: 'ri-check-line',
-  read: 'ri-check-double-line',
-  error: 'ri-error-warning-line',
+const STATUS_ICONS: Record<NonNullable<BjChatBubbleProps['status']>, string> = {
+  sending: 'timeLine',
+  sent: 'checkLine',
+  read: 'checkDoubleLine',
+  error: 'errorWarningLine',
 }
 
 export function BjChatBubble({
@@ -57,7 +58,7 @@ export function BjChatBubble({
             {time ? <span className="bj-chat-bubble__time">{time}</span> : null}
             {status && STATUS_ICONS[status] ? (
               <span className={`bj-chat-bubble__status bj-chat-bubble__status--${status}`}>
-                <i className={STATUS_ICONS[status]} aria-hidden="true" />
+                <BjSvgIcon name={STATUS_ICONS[status]} />
               </span>
             ) : null}
           </div>

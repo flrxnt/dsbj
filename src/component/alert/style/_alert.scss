@@ -11,6 +11,12 @@
   flex-shrink: 0;
   font-size: 1.25rem;
   line-height: 1.5;
+
+  svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+  }
 }
 
 .bj-alert__body {

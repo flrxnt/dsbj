@@ -9,6 +9,7 @@ export interface BjMarqueeProps {
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const props = withDefaults(defineProps<BjMarqueeProps>(), {
   speed: 'default',
@@ -24,6 +25,8 @@ const classes = computed(() => [
   props.speed !== 'default' && `bj-marquee--${props.speed}`,
   props.bordered && 'bj-marquee--bordered',
 ])
+
+const pauseIconName = computed(() => (paused.value ? 'playLine' : 'pauseLine'))
 
 function togglePause() {
   paused.value = !paused.value
@@ -48,7 +51,7 @@ function togglePause() {
       :aria-label="paused ? 'Reprendre le défilement' : 'Mettre en pause le défilement'"
       @click="togglePause"
     >
-      <i :class="paused ? 'ri-play-line' : 'ri-pause-line'" aria-hidden="true" />
+      <BjSvgIcon :name="pauseIconName" />
     </button>
   </div>
 </template>

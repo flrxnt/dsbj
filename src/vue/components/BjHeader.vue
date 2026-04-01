@@ -6,11 +6,14 @@ export interface BjHeaderProps {
 </script>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 defineProps<BjHeaderProps>()
 
 const menuOpen = ref(false)
+
+const menuIconName = computed(() => (menuOpen.value ? 'closeLine' : 'menuLine'))
 
 function toggleMenu() {
   menuOpen.value = !menuOpen.value
@@ -41,7 +44,7 @@ defineExpose({ menuOpen, toggleMenu })
             data-bj-header-menu
             @click="toggleMenu"
           >
-            <i :class="menuOpen ? 'ri-close-line' : 'ri-menu-line'" aria-hidden="true" />
+            <BjSvgIcon :name="menuIconName" />
             <span class="bj-header__menu-label">Menu</span>
           </button>
         </div>

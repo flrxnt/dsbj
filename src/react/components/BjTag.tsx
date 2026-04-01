@@ -7,6 +7,8 @@ import {
   type ReactNode,
 } from 'react'
 
+import { BjSvgIcon } from '../icons'
+
 export interface BjTagBaseProps {
   variant?: 'default' | 'action' | 'info' | 'success' | 'warning' | 'error'
   size?: 'sm' | 'md'
@@ -70,7 +72,7 @@ export const BjTag = forwardRef<HTMLSpanElement | HTMLAnchorElement | HTMLButton
             aria-label="Retirer"
             onClick={handleDismissClick}
           >
-            <i className="ri-close-line" aria-hidden="true" />
+            <BjSvgIcon name="closeLine" />
           </button>
         ) : null}
       </Tag>

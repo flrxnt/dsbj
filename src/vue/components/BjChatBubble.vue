@@ -10,6 +10,7 @@ export interface BjChatBubbleProps {
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const props = withDefaults(defineProps<BjChatBubbleProps>(), {
   variant: 'received',
@@ -30,10 +31,10 @@ const ariaLabel = computed(() => {
 
 const statusIcon = computed(() => {
   switch (props.status) {
-    case 'sending': return 'ri-time-line'
-    case 'sent': return 'ri-check-line'
-    case 'read': return 'ri-check-double-line'
-    case 'error': return 'ri-error-warning-line'
+    case 'sending': return 'timeLine'
+    case 'sent': return 'checkLine'
+    case 'read': return 'checkDoubleLine'
+    case 'error': return 'errorWarningLine'
     default: return null
   }
 })
@@ -57,7 +58,7 @@ const statusIcon = computed(() => {
       <div v-if="time || status" class="bj-chat-bubble__meta">
         <span v-if="time" class="bj-chat-bubble__time">{{ time }}</span>
         <span v-if="statusIcon" :class="['bj-chat-bubble__status', `bj-chat-bubble__status--${status}`]">
-          <i :class="statusIcon" aria-hidden="true" />
+          <BjSvgIcon :name="statusIcon" />
         </span>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import type * as React from 'react'
+import { BjSvgIcon } from '../icons'
 
 const DAYS_SHORT = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
 const MONTHS = [
@@ -250,13 +251,13 @@ export function BjDatepicker({
         <>
           <div className="bj-datepicker__nav">
             <button type="button" className="bj-datepicker__nav-btn" aria-label="Mois précédent" onClick={() => { setViewMonth(m => { if (m === 0) { setViewYear(y => y - 1); return 11 } return m - 1 }) }}>
-              <i className="ri-arrow-left-s-line" aria-hidden />
+              <BjSvgIcon name="arrowLeftSLine" />
             </button>
             <button type="button" className="bj-datepicker__nav-title" onClick={() => setCurrentView('months')}>
               {MONTHS[viewMonth]} {viewYear}
             </button>
             <button type="button" className="bj-datepicker__nav-btn" aria-label="Mois suivant" onClick={() => { setViewMonth(m => { if (m === 11) { setViewYear(y => y + 1); return 0 } return m + 1 }) }}>
-              <i className="ri-arrow-right-s-line" aria-hidden />
+              <BjSvgIcon name="arrowRightSLine" />
             </button>
           </div>
           <div className="bj-datepicker__weekdays">
@@ -276,13 +277,13 @@ export function BjDatepicker({
         <>
           <div className="bj-datepicker__nav">
             <button type="button" className="bj-datepicker__nav-btn" aria-label="Année précédente" onClick={() => setViewYear(y => y - 1)}>
-              <i className="ri-arrow-left-s-line" aria-hidden />
+              <BjSvgIcon name="arrowLeftSLine" />
             </button>
             <button type="button" className="bj-datepicker__nav-title" onClick={() => setCurrentView('years')}>
               {viewYear}
             </button>
             <button type="button" className="bj-datepicker__nav-btn" aria-label="Année suivante" onClick={() => setViewYear(y => y + 1)}>
-              <i className="ri-arrow-right-s-line" aria-hidden />
+              <BjSvgIcon name="arrowRightSLine" />
             </button>
           </div>
           <div className="bj-datepicker__months-grid">
@@ -304,13 +305,13 @@ export function BjDatepicker({
         <>
           <div className="bj-datepicker__nav">
             <button type="button" className="bj-datepicker__nav-btn" aria-label="Décennie précédente" onClick={() => setViewYear(y => y - 10)}>
-              <i className="ri-arrow-left-s-line" aria-hidden />
+              <BjSvgIcon name="arrowLeftSLine" />
             </button>
             <span className="bj-datepicker__nav-title" style={{ cursor: 'default' }}>
               {viewDecade}–{viewDecade + 9}
             </span>
             <button type="button" className="bj-datepicker__nav-btn" aria-label="Décennie suivante" onClick={() => setViewYear(y => y + 10)}>
-              <i className="ri-arrow-right-s-line" aria-hidden />
+              <BjSvgIcon name="arrowRightSLine" />
             </button>
           </div>
           <div className="bj-datepicker__years-grid">
@@ -346,7 +347,7 @@ export function BjDatepicker({
           onClick={toggle}
         />
         <button type="button" className="bj-datepicker__trigger" disabled={disabled} aria-label="Ouvrir le calendrier" onClick={toggle}>
-          <i className="ri-calendar-line" aria-hidden />
+          <BjSvgIcon name="calendarLine" />
         </button>
       </div>
       {calendar && createPortal(calendar, document.body)}

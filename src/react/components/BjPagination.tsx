@@ -1,5 +1,7 @@
 import { useMemo, type ComponentPropsWithoutRef } from 'react'
 
+import { BjSvgIcon } from '../icons'
+
 export type BjPaginationProps = Omit<ComponentPropsWithoutRef<'nav'>, 'onChange'> & {
   page: number
   total: number
@@ -71,7 +73,7 @@ export function BjPagination({
         aria-label="Page précédente"
         onClick={() => go(page - 1)}
       >
-        <i className="ri-arrow-left-s-line" aria-hidden="true" />
+        <BjSvgIcon name="arrowLeftSLine" />
       </button>
       {pages.map((p, i) =>
         p === '...' ? (
@@ -101,7 +103,7 @@ export function BjPagination({
         aria-label="Page suivante"
         onClick={() => go(page + 1)}
       >
-        <i className="ri-arrow-right-s-line" aria-hidden="true" />
+        <BjSvgIcon name="arrowRightSLine" />
       </button>
     </nav>
   )

@@ -1,5 +1,7 @@
 import { useState, type ComponentPropsWithoutRef, type ReactNode } from 'react'
 
+import { BjSvgIcon } from '../icons'
+
 export type BjHeaderProps = {
   serviceName?: string
   serviceTagline?: string
@@ -48,10 +50,7 @@ export function BjHeader({
               data-bj-header-menu
               onClick={() => setMenuOpen((o) => !o)}
             >
-              <i
-                className={menuOpen ? 'ri-close-line' : 'ri-menu-line'}
-                aria-hidden="true"
-              />
+              <BjSvgIcon name={menuOpen ? 'closeLine' : 'menuLine'} />
               <span className="bj-header__menu-label">Menu</span>
             </button>
           </div>

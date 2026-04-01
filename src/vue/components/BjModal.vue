@@ -9,6 +9,7 @@ export interface BjModalProps {
 
 <script setup lang="ts">
 import { computed, ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const props = withDefaults(defineProps<BjModalProps>(), {
   modelValue: false,
@@ -83,7 +84,7 @@ defineExpose({ open, close })
           <h2 :id="titleId" class="bj-modal__title">{{ title }}</h2>
         </slot>
         <button type="button" class="bj-modal__close" aria-label="Fermer" @click="close">
-          <i class="ri-close-line" aria-hidden="true" />
+          <BjSvgIcon name="closeLine" />
         </button>
       </header>
       <div class="bj-modal__body">

@@ -4,6 +4,7 @@ import {
   useEffect,
   type ComponentPropsWithoutRef,
 } from 'react'
+import { BjSvgIcon } from '../icons'
 
 export const TOOLBAR_ALL = [
   'heading', 'bold', 'italic', 'underline', 'strikethrough',
@@ -198,10 +199,10 @@ export function BjRichEditor({
 
         {(has('bold') || has('italic') || has('underline') || has('strikethrough')) && (
           <div className="bj-rich-editor__toolbar-group">
-            {has('bold') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('bold')} title="Gras" aria-label="Gras"><i className="ri-bold" aria-hidden="true" /></button>}
-            {has('italic') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('italic')} title="Italique" aria-label="Italique"><i className="ri-italic" aria-hidden="true" /></button>}
-            {has('underline') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('underline')} title="Souligné" aria-label="Souligné"><i className="ri-underline" aria-hidden="true" /></button>}
-            {has('strikethrough') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('strikethrough')} title="Barré" aria-label="Barré"><i className="ri-strikethrough" aria-hidden="true" /></button>}
+            {has('bold') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('bold')} title="Gras" aria-label="Gras"><BjSvgIcon name="bold" /></button>}
+            {has('italic') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('italic')} title="Italique" aria-label="Italique"><BjSvgIcon name="italic" /></button>}
+            {has('underline') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('underline')} title="Souligné" aria-label="Souligné"><BjSvgIcon name="underline" /></button>}
+            {has('strikethrough') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('strikethrough')} title="Barré" aria-label="Barré"><BjSvgIcon name="strikethrough" /></button>}
           </div>
         )}
 
@@ -209,15 +210,15 @@ export function BjRichEditor({
 
         {(has('unorderedList') || has('orderedList')) && (
           <div className="bj-rich-editor__toolbar-group">
-            {has('unorderedList') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('insertUnorderedList')} title="Liste à puces" aria-label="Liste à puces"><i className="ri-list-unordered" aria-hidden="true" /></button>}
-            {has('orderedList') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('insertOrderedList')} title="Liste numérotée" aria-label="Liste numérotée"><i className="ri-list-ordered" aria-hidden="true" /></button>}
+            {has('unorderedList') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('insertUnorderedList')} title="Liste à puces" aria-label="Liste à puces"><BjSvgIcon name="listUnordered" /></button>}
+            {has('orderedList') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('insertOrderedList')} title="Liste numérotée" aria-label="Liste numérotée"><BjSvgIcon name="listOrdered" /></button>}
           </div>
         )}
 
         {(has('indent') || has('outdent')) && (
           <div className="bj-rich-editor__toolbar-group">
-            {has('indent') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('indent')} title="Augmenter le retrait" aria-label="Augmenter le retrait"><i className="ri-indent-increase" aria-hidden="true" /></button>}
-            {has('outdent') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('outdent')} title="Réduire le retrait" aria-label="Réduire le retrait"><i className="ri-indent-decrease" aria-hidden="true" /></button>}
+            {has('indent') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('indent')} title="Augmenter le retrait" aria-label="Augmenter le retrait"><BjSvgIcon name="indentIncrease" /></button>}
+            {has('outdent') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('outdent')} title="Réduire le retrait" aria-label="Réduire le retrait"><BjSvgIcon name="indentDecrease" /></button>}
           </div>
         )}
 
@@ -225,10 +226,10 @@ export function BjRichEditor({
 
         {(has('alignLeft') || has('alignCenter') || has('alignRight') || has('alignJustify')) && (
           <div className="bj-rich-editor__toolbar-group">
-            {has('alignLeft') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('justifyLeft')} title="Aligner à gauche" aria-label="Aligner à gauche"><i className="ri-align-left" aria-hidden="true" /></button>}
-            {has('alignCenter') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('justifyCenter')} title="Centrer" aria-label="Centrer"><i className="ri-align-center" aria-hidden="true" /></button>}
-            {has('alignRight') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('justifyRight')} title="Aligner à droite" aria-label="Aligner à droite"><i className="ri-align-right" aria-hidden="true" /></button>}
-            {has('alignJustify') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('justifyFull')} title="Justifier" aria-label="Justifier"><i className="ri-align-justify" aria-hidden="true" /></button>}
+            {has('alignLeft') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('justifyLeft')} title="Aligner à gauche" aria-label="Aligner à gauche"><BjSvgIcon name="alignLeft" /></button>}
+            {has('alignCenter') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('justifyCenter')} title="Centrer" aria-label="Centrer"><BjSvgIcon name="alignCenter" /></button>}
+            {has('alignRight') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('justifyRight')} title="Aligner à droite" aria-label="Aligner à droite"><BjSvgIcon name="alignRight" /></button>}
+            {has('alignJustify') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('justifyFull')} title="Justifier" aria-label="Justifier"><BjSvgIcon name="alignJustify" /></button>}
           </div>
         )}
 
@@ -236,11 +237,11 @@ export function BjRichEditor({
 
         {(has('link') || has('image') || has('video') || has('table')) && (
           <div className="bj-rich-editor__toolbar-group">
-            {has('link') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={insertLink} title="Lien" aria-label="Insérer un lien"><i className="ri-link" aria-hidden="true" /></button>}
-            {has('unlink') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('unlink')} title="Supprimer le lien" aria-label="Supprimer le lien"><i className="ri-link-unlink" aria-hidden="true" /></button>}
-            {has('image') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={insertImage} title="Image" aria-label="Insérer une image"><i className="ri-image-line" aria-hidden="true" /></button>}
-            {has('video') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={insertVideo} title="Vidéo" aria-label="Insérer une vidéo"><i className="ri-video-line" aria-hidden="true" /></button>}
-            {has('table') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={insertTable} title="Tableau" aria-label="Insérer un tableau"><i className="ri-table-line" aria-hidden="true" /></button>}
+            {has('link') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={insertLink} title="Lien" aria-label="Insérer un lien"><BjSvgIcon name="link" /></button>}
+            {has('unlink') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('unlink')} title="Supprimer le lien" aria-label="Supprimer le lien"><BjSvgIcon name="linkUnlink" /></button>}
+            {has('image') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={insertImage} title="Image" aria-label="Insérer une image"><BjSvgIcon name="image" /></button>}
+            {has('video') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={insertVideo} title="Vidéo" aria-label="Insérer une vidéo"><BjSvgIcon name="video" /></button>}
+            {has('table') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={insertTable} title="Tableau" aria-label="Insérer un tableau"><BjSvgIcon name="table" /></button>}
           </div>
         )}
 
@@ -248,10 +249,10 @@ export function BjRichEditor({
 
         {(has('blockquote') || has('codeBlock') || has('horizontalRule') || has('removeFormat')) && (
           <div className="bj-rich-editor__toolbar-group">
-            {has('blockquote') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('formatBlock', 'blockquote')} title="Citation" aria-label="Citation"><i className="ri-double-quotes-l" aria-hidden="true" /></button>}
-            {has('codeBlock') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={insertCodeBlock} title="Bloc de code" aria-label="Bloc de code"><i className="ri-code-line" aria-hidden="true" /></button>}
-            {has('horizontalRule') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('insertHorizontalRule')} title="Ligne horizontale" aria-label="Ligne horizontale"><i className="ri-separator" aria-hidden="true" /></button>}
-            {has('removeFormat') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('removeFormat')} title="Effacer le formatage" aria-label="Effacer le formatage"><i className="ri-format-clear" aria-hidden="true" /></button>}
+            {has('blockquote') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('formatBlock', 'blockquote')} title="Citation" aria-label="Citation"><BjSvgIcon name="doubleQuotes" /></button>}
+            {has('codeBlock') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={insertCodeBlock} title="Bloc de code" aria-label="Bloc de code"><BjSvgIcon name="code" /></button>}
+            {has('horizontalRule') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('insertHorizontalRule')} title="Ligne horizontale" aria-label="Ligne horizontale"><BjSvgIcon name="separator" /></button>}
+            {has('removeFormat') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('removeFormat')} title="Effacer le formatage" aria-label="Effacer le formatage"><BjSvgIcon name="formatClear" /></button>}
           </div>
         )}
 
@@ -261,13 +262,13 @@ export function BjRichEditor({
           <div className="bj-rich-editor__toolbar-group">
             {has('textColor') && (
               <div className="bj-rich-editor__color-picker">
-                <button type="button" className="bj-rich-editor__toolbar-btn" title="Couleur du texte" aria-label="Couleur du texte"><i className="ri-font-color" aria-hidden="true" /></button>
+                <button type="button" className="bj-rich-editor__toolbar-btn" title="Couleur du texte" aria-label="Couleur du texte"><BjSvgIcon name="fontColor" /></button>
                 <input type="color" onChange={setTextColor} defaultValue="#000000" aria-label="Choisir la couleur du texte" />
               </div>
             )}
             {has('bgColor') && (
               <div className="bj-rich-editor__color-picker">
-                <button type="button" className="bj-rich-editor__toolbar-btn" title="Couleur de fond" aria-label="Couleur de fond"><i className="ri-paint-fill" aria-hidden="true" /></button>
+                <button type="button" className="bj-rich-editor__toolbar-btn" title="Couleur de fond" aria-label="Couleur de fond"><BjSvgIcon name="paintFill" /></button>
                 <input type="color" onChange={setBgColor} defaultValue="#ffff00" aria-label="Choisir la couleur de fond" />
               </div>
             )}
@@ -278,8 +279,8 @@ export function BjRichEditor({
 
         {(has('undo') || has('redo')) && (
           <div className="bj-rich-editor__toolbar-group">
-            {has('undo') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('undo')} title="Annuler" aria-label="Annuler"><i className="ri-arrow-go-back-line" aria-hidden="true" /></button>}
-            {has('redo') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('redo')} title="Rétablir" aria-label="Rétablir"><i className="ri-arrow-go-forward-line" aria-hidden="true" /></button>}
+            {has('undo') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('undo')} title="Annuler" aria-label="Annuler"><BjSvgIcon name="undo" /></button>}
+            {has('redo') && <button type="button" className="bj-rich-editor__toolbar-btn" onClick={() => exec('redo')} title="Rétablir" aria-label="Rétablir"><BjSvgIcon name="redo" /></button>}
           </div>
         )}
       </div>

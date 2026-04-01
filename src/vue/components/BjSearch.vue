@@ -9,6 +9,7 @@ export interface BjSearchProps {
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const props = withDefaults(defineProps<BjSearchProps>(), {
   modelValue: '',
@@ -48,7 +49,7 @@ function onSubmit() {
     />
     <button type="submit" class="bj-search__btn">
       <slot>
-        <i class="ri-search-line" aria-hidden="true" />
+        <BjSvgIcon name="searchLine" />
         <span>{{ buttonLabel }}</span>
       </slot>
     </button>

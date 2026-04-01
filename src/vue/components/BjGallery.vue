@@ -13,6 +13,7 @@ export interface BjGalleryProps {
 
 <script setup lang="ts">
 import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const props = withDefaults(defineProps<BjGalleryProps>(), {
   cols: 3,
@@ -90,17 +91,17 @@ onBeforeUnmount(() => {
     >
       <span class="bj-lightbox__counter">{{ currentIndex + 1 }} / {{ images.length }}</span>
       <button class="bj-lightbox__close" aria-label="Fermer" @click="closeLightbox">
-        <i class="ri-close-line" aria-hidden="true" />
+        <BjSvgIcon name="closeLine" />
       </button>
       <button class="bj-lightbox__nav bj-lightbox__nav--prev" aria-label="Image précédente" @click="prev">
-        <i class="ri-arrow-left-s-line" aria-hidden="true" />
+        <BjSvgIcon name="arrowLeftSLine" />
       </button>
       <div class="bj-lightbox__content">
         <img class="bj-lightbox__img" :src="current.src" :alt="current.alt || ''" />
         <p v-if="current.caption" class="bj-lightbox__caption">{{ current.caption }}</p>
       </div>
       <button class="bj-lightbox__nav bj-lightbox__nav--next" aria-label="Image suivante" @click="next">
-        <i class="ri-arrow-right-s-line" aria-hidden="true" />
+        <BjSvgIcon name="arrowRightSLine" />
       </button>
     </div>
   </Teleport>

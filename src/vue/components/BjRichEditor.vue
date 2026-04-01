@@ -19,6 +19,7 @@ export const TOOLBAR_ALL = [
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, nextTick } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const props = withDefaults(defineProps<BjRichEditorProps>(), {
   modelValue: '',
@@ -208,16 +209,16 @@ onMounted(() => {
 
       <div class="bj-rich-editor__toolbar-group" v-if="has('bold') || has('italic') || has('underline') || has('strikethrough')">
         <button v-if="has('bold')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('bold')" title="Gras" aria-label="Gras">
-          <i class="ri-bold" aria-hidden="true"></i>
+          <BjSvgIcon name="bold" />
         </button>
         <button v-if="has('italic')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('italic')" title="Italique" aria-label="Italique">
-          <i class="ri-italic" aria-hidden="true"></i>
+          <BjSvgIcon name="italic" />
         </button>
         <button v-if="has('underline')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('underline')" title="Souligné" aria-label="Souligné">
-          <i class="ri-underline" aria-hidden="true"></i>
+          <BjSvgIcon name="underline" />
         </button>
         <button v-if="has('strikethrough')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('strikethrough')" title="Barré" aria-label="Barré">
-          <i class="ri-strikethrough" aria-hidden="true"></i>
+          <BjSvgIcon name="strikethrough" />
         </button>
       </div>
 
@@ -225,19 +226,19 @@ onMounted(() => {
 
       <div class="bj-rich-editor__toolbar-group" v-if="has('unorderedList') || has('orderedList')">
         <button v-if="has('unorderedList')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('insertUnorderedList')" title="Liste à puces" aria-label="Liste à puces">
-          <i class="ri-list-unordered" aria-hidden="true"></i>
+          <BjSvgIcon name="listUnordered" />
         </button>
         <button v-if="has('orderedList')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('insertOrderedList')" title="Liste numérotée" aria-label="Liste numérotée">
-          <i class="ri-list-ordered" aria-hidden="true"></i>
+          <BjSvgIcon name="listOrdered" />
         </button>
       </div>
 
       <div class="bj-rich-editor__toolbar-group" v-if="has('indent') || has('outdent')">
         <button v-if="has('indent')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('indent')" title="Augmenter le retrait" aria-label="Augmenter le retrait">
-          <i class="ri-indent-increase" aria-hidden="true"></i>
+          <BjSvgIcon name="indentIncrease" />
         </button>
         <button v-if="has('outdent')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('outdent')" title="Réduire le retrait" aria-label="Réduire le retrait">
-          <i class="ri-indent-decrease" aria-hidden="true"></i>
+          <BjSvgIcon name="indentDecrease" />
         </button>
       </div>
 
@@ -245,16 +246,16 @@ onMounted(() => {
 
       <div class="bj-rich-editor__toolbar-group" v-if="has('alignLeft') || has('alignCenter') || has('alignRight') || has('alignJustify')">
         <button v-if="has('alignLeft')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('justifyLeft')" title="Aligner à gauche" aria-label="Aligner à gauche">
-          <i class="ri-align-left" aria-hidden="true"></i>
+          <BjSvgIcon name="alignLeft" />
         </button>
         <button v-if="has('alignCenter')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('justifyCenter')" title="Centrer" aria-label="Centrer">
-          <i class="ri-align-center" aria-hidden="true"></i>
+          <BjSvgIcon name="alignCenter" />
         </button>
         <button v-if="has('alignRight')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('justifyRight')" title="Aligner à droite" aria-label="Aligner à droite">
-          <i class="ri-align-right" aria-hidden="true"></i>
+          <BjSvgIcon name="alignRight" />
         </button>
         <button v-if="has('alignJustify')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('justifyFull')" title="Justifier" aria-label="Justifier">
-          <i class="ri-align-justify" aria-hidden="true"></i>
+          <BjSvgIcon name="alignJustify" />
         </button>
       </div>
 
@@ -262,19 +263,19 @@ onMounted(() => {
 
       <div class="bj-rich-editor__toolbar-group" v-if="has('link') || has('image') || has('video') || has('table')">
         <button v-if="has('link')" type="button" class="bj-rich-editor__toolbar-btn" @click="insertLink" title="Lien" aria-label="Insérer un lien">
-          <i class="ri-link" aria-hidden="true"></i>
+          <BjSvgIcon name="link" />
         </button>
         <button v-if="has('unlink')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('unlink')" title="Supprimer le lien" aria-label="Supprimer le lien">
-          <i class="ri-link-unlink" aria-hidden="true"></i>
+          <BjSvgIcon name="linkUnlink" />
         </button>
         <button v-if="has('image')" type="button" class="bj-rich-editor__toolbar-btn" @click="insertImage" title="Image" aria-label="Insérer une image">
-          <i class="ri-image-line" aria-hidden="true"></i>
+          <BjSvgIcon name="image" />
         </button>
         <button v-if="has('video')" type="button" class="bj-rich-editor__toolbar-btn" @click="insertVideo" title="Vidéo" aria-label="Insérer une vidéo">
-          <i class="ri-video-line" aria-hidden="true"></i>
+          <BjSvgIcon name="video" />
         </button>
         <button v-if="has('table')" type="button" class="bj-rich-editor__toolbar-btn" @click="insertTable" title="Tableau" aria-label="Insérer un tableau">
-          <i class="ri-table-line" aria-hidden="true"></i>
+          <BjSvgIcon name="table" />
         </button>
       </div>
 
@@ -282,16 +283,16 @@ onMounted(() => {
 
       <div class="bj-rich-editor__toolbar-group" v-if="has('blockquote') || has('codeBlock') || has('horizontalRule') || has('removeFormat')">
         <button v-if="has('blockquote')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('formatBlock', 'blockquote')" title="Citation" aria-label="Citation">
-          <i class="ri-double-quotes-l" aria-hidden="true"></i>
+          <BjSvgIcon name="doubleQuotes" />
         </button>
         <button v-if="has('codeBlock')" type="button" class="bj-rich-editor__toolbar-btn" @click="insertCodeBlock" title="Bloc de code" aria-label="Bloc de code">
-          <i class="ri-code-line" aria-hidden="true"></i>
+          <BjSvgIcon name="code" />
         </button>
         <button v-if="has('horizontalRule')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('insertHorizontalRule')" title="Ligne horizontale" aria-label="Ligne horizontale">
-          <i class="ri-separator" aria-hidden="true"></i>
+          <BjSvgIcon name="separator" />
         </button>
         <button v-if="has('removeFormat')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('removeFormat')" title="Effacer le formatage" aria-label="Effacer le formatage">
-          <i class="ri-format-clear" aria-hidden="true"></i>
+          <BjSvgIcon name="formatClear" />
         </button>
       </div>
 
@@ -300,13 +301,13 @@ onMounted(() => {
       <div class="bj-rich-editor__toolbar-group" v-if="has('textColor') || has('bgColor')">
         <div v-if="has('textColor')" class="bj-rich-editor__color-picker">
           <button type="button" class="bj-rich-editor__toolbar-btn" title="Couleur du texte" aria-label="Couleur du texte">
-            <i class="ri-font-color" aria-hidden="true"></i>
+            <BjSvgIcon name="fontColor" />
           </button>
           <input type="color" @input="setTextColor" value="#000000" aria-label="Choisir la couleur du texte">
         </div>
         <div v-if="has('bgColor')" class="bj-rich-editor__color-picker">
           <button type="button" class="bj-rich-editor__toolbar-btn" title="Couleur de fond" aria-label="Couleur de fond">
-            <i class="ri-paint-fill" aria-hidden="true"></i>
+            <BjSvgIcon name="paintFill" />
           </button>
           <input type="color" @input="setBgColor" value="#ffff00" aria-label="Choisir la couleur de fond">
         </div>
@@ -316,10 +317,10 @@ onMounted(() => {
 
       <div class="bj-rich-editor__toolbar-group" v-if="has('undo') || has('redo')">
         <button v-if="has('undo')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('undo')" title="Annuler" aria-label="Annuler">
-          <i class="ri-arrow-go-back-line" aria-hidden="true"></i>
+          <BjSvgIcon name="undo" />
         </button>
         <button v-if="has('redo')" type="button" class="bj-rich-editor__toolbar-btn" @click="exec('redo')" title="Rétablir" aria-label="Rétablir">
-          <i class="ri-arrow-go-forward-line" aria-hidden="true"></i>
+          <BjSvgIcon name="redo" />
         </button>
       </div>
     </div>

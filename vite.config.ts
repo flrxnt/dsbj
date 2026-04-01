@@ -30,6 +30,7 @@ export default defineConfig({
     cssFileName: 'dsbj',
     outDir: 'dist',
     rollupOptions: {
+      external: [],
       output: {
         assetFileNames: '[name][extname]',
       },

@@ -1,5 +1,6 @@
 import { useEffect, useState, type ComponentPropsWithoutRef } from 'react'
 import { createPortal } from 'react-dom'
+import { BjSvgIcon } from '../icons'
 
 export type BjConsentService = {
   id: string
@@ -126,7 +127,9 @@ export function BjConsent({
         >
           <div className="bj-consent-banner__body">
             <div className="bj-consent-banner__header">
-              <i className="bj-consent-banner__icon ri-shield-check-line" aria-hidden="true" />
+              <span className="bj-consent-banner__icon">
+                <BjSvgIcon name="shieldCheckLine" />
+              </span>
               <p className="bj-consent-banner__title">{title}</p>
             </div>
             <p className="bj-consent-banner__text">{text}</p>

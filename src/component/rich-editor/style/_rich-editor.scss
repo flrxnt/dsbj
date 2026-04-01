@@ -56,6 +56,13 @@
   cursor: pointer;
   transition: all var(--bj-duration-fast) var(--bj-easing);
 
+  > svg {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
   &:hover {
     background-color: var(--bj-action-low);
   }

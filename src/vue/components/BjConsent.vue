@@ -14,6 +14,7 @@ export interface BjConsentProps {
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const props = withDefaults(defineProps<BjConsentProps>(), {
   title: 'Gestion des cookies',
@@ -74,7 +75,7 @@ function toggleService(id: string) {
   >
     <div class="bj-consent-banner__body">
       <div class="bj-consent-banner__header">
-        <i class="bj-consent-banner__icon ri-shield-check-line" aria-hidden="true" />
+        <span class="bj-consent-banner__icon"><BjSvgIcon name="shieldCheckLine" /></span>
         <p class="bj-consent-banner__title">{{ title }}</p>
       </div>
       <p class="bj-consent-banner__text">{{ text }}</p>

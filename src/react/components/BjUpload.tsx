@@ -1,6 +1,8 @@
 import { useId, useRef, useState } from 'react'
 import type * as React from 'react'
 
+import { BjSvgIcon, remixClassToIconName } from '../icons'
+
 export interface BjUploadProps {
   label?: string
   hint?: string
@@ -9,6 +11,7 @@ export interface BjUploadProps {
   error?: boolean
   message?: string
   text?: string
+  /** BjSvgIcon name (e.g. `upload2Line`) or legacy `ri-*` class token */
   icon?: string
   onChange?: (files: FileList | null) => void
   className?: string
@@ -22,7 +25,7 @@ export function BjUpload({
   error,
   message,
   text = 'Glissez un fichier ou cliquez pour parcourir',
-  icon = 'ri-upload-2-line',
+  icon = 'upload2Line',
   onChange,
   className,
 }: BjUploadProps) {
@@ -82,7 +85,9 @@ export function BjUpload({
         onDragLeave={() => setDragging(false)}
         onDrop={onDrop}
       >
-        <i className={['bj-upload__icon', icon].filter(Boolean).join(' ')} aria-hidden />
+        <span className="bj-upload__icon">
+          <BjSvgIcon name={remixClassToIconName(icon)} />
+        </span>
         <span className="bj-upload__text">{text}</span>
         <input
           ref={fileInputRef}
@@ -98,10 +103,10 @@ export function BjUpload({
       ) : null}
       {files.map((file, i) => (
         <div key={`${file.name}-${i}`} className="bj-upload__file">
-          <i className="ri-file-line" aria-hidden />
+          <BjSvgIcon name="fileLine" />
           {file.name}
           <button type="button" className="bj-upload__file-remove" onClick={() => removeFile(i)} aria-label="Retirer">
-            <i className="ri-close-line" aria-hidden />
+            <BjSvgIcon name="closeLine" />
           </button>
         </div>
       ))}

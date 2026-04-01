@@ -1,4 +1,5 @@
 import type { ToastItem, ToastPosition, ToastType } from '../hooks/useToast'
+import { BjSvgIcon } from '../icons'
 
 export interface BjToastProps {
   position?: ToastPosition
@@ -8,10 +9,10 @@ export interface BjToastProps {
 }
 
 const TOAST_ICONS: Record<ToastType, string> = {
-  info: 'ri-information-line',
-  success: 'ri-check-line',
-  warning: 'ri-alert-line',
-  error: 'ri-close-circle-line',
+  info: 'informationLine',
+  success: 'checkLine',
+  warning: 'alertLine',
+  error: 'closeCircleLine',
 }
 
 export function BjToast({ position = 'top-right', toasts, onRemove, className }: BjToastProps) {
@@ -36,14 +37,14 @@ export function BjToast({ position = 'top-right', toasts, onRemove, className }:
           role="alert"
         >
           <span className="bj-toast__icon" aria-hidden="true">
-            <i className={TOAST_ICONS[t.type]} />
+            <BjSvgIcon name={TOAST_ICONS[t.type]} />
           </span>
           <div className="bj-toast__body">
             {t.title ? <p className="bj-toast__title">{t.title}</p> : null}
             <p className="bj-toast__text">{t.text}</p>
           </div>
           <button type="button" className="bj-toast__close" aria-label="Fermer" onClick={() => onRemove(t.id)}>
-            <i className="ri-close-line" aria-hidden="true" />
+            <BjSvgIcon name="closeLine" />
           </button>
           {t.duration > 0 ? (
             <div

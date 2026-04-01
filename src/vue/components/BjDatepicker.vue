@@ -14,6 +14,7 @@ export interface BjDatepickerProps {
 
 <script setup lang="ts">
 import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const DAYS_SHORT = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
 const MONTHS = [
@@ -258,7 +259,7 @@ function dayClasses(cell: DayCell) {
         aria-label="Ouvrir le calendrier"
         @click="toggle"
       >
-        <i class="ri-calendar-line" aria-hidden="true" />
+        <BjSvgIcon name="calendarLine" />
       </button>
     </div>
     <div
@@ -273,13 +274,13 @@ function dayClasses(cell: DayCell) {
       <template v-if="currentView === 'days'">
         <div class="bj-datepicker__nav">
           <button type="button" class="bj-datepicker__nav-btn" aria-label="Mois précédent" @click="prevMonth">
-            <i class="ri-arrow-left-s-line" aria-hidden="true" />
+            <BjSvgIcon name="arrowLeftSLine" />
           </button>
           <button type="button" class="bj-datepicker__nav-title" @click="showMonthView">
             {{ MONTHS[viewMonth] }} {{ viewYear }}
           </button>
           <button type="button" class="bj-datepicker__nav-btn" aria-label="Mois suivant" @click="nextMonth">
-            <i class="ri-arrow-right-s-line" aria-hidden="true" />
+            <BjSvgIcon name="arrowRightSLine" />
           </button>
         </div>
         <div class="bj-datepicker__weekdays">
@@ -304,13 +305,13 @@ function dayClasses(cell: DayCell) {
       <template v-if="currentView === 'months'">
         <div class="bj-datepicker__nav">
           <button type="button" class="bj-datepicker__nav-btn" aria-label="Année précédente" @click="prevYear">
-            <i class="ri-arrow-left-s-line" aria-hidden="true" />
+            <BjSvgIcon name="arrowLeftSLine" />
           </button>
           <button type="button" class="bj-datepicker__nav-title" @click="showYearView">
             {{ viewYear }}
           </button>
           <button type="button" class="bj-datepicker__nav-btn" aria-label="Année suivante" @click="nextYear">
-            <i class="ri-arrow-right-s-line" aria-hidden="true" />
+            <BjSvgIcon name="arrowRightSLine" />
           </button>
         </div>
         <div class="bj-datepicker__months-grid">
@@ -334,13 +335,13 @@ function dayClasses(cell: DayCell) {
       <template v-if="currentView === 'years'">
         <div class="bj-datepicker__nav">
           <button type="button" class="bj-datepicker__nav-btn" aria-label="Décennie précédente" @click="prevDecade">
-            <i class="ri-arrow-left-s-line" aria-hidden="true" />
+            <BjSvgIcon name="arrowLeftSLine" />
           </button>
           <span class="bj-datepicker__nav-title" style="cursor: default;">
             {{ viewDecade }}–{{ viewDecade + 9 }}
           </span>
           <button type="button" class="bj-datepicker__nav-btn" aria-label="Décennie suivante" @click="nextDecade">
-            <i class="ri-arrow-right-s-line" aria-hidden="true" />
+            <BjSvgIcon name="arrowRightSLine" />
           </button>
         </div>
         <div class="bj-datepicker__years-grid">

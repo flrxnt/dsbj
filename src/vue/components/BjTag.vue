@@ -9,6 +9,7 @@ export interface BjTagProps {
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const props = withDefaults(defineProps<BjTagProps>(), {
   variant: 'default',
@@ -36,7 +37,7 @@ const classes = computed(() => [
       aria-label="Retirer"
       @click.stop="emit('dismiss')"
     >
-      <i class="ri-close-line" aria-hidden="true" />
+      <BjSvgIcon name="closeLine" />
     </button>
   </component>
 </template>

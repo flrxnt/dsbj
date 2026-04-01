@@ -10,6 +10,7 @@ export interface BjDrawerProps {
 
 <script setup lang="ts">
 import { computed, ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { BjSvgIcon } from '../icons'
 
 const props = withDefaults(defineProps<BjDrawerProps>(), {
   modelValue: false,
@@ -86,7 +87,7 @@ defineExpose({ open, close })
           <h2 :id="titleId" class="bj-drawer__title">{{ title }}</h2>
         </slot>
         <button type="button" class="bj-drawer__close" aria-label="Fermer" @click="close">
-          <i class="ri-close-line" aria-hidden="true" />
+          <BjSvgIcon name="closeLine" />
         </button>
       </header>
       <div class="bj-drawer__body">

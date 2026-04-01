@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import type * as React from 'react'
+import { BjSvgIcon } from '../icons'
 
 export interface ComboboxOption {
   value: string
@@ -163,7 +164,9 @@ export function BjCombobox({
           onKeyDown={onKeyDown}
           {...rest}
         />
-        <i className="ri-arrow-down-s-line bj-combobox__icon" aria-hidden="true" />
+        <span className="bj-combobox__icon">
+          <BjSvgIcon name="arrowDownSLine" />
+        </span>
       </div>
 
       {isOpen && filtered.length > 0 ? (
