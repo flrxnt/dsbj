@@ -45,6 +45,8 @@ export { BjTreeview } from './components/BjTreeview'
 export { BjChatBubble } from './components/BjChatBubble'
 export { BjDrawer } from './components/BjDrawer'
 export { BjDraggable } from './components/BjDraggable'
+export { BjCarousel } from './components/BjCarousel'
+export { BjTour } from './components/BjTour'
 
 // Navigation
 export { BjHeader } from './components/BjHeader'

@@ -7,7 +7,7 @@ const { t } = useI18n({
     fr: {
       title: 'Composants',
       desc:
-        'Bibliothèque de 51 composants HTML/CSS du Design Système du Bénin : navigation, formulaires, contenu, éléments interactifs et blocs réglementaires. Chaque fiche détaille les variantes, les classes et les bonnes pratiques d’accessibilité.',
+        'Bibliothèque de 53 composants HTML/CSS du Design Système du Bénin : navigation, formulaires, contenu, éléments interactifs et blocs réglementaires. Chaque fiche détaille les variantes, les classes et les bonnes pratiques d’accessibilité.',
       'sec-nav': 'Navigation',
       'sec-base': 'Base',
       'sec-form': 'Formulaires',
@@ -119,6 +119,10 @@ const { t } = useI18n({
       'card-drawer-desc': 'Panneau latéral glissant depuis le bord de l\'écran.',
       'card-draggable-title': 'Glisser-déposer',
       'card-draggable-desc': 'Liste réordonnable par glisser-déposer.',
+      'card-carousel-title': 'Carrousel',
+      'card-carousel-desc': 'Défilement de contenu avec navigation, indicateurs et lecture automatique.',
+      'card-tour-title': 'Visite guidée',
+      'card-tour-desc': 'Présentation pas à pas des fonctionnalités de l\'application.',
       'card-consent-title': 'Consentement',
       'card-consent-desc':
         'Bandeau cookies et choix utilisateur.',
@@ -133,7 +137,7 @@ const { t } = useI18n({
     en: {
       title: 'Components',
       desc:
-        'A library of 51 HTML/CSS components from the Benin Design System: navigation, forms, content, interactive patterns and regulatory blocks. Each page covers variants, classes and accessibility guidance.',
+        'A library of 53 HTML/CSS components from the Benin Design System: navigation, forms, content, interactive patterns and regulatory blocks. Each page covers variants, classes and accessibility guidance.',
       'sec-nav': 'Navigation',
       'sec-base': 'Foundations',
       'sec-form': 'Forms',
@@ -232,6 +236,10 @@ const { t } = useI18n({
       'card-drawer-desc': 'Sliding side panel from the screen edge.',
       'card-draggable-title': 'Draggable',
       'card-draggable-desc': 'Drag-and-drop reorderable list.',
+      'card-carousel-title': 'Carousel',
+      'card-carousel-desc': 'Content slider with navigation, indicators and autoplay.',
+      'card-tour-title': 'Guided Tour',
+      'card-tour-desc': 'Step-by-step application feature walkthrough.',
       'card-consent-title': 'Consent',
       'card-consent-desc': 'Cookie banner and user choices.',
       'sec-dashboard': 'Dashboard',
@@ -624,6 +632,18 @@ const { t } = useI18n({
       icon="ri-drag-move-2-line"
       :title="t('card-draggable-title')"
       :description="t('card-draggable-desc')"
+    />
+    <DocsCard
+      to="/composants/carousel"
+      icon="ri-slideshow-3-line"
+      :title="t('card-carousel-title')"
+      :description="t('card-carousel-desc')"
+    />
+    <DocsCard
+      to="/composants/tour"
+      icon="ri-route-line"
+      :title="t('card-tour-title')"
+      :description="t('card-tour-desc')"
     />
   </div>
 

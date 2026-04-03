@@ -919,4 +919,42 @@ export const COMPONENTS: ComponentData[] = [
   </div>
 </div>`,
   },
+  {
+    name: 'Carrousel',
+    slug: 'carousel',
+    category: 'Interactifs',
+    description: 'Carrousel de contenu avec navigation, indicateurs et lecture automatique. Supporte le balayage tactile et le clavier.',
+    classes: ['bj-carousel', 'bj-carousel__track', 'bj-carousel__slide', 'bj-carousel__nav', 'bj-carousel__nav--prev', 'bj-carousel__nav--next', 'bj-carousel__indicators', 'bj-carousel__dot', 'bj-carousel__dot--active', 'bj-carousel__caption', 'bj-carousel--auto'],
+    aria: ['role="region"', 'aria-roledescription="carousel"', 'role="group"', 'aria-roledescription="slide"', 'aria-label', 'aria-hidden'],
+    jsHooks: ['data-bj-carousel', 'data-bj-carousel-prev', 'data-bj-carousel-next', 'data-bj-carousel-auto', 'data-bj-carousel-interval'],
+    markup: `<div class="bj-carousel" data-bj-carousel role="region" aria-roledescription="carousel" aria-label="Carrousel" tabindex="0">
+  <div class="bj-carousel__track">
+    <div class="bj-carousel__slide" role="group" aria-roledescription="slide" aria-label="Diapositive 1 sur 3">
+      <img src="/img/slide-1.jpg" alt="Image 1" />
+      <div class="bj-carousel__caption">Première diapositive</div>
+    </div>
+    <div class="bj-carousel__slide" role="group" aria-roledescription="slide" aria-label="Diapositive 2 sur 3" aria-hidden="true">
+      <img src="/img/slide-2.jpg" alt="Image 2" />
+    </div>
+  </div>
+  <button class="bj-carousel__nav bj-carousel__nav--prev" data-bj-carousel-prev aria-label="Diapositive précédente"><i class="ri-arrow-left-s-line" aria-hidden="true"></i></button>
+  <button class="bj-carousel__nav bj-carousel__nav--next" data-bj-carousel-next aria-label="Diapositive suivante"><i class="ri-arrow-right-s-line" aria-hidden="true"></i></button>
+  <div class="bj-carousel__indicators">
+    <button class="bj-carousel__dot bj-carousel__dot--active" aria-label="Aller à la diapositive 1"></button>
+    <button class="bj-carousel__dot" aria-label="Aller à la diapositive 2"></button>
+  </div>
+</div>`,
+  },
+  {
+    name: 'Visite guidée',
+    slug: 'tour',
+    category: 'Interactifs',
+    description: 'Visite guidée pas à pas pour présenter une application. Met en surbrillance les éléments cibles avec un popover explicatif.',
+    classes: ['bj-tour-overlay', 'bj-tour-overlay__backdrop', 'bj-tour-highlight', 'bj-tour-popover', 'bj-tour-popover__header', 'bj-tour-popover__title', 'bj-tour-popover__step', 'bj-tour-popover__body', 'bj-tour-popover__footer', 'bj-tour-popover__progress', 'bj-tour-popover__progress-dot', 'bj-tour-popover__progress-dot--active', 'bj-tour-popover__progress-dot--done', 'bj-tour-popover__actions', 'bj-tour-popover__close'],
+    aria: ['role="dialog"', 'aria-label="Visite guidée"'],
+    jsHooks: ['data-bj-tour', 'data-bj-tour-steps', 'data-bj-tour-close', 'data-bj-tour-prev', 'data-bj-tour-next'],
+    markup: `<button class="bj-btn" data-bj-tour data-bj-tour-steps='[{"target":"#el-1","title":"Bienvenue","content":"Première étape.","placement":"bottom"},{"target":"#el-2","title":"Suite","content":"Deuxième étape.","placement":"right"}]'>
+  Démarrer la visite
+</button>`,
+  },
 ];

@@ -81,6 +81,8 @@ export const searchIndex: SearchEntry[] = [
   { label: 'Bulle de chat', path: '/composants/chat-bubble', section: 'Composants', keywords: ['chat-bubble', 'bulle', 'message', 'conversation', 'bj-chat-bubble'] },
   { label: 'Tiroir', path: '/composants/drawer', section: 'Composants', keywords: ['drawer', 'tiroir', 'panneau', 'latéral', 'sidebar', 'bj-drawer'] },
   { label: 'Glisser-déposer', path: '/composants/draggable', section: 'Composants', keywords: ['draggable', 'glisser', 'déposer', 'réordonner', 'drag', 'drop', 'reorder', 'bj-draggable'] },
+  { label: 'Carrousel', path: '/composants/carousel', section: 'Composants', keywords: ['carousel', 'carrousel', 'slider', 'diaporama', 'diapositive', 'autoplay', 'bj-carousel'] },
+  { label: 'Visite guidée', path: '/composants/tour', section: 'Composants', keywords: ['tour', 'visite', 'guidée', 'onboarding', 'étapes', 'walkthrough', 'bj-tour'] },
 
   // Composants - Éditeur riche
   { label: 'Éditeur riche', path: '/composants/rich-editor', section: 'Composants', keywords: ['rich-editor', 'wysiwyg', 'éditeur', 'contenteditable', 'formatage', 'bj-rich-editor'] },
@@ -119,6 +121,8 @@ export const searchIndex: SearchEntry[] = [
   { label: 'BjChatBubble', path: '/integrations/vue/chat-bubble', section: 'Vue', keywords: ['chat-bubble', 'vue', 'BjChatBubble'] },
   { label: 'BjDrawer', path: '/integrations/vue/drawer', section: 'Vue', keywords: ['drawer', 'tiroir', 'vue', 'BjDrawer'] },
   { label: 'BjDraggable', path: '/integrations/vue/draggable', section: 'Vue', keywords: ['draggable', 'glisser', 'déposer', 'vue', 'BjDraggable'] },
+  { label: 'BjCarousel', path: '/integrations/vue/carousel', section: 'Vue', keywords: ['carousel', 'carrousel', 'slider', 'vue', 'BjCarousel'] },
+  { label: 'BjTour', path: '/integrations/vue/tour', section: 'Vue', keywords: ['tour', 'visite', 'guidée', 'onboarding', 'vue', 'BjTour'] },
   { label: 'BjContent', path: '/integrations/vue/content', section: 'Vue', keywords: ['content', 'éditorial', 'vue', 'BjContent'] },
   { label: 'BjConsent', path: '/integrations/vue/consent', section: 'Vue', keywords: ['consent', 'cookies', 'vue', 'BjConsent'] },
   { label: 'BjCard', path: '/integrations/vue/card', section: 'Vue', keywords: ['card', 'carte', 'vue', 'BjCard'] },
@@ -174,6 +178,8 @@ export const searchIndex: SearchEntry[] = [
   { label: 'BjChatBubble', path: '/integrations/react/chat-bubble', section: 'React', keywords: ['chat-bubble', 'react', 'BjChatBubble'] },
   { label: 'BjDrawer', path: '/integrations/react/drawer', section: 'React', keywords: ['drawer', 'tiroir', 'react', 'BjDrawer'] },
   { label: 'BjDraggable', path: '/integrations/react/draggable', section: 'React', keywords: ['draggable', 'glisser', 'déposer', 'react', 'BjDraggable'] },
+  { label: 'BjCarousel', path: '/integrations/react/carousel', section: 'React', keywords: ['carousel', 'carrousel', 'slider', 'react', 'BjCarousel'] },
+  { label: 'BjTour', path: '/integrations/react/tour', section: 'React', keywords: ['tour', 'visite', 'guidée', 'onboarding', 'react', 'BjTour'] },
   { label: 'BjConsent', path: '/integrations/react/consent', section: 'React', keywords: ['consent', 'cookies', 'react', 'BjConsent'] },
   { label: 'BjAlert', path: '/integrations/react/alert', section: 'React', keywords: ['alert', 'react', 'BjAlert'] },
   { label: 'BjCard', path: '/integrations/react/card', section: 'React', keywords: ['card', 'carte', 'react', 'BjCard'] },

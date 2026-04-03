@@ -352,6 +352,16 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('./pages/composants/DraggablePage.vue'),
     meta: { layout: 'docs', section: 'composants', titleKey: 'route.draggable', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.draggable' }] },
   },
+  {
+    path: '/composants/carousel',
+    component: () => import('./pages/composants/CarouselPage.vue'),
+    meta: { layout: 'docs', section: 'composants', titleKey: 'route.carousel', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.carousel' }] },
+  },
+  {
+    path: '/composants/tour',
+    component: () => import('./pages/composants/TourPage.vue'),
+    meta: { layout: 'docs', section: 'composants', titleKey: 'route.tour', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.tour' }] },
+  },
 
   // Intégrations
   {
@@ -630,6 +640,16 @@ export const routes: RouteRecordRaw[] = [
     meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-draggable', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.draggable' }] },
   },
   {
+    path: '/integrations/vue/carousel',
+    component: () => import('./pages/integrations/vue/CarouselPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-carousel', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.carousel' }] },
+  },
+  {
+    path: '/integrations/vue/tour',
+    component: () => import('./pages/integrations/vue/TourPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-tour', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.tour' }] },
+  },
+  {
     path: '/integrations/react',
     component: () => import('./pages/integrations/react/IndexPage.vue'),
     meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.integrations-react', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react' }] },
@@ -898,6 +918,16 @@ export const routes: RouteRecordRaw[] = [
     path: '/integrations/react/draggable',
     component: () => import('./pages/integrations/react/DraggablePage.vue'),
     meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-draggable', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.draggable' }] },
+  },
+  {
+    path: '/integrations/react/carousel',
+    component: () => import('./pages/integrations/react/CarouselPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-carousel', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.carousel' }] },
+  },
+  {
+    path: '/integrations/react/tour',
+    component: () => import('./pages/integrations/react/TourPage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-tour', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.tour' }] },
   },
 
   // Showcases
