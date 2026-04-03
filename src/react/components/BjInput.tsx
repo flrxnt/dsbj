@@ -1,10 +1,12 @@
 import { useId, type ChangeEventHandler } from 'react'
 import type * as React from 'react'
 
+export type BjInputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search' | 'date' | 'time' | 'datetime-local'
+
 export interface BjInputProps
   extends Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
-    'size' | 'value' | 'defaultValue' | 'onChange' | 'id'
+    'size' | 'value' | 'defaultValue' | 'onChange' | 'id' | 'type'
   > {
   value?: string
   onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
@@ -17,6 +19,8 @@ export interface BjInputProps
   rows?: number
   icon?: string
   id?: string
+  type?: BjInputType
+  required?: boolean
 }
 
 export function BjInput({
@@ -35,6 +39,7 @@ export function BjInput({
   icon,
   id: idProp,
   className,
+  required,
   ...rest
 }: BjInputProps) {
   const uid = useId()
@@ -56,6 +61,8 @@ export function BjInput({
     value,
     placeholder,
     disabled,
+    required: required || undefined,
+    'aria-required': required || undefined,
     'aria-describedby': describedBy,
     'aria-invalid': state === 'error' ? true : undefined,
     onChange,
@@ -76,6 +83,7 @@ export function BjInput({
       {label ? (
         <label className="bj-label" htmlFor={inputId}>
           {label}
+          {required ? <span aria-hidden="true"> *</span> : null}
         </label>
       ) : null}
       {hint ? (
@@ -87,7 +95,7 @@ export function BjInput({
         <textarea rows={rows} {...(shared as React.TextareaHTMLAttributes<HTMLTextAreaElement>)} />
       ) : icon ? (
         <div className="bj-input-wrap">
-          <i className={icon} aria-hidden />
+          <i className={icon} aria-hidden="true" />
           <input type={type} {...shared} />
         </div>
       ) : (

@@ -73,6 +73,7 @@ onBeforeUnmount(() => {
       :aria-label="`Voir l'image ${i + 1}`"
       @click="openLightbox(i)"
       @keydown.enter="openLightbox(i)"
+      @keydown.space.prevent="openLightbox(i)"
     >
       <img class="bj-gallery__img" :src="img.thumbnail || img.src" :alt="img.alt || ''" />
       <span v-if="img.caption" class="bj-gallery__caption">{{ img.caption }}</span>
@@ -85,6 +86,7 @@ onBeforeUnmount(() => {
       class="bj-lightbox"
       data-bj-expanded
       role="dialog"
+      aria-modal="true"
       aria-label="Visionneuse d'images"
       style="display: flex"
       @click.self="closeLightbox"

@@ -4,6 +4,8 @@ export interface BjNoticeProps {
   closable?: boolean
   title?: string
   icon?: string
+  closeLabel?: string
+  role?: 'alert' | 'status'
 }
 </script>
 
@@ -13,6 +15,7 @@ import { BjSvgIcon, iconPaths } from '../icons'
 
 const props = withDefaults(defineProps<BjNoticeProps>(), {
   variant: 'default',
+  closeLabel: 'Fermer',
 })
 
 const emit = defineEmits<{ close: [] }>()
@@ -42,6 +45,12 @@ const noticeIconExtraClass = computed(() => {
     .join(' ')
 })
 
+const effectiveRole = computed(() => {
+  if (props.role) return props.role
+  if (props.variant === 'alert' || props.variant === 'warning') return 'alert' as const
+  return 'status' as const
+})
+
 const classes = computed(() => [
   'bj-notice',
   props.variant !== 'default' && `bj-notice--${props.variant}`,
@@ -54,11 +63,12 @@ function close() {
 </script>
 
 <template>
-  <div v-if="visible" :class="classes" v-bind="$attrs">
+  <div v-if="visible" :class="classes" :role="effectiveRole" v-bind="$attrs">
     <span
       v-if="icon && noticeIconSvgName"
       class="bj-notice__icon"
       :class="noticeIconExtraClass"
+      aria-hidden="true"
     >
       <BjSvgIcon :name="noticeIconSvgName" />
     </span>
@@ -71,7 +81,7 @@ function close() {
       v-if="closable"
       type="button"
       class="bj-notice__close"
-      aria-label="Fermer"
+      :aria-label="closeLabel"
       @click="close"
     >
       <BjSvgIcon name="closeLine" />

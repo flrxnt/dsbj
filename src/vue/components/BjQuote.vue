@@ -5,6 +5,7 @@ export interface BjQuoteProps {
   author?: string
   source?: string
   image?: string
+  cite?: string
 }
 </script>
 
@@ -22,12 +23,12 @@ const classes = computed(() => [
 <template>
   <figure :class="classes" v-bind="$attrs">
     <img v-if="image" class="bj-quote__image" :src="image" alt="" />
-    <blockquote class="bj-quote__text">
+    <blockquote class="bj-quote__text" :cite="cite || undefined">
       <slot>{{ text }}</slot>
     </blockquote>
     <figcaption v-if="author || source">
       <span v-if="author" class="bj-quote__author">{{ author }}</span>
-      <span v-if="source" class="bj-quote__source">{{ source }}</span>
+      <cite v-if="source" class="bj-quote__source">{{ source }}</cite>
     </figcaption>
   </figure>
 </template>

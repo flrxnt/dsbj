@@ -11,7 +11,7 @@ const { t } = useI18n({
   messages: {
     fr: {
       title: 'Fenêtre modale',
-      desc: 'Dialogue modal avec overlay, fermeture Échap et piège de focus.',
+      desc: 'Dialogue modal avec overlay, fermeture Échap, piège de focus et restauration du focus sur l’élément déclencheur.',
       'section-size-default': 'Taille par défaut (medium)',
       'size-default-intro':
         'Sans modificateur de largeur, la boîte suit la largeur standard du design system.',
@@ -26,6 +26,9 @@ const { t } = useI18n({
         'Occupe presque toute la hauteur utile (visionneuse, assistant, contenu dense).',
       'section-variants': 'Attributs et état ouvert',
       'section-classes-css': 'Classes CSS',
+      'section-react': 'React (BjModal)',
+      'react-intro':
+        "Le paquet <code>{'@'}flrxnt/dsbj/react</code> exporte <code>BjModal</code> : états <code>open</code> et <code>onClose</code>, <code>title</code>, <code>size</code>, <code>footer</code>, <code>closeLabel</code> pour le libellé accessible du bouton fermer (icône seule), avec les mêmes comportements que le script HTML (piège de focus, restauration du focus, <code>role=\"dialog\"</code>, <code>aria-modal=\"true\"</code>, <code>aria-labelledby=\"id-title\"</code>).",
       'section-a11y': 'Accessibilité',
       'variants-on': 'sur le',
       'variants-expanded':
@@ -49,14 +52,14 @@ const { t } = useI18n({
       'prop-data-close': 'Sur un contrôle qui ferme : overlay, bouton, liens du pied.',
       'prop-data-expanded':
         'État ouvert : posé par le script sur le conteneur bj-modal. Sans JS, bj-modal--opened joue le même rôle pour l’affichage.',
-      'a11y-1':
-        'aria-labelledby vers le titre ; focus piégé dans la modale ouverte ; Échap ferme lorsque le script est chargé.',
+      'a11y-note':
+        '<p>Le conteneur doit exposer <code>role="dialog"</code>, <code>aria-modal="true"</code> et <code>aria-labelledby</code> vers l’identifiant du titre de la modale, afin d’associer un nom accessible au dialogue.</p><p>Avec le script DSBJ ou les composants <code>BjModal</code> Vue/React, le focus est <strong>piégé</strong> dans la modale ouverte&nbsp;: <code>Tab</code> et <code>Maj+Tab</code> parcourent uniquement les éléments focalisables à l’intérieur du dialogue, sans retourner à la page de fond. À la fermeture, le focus est <strong>restauré</strong> sur l’élément qui a ouvert la modale (sélecteur <code>data-bj-modal-open</code> en HTML pur).</p><p>La touche <code>Échap</code> ferme la modale lorsque le comportement clavier est actif. Pour le bouton de fermeture à icône seule, fournissez un libellé accessible (<code>aria-label</code> en HTML)&nbsp;; les composants Vue et React exposent la prop <code>closeLabel</code> pour l’internationalisation.</p><p class="bj-text-sm" style="margin-top: var(--bj-spacing-2v)"><strong>Raccourcis clavier</strong></p><ul class="bj-text-sm" style="margin: var(--bj-spacing-1v) 0 0; padding-left: 1.25rem"><li><code>Tab</code>&nbsp;: élément focalisable suivant dans la modale.</li><li><code>Maj+Tab</code>&nbsp;: élément focalisable précédent&nbsp;; le cycle reste dans le dialogue.</li><li><code>Échap</code>&nbsp;: fermeture (script DSBJ ou composants).</li></ul>',
       'th-class-attr': 'Classe / attribut',
       'th-description': 'Description',
     },
     en: {
       title: 'Modal dialog',
-      desc: 'Modal dialog with overlay, Escape to close and focus trap.',
+      desc: 'Modal dialog with overlay, Escape to close, focus trap, and focus restoration to the opener.',
       'section-size-default': 'Default size (medium)',
       'size-default-intro':
         'Without a width modifier, the dialog uses the standard shell width from the design system.',
@@ -69,6 +72,9 @@ const { t } = useI18n({
         'Uses most of the viewport height (viewer flows, assistants, dense content).',
       'section-variants': 'Attributes and open state',
       'section-classes-css': 'CSS classes',
+      'section-react': 'React (BjModal)',
+      'react-intro':
+        'The <code>{"@"}flrxnt/dsbj/react</code> package exports <code>BjModal</code>.',
       'section-a11y': 'Accessibility',
       'variants-on': 'on the',
       'variants-expanded': 'The DSBJ script opens the modal by setting',
@@ -90,8 +96,8 @@ const { t } = useI18n({
       'prop-data-close': 'On controls that close: overlay, button, footer actions.',
       'prop-data-expanded':
         'Open state: set by the script on the bj-modal root. Without JS, bj-modal--opened matches the same visible state.',
-      'a11y-1':
-        'aria-labelledby pointing to the title; focus trapped while open; Escape closes when the script is loaded.',
+      'a11y-note':
+        '<p>Use <code>role="dialog"</code>, <code>aria-modal="true"</code>, and <code>aria-labelledby</code> pointing at the modal title id so assistive technologies get an accessible name for the dialog.</p><p>With the DSBJ script or the Vue/React <code>BjModal</code> components, focus is <strong>trapped</strong> while the modal is open: <code>Tab</code> and <code>Shift+Tab</code> move only among focusable elements inside the dialog. On close, focus is <strong>restored</strong> to the element that opened the modal (the <code>data-bj-modal-open</code> control in plain HTML).</p><p>The <code>Escape</code> key dismisses the dialog when keyboard handling is active. For the icon-only close button, provide an accessible name (<code>aria-label</code> in HTML); Vue and React components offer a <code>closeLabel</code> prop for i18n.</p><p class="bj-text-sm" style="margin-top: var(--bj-spacing-2v)"><strong>Keyboard shortcuts</strong></p><ul class="bj-text-sm" style="margin: var(--bj-spacing-1v) 0 0; padding-left: 1.25rem"><li><code>Tab</code>: move focus to the next focusable control inside the modal.</li><li><code>Shift+Tab</code>: move to the previous focusable control; focus stays within the dialog.</li><li><code>Escape</code>: close the modal (DSBJ script or components).</li></ul>',
       'th-class-attr': 'Class / attribute',
       'th-description': 'Description',
     },
@@ -121,6 +127,27 @@ const codeSizeLg = `<div class="bj-modal bj-modal--lg" id="ex-lg" role="dialog" 
 
 const codeSizeFull = `<div class="bj-modal bj-modal--full" id="ex-full" role="dialog" aria-modal="true" aria-labelledby="ex-full-t">…</div>`
 
+const codeReact = `import { useState } from 'react'
+import { BjModal } from '@flrxnt/dsbj/react'
+
+export function Example() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <button type="button" onClick={() => setOpen(true)}>Ouvrir</button>
+      <BjModal
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Confirmation"
+        closeLabel="Fermer"
+      >
+        <p>Contenu de la modale.</p>
+      </BjModal>
+    </>
+  )
+}`
+
 const propsTableHeaders = computed((): [string, string] => [
   t('th-class-attr'),
   t('th-description'),
@@ -147,18 +174,15 @@ const propsRows = computed(() => [
 
 <template>
   <h1 class="bj-h1" style="margin-top: var(--bj-spacing-4v)">
-    {{ t('title') }}
+    {{ t("title") }}
   </h1>
-  <p
-    class="bj-text-lg"
-    style="max-width: 44rem; color: var(--bj-text-alt)"
-  >
-    {{ t('desc') }}
+  <p class="bj-text-lg" style="max-width: 44rem; color: var(--bj-text-alt)">
+    {{ t("desc") }}
   </p>
 
   <DocsSection id="sec-taille-defaut" :title="t('section-size-default')">
     <p class="bj-text-md" style="color: var(--bj-text-alt); max-width: 44rem">
-      {{ t('size-default-intro') }}
+      {{ t("size-default-intro") }}
     </p>
     <DocsPreview>
       <button type="button" class="bj-btn" data-bj-modal-open="ex-modal">
@@ -171,11 +195,7 @@ const propsRows = computed(() => [
         aria-modal="true"
         aria-labelledby="ex-modal-t"
       >
-        <div
-          class="bj-modal__overlay"
-          data-bj-modal-close
-          tabindex="-1"
-        ></div>
+        <div class="bj-modal__overlay" data-bj-modal-close tabindex="-1"></div>
         <div class="bj-modal__dialog">
           <header class="bj-modal__header">
             <h2 class="bj-modal__title" id="ex-modal-t">Confirmation</h2>
@@ -212,7 +232,7 @@ const propsRows = computed(() => [
 
   <DocsSection id="sec-taille-sm" :title="t('section-size-sm')">
     <p class="bj-text-md" style="color: var(--bj-text-alt); max-width: 44rem">
-      {{ t('size-sm-intro') }}
+      {{ t("size-sm-intro") }}
     </p>
     <DocsPreview>
       <button type="button" class="bj-btn" data-bj-modal-open="doc-modal-sm">
@@ -239,9 +259,7 @@ const propsRows = computed(() => [
             </button>
           </header>
           <div class="bj-modal__body">
-            <p class="bj-text-sm">
-              Classe <code>bj-modal--sm</code>.
-            </p>
+            <p class="bj-text-sm">Classe <code>bj-modal--sm</code>.</p>
           </div>
           <footer class="bj-modal__footer">
             <button type="button" class="bj-btn" data-bj-modal-close>OK</button>
@@ -254,7 +272,7 @@ const propsRows = computed(() => [
 
   <DocsSection id="sec-taille-lg" :title="t('section-size-lg')">
     <p class="bj-text-md" style="color: var(--bj-text-alt); max-width: 44rem">
-      {{ t('size-lg-intro') }}
+      {{ t("size-lg-intro") }}
     </p>
     <DocsPreview>
       <button type="button" class="bj-btn" data-bj-modal-open="doc-modal-lg">
@@ -281,12 +299,12 @@ const propsRows = computed(() => [
             </button>
           </header>
           <div class="bj-modal__body">
-            <p class="bj-text-sm">
-              Classe <code>bj-modal--lg</code>.
-            </p>
+            <p class="bj-text-sm">Classe <code>bj-modal--lg</code>.</p>
           </div>
           <footer class="bj-modal__footer">
-            <button type="button" class="bj-btn" data-bj-modal-close>Fermer</button>
+            <button type="button" class="bj-btn" data-bj-modal-close>
+              Fermer
+            </button>
           </footer>
         </div>
       </div>
@@ -296,7 +314,7 @@ const propsRows = computed(() => [
 
   <DocsSection id="sec-taille-full" :title="t('section-size-full')">
     <p class="bj-text-md" style="color: var(--bj-text-alt); max-width: 44rem">
-      {{ t('size-full-intro') }}
+      {{ t("size-full-intro") }}
     </p>
     <DocsPreview>
       <button type="button" class="bj-btn" data-bj-modal-open="doc-modal-full">
@@ -323,12 +341,12 @@ const propsRows = computed(() => [
             </button>
           </header>
           <div class="bj-modal__body">
-            <p class="bj-text-sm">
-              Classe <code>bj-modal--full</code>.
-            </p>
+            <p class="bj-text-sm">Classe <code>bj-modal--full</code>.</p>
           </div>
           <footer class="bj-modal__footer">
-            <button type="button" class="bj-btn" data-bj-modal-close>Fermer</button>
+            <button type="button" class="bj-btn" data-bj-modal-close>
+              Fermer
+            </button>
           </footer>
         </div>
       </div>
@@ -339,12 +357,12 @@ const propsRows = computed(() => [
   <DocsSection id="sec-variantes" :title="t('section-variants')">
     <p class="bj-text-md" style="color: var(--bj-text-alt)">
       <code>data-bj-modal-open</code> / <code>data-bj-modal-close</code> ;
-      <code>bj-modal-open</code> {{ t('variants-on') }}
-      <code>body</code>. {{ t('variants-expanded') }}
+      <code>bj-modal-open</code> {{ t("variants-on") }} <code>body</code>.
+      {{ t("variants-expanded") }}
       <code>data-bj-expanded</code>
-      {{ t('variants-expanded-2') }}
-      <code>bj-modal</code>{{ t('variants-expanded-3') }}
-      <code>bj-modal--opened</code>{{ t('variants-expanded-4') }}
+      {{ t("variants-expanded-2") }}
+      <code>bj-modal</code>{{ t("variants-expanded-3") }}
+      <code>bj-modal--opened</code>{{ t("variants-expanded-4") }}
     </p>
   </DocsSection>
 
@@ -352,9 +370,23 @@ const propsRows = computed(() => [
     <DocsPropsTable :headers="propsTableHeaders" :rows="propsRows" />
   </DocsSection>
 
+  <DocsSection id="sec-react" :title="t('section-react')">
+    <p
+      class="bj-text-md"
+      style="
+        max-width: 44rem;
+        color: var(--bj-text-alt);
+        margin-bottom: var(--bj-spacing-3v);
+      "
+    >
+      <span v-html="t('react-intro')" />
+    </p>
+    <DocsCode :code="codeReact" lang="tsx" />
+  </DocsSection>
+
   <DocsSection id="sec-accessibilité" :title="t('section-a11y')">
     <DocsA11yNote>
-      {{ t('a11y-1') }}
+      <div v-html="t('a11y-note')" />
     </DocsA11yNote>
   </DocsSection>
 </template>

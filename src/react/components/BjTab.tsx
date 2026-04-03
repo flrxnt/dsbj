@@ -1,14 +1,17 @@
-import { useRef, type KeyboardEvent, type ReactNode } from 'react'
+import { useId, useRef, type KeyboardEvent, type ReactNode } from 'react'
 
 export interface BjTabProps {
   tabs: string[]
   activeIndex: number
   onChange: (index: number) => void
+  id?: string
   children?: ReactNode
   className?: string
 }
 
-export function BjTab({ tabs, activeIndex, onChange, children, className }: BjTabProps) {
+export function BjTab({ tabs, activeIndex, onChange, id: idProp, children, className }: BjTabProps) {
+  const autoId = useId()
+  const tabsId = idProp || `bj-tabs-${autoId.replace(/:/g, '')}`
   const listRef = useRef<HTMLDivElement>(null)
 
   function onKeydown(e: KeyboardEvent<HTMLButtonElement>, index: number) {
@@ -30,10 +33,12 @@ export function BjTab({ tabs, activeIndex, onChange, children, className }: BjTa
         {tabs.map((tab, i) => (
           <button
             key={i}
+            id={`${tabsId}-tab-${i}`}
             type="button"
             role="tab"
             className="bj-tabs__tab"
             aria-selected={activeIndex === i}
+            aria-controls={`${tabsId}-panel-${i}`}
             tabIndex={activeIndex === i ? 0 : -1}
             onClick={() => onChange(i)}
             onKeyDown={e => onKeydown(e, i)}

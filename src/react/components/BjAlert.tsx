@@ -1,11 +1,13 @@
 import { useState, type HTMLAttributes, type ReactNode } from 'react'
 import { BjSvgIcon } from '../icons'
 
-export interface BjAlertProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'title'> {
+export interface BjAlertProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'title' | 'role'> {
   variant?: 'info' | 'success' | 'warning' | 'error'
   size?: 'sm' | 'md'
   closable?: boolean
+  closeLabel?: string
   title?: string
+  role?: 'alert' | 'status'
   onClose?: () => void
   children?: ReactNode
 }
@@ -21,13 +23,17 @@ export function BjAlert({
   variant = 'info',
   size = 'md',
   closable,
+  closeLabel = 'Fermer',
   title,
+  role: roleProp,
   onClose,
   className,
   children,
   ...rest
 }: BjAlertProps) {
   const [visible, setVisible] = useState(true)
+
+  const effectiveRole = roleProp ?? (variant === 'error' || variant === 'warning' ? 'alert' : 'status')
 
   const cls = [
     'bj-alert',
@@ -46,8 +52,8 @@ export function BjAlert({
   if (!visible) return null
 
   return (
-    <div className={cls} role="alert" {...rest}>
-      <span className="bj-alert__icon">
+    <div className={cls} role={effectiveRole} {...rest}>
+      <span className="bj-alert__icon" aria-hidden="true">
         <BjSvgIcon name={iconMap[variant]} />
       </span>
       <div className="bj-alert__body">
@@ -55,7 +61,7 @@ export function BjAlert({
         <div className="bj-alert__text">{children}</div>
       </div>
       {closable ? (
-        <button type="button" className="bj-alert__close" aria-label="Fermer" onClick={close}>
+        <button type="button" className="bj-alert__close" aria-label={closeLabel} onClick={close}>
           <BjSvgIcon name="closeLine" />
         </button>
       ) : null}

@@ -11,6 +11,7 @@ export type BjStepperProps = {
   current: number
   vertical?: boolean
   detail?: string
+  ariaLabel?: string
   children?: ReactNode
 } & ComponentPropsWithoutRef<'div'>
 
@@ -20,6 +21,7 @@ export function BjStepper({
   current,
   vertical,
   detail,
+  ariaLabel = 'Étapes',
   children,
   className,
   ...rest
@@ -27,7 +29,7 @@ export function BjStepper({
   const cls = ['bj-stepper', vertical && 'bj-stepper--vertical', className].filter(Boolean).join(' ')
 
   return (
-    <div className={cls} role="navigation" aria-label="Étapes" {...rest}>
+    <div className={cls} role="navigation" aria-label={ariaLabel} {...rest}>
       <div className="bj-stepper__header">
         {title ? <h2 className="bj-stepper__title">{title}</h2> : null}
         <div className="bj-stepper__steps" role="list">

@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef, ReactNode } from 'react'
+import { createElement, type ComponentPropsWithoutRef, type ReactNode } from 'react'
 
 export type BjBannerProps = {
   size?: 'sm' | 'md' | 'lg'
@@ -8,8 +8,10 @@ export type BjBannerProps = {
   title?: string
   text?: string
   actions?: ReactNode
+  ariaLabel?: string
+  headingLevel?: 'h1' | 'h2' | 'h3'
   children?: ReactNode
-} & ComponentPropsWithoutRef<'div'>
+} & ComponentPropsWithoutRef<'section'>
 
 export function BjBanner({
   size = 'md',
@@ -19,6 +21,8 @@ export function BjBanner({
   title,
   text,
   actions,
+  ariaLabel,
+  headingLevel = 'h1',
   children,
   className,
   ...rest
@@ -34,7 +38,7 @@ export function BjBanner({
     .join(' ')
 
   return (
-    <div className={cls} {...rest}>
+    <section className={cls} aria-label={ariaLabel} {...rest}>
       {image ? (
         <div
           className="bj-banner__img"
@@ -45,12 +49,14 @@ export function BjBanner({
       ) : null}
       <div className="bj-banner__overlay" />
       <div className="bj-banner__body">
-        {title ? <h1 className="bj-banner__title">{title}</h1> : null}
+        {title
+          ? createElement(headingLevel, { className: 'bj-banner__title' }, title)
+          : null}
         {text ? <p className="bj-banner__text">{text}</p> : null}
         {actions ? <div className="bj-banner__actions">{actions}</div> : null}
         {children}
       </div>
-    </div>
+    </section>
   )
 }
 

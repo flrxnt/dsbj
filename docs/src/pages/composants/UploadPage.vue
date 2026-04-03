@@ -38,7 +38,7 @@ const { t } = useI18n({
       'prop-upload-multiple':
         'Attributs <code>accept</code> et <code>multiple</code> sur <code>input type="file"</code>.',
       'a11y-note':
-        'Reliez l’input à une étiquette (<code>aria-labelledby</code> ou <code>label</code>). Décrivez formats et tailles dans le texte visible.',
+        'Reliez l’input à une étiquette (<code>aria-labelledby</code> ou <code>label</code>). Décrivez formats et tailles dans le texte visible. La zone de dépôt est focalisable (<code>role="button"</code>, <code>tabindex="0"</code>)\u00a0: <kbd>Entrée</kbd> et <kbd>Espace</kbd> ouvrent le sélecteur de fichiers (la touche Espace est gérée sans faire défiler la page). Le libellé accessible de la zone provient de la prop <code>text</code> (<code>aria-label</code>)\u00a0; le texte d’aide et le message sous la zone sont liés par <code>aria-describedby</code>. Pour les boutons de retrait, la prop <code>removeLabel</code> sert à l’internationalisation de l’étiquette (<code>aria-label</code>, combinée au nom du fichier). Après retrait d’un fichier, la valeur de l’<code>input</code> est réinitialisée pour permettre de sélectionner à nouveau le même fichier.',
     },
     en: {
       title: 'File upload',
@@ -69,7 +69,7 @@ const { t } = useI18n({
       'prop-upload-multiple':
         '<code>accept</code> and <code>multiple</code> on the file <code>input</code>.',
       'a11y-note':
-        'Link the input to a label (<code>aria-labelledby</code> or <code>label</code>). Describe allowed formats and sizes in visible text.',
+        'Link the input to a label (<code>aria-labelledby</code> or <code>label</code>). Describe allowed formats and sizes in visible text. The drop zone is focusable (<code>role="button"</code>, <code>tabindex="0"</code>): <kbd>Enter</kbd> and <kbd>Space</kbd> open the file picker (Space is handled without scrolling the page). The accessible name of the zone comes from the <code>text</code> prop (<code>aria-label</code>); hint and status or error messages are associated via <code>aria-describedby</code>. Use the <code>removeLabel</code> prop to localize the remove buttons’ accessible label (<code>aria-label</code> combines the label with the file name). Removing a file resets the file input so the same file can be chosen again.',
     },
   },
 })

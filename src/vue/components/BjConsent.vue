@@ -95,7 +95,7 @@ function toggleService(id: string) {
   </div>
 
   <Teleport to="body">
-    <div v-if="managerOpen" class="bj-consent-manager" style="display: flex">
+    <div v-if="managerOpen" class="bj-consent-manager" role="dialog" aria-modal="true" aria-label="Préférences de cookies" style="display: flex">
       <div class="bj-consent-manager__dialog">
         <div class="bj-consent-manager__header">
           <h2 class="bj-consent-manager__title">Préférences de cookies</h2>

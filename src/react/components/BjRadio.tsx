@@ -8,6 +8,7 @@ export interface BjRadioProps
   value: string
   label?: string
   hint?: string
+  invalid?: boolean
   disabled?: boolean
   name?: string
   id?: string
@@ -20,6 +21,7 @@ export function BjRadio({
   value,
   label,
   hint,
+  invalid,
   disabled,
   name,
   id: idProp,
@@ -29,13 +31,27 @@ export function BjRadio({
 }: BjRadioProps) {
   const uid = useId()
   const radioId = idProp ?? uid
+  const hintId = `${radioId}-hint`
+
+  const describedBy = hint ? hintId : undefined
 
   return (
     <label className={['bj-radio', className].filter(Boolean).join(' ')} htmlFor={radioId}>
-      <input id={radioId} type="radio" checked={checked} value={value} disabled={disabled} name={name} onChange={onChange} {...rest} />
+      <input
+        id={radioId}
+        type="radio"
+        checked={checked}
+        value={value}
+        disabled={disabled}
+        name={name}
+        aria-invalid={invalid || undefined}
+        aria-describedby={describedBy}
+        onChange={onChange}
+        {...rest}
+      />
       <span className="bj-radio__label">
         {children ?? label}
-        {hint ? <span className="bj-radio__hint">{hint}</span> : null}
+        {hint ? <span id={hintId} className="bj-radio__hint">{hint}</span> : null}
       </span>
     </label>
   )

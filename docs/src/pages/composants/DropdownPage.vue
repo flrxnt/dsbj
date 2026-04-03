@@ -74,13 +74,27 @@ const { t } = useI18n({
       'prop-md': 'Largeur et confort par défaut (aucune classe de taille).',
       'prop-md-name': '(aucune classe de taille)',
       'prop-lg': 'Variante large (min-width et padding accrus).',
-      'a11y-1': 'Le trigger porte',
-      'a11y-2': 'et',
-      'a11y-3': '. Les items ont',
-      'a11y-4':
-        '. Navigation clavier : flèches Haut/Bas, Home/End,',
-      'a11y-5': 'pour fermer.',
-      'kbd-esc': 'Échap',
+      'section-keyboard': 'Navigation clavier',
+      'th-key': 'Touche',
+      'th-behavior': 'Comportement',
+      'a11y-p1': 'Le déclencheur est un véritable bouton avec ',
+      'a11y-p2': ', ',
+      'a11y-p3': ', ',
+      'a11y-p4': ' selon l’état ouvert ou fermé, et ',
+      'a11y-p5': ' pointant vers l’',
+      'a11y-p6': ' du menu lorsqu’il est ouvert. La liste a ',
+      'a11y-p7': ' ; chaque entrée interactive a ',
+      'a11y-p8': '. À l’ouverture, le focus est placé sur le premier élément du menu.',
+      'kb-trigger':
+        'Depuis le déclencheur lorsque le menu est fermé : ouvre le menu et place le focus sur le premier élément activable.',
+      'kb-menu-arrows':
+        'Dans le menu : déplace le focus vers l’élément suivant ou précédent (navigation cyclique).',
+      'kb-home-end': 'Place le focus sur le premier ou le dernier élément du menu.',
+      'kb-esc': 'Ferme le menu et renvoie le focus sur le déclencheur.',
+      'kb-tab':
+        'Ferme le menu ; le focus suit l’ordre de tabulation habituel (sans renvoi systématique sur le déclencheur).',
+      'kb-activate':
+        'Sur un élément du menu : déclenche l’action (comportement natif du bouton).',
       'code-vue': 'BjDropdown',
     },
     en: {
@@ -137,12 +151,27 @@ const { t } = useI18n({
       'prop-md': 'Default width and comfort (no size class).',
       'prop-md-name': '(no size class)',
       'prop-lg': 'Wide variant (larger min-width and padding).',
-      'a11y-1': 'The trigger has',
-      'a11y-2': 'and',
-      'a11y-3': '. Items use',
-      'a11y-4': '. Keyboard: Up/Down arrows, Home/End,',
-      'a11y-5': 'to close.',
-      'kbd-esc': 'Escape',
+      'section-keyboard': 'Keyboard navigation',
+      'th-key': 'Key',
+      'th-behavior': 'Behavior',
+      'a11y-p1': 'The trigger is a real button with ',
+      'a11y-p2': ', ',
+      'a11y-p3': ', ',
+      'a11y-p4': ' reflecting open or closed state, and ',
+      'a11y-p5': ' referencing the menu ',
+      'a11y-p6': ' when it is open. The list has ',
+      'a11y-p7': '; each interactive entry has ',
+      'a11y-p8': '. When the menu opens, focus moves to the first menu item.',
+      'kb-trigger':
+        'From the trigger while the menu is closed: opens the menu and moves focus to the first enabled item.',
+      'kb-menu-arrows':
+        'Inside the menu: moves focus to the next or previous item (wraps at the ends).',
+      'kb-home-end': 'Moves focus to the first or last menu item.',
+      'kb-esc': 'Closes the menu and returns focus to the trigger.',
+      'kb-tab':
+        'Closes the menu; focus follows the normal tab order (not always back to the trigger).',
+      'kb-activate':
+        'On a menu item: activates the action (native button behaviour).',
       'code-vue': 'BjDropdown',
     },
   },
@@ -182,6 +211,38 @@ const codeSizeLg = `<div class="bj-dropdown bj-dropdown--lg" data-bj-dropdown>�
 const propsTableHeaders = computed((): [string, string] => [
   t('th-class-attr'),
   t('th-description'),
+])
+
+const keyboardTableHeaders = computed((): [string, string] => [
+  t('th-key'),
+  t('th-behavior'),
+])
+
+const keyboardRows = computed(() => [
+  {
+    name: 'ArrowDown, ArrowUp, Enter, Space',
+    description: t('kb-trigger'),
+  },
+  {
+    name: 'ArrowDown, ArrowUp',
+    description: t('kb-menu-arrows'),
+  },
+  {
+    name: 'Home, End',
+    description: t('kb-home-end'),
+  },
+  {
+    name: 'Escape',
+    description: t('kb-esc'),
+  },
+  {
+    name: 'Tab',
+    description: t('kb-tab'),
+  },
+  {
+    name: 'Enter, Space',
+    description: t('kb-activate'),
+  },
 ])
 
 const variantesRows = computed(() => [
@@ -438,17 +499,27 @@ const variantesRows = computed(() => [
     <DocsPropsTable :headers="propsTableHeaders" :rows="variantesRows" />
   </DocsSection>
 
+  <DocsSection id="sec-clavier" :title="t('section-keyboard')">
+    <DocsPropsTable :headers="keyboardTableHeaders" :rows="keyboardRows" />
+  </DocsSection>
+
   <DocsSection id="sec-accessibilite" :title="t('section-a11y')">
     <DocsA11yNote>
-      {{ t('a11y-1') }}
-      <code>aria-haspopup="true"</code>
-      {{ t('a11y-2') }}
+      {{ t('a11y-p1') }}
+      <code>type="button"</code>
+      {{ t('a11y-p2') }}
+      <code>aria-haspopup="menu"</code>
+      {{ t('a11y-p3') }}
       <code>aria-expanded</code>
-      {{ t('a11y-3') }}
+      {{ t('a11y-p4') }}
+      <code>aria-controls</code>
+      {{ t('a11y-p5') }}
+      <code>id</code>
+      {{ t('a11y-p6') }}
+      <code>role="menu"</code>
+      {{ t('a11y-p7') }}
       <code>role="menuitem"</code>
-      {{ t('a11y-4') }}
-      <kbd>{{ t('kbd-esc') }}</kbd>
-      {{ t('a11y-5') }}
+      {{ t('a11y-p8') }}
     </DocsA11yNote>
   </DocsSection>
 </template>

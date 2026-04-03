@@ -16,12 +16,16 @@ export interface BjSelectProps {
   searchable?: boolean
   searchPlaceholder?: string
   noResults?: string
+  id?: string
+  required?: boolean
 }
 </script>
 
 <script setup lang="ts">
 import { computed, ref, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import { BjSvgIcon } from '../icons'
+
+let uid = 0
 
 const props = withDefaults(defineProps<BjSelectProps>(), {
   modelValue: '',
@@ -34,12 +38,21 @@ const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
 
-const uid = `bj-select-${Math.random().toString(36).slice(2, 9)}`
+const selectId = props.id || `bj-select-${++uid}`
+const hintId = `${selectId}-hint`
+const messageId = `${selectId}-msg`
 
 const selectClasses = computed(() => [
   'bj-select',
   props.error && 'bj-select--error',
 ])
+
+const describedBy = computed(() => {
+  const ids: string[] = []
+  if (props.hint) ids.push(hintId)
+  if (props.message) ids.push(messageId)
+  return ids.length ? ids.join(' ') : undefined
+})
 
 function onChange(e: Event) {
   emit('update:modelValue', (e.target as HTMLSelectElement).value)
@@ -51,7 +64,7 @@ const search = ref('')
 const activeIndex = ref(-1)
 const wrapperRef = ref<HTMLElement>()
 const searchRef = ref<HTMLInputElement>()
-const listboxId = `${uid}-listbox`
+const listboxId = `${selectId}-listbox`
 
 const selectedLabel = computed(() => {
   const opt = props.options.find(o => o.value === props.modelValue)
@@ -102,6 +115,16 @@ function onSearchKeydown(e: KeyboardEvent) {
       activeIndex.value = activeIndex.value > 0 ? activeIndex.value - 1 : len - 1
       scrollToActive()
       break
+    case 'Home':
+      e.preventDefault()
+      activeIndex.value = 0
+      scrollToActive()
+      break
+    case 'End':
+      e.preventDefault()
+      activeIndex.value = len - 1
+      scrollToActive()
+      break
     case 'Enter':
       e.preventDefault()
       if (activeIndex.value >= 0 && activeIndex.value < len) {
@@ -139,20 +162,24 @@ onMounted(() => document.addEventListener('click', onClickOutside))
 onBeforeUnmount(() => document.removeEventListener('click', onClickOutside))
 
 const activeDescendant = computed(() =>
-  activeIndex.value >= 0 ? `${uid}-opt-${activeIndex.value}` : undefined,
+  activeIndex.value >= 0 ? `${selectId}-opt-${activeIndex.value}` : undefined,
 )
 </script>
 
 <template>
   <!-- Native select (default) -->
   <div v-if="!searchable" class="bj-select-group">
-    <label v-if="label" class="bj-label" :for="uid">{{ label }}</label>
-    <span v-if="hint" class="bj-hint">{{ hint }}</span>
+    <label v-if="label" class="bj-label" :for="selectId">{{ label }}</label>
+    <span v-if="hint" :id="hintId" class="bj-hint">{{ hint }}</span>
     <select
-      :id="uid"
+      :id="selectId"
       :class="selectClasses"
       :value="modelValue"
       :disabled="disabled"
+      :required="required || undefined"
+      :aria-required="required || undefined"
+      :aria-invalid="error || undefined"
+      :aria-describedby="describedBy"
       v-bind="$attrs"
       @change="onChange"
     >
@@ -167,7 +194,13 @@ const activeDescendant = computed(() =>
       </option>
       <slot />
     </select>
-    <p v-if="message" class="bj-message" :class="error ? 'bj-message--error' : 'bj-message--info'">
+    <p
+      v-if="message"
+      :id="messageId"
+      class="bj-message"
+      :class="error ? 'bj-message--error' : 'bj-message--info'"
+      :role="error ? 'alert' : 'status'"
+    >
       {{ message }}
     </p>
   </div>
@@ -179,12 +212,12 @@ const activeDescendant = computed(() =>
     class="bj-select-group"
     :class="error && 'bj-select--error'"
   >
-    <label v-if="label" class="bj-label" :for="`${uid}-trigger`">{{ label }}</label>
-    <span v-if="hint" class="bj-hint">{{ hint }}</span>
+    <label v-if="label" class="bj-label" :for="`${selectId}-trigger`">{{ label }}</label>
+    <span v-if="hint" :id="hintId" class="bj-hint">{{ hint }}</span>
 
     <div class="bj-select-custom" :class="isOpen && 'bj-select-custom--open'">
       <button
-        :id="`${uid}-trigger`"
+        :id="`${selectId}-trigger`"
         type="button"
         class="bj-select-custom__trigger"
         :class="!modelValue && 'bj-select-custom__trigger--placeholder'"
@@ -192,9 +225,10 @@ const activeDescendant = computed(() =>
         role="combobox"
         :aria-expanded="isOpen"
         aria-haspopup="listbox"
-        :aria-controls="listboxId"
+        :aria-controls="isOpen && filtered.length > 0 ? listboxId : undefined"
         :aria-activedescendant="activeDescendant"
         :aria-invalid="error || undefined"
+        :aria-describedby="describedBy"
         @click.stop="toggleCustom"
         @keydown="onTriggerKeydown"
       >
@@ -209,7 +243,7 @@ const activeDescendant = computed(() =>
           type="text"
           :placeholder="searchPlaceholder"
           :value="search"
-          aria-label="Rechercher"
+          :aria-label="searchPlaceholder"
           @input="search = ($event.target as HTMLInputElement).value; activeIndex = -1"
           @keydown="onSearchKeydown"
         />
@@ -221,7 +255,7 @@ const activeDescendant = computed(() =>
         >
           <li
             v-for="(opt, i) in filtered"
-            :id="`${uid}-opt-${i}`"
+            :id="`${selectId}-opt-${i}`"
             :key="opt.value"
             :data-index="i"
             class="bj-select-custom__option"
@@ -239,7 +273,13 @@ const activeDescendant = computed(() =>
       </div>
     </div>
 
-    <p v-if="message" class="bj-message" :class="error ? 'bj-message--error' : 'bj-message--info'">
+    <p
+      v-if="message"
+      :id="messageId"
+      class="bj-message"
+      :class="error ? 'bj-message--error' : 'bj-message--info'"
+      :role="error ? 'alert' : 'status'"
+    >
       {{ message }}
     </p>
   </div>

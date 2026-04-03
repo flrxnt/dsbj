@@ -1,6 +1,7 @@
-import { useEffect, useId, type ReactNode } from 'react'
+import { useEffect, useId, useRef, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { BjSvgIcon } from '../icons'
+import { useFocusTrap } from '../hooks/useFocusTrap'
 
 export interface BjDrawerProps {
   open: boolean
@@ -8,6 +9,7 @@ export interface BjDrawerProps {
   position?: 'left' | 'right'
   size?: 'default' | 'sm' | 'lg' | 'full'
   title?: string
+  closeLabel?: string
   children?: ReactNode
   footer?: ReactNode
   className?: string
@@ -19,6 +21,7 @@ export function BjDrawer({
   position = 'left',
   size = 'default',
   title,
+  closeLabel = 'Fermer',
   children,
   footer,
   className,
@@ -26,6 +29,9 @@ export function BjDrawer({
   const baseId = useId()
   const drawerId = `bj-drawer-${baseId.replace(/:/g, '')}`
   const titleId = `${drawerId}-title`
+  const panelRef = useRef<HTMLDivElement>(null)
+
+  useFocusTrap(panelRef, open)
 
   useEffect(() => {
     if (open) document.body.classList.add('bj-drawer-open')
@@ -46,6 +52,7 @@ export function BjDrawer({
 
   const node = (
     <div
+      ref={panelRef}
       id={drawerId}
       className={[
         'bj-drawer',
@@ -68,7 +75,7 @@ export function BjDrawer({
             <h2 id={titleId} className="bj-drawer__title">
               {title}
             </h2>
-            <button type="button" className="bj-drawer__close" aria-label="Fermer" onClick={onClose}>
+            <button type="button" className="bj-drawer__close" aria-label={closeLabel} onClick={onClose}>
               <BjSvgIcon name="closeLine" />
             </button>
           </header>

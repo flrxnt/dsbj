@@ -11,12 +11,17 @@ onBeforeMount(() => {
 })
 
 const isActive = computed(() => ctx.activeIndex.value === index)
+const panelId = computed(() => `${ctx.tabsId}-panel-${index}`)
+const tabId = computed(() => `${ctx.tabsId}-tab-${index}`)
 </script>
 
 <template>
   <div
+    :id="panelId"
     class="bj-tabs__panel"
     role="tabpanel"
+    :aria-labelledby="tabId"
+    :tabindex="isActive ? 0 : undefined"
     :data-bj-expanded="isActive ? '' : undefined"
     :style="{ display: isActive ? 'block' : 'none' }"
   >

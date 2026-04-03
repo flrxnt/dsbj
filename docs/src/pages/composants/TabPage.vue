@@ -24,14 +24,17 @@ const { t } = useI18n({
       'keyboard-3':
         'pour passer à l’onglet suivant ou précédent (le panneau affiché suit la sélection).',
       'keyboard-rest':
-        'Début (Home) active le premier onglet, Fin (End) le dernier. Le script repositionne le focus sur l’onglet cible après ces raccourcis.',
+        'active le premier onglet,',
+      'keyboard-rest-mid': 'le dernier. Le script repositionne le focus sur l’onglet cible.',
       'kbd-right': 'Flèche droite',
       'kbd-left': 'Flèche gauche',
-      'prop-root': 'Conteneur racine du composant.',
+      'prop-root':
+        'Conteneur racine ; data-bj-tabs est requis pour que le script initialise le groupe. Un id optionnel sur ce nœud sert de préfixe aux id générés (suffixes -tab-0, -tab-1, … et -panel-0, -panel-1, …) ; sinon le script utilise un préfixe du type bj-tabs-1, bj-tabs-2, etc.',
       'prop-list': 'Barre d’onglets (role="tablist").',
-      'prop-tab': 'Bouton d’onglet (role="tab").',
+      'prop-tab':
+        'Bouton d’onglet (role="tab", data-bj-tab) ; le script renseigne aria-controls vers le panneau associé.',
       'prop-panel':
-        'Panneau de contenu (role="tabpanel") ; visibilité pilotée par data-bj-expanded.',
+        'Panneau (role="tabpanel", data-bj-tab-panel) ; visibilité par data-bj-expanded. Le script renseigne aria-labelledby vers l’onglet correspondant et tabindex="0" sur le panneau actif.',
       'prop-tab-active':
         'Modificateur CSS optionnel sur l’onglet sélectionné (équivalent visuel à aria-selected="true").',
       'prop-panel-active':
@@ -46,17 +49,20 @@ const { t } = useI18n({
       'static-intro-2': 'sur l’onglet courant,',
       'static-intro-3': 'sur les autres, et',
       'static-intro-4': 'sur le panneau affiché.',
-      'a11y-1': 'Utilisez',
-      'a11y-2': 'sur la liste,',
-      'a11y-3': 'sur chaque bouton et',
-      'a11y-4': 'sur chaque panneau. Le script met à jour',
-      'a11y-5': '(onglet actif à',
-      'a11y-6':
-        ') et la gestion du tabindex (onglet sélectionné en 0, les autres en -1) pour un parcours clavier prévisible. Un libellé sur la',
-      'a11y-7': '(',
-      'a11y-8': ') aide les lecteurs d’écran à comprendre le groupe d’onglets.',
-      'code-true': 'true',
-      'code-aria-label': 'aria-label',
+      'a11y-intro':
+        'Pour le HTML « vanilla », le script repère le groupe via data-bj-tabs sur le conteneur, data-bj-tab sur chaque bouton d’onglet et data-bj-tab-panel sur chaque panneau. Les rôles role="tablist", role="tab" et role="tabpanel" structurent le motif ARIA des onglets.',
+      'a11y-ids':
+        "Le script attribue des identifiants stables si vous n’en fournissez pas : chaque onglet id=\"{'{'}groupId{'}'}-tab-{'{'}n{'}'}\" et chaque panneau id=\"{'{'}groupId{'}'}-panel-{'{'}n{'}'}\", où groupId est l’attribut id du conteneur data-bj-tabs s’il est présent, sinon une valeur générée du type bj-tabs-1.",
+      'a11y-wiring':
+        'Chaque onglet reçoit aria-controls référençant l’id de son panneau ; chaque panneau reçoit aria-labelledby référençant l’id de son onglet, ce qui lie explicitement la barre d’onglets au contenu affiché.',
+      'a11y-state':
+        'Le script met à jour aria-selected avec une valeur booléenne (true pour l’onglet actif, false pour les autres). Le tabindex suit le motif attendu : 0 sur l’onglet sélectionné, -1 sur les autres. Le panneau visible reçoit tabindex="0" pour pouvoir recevoir le focus clavier ; les panneaux masqués n’ont pas de tabindex.',
+      'a11y-keyboard':
+        'Navigation clavier lorsque le focus est sur un onglet : les flèches gauche et droite activent l’onglet précédent ou suivant (parcours circulaire) et déplacent le focus sur cet onglet ; les touches Début (Home) et Fin (End) activent respectivement le premier et le dernier onglet et repositionnent le focus sur l’onglet correspondant. Le panneau affiché suit la sélection.',
+      'a11y-tablist-label':
+        'Prévoyez un libellé accessible sur la tablist (aria-label ou aria-labelledby) pour que le groupe d’onglets soit correctement annoncé.',
+      'kbd-home': 'Début (Home)',
+      'kbd-end': 'Fin (End)',
     },
     en: {
       title: 'Tabs',
@@ -72,15 +78,17 @@ const { t } = useI18n({
       'keyboard-2': 'and',
       'keyboard-3':
         'to move to the next or previous tab (the visible panel follows the selection).',
-      'keyboard-rest':
-        'Home activates the first tab, End the last. The script moves focus to the target tab after these shortcuts.',
+      'keyboard-rest': 'activates the first tab,',
+      'keyboard-rest-mid': 'the last. The script moves focus to the target tab.',
       'kbd-right': 'Right Arrow',
       'kbd-left': 'Left Arrow',
-      'prop-root': 'Root container of the component.',
+      'prop-root':
+        "Root container; data-bj-tabs is required for the script to initialize the group. An optional id on this node prefixes generated tab and panel ids ({'{'}id{'}'}-tab-n, {'{'}id{'}'}-panel-n); otherwise the script uses bj-tabs-1, bj-tabs-2, etc.",
       'prop-list': 'Tab bar (role="tablist").',
-      'prop-tab': 'Tab button (role="tab").',
+      'prop-tab':
+        'Tab button (role="tab", data-bj-tab); the script sets aria-controls to the associated panel.',
       'prop-panel':
-        'Content panel (role="tabpanel"); visibility controlled by data-bj-expanded.',
+        'Panel (role="tabpanel", data-bj-tab-panel); visibility via data-bj-expanded. The script sets aria-labelledby to the matching tab and tabindex="0" on the active panel.',
       'prop-tab-active':
         'Optional CSS modifier on the selected tab (same look as aria-selected="true").',
       'prop-panel-active':
@@ -94,17 +102,20 @@ const { t } = useI18n({
       'static-intro-2': 'on the current tab,',
       'static-intro-3': 'on the others, and',
       'static-intro-4': 'on the visible panel.',
-      'a11y-1': 'Use',
-      'a11y-2': 'on the list,',
-      'a11y-3': 'on each button and',
-      'a11y-4': 'on each panel. The script updates',
-      'a11y-5': '(active tab',
-      'a11y-6':
-        ') and tabindex handling (selected tab 0, others -1) for predictable keyboard traversal. A label on the',
-      'a11y-7': '(',
-      'a11y-8': ') helps screen readers understand the tab group.',
-      'code-true': 'true',
-      'code-aria-label': 'aria-label',
+      'a11y-intro':
+        'For vanilla HTML, the script finds the group with data-bj-tabs on the container, data-bj-tab on each tab button, and data-bj-tab-panel on each panel. The roles role="tablist", role="tab", and role="tabpanel" implement the ARIA tabs pattern.',
+      'a11y-ids':
+        'When you do not provide ids, the script assigns stable ones: each tab id uses the data-bj-tabs container’s id attribute as the prefix when set, otherwise a generated value (bj-tabs-1, bj-tabs-2, …), followed by -tab- and the index; each panel follows the same pattern with -panel- and the same index.',
+      'a11y-wiring':
+        'Each tab receives aria-controls pointing to its panel id; each panel receives aria-labelledby pointing to its tab id, explicitly wiring the tab bar to the visible content.',
+      'a11y-state':
+        'The script updates aria-selected with a boolean value (true for the active tab, false for others). Tabindex follows the expected pattern: 0 on the selected tab, -1 on the others. The visible panel gets tabindex="0" so it can receive keyboard focus; hidden panels have no tabindex.',
+      'a11y-keyboard':
+        'Keyboard behavior when focus is on a tab: Left Arrow and Right Arrow activate the previous or next tab (wrapping) and move focus to that tab; Home and End activate the first and last tab respectively and move focus to the matching tab. The visible panel follows the selection.',
+      'a11y-tablist-label':
+        'Provide an accessible name for the tablist (aria-label or aria-labelledby) so the tab group is announced correctly.',
+      'kbd-home': 'Home',
+      'kbd-end': 'End',
     },
   },
 })
@@ -396,7 +407,10 @@ const propsRows = computed(() => [
       {{ t('keyboard-2') }}
       <kbd>{{ t('kbd-left') }}</kbd>
       {{ t('keyboard-3') }}
+      <kbd>{{ t('kbd-home') }}</kbd>
       {{ t('keyboard-rest') }}
+      <kbd>{{ t('kbd-end') }}</kbd>
+      {{ t('keyboard-rest-mid') }}
     </p>
   </DocsSection>
 
@@ -406,21 +420,12 @@ const propsRows = computed(() => [
 
   <DocsSection id="sec-accessibilité" :title="t('section-a11y')">
     <DocsA11yNote>
-      {{ t('a11y-1') }}
-      <code>role="tablist"</code>
-      {{ t('a11y-2') }}
-      <code>role="tab"</code>
-      {{ t('a11y-3') }}
-      <code>role="tabpanel"</code>
-      {{ t('a11y-4') }}
-      <code>aria-selected</code>
-      {{ t('a11y-5') }}
-      <code>{{ t('code-true') }}</code>
-      {{ t('a11y-6') }}
-      <code>tablist</code>
-      {{ t('a11y-7') }}
-      <code>{{ t('code-aria-label') }}</code>
-      {{ t('a11y-8') }}
+      <p class="bj-text-md">{{ t('a11y-intro') }}</p>
+      <p class="bj-text-md">{{ t('a11y-ids') }}</p>
+      <p class="bj-text-md">{{ t('a11y-wiring') }}</p>
+      <p class="bj-text-md">{{ t('a11y-state') }}</p>
+      <p class="bj-text-md">{{ t('a11y-keyboard') }}</p>
+      <p class="bj-text-md">{{ t('a11y-tablist-label') }}</p>
     </DocsA11yNote>
   </DocsSection>
 </template>

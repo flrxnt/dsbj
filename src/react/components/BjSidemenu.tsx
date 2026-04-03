@@ -10,6 +10,7 @@ export type BjSidemenuLink = {
 export type BjSidemenuProps = {
   title?: string
   links: BjSidemenuLink[]
+  ariaLabel?: string
 } & ComponentPropsWithoutRef<'nav'>
 
 function SidemenuSublist({ links }: { links: BjSidemenuLink[] }) {
@@ -32,11 +33,11 @@ function SidemenuSublist({ links }: { links: BjSidemenuLink[] }) {
   )
 }
 
-export function BjSidemenu({ title, links, className, ...rest }: BjSidemenuProps) {
+export function BjSidemenu({ title, links, ariaLabel = 'Menu latéral', className, ...rest }: BjSidemenuProps) {
   return (
     <nav
       className={['bj-sidemenu', className].filter(Boolean).join(' ')}
-      aria-label="Menu latéral"
+      aria-label={ariaLabel}
       {...rest}
     >
       {title ? <p className="bj-sidemenu__title">{title}</p> : null}

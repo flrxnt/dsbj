@@ -2,6 +2,7 @@
 export interface BjCardImgProps {
   background?: string
   label?: string
+  decorative?: boolean
 }
 </script>
 
@@ -16,8 +17,9 @@ const props = withDefaults(defineProps<BjCardImgProps>(), {
   <div
     class="bj-card__img"
     :style="background ? { background } : undefined"
-    role="img"
-    :aria-label="label"
+    :role="decorative ? undefined : 'img'"
+    :aria-label="decorative ? undefined : label"
+    :aria-hidden="decorative || undefined"
   >
     <slot />
   </div>

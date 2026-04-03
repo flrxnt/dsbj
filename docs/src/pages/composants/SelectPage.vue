@@ -71,7 +71,7 @@ const { t } = useI18n({
       'prop-custom-listbox': 'Liste des options.',
       'prop-custom-option': 'Élément d\u2019option.',
       'a11y-note':
-        'Liez le <code>label</code> au <code>select</code>. En erreur\u00a0: <code>aria-invalid</code> et message relié par <code>aria-describedby</code>. En mode recherche, le trigger porte <code>role="combobox"</code> et la liste <code>role="listbox"</code>.',
+        '<p><strong>Select natif</strong>\u00a0: liez le <code>label</code> au <code>select</code> (<code>for</code> / <code>id</code>). Champ obligatoire\u00a0: <code>required</code> ou <code>aria-required="true"</code>. En erreur\u00a0: <code>aria-invalid="true"</code> et message relié avec <code>aria-describedby</code>.</p><p><strong>Variante avec recherche</strong>\u00a0: le déclencheur a <code>role="combobox"</code>, <code>aria-expanded</code> et <code>aria-haspopup="listbox"</code>\u00a0; <code>aria-controls</code> référence la liste uniquement lorsque le panneau (listbox) est visible. La liste a <code>role="listbox"</code>\u00a0; l\u2019option mise en avant au clavier est exposée via <code>aria-activedescendant</code> sur le combobox. Le champ de recherche porte un <code>aria-label</code> explicite.</p><p class="bj-text-sm" style="margin-top: var(--bj-spacing-2v)"><strong>Clavier (recherche)</strong></p><ul class="bj-text-sm" style="margin: var(--bj-spacing-1v) 0 0; padding-left: 1.25rem"><li>Flèches pour parcourir les options\u00a0; <kbd>Début</kbd> et <kbd>Fin</kbd> pour la première et la dernière option.</li><li><kbd>Échap</kbd> ferme la liste et renvoie le focus sur le déclencheur.</li></ul>',
     },
     en: {
       title: 'Select (dropdown)',
@@ -135,7 +135,7 @@ const { t } = useI18n({
       'prop-custom-listbox': 'Options list.',
       'prop-custom-option': 'Option element.',
       'a11y-note':
-        'Link the <code>label</code> to the <code>select</code>. On error: <code>aria-invalid</code> and message linked via <code>aria-describedby</code>. In searchable mode the trigger has <code>role="combobox"</code> and the list <code>role="listbox"</code>.',
+        '<p><strong>Native <code>select</code></strong>: link the <code>label</code> to the control (<code>for</code> / <code>id</code>). When required, use <code>required</code> or <code>aria-required="true"</code>. On error, set <code>aria-invalid="true"</code> and link feedback with <code>aria-describedby</code>.</p><p><strong>Searchable variant</strong>: the trigger has <code>role="combobox"</code>, <code>aria-expanded</code>, and <code>aria-haspopup="listbox"</code>; <code>aria-controls</code> references the list only while the listbox panel is visible. The list uses <code>role="listbox"</code>; keyboard highlighting is exposed with <code>aria-activedescendant</code> on the combobox. The search field has an explicit <code>aria-label</code>.</p><p class="bj-text-sm" style="margin-top: var(--bj-spacing-2v)"><strong>Keyboard (searchable)</strong></p><ul class="bj-text-sm" style="margin: var(--bj-spacing-1v) 0 0; padding-left: 1.25rem"><li>Arrow keys to move; <kbd>Home</kbd> and <kbd>End</kbd> jump to the first and last option.</li><li><kbd>Escape</kbd> closes the list and returns focus to the trigger.</li></ul>',
     },
   },
 })
@@ -584,7 +584,7 @@ const propsRows = computed(() => [
 
   <DocsSection id="sec-accessibilite" :title="t('section-a11y')">
     <DocsA11yNote>
-      <span v-html="t('a11y-note')"></span>
+      <div v-html="t('a11y-note')" />
     </DocsA11yNote>
   </DocsSection>
 </template>

@@ -1,9 +1,28 @@
 import { register, queryNew } from './core';
 
+let tabUid = 0;
+
 export function initTab(): void {
   queryNew<HTMLElement>('[data-bj-tabs]').forEach((group) => {
     const tabs = group.querySelectorAll<HTMLElement>('[data-bj-tab]');
     const panels = group.querySelectorAll<HTMLElement>('[data-bj-tab-panel]');
+    const groupId = group.id || `bj-tabs-${++tabUid}`;
+
+    tabs.forEach((tab, i) => {
+      if (!tab.id) tab.setAttribute('id', `${groupId}-tab-${i}`);
+    });
+
+    panels.forEach((panel, i) => {
+      if (!panel.id) panel.setAttribute('id', `${groupId}-panel-${i}`);
+    });
+
+    tabs.forEach((tab, i) => {
+      const panel = panels[i];
+      if (panel) {
+        tab.setAttribute('aria-controls', panel.id);
+        panel.setAttribute('aria-labelledby', tab.id);
+      }
+    });
 
     function activate(index: number): void {
       tabs.forEach((t, i) => {
@@ -11,8 +30,13 @@ export function initTab(): void {
         t.setAttribute('tabindex', i === index ? '0' : '-1');
       });
       panels.forEach((p, i) => {
-        if (i === index) p.setAttribute('data-bj-expanded', '');
-        else p.removeAttribute('data-bj-expanded');
+        if (i === index) {
+          p.setAttribute('data-bj-expanded', '');
+          p.setAttribute('tabindex', '0');
+        } else {
+          p.removeAttribute('data-bj-expanded');
+          p.removeAttribute('tabindex');
+        }
       });
     }
 

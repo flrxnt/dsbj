@@ -8,6 +8,7 @@ export interface BjAvatarProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'ch
   initials?: string
   icon?: string
   status?: 'online' | 'away' | 'busy' | 'offline'
+  statusLabel?: string
   children?: ReactNode
 }
 
@@ -19,6 +20,7 @@ export function BjAvatar({
   initials,
   icon,
   status,
+  statusLabel,
   className,
   children,
   ...rest
@@ -35,13 +37,17 @@ export function BjAvatar({
   return (
     <span className={cls} {...rest}>
       {src ? <img className="bj-avatar__img" src={src} alt={alt} /> : null}
-      {!src && initials ? <span className="bj-avatar__initials">{initials}</span> : null}
+      {!src && initials ? <span className="bj-avatar__initials" aria-hidden="true">{initials}</span> : null}
       {!src && !initials && icon ? (
         <i className={`bj-avatar__icon ${icon}`} aria-hidden="true" />
       ) : null}
       {!src && !initials && !icon ? children : null}
       {status ? (
-        <span className={`bj-avatar__status bj-avatar__status--${status}`} />
+        <span
+          className={`bj-avatar__status bj-avatar__status--${status}`}
+          role="status"
+          aria-label={statusLabel || status}
+        />
       ) : null}
     </span>
   )

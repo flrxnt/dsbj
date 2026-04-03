@@ -3,12 +3,14 @@ import type { CSSProperties, HTMLAttributes, ReactNode } from 'react'
 export interface BjCardImgProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   background?: string
   label?: string
+  decorative?: boolean
   children?: ReactNode
 }
 
 export function BjCardImg({
   background,
   label = '',
+  decorative,
   className,
   children,
   style,
@@ -24,8 +26,9 @@ export function BjCardImg({
     <div
       className={cls}
       style={mergedStyle}
-      role="img"
-      aria-label={label || undefined}
+      role={decorative ? undefined : 'img'}
+      aria-label={decorative ? undefined : label || undefined}
+      aria-hidden={decorative || undefined}
       {...rest}
     >
       {children}

@@ -13,6 +13,7 @@ export interface BjTagBaseProps {
   variant?: 'default' | 'action' | 'info' | 'success' | 'warning' | 'error'
   size?: 'sm' | 'md'
   dismissible?: boolean
+  dismissLabel?: string
   onDismiss?: () => void
   as?: 'span' | 'a' | 'button'
   children?: ReactNode
@@ -39,14 +40,17 @@ export const BjTag = forwardRef<HTMLSpanElement | HTMLAnchorElement | HTMLButton
       variant = 'default',
       size = 'md',
       dismissible,
+      dismissLabel = 'Retirer',
       onDismiss,
-      as: Tag = 'span',
+      as: requestedTag = 'span',
       className,
       children,
       ...rest
     },
     ref
   ) => {
+    const Tag = dismissible && requestedTag === 'button' ? 'span' : requestedTag
+
     const cls = [
       'bj-tag',
       variant !== 'default' && `bj-tag--${variant}`,
@@ -69,7 +73,7 @@ export const BjTag = forwardRef<HTMLSpanElement | HTMLAnchorElement | HTMLButton
           <button
             type="button"
             className="bj-tag__close"
-            aria-label="Retirer"
+            aria-label={dismissLabel}
             onClick={handleDismissClick}
           >
             <BjSvgIcon name="closeLine" />

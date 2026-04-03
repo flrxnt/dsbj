@@ -15,12 +15,15 @@ export interface BjComboboxProps {
   disabled?: boolean
   placeholder?: string
   noResults?: string
+  id?: string
 }
 </script>
 
 <script setup lang="ts">
 import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import { BjSvgIcon } from '../icons'
+
+let uid = 0
 
 const props = withDefaults(defineProps<BjComboboxProps>(), {
   modelValue: '',
@@ -33,9 +36,11 @@ const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
 
-const uid = `bj-combobox-${Math.random().toString(36).slice(2, 9)}`
-const inputId = `${uid}-input`
-const listboxId = `${uid}-listbox`
+const comboId = props.id || `bj-combobox-${++uid}`
+const inputId = `${comboId}-input`
+const listboxId = `${comboId}-listbox`
+const hintId = `${comboId}-hint`
+const messageId = `${comboId}-msg`
 
 const query = ref('')
 const isOpen = ref(false)
@@ -56,6 +61,13 @@ const filtered = computed(() => {
   const q = query.value.toLowerCase().trim()
   if (!q) return props.options
   return props.options.filter(o => o.label.toLowerCase().includes(q))
+})
+
+const describedBy = computed(() => {
+  const ids: string[] = []
+  if (props.hint) ids.push(hintId)
+  if (props.message) ids.push(messageId)
+  return ids.length ? ids.join(' ') : undefined
 })
 
 function open() {
@@ -101,6 +113,16 @@ function onKeydown(e: KeyboardEvent) {
       activeIndex.value = activeIndex.value > 0 ? activeIndex.value - 1 : len - 1
       scrollToActive()
       break
+    case 'Home':
+      e.preventDefault()
+      activeIndex.value = 0
+      scrollToActive()
+      break
+    case 'End':
+      e.preventDefault()
+      activeIndex.value = len - 1
+      scrollToActive()
+      break
     case 'Enter':
       e.preventDefault()
       if (isOpen.value && activeIndex.value >= 0 && activeIndex.value < len) {
@@ -136,7 +158,7 @@ onMounted(() => document.addEventListener('click', onClickOutside))
 onBeforeUnmount(() => document.removeEventListener('click', onClickOutside))
 
 const activeDescendant = computed(() =>
-  activeIndex.value >= 0 ? `${uid}-opt-${activeIndex.value}` : undefined,
+  activeIndex.value >= 0 ? `${comboId}-opt-${activeIndex.value}` : undefined,
 )
 </script>
 
@@ -147,7 +169,7 @@ const activeDescendant = computed(() =>
     :class="[error && 'bj-combobox--error', isOpen && 'bj-combobox--open']"
   >
     <label v-if="label" class="bj-label" :for="inputId">{{ label }}</label>
-    <span v-if="hint" class="bj-hint">{{ hint }}</span>
+    <span v-if="hint" :id="hintId" class="bj-hint">{{ hint }}</span>
 
     <div class="bj-combobox__input-wrap">
       <input
@@ -163,9 +185,10 @@ const activeDescendant = computed(() =>
         :aria-expanded="isOpen"
         aria-autocomplete="list"
         aria-haspopup="listbox"
-        :aria-controls="listboxId"
+        :aria-controls="isOpen && filtered.length > 0 ? listboxId : undefined"
         :aria-activedescendant="activeDescendant"
         :aria-invalid="error || undefined"
+        :aria-describedby="describedBy"
         v-bind="$attrs"
         @input="onInput"
         @focus="onFocus"
@@ -182,7 +205,7 @@ const activeDescendant = computed(() =>
     >
       <li
         v-for="(opt, i) in filtered"
-        :id="`${uid}-opt-${i}`"
+        :id="`${comboId}-opt-${i}`"
         :key="opt.value"
         :data-index="i"
         class="bj-combobox__option"
@@ -201,7 +224,13 @@ const activeDescendant = computed(() =>
       <p class="bj-combobox__no-results">{{ noResults }}</p>
     </div>
 
-    <p v-if="message" class="bj-message" :class="error ? 'bj-message--error' : 'bj-message--info'">
+    <p
+      v-if="message"
+      :id="messageId"
+      class="bj-message"
+      :class="error ? 'bj-message--error' : 'bj-message--info'"
+      :role="error ? 'alert' : 'status'"
+    >
       {{ message }}
     </p>
   </div>

@@ -4,16 +4,21 @@ export interface BjModalProps {
   size?: 'default' | 'sm' | 'lg' | 'full'
   title?: string
   id?: string
+  closeLabel?: string
 }
 </script>
 
 <script setup lang="ts">
 import { computed, ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { BjSvgIcon } from '../icons'
+import { useFocusTrap } from '../composables/useFocusTrap'
+
+let modalUid = 0
 
 const props = withDefaults(defineProps<BjModalProps>(), {
   modelValue: false,
   size: 'default',
+  closeLabel: 'Fermer',
 })
 
 const emit = defineEmits<{
@@ -23,12 +28,14 @@ const emit = defineEmits<{
 const modalRef = ref<HTMLElement>()
 let previousFocus: HTMLElement | null = null
 
+useFocusTrap(modalRef, () => props.modelValue)
+
 const classes = computed(() => [
   'bj-modal',
   props.size !== 'default' && `bj-modal--${props.size}`,
 ])
 
-const modalId = computed(() => props.id || `bj-modal-${Math.random().toString(36).slice(2, 9)}`)
+const modalId = computed(() => props.id || `bj-modal-${++modalUid}`)
 const titleId = computed(() => `${modalId.value}-title`)
 
 function open() {
@@ -83,7 +90,7 @@ defineExpose({ open, close })
         <slot name="header">
           <h2 :id="titleId" class="bj-modal__title">{{ title }}</h2>
         </slot>
-        <button type="button" class="bj-modal__close" aria-label="Fermer" @click="close">
+        <button type="button" class="bj-modal__close" :aria-label="closeLabel" @click="close">
           <BjSvgIcon name="closeLine" />
         </button>
       </header>

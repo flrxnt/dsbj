@@ -4,6 +4,7 @@ export interface BjTagProps {
   size?: 'sm' | 'md'
   dismissible?: boolean
   tag?: 'span' | 'a' | 'button'
+  dismissLabel?: string
 }
 </script>
 
@@ -15,9 +16,15 @@ const props = withDefaults(defineProps<BjTagProps>(), {
   variant: 'default',
   size: 'md',
   tag: 'span',
+  dismissLabel: 'Retirer',
 })
 
 const emit = defineEmits<{ dismiss: [] }>()
+
+const effectiveTag = computed(() => {
+  if (props.dismissible && props.tag === 'button') return 'span'
+  return props.tag
+})
 
 const classes = computed(() => [
   'bj-tag',
@@ -28,13 +35,13 @@ const classes = computed(() => [
 </script>
 
 <template>
-  <component :is="tag" :class="classes" v-bind="$attrs">
+  <component :is="effectiveTag" :class="classes" v-bind="$attrs">
     <slot />
     <button
       v-if="dismissible"
       type="button"
       class="bj-tag__close"
-      aria-label="Retirer"
+      :aria-label="dismissLabel"
       @click.stop="emit('dismiss')"
     >
       <BjSvgIcon name="closeLine" />

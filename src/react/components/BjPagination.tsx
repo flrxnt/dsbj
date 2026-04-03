@@ -7,6 +7,9 @@ export type BjPaginationProps = Omit<ComponentPropsWithoutRef<'nav'>, 'onChange'
   total: number
   perPage?: number
   maxVisible?: number
+  ariaLabel?: string
+  prevLabel?: string
+  nextLabel?: string
   onChange: (page: number) => void
 }
 
@@ -41,11 +44,14 @@ export function BjPagination({
   total,
   perPage = 10,
   maxVisible = 5,
+  ariaLabel = 'Pagination',
+  prevLabel = 'Page précédente',
+  nextLabel = 'Page suivante',
   onChange,
   className,
   ...rest
 }: BjPaginationProps) {
-  const totalPages = Math.ceil(total / perPage)
+  const totalPages = total > 0 ? Math.ceil(total / perPage) : 0
 
   const pages = useMemo(
     () => (totalPages > 0 ? buildPages(page, totalPages, maxVisible) : []),
@@ -61,7 +67,7 @@ export function BjPagination({
   return (
     <nav
       className={['bj-pagination', className].filter(Boolean).join(' ')}
-      aria-label="Pagination"
+      aria-label={ariaLabel}
       {...rest}
     >
       <button
@@ -70,14 +76,14 @@ export function BjPagination({
           .filter(Boolean)
           .join(' ')}
         disabled={page <= 1}
-        aria-label="Page précédente"
+        aria-label={prevLabel}
         onClick={() => go(page - 1)}
       >
         <BjSvgIcon name="arrowLeftSLine" />
       </button>
       {pages.map((p, i) =>
         p === '...' ? (
-          <span key={`e-${i}`} className="bj-pagination__ellipsis">
+          <span key={`e-${i}`} className="bj-pagination__ellipsis" aria-hidden="true">
             ...
           </span>
         ) : (
@@ -88,6 +94,7 @@ export function BjPagination({
               .filter(Boolean)
               .join(' ')}
             aria-current={p === page ? 'page' : undefined}
+            aria-label={`Page ${p}`}
             onClick={() => go(p)}
           >
             {p}
@@ -100,7 +107,7 @@ export function BjPagination({
           .filter(Boolean)
           .join(' ')}
         disabled={page >= totalPages || totalPages === 0}
-        aria-label="Page suivante"
+        aria-label={nextLabel}
         onClick={() => go(page + 1)}
       >
         <BjSvgIcon name="arrowRightSLine" />

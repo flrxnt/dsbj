@@ -7,7 +7,9 @@ export interface BjDropdownProps {
 </script>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
+import { computed, ref, nextTick, onMounted, onBeforeUnmount } from 'vue'
+
+let uid = 0
 
 const props = withDefaults(defineProps<BjDropdownProps>(), {
   align: 'left',
@@ -23,6 +25,8 @@ const emit = defineEmits<{
 
 const isOpen = ref(false)
 const wrapperRef = ref<HTMLElement>()
+const triggerRef = ref<HTMLButtonElement>()
+const menuId = `bj-dropdown-menu-${++uid}`
 
 const classes = computed(() => [
   'bj-dropdown',
@@ -32,14 +36,24 @@ const classes = computed(() => [
   props.size === 'lg' && 'bj-dropdown--lg',
 ])
 
+function getMenuItems(): HTMLElement[] {
+  if (!wrapperRef.value) return []
+  return Array.from(wrapperRef.value.querySelectorAll<HTMLElement>('[role="menuitem"]'))
+}
+
 function open() {
   isOpen.value = true
   emit('open')
+  nextTick(() => {
+    const items = getMenuItems()
+    if (items.length) items[0].focus()
+  })
 }
 
-function close() {
+function close(restoreFocus = true) {
   isOpen.value = false
   emit('close')
+  if (restoreFocus) nextTick(() => triggerRef.value?.focus())
 }
 
 function toggle() {
@@ -47,44 +61,86 @@ function toggle() {
   else open()
 }
 
-function onClickOutside(e: MouseEvent) {
-  if (isOpen.value && wrapperRef.value && !wrapperRef.value.contains(e.target as Node)) {
-    close()
+function onTriggerKeydown(e: KeyboardEvent) {
+  if (['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(e.key)) {
+    e.preventDefault()
+    if (!isOpen.value) open()
   }
 }
 
-function onEscape(e: KeyboardEvent) {
-  if (e.key === 'Escape' && isOpen.value) close()
+function onMenuKeydown(e: KeyboardEvent) {
+  const items = getMenuItems()
+  const current = items.indexOf(document.activeElement as HTMLElement)
+
+  switch (e.key) {
+    case 'ArrowDown': {
+      e.preventDefault()
+      const next = current < items.length - 1 ? current + 1 : 0
+      items[next]?.focus()
+      break
+    }
+    case 'ArrowUp': {
+      e.preventDefault()
+      const prev = current > 0 ? current - 1 : items.length - 1
+      items[prev]?.focus()
+      break
+    }
+    case 'Home': {
+      e.preventDefault()
+      items[0]?.focus()
+      break
+    }
+    case 'End': {
+      e.preventDefault()
+      items[items.length - 1]?.focus()
+      break
+    }
+    case 'Escape': {
+      e.preventDefault()
+      close()
+      break
+    }
+    case 'Tab': {
+      close(false)
+      break
+    }
+  }
 }
 
-onMounted(() => {
-  document.addEventListener('click', onClickOutside)
-  document.addEventListener('keydown', onEscape)
-})
-onBeforeUnmount(() => {
-  document.removeEventListener('click', onClickOutside)
-  document.removeEventListener('keydown', onEscape)
-})
+function onClickOutside(e: MouseEvent) {
+  if (isOpen.value && wrapperRef.value && !wrapperRef.value.contains(e.target as Node)) {
+    close(false)
+  }
+}
+
+onMounted(() => document.addEventListener('click', onClickOutside))
+onBeforeUnmount(() => document.removeEventListener('click', onClickOutside))
 
 defineExpose({ open, close, toggle, isOpen })
 </script>
 
 <template>
   <div ref="wrapperRef" :class="classes" v-bind="$attrs">
-    <div
+    <button
+      ref="triggerRef"
+      type="button"
       class="bj-dropdown__trigger"
-      aria-haspopup="true"
-      :aria-expanded="String(isOpen)"
+      aria-haspopup="menu"
+      :aria-expanded="isOpen"
+      :aria-controls="isOpen ? menuId : undefined"
       @click.stop="toggle"
+      @keydown="onTriggerKeydown"
     >
       <slot name="trigger" />
-    </div>
+    </button>
     <ul
       v-if="isOpen"
+      :id="menuId"
       class="bj-dropdown__menu"
       data-bj-expanded
       role="menu"
       style="display: block"
+      @keydown="onMenuKeydown"
     >
       <slot />
     </ul>

@@ -29,6 +29,9 @@ export function BjToggle({
 }: BjToggleProps) {
   const uid = useId()
   const toggleId = idProp ?? uid
+  const hintId = `${toggleId}-hint`
+
+  const describedBy = hint ? hintId : undefined
 
   const labelClass = ['bj-toggle', border && 'bj-toggle--border', labelLeft && 'bj-toggle--label-left', className].filter(Boolean).join(' ')
 
@@ -42,12 +45,13 @@ export function BjToggle({
         checked={checked}
         disabled={disabled}
         aria-checked={checked}
+        aria-describedby={describedBy}
         onChange={onChange}
         {...rest}
       />
       <span className="bj-toggle__label">
         {children ?? label}
-        {hint ? <span className="bj-toggle__hint">{hint}</span> : null}
+        {hint ? <span id={hintId} className="bj-toggle__hint">{hint}</span> : null}
       </span>
     </label>
   )

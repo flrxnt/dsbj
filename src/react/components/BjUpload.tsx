@@ -11,8 +11,8 @@ export interface BjUploadProps {
   error?: boolean
   message?: string
   text?: string
-  /** BjSvgIcon name (e.g. `upload2Line`) or legacy `ri-*` class token */
   icon?: string
+  removeLabel?: string
   onChange?: (files: FileList | null) => void
   className?: string
 }
@@ -26,14 +26,20 @@ export function BjUpload({
   message,
   text = 'Glissez un fichier ou cliquez pour parcourir',
   icon = 'upload2Line',
+  removeLabel = 'Retirer',
   onChange,
   className,
 }: BjUploadProps) {
   const uid = useId()
-  const uploadId = uid
+  const uploadId = `bj-upload-${uid.replace(/:/g, '')}`
+  const hintId = `${uploadId}-hint`
+  const messageId = `${uploadId}-msg`
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [files, setFiles] = useState<File[]>([])
   const [dragging, setDragging] = useState(false)
+
+  const describedBy =
+    [hint && hintId, message && messageId].filter(Boolean).join(' ') || undefined
 
   const groupClass = ['bj-upload-group', error && 'bj-upload-group--error', className].filter(Boolean).join(' ')
   const uploadClass = ['bj-upload', dragging && 'bj-upload--drag-over'].filter(Boolean).join(' ')
@@ -66,11 +72,13 @@ export function BjUpload({
           {label}
         </label>
       ) : null}
-      {hint ? <span className="bj-hint">{hint}</span> : null}
+      {hint ? <span id={hintId} className="bj-hint">{hint}</span> : null}
       <div
         className={uploadClass}
         role="button"
         tabIndex={0}
+        aria-label={text}
+        aria-describedby={describedBy}
         onClick={onClick}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -85,7 +93,7 @@ export function BjUpload({
         onDragLeave={() => setDragging(false)}
         onDrop={onDrop}
       >
-        <span className="bj-upload__icon">
+        <span className="bj-upload__icon" aria-hidden="true">
           <BjSvgIcon name={remixClassToIconName(icon)} />
         </span>
         <span className="bj-upload__text">{text}</span>
@@ -99,13 +107,24 @@ export function BjUpload({
         />
       </div>
       {message ? (
-        <p className={['bj-message', error ? 'bj-message--error' : 'bj-message--info'].filter(Boolean).join(' ')}>{message}</p>
+        <p
+          id={messageId}
+          className={['bj-message', error ? 'bj-message--error' : 'bj-message--info'].filter(Boolean).join(' ')}
+          role={error ? 'alert' : 'status'}
+        >
+          {message}
+        </p>
       ) : null}
       {files.map((file, i) => (
         <div key={`${file.name}-${i}`} className="bj-upload__file">
           <BjSvgIcon name="fileLine" />
           {file.name}
-          <button type="button" className="bj-upload__file-remove" onClick={() => removeFile(i)} aria-label="Retirer">
+          <button
+            type="button"
+            className="bj-upload__file-remove"
+            onClick={() => removeFile(i)}
+            aria-label={`${removeLabel} ${file.name}`}
+          >
             <BjSvgIcon name="closeLine" />
           </button>
         </div>

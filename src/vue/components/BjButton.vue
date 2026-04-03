@@ -1,4 +1,6 @@
 <script lang="ts">
+export type BjButtonType = 'button' | 'submit' | 'reset'
+
 export interface BjButtonProps {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'accent' | 'contrast'
   size?: 'sm' | 'md' | 'lg'
@@ -7,6 +9,7 @@ export interface BjButtonProps {
   disabled?: boolean
   loading?: boolean
   tag?: 'button' | 'a'
+  type?: BjButtonType
 }
 </script>
 
@@ -17,6 +20,7 @@ const props = withDefaults(defineProps<BjButtonProps>(), {
   variant: 'primary',
   size: 'md',
   tag: 'button',
+  type: 'button',
 })
 
 const isDisabled = computed(() => props.disabled || props.loading)
@@ -36,9 +40,10 @@ const classes = computed(() => [
   <component
     :is="tag"
     :class="classes"
+    :type="tag === 'button' ? type : undefined"
     :disabled="tag === 'button' ? isDisabled : undefined"
-    :aria-disabled="tag !== 'button' && isDisabled ? 'true' : undefined"
-    :aria-busy="loading ? 'true' : undefined"
+    :aria-disabled="tag !== 'button' && isDisabled ? true : undefined"
+    :aria-busy="loading || undefined"
     v-bind="$attrs"
   >
     <slot />

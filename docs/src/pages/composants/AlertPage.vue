@@ -32,7 +32,7 @@ const { t } = useI18n({
       'section-classes': 'Classes CSS',
       'section-a11y': 'Accessibilité',
       'a11y-note':
-        'Pour les messages importants ou injectés dynamiquement, utilisez <code>role="alert"</code> afin que les technologies d’assistance les annoncent sans délai. Pour une alerte statique dans le flux, <code>role="region"</code> avec <code>aria-labelledby</code> sur le titre permet de nommer la zone. Le bouton de fermeture doit porter un <code>aria-label</code> explicite ; après fermeture, gérez le focus en JavaScript pour éviter de le perdre. Masquez l’icône décorative avec <code>aria-hidden="true"</code>.',
+        '<p>Le composant <code>BjAlert</code> (Vue/React) expose une prop <code>role</code>&nbsp;: par défaut, <code>role="alert"</code> s’applique aux variantes <strong>erreur</strong> et <strong>avertissement</strong> (messages urgents ou critiques), et <code>role="status"</code> à <strong>information</strong> et <strong>succès</strong> (messages informatifs). Les technologies d’assistance traitent les <code>alert</code> comme des annonces prioritaires&nbsp;; les <code>status</code> correspondent plutôt à des mises à jour discrètes. Vous pouvez forcer le rôle avec la prop <code>role</code>. En HTML pur, appliquez le même principe&nbsp;: <code>alert</code> pour l’urgent, <code>status</code> pour l’informatif.</p><p>Lorsque l’alerte est fermable, la prop <code>closeLabel</code> définit le nom accessible du bouton (défaut <code>Fermer</code>)&nbsp;; elle alimente <code>aria-label</code> sur le bouton à icône seule. Adaptez-la à la langue de l’interface.</p><p>L’icône principale est décorative&nbsp;: son conteneur porte <code>aria-hidden="true"</code> pour éviter une double lecture&nbsp;; le sens du message repose sur le titre et le texte.</p>',
       'prop-bj-alert':
         'Conteneur flex de l’alerte ; style information (bordure et fond) sans modificateur supplémentaire.',
       'prop-bj-alert-icon': 'Icône sémantique à gauche (Remix Icon).',
@@ -69,7 +69,7 @@ const { t } = useI18n({
       'section-classes': 'CSS classes',
       'section-a11y': 'Accessibility',
       'a11y-note':
-        'For important or dynamically injected messages, use <code>role="alert"</code> so assistive technologies announce them immediately. For a static in-flow alert, <code>role="region"</code> with <code>aria-labelledby</code> on the title names the region. The close button needs an explicit <code>aria-label</code>; after closing, manage focus in JavaScript so it is not lost. Hide decorative icons with <code>aria-hidden="true"</code>.',
+        '<p>The <code>BjAlert</code> component (Vue/React) has a <code>role</code> prop: by default, <code>role="alert"</code> is used for <strong>error</strong> and <strong>warning</strong> (urgent or critical messages), and <code>role="status"</code> for <strong>info</strong> and <strong>success</strong> (informational messages). Assistive technologies treat <code>alert</code> as high-priority announcements; <code>status</code> suits polite, non-urgent updates. Override with the <code>role</code> prop when needed. In plain HTML, follow the same rule: <code>alert</code> for urgent content, <code>status</code> for informational content.</p><p>When the alert is dismissible, the <code>closeLabel</code> prop sets the accessible name of the close button (default <code>Fermer</code>); it maps to <code>aria-label</code> on the icon-only button. Localize it for your interface language.</p><p>The main icon is decorative: its wrapper uses <code>aria-hidden="true"</code> so it is not announced separately; meaning comes from the title and body text.</p>',
       'prop-bj-alert':
         'Flex alert container; information styling with no extra variant class.',
       'prop-bj-alert-icon': 'Semantic icon on the left (Remix Icon).',
@@ -488,7 +488,7 @@ const propsRows = computed(() => [
 
   <DocsSection id="a11y-alert" :title="t('section-a11y')">
     <DocsA11yNote>
-      <span v-html="t('a11y-note')" />
+      <div v-html="t('a11y-note')" />
     </DocsA11yNote>
   </DocsSection>
 </template>

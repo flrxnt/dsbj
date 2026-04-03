@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react'
 
 export interface BjDropdownProps {
   align?: 'left' | 'right'
@@ -19,10 +19,22 @@ export function BjDropdown({
 }: BjDropdownProps) {
   const [isOpen, setIsOpen] = useState(false)
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const menuRef = useRef<HTMLUListElement>(null)
+  const baseId = useId()
+  const menuId = `bj-dropdown-menu-${baseId.replace(/:/g, '')}`
 
-  const open = useCallback(() => setIsOpen(true), [])
+  const open = useCallback(() => {
+    setIsOpen(true)
+    requestAnimationFrame(() => {
+      const first = menuRef.current?.querySelector<HTMLElement>('[role="menuitem"]:not([aria-disabled="true"])')
+      first?.focus()
+    })
+  }, [])
 
-  const close = useCallback(() => setIsOpen(false), [])
+  const close = useCallback(() => {
+    setIsOpen(false)
+  }, [])
 
   const toggle = useCallback(() => {
     if (isOpen) close()
@@ -35,16 +47,61 @@ export function BjDropdown({
         close()
       }
     }
-    function onEscape(e: KeyboardEvent) {
-      if (e.key === 'Escape' && isOpen) close()
-    }
     document.addEventListener('click', onClickOutside)
-    document.addEventListener('keydown', onEscape)
-    return () => {
-      document.removeEventListener('click', onClickOutside)
-      document.removeEventListener('keydown', onEscape)
-    }
+    return () => document.removeEventListener('click', onClickOutside)
   }, [isOpen, close])
+
+  function getItems(): HTMLElement[] {
+    if (!menuRef.current) return []
+    return Array.from(menuRef.current.querySelectorAll<HTMLElement>('[role="menuitem"]:not([aria-disabled="true"])'))
+  }
+
+  function onTriggerKeydown(e: React.KeyboardEvent) {
+    if (['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(e.key)) {
+      e.preventDefault()
+      if (!isOpen) open()
+    }
+  }
+
+  function onMenuKeydown(e: React.KeyboardEvent) {
+    const items = getItems()
+    const idx = items.indexOf(document.activeElement as HTMLElement)
+
+    switch (e.key) {
+      case 'ArrowDown': {
+        e.preventDefault()
+        const next = idx < items.length - 1 ? idx + 1 : 0
+        items[next]?.focus()
+        break
+      }
+      case 'ArrowUp': {
+        e.preventDefault()
+        const prev = idx > 0 ? idx - 1 : items.length - 1
+        items[prev]?.focus()
+        break
+      }
+      case 'Home': {
+        e.preventDefault()
+        items[0]?.focus()
+        break
+      }
+      case 'End': {
+        e.preventDefault()
+        items[items.length - 1]?.focus()
+        break
+      }
+      case 'Escape': {
+        e.preventDefault()
+        close()
+        triggerRef.current?.focus()
+        break
+      }
+      case 'Tab': {
+        close()
+        break
+      }
+    }
+  }
 
   return (
     <div
@@ -59,19 +116,31 @@ export function BjDropdown({
         .filter(Boolean)
         .join(' ')}
     >
-      <div
+      <button
+        ref={triggerRef}
+        type="button"
         className="bj-dropdown__trigger"
-        aria-haspopup="true"
+        aria-haspopup="menu"
         aria-expanded={isOpen}
+        aria-controls={isOpen ? menuId : undefined}
         onClick={e => {
           e.stopPropagation()
           toggle()
         }}
+        onKeyDown={onTriggerKeydown}
       >
         {trigger}
-      </div>
+      </button>
       {isOpen ? (
-        <ul className="bj-dropdown__menu" data-bj-expanded role="menu" style={{ display: 'block' }}>
+        <ul
+          ref={menuRef}
+          id={menuId}
+          className="bj-dropdown__menu"
+          data-bj-expanded
+          role="menu"
+          style={{ display: 'block' }}
+          onKeyDown={onMenuKeydown}
+        >
           {children}
         </ul>
       ) : null}

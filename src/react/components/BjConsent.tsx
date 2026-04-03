@@ -1,6 +1,7 @@
-import { useEffect, useState, type ComponentPropsWithoutRef } from 'react'
+import { useEffect, useRef, useState, type ComponentPropsWithoutRef } from 'react'
 import { createPortal } from 'react-dom'
 import { BjSvgIcon } from '../icons'
+import { useFocusTrap } from '../hooks/useFocusTrap'
 
 export type BjConsentService = {
   id: string
@@ -32,6 +33,7 @@ export function BjConsent({
   const [visible, setVisible] = useState(true)
   const [managerOpen, setManagerOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const managerRef = useRef<HTMLDivElement>(null)
   const [accepted, setAccepted] = useState<Set<string>>(() => {
     const next = new Set<string>()
     for (const s of services) {
@@ -43,6 +45,8 @@ export function BjConsent({
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  useFocusTrap(managerRef, managerOpen)
 
   function acceptAll() {
     setAccepted(new Set(services.map((s) => s.id)))
@@ -72,7 +76,14 @@ export function BjConsent({
   }
 
   const manager = managerOpen ? (
-    <div className="bj-consent-manager" style={{ display: 'flex' }}>
+    <div
+      ref={managerRef}
+      className="bj-consent-manager"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Préférences de cookies"
+      style={{ display: 'flex' }}
+    >
       <div className="bj-consent-manager__dialog">
         <div className="bj-consent-manager__header">
           <h2 className="bj-consent-manager__title">Préférences de cookies</h2>
@@ -90,8 +101,10 @@ export function BjConsent({
                 <input
                   type="checkbox"
                   className="bj-toggle__input"
+                  role="switch"
                   checked={accepted.has(service.id)}
                   disabled={service.required}
+                  aria-label={service.name}
                   onChange={() => toggleService(service.id)}
                 />
               </label>
@@ -127,7 +140,7 @@ export function BjConsent({
         >
           <div className="bj-consent-banner__body">
             <div className="bj-consent-banner__header">
-              <span className="bj-consent-banner__icon">
+              <span className="bj-consent-banner__icon" aria-hidden="true">
                 <BjSvgIcon name="shieldCheckLine" />
               </span>
               <p className="bj-consent-banner__title">{title}</p>

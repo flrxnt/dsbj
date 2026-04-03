@@ -4,6 +4,9 @@ export interface BjPaginationProps {
   total: number
   perPage?: number
   maxVisible?: number
+  ariaLabel?: string
+  prevLabel?: string
+  nextLabel?: string
 }
 </script>
 
@@ -14,13 +17,16 @@ import { BjSvgIcon } from '../icons'
 const props = withDefaults(defineProps<BjPaginationProps>(), {
   perPage: 10,
   maxVisible: 5,
+  ariaLabel: 'Pagination',
+  prevLabel: 'Page précédente',
+  nextLabel: 'Page suivante',
 })
 
 const emit = defineEmits<{
   'update:modelValue': [page: number]
 }>()
 
-const totalPages = computed(() => Math.ceil(props.total / props.perPage))
+const totalPages = computed(() => Math.max(1, Math.ceil(props.total / props.perPage)))
 
 const pages = computed(() => {
   const result: (number | '...')[] = []
@@ -58,25 +64,26 @@ function go(page: number) {
 </script>
 
 <template>
-  <nav class="bj-pagination" aria-label="Pagination" v-bind="$attrs">
+  <nav class="bj-pagination" :aria-label="ariaLabel" v-bind="$attrs">
     <button
       type="button"
       class="bj-pagination__nav"
       :class="{ 'bj-pagination__nav--disabled': modelValue <= 1 }"
       :disabled="modelValue <= 1"
-      aria-label="Page précédente"
+      :aria-label="prevLabel"
       @click="go(modelValue - 1)"
     >
       <BjSvgIcon name="arrowLeftSLine" />
     </button>
     <template v-for="(p, i) in pages" :key="i">
-      <span v-if="p === '...'" class="bj-pagination__ellipsis">...</span>
+      <span v-if="p === '...'" class="bj-pagination__ellipsis" aria-hidden="true">...</span>
       <button
         v-else
         type="button"
         class="bj-pagination__link"
         :class="{ 'bj-pagination__link--active': p === modelValue }"
         :aria-current="p === modelValue ? 'page' : undefined"
+        :aria-label="`Page ${p}`"
         @click="go(p as number)"
       >
         {{ p }}
@@ -87,7 +94,7 @@ function go(page: number) {
       class="bj-pagination__nav"
       :class="{ 'bj-pagination__nav--disabled': modelValue >= totalPages }"
       :disabled="modelValue >= totalPages"
-      aria-label="Page suivante"
+      :aria-label="nextLabel"
       @click="go(modelValue + 1)"
     >
       <BjSvgIcon name="arrowRightSLine" />

@@ -82,3 +82,4 @@ export { BjChartPie } from './components/BjChartPie'
 // Hooks
 export { useModal } from './hooks/useModal'
 export { useToast } from './hooks/useToast'
+export { useFocusTrap } from './hooks/useFocusTrap'

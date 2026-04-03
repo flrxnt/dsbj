@@ -1,14 +1,15 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { initModal } from '../src/js/modal';
+import { pressKey, getFocusableElements } from './helpers';
 
 describe('modal', () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <button data-bj-modal-open="demo-modal" id="opener">Open</button>
-      <div class="bj-modal" id="demo-modal">
+      <div class="bj-modal" id="demo-modal" role="dialog" aria-modal="true">
         <div class="bj-modal__overlay"></div>
         <div class="bj-modal__dialog">
-          <button data-bj-modal-close class="bj-modal__close">X</button>
+          <button data-bj-modal-close class="bj-modal__close" aria-label="Fermer">X</button>
           <div class="bj-modal__body"><button id="inside">Inside</button></div>
         </div>
       </div>
@@ -38,5 +39,27 @@ describe('modal', () => {
     document.getElementById('opener')!.click();
     document.querySelector<HTMLElement>('.bj-modal__overlay')!.click();
     expect(document.getElementById('demo-modal')!.hasAttribute('data-bj-expanded')).toBe(false);
+  });
+
+  it('should have dialog role', () => {
+    const modal = document.getElementById('demo-modal');
+    expect(modal!.getAttribute('role')).toBe('dialog');
+  });
+
+  it('should have aria-modal true', () => {
+    const modal = document.getElementById('demo-modal');
+    expect(modal!.getAttribute('aria-modal')).toBe('true');
+  });
+
+  it('should have close button with aria-label', () => {
+    const closeBtn = document.querySelector('.bj-modal__close');
+    expect(closeBtn!.getAttribute('aria-label')).toBe('Fermer');
+  });
+
+  it('should trap focus within modal when open', () => {
+    document.getElementById('opener')!.click();
+    const modal = document.getElementById('demo-modal')!;
+    const focusable = getFocusableElements(modal);
+    expect(focusable.length).toBeGreaterThan(0);
   });
 });

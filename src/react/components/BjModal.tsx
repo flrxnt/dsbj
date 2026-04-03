@@ -1,13 +1,15 @@
-import { useEffect, useId, type ReactNode } from 'react'
+import { useEffect, useId, useRef, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 
 import { BjSvgIcon } from '../icons'
+import { useFocusTrap } from '../hooks/useFocusTrap'
 
 export interface BjModalProps {
   open: boolean
   onClose: () => void
   size?: 'default' | 'sm' | 'lg' | 'full'
   title?: string
+  closeLabel?: string
   children?: ReactNode
   footer?: ReactNode
   className?: string
@@ -18,6 +20,7 @@ export function BjModal({
   onClose,
   size = 'default',
   title,
+  closeLabel = 'Fermer',
   children,
   footer,
   className,
@@ -25,6 +28,9 @@ export function BjModal({
   const baseId = useId()
   const modalId = `bj-modal-${baseId.replace(/:/g, '')}`
   const titleId = `${modalId}-title`
+  const dialogRef = useRef<HTMLDivElement>(null)
+
+  useFocusTrap(dialogRef, open)
 
   useEffect(() => {
     if (open) document.body.classList.add('bj-modal-open')
@@ -45,6 +51,7 @@ export function BjModal({
 
   const node = (
     <div
+      ref={dialogRef}
       id={modalId}
       className={['bj-modal', size !== 'default' && `bj-modal--${size}`, className]
         .filter(Boolean)
@@ -62,7 +69,7 @@ export function BjModal({
             <h2 id={titleId} className="bj-modal__title">
               {title}
             </h2>
-            <button type="button" className="bj-modal__close" aria-label="Fermer" onClick={onClose}>
+            <button type="button" className="bj-modal__close" aria-label={closeLabel} onClick={onClose}>
               <BjSvgIcon name="closeLine" />
             </button>
           </header>

@@ -5,6 +5,7 @@ export interface TabContext {
   activeIndex: Ref<number>
   activate: (index: number) => void
   register: () => number
+  tabsId: string
 }
 
 export const TabKey: InjectionKey<TabContext> = Symbol('BjTab')
@@ -12,11 +13,14 @@ export const TabKey: InjectionKey<TabContext> = Symbol('BjTab')
 export interface BjTabProps {
   modelValue?: number
   tabs: string[]
+  id?: string
 }
 </script>
 
 <script setup lang="ts">
-import { ref, provide } from 'vue'
+import { ref, provide, watch } from 'vue'
+
+let uid = 0
 
 const props = withDefaults(defineProps<BjTabProps>(), {
   modelValue: 0,
@@ -26,8 +30,13 @@ const emit = defineEmits<{
   'update:modelValue': [index: number]
 }>()
 
+const tabsId = props.id || `bj-tabs-${++uid}`
 const activeIndex = ref(props.modelValue)
 let panelCount = 0
+
+watch(() => props.modelValue, (val) => {
+  activeIndex.value = val
+})
 
 function activate(index: number) {
   activeIndex.value = index
@@ -38,7 +47,7 @@ function registerPanel() {
   return panelCount++
 }
 
-provide(TabKey, { activeIndex, activate, register: registerPanel })
+provide(TabKey, { activeIndex, activate, register: registerPanel, tabsId })
 
 function onKeydown(e: KeyboardEvent, index: number) {
   let next = index
@@ -60,10 +69,12 @@ function onKeydown(e: KeyboardEvent, index: number) {
       <button
         v-for="(tab, i) in tabs"
         :key="i"
+        :id="`${tabsId}-tab-${i}`"
         type="button"
         role="tab"
         class="bj-tabs__tab"
-        :aria-selected="String(activeIndex === i)"
+        :aria-selected="activeIndex === i"
+        :aria-controls="`${tabsId}-panel-${i}`"
         :tabindex="activeIndex === i ? 0 : -1"
         @click="activate(i)"
         @keydown="onKeydown($event, i)"

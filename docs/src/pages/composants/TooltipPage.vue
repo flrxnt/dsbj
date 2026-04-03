@@ -37,7 +37,7 @@ const { t } = useI18n({
       'prop-position-row':
         'bj-tooltip--bottom, bj-tooltip--left, bj-tooltip--right ; sans classe = position haut.',
       'a11y-note':
-        'Ne pas réserver une information critique au seul survol.',
+        'Le contenu de l’infobulle a <code>role="tooltip"</code> et un <code>id</code> stable ; le déclencheur reçoit <code>aria-describedby</code> vers cet id pour lier la description à l’élément focalisé. <code>aria-hidden</code> suit la visibilité (masqué quand l’infobulle n’est pas affichée). Affichage au survol (<code>mouseenter</code>) et au focus (<code>focusin</code>) ; masquage à la sortie du survol (<code>mouseleave</code>) et à la perte de focus (<code>focusout</code>). <kbd>Échap</kbd> ferme l’infobulle lorsque le focus est sur le déclencheur. Ne réservez pas une information indispensable au seul survol ou à l’infobulle : exposez aussi ce contenu ailleurs dans la page.',
     },
     en: {
       title: 'Tooltip',
@@ -64,7 +64,8 @@ const { t } = useI18n({
         'Tooltip copy on the child element; add role="tooltip" there.',
       'prop-position-row':
         'bj-tooltip--bottom, bj-tooltip--left, bj-tooltip--right; omit modifier for top.',
-      'a11y-note': 'Do not rely on hover alone for critical information.',
+      'a11y-note':
+        'Tooltip content uses <code>role="tooltip"</code> and a stable <code>id</code>; the trigger gets <code>aria-describedby</code> pointing to that id so the description is associated with the focused element. <code>aria-hidden</code> tracks visibility (hidden when the tooltip is not shown). Shown on <code>mouseenter</code> and <code>focusin</code>; hidden on <code>mouseleave</code> and <code>focusout</code>. <kbd>Escape</kbd> dismisses the tooltip while focus is on the trigger. Do not put essential information only in a tooltip—surface critical content elsewhere on the page as well.',
     },
   },
 })
@@ -229,7 +230,7 @@ const propsRows = computed(() => [
 
   <DocsSection id="sec-accessibilité" :title="t('section-a11y')">
     <DocsA11yNote>
-      {{ t('a11y-note') }}
+      <span v-html="t('a11y-note')" />
     </DocsA11yNote>
   </DocsSection>
 </template>

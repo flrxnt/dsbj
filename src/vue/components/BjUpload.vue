@@ -8,12 +8,16 @@ export interface BjUploadProps {
   message?: string
   text?: string
   icon?: string
+  id?: string
+  removeLabel?: string
 }
 </script>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { BjSvgIcon } from '../icons'
+
+let uid = 0
 
 function riKebabToCamel(s: string): string {
   return s.split('-').map((p, i) => (i === 0 ? p : p.charAt(0).toUpperCase() + p.slice(1))).join('')
@@ -27,6 +31,7 @@ function resolveIconName(icon: string): string {
 const props = withDefaults(defineProps<BjUploadProps>(), {
   text: 'Glissez un fichier ou cliquez pour parcourir',
   icon: 'upload2Line',
+  removeLabel: 'Retirer',
 })
 
 const iconName = computed(() => resolveIconName(props.icon))
@@ -49,7 +54,16 @@ const uploadClasses = computed(() => [
   dragging.value && 'bj-upload--drag-over',
 ])
 
-const uploadId = computed(() => `bj-upload-${Math.random().toString(36).slice(2, 9)}`)
+const uploadId = props.id || `bj-upload-${++uid}`
+const hintId = `${uploadId}-hint`
+const messageId = `${uploadId}-msg`
+
+const describedBy = computed(() => {
+  const ids: string[] = []
+  if (props.hint) ids.push(hintId)
+  if (props.message) ids.push(messageId)
+  return ids.length ? ids.join(' ') : undefined
+})
 
 function handleFiles(fl: FileList | null) {
   if (!fl) return
@@ -68,19 +82,23 @@ function onDrop(e: DragEvent) {
 
 function removeFile(index: number) {
   files.value.splice(index, 1)
+  if (fileInput.value) fileInput.value.value = ''
 }
 </script>
 
 <template>
   <div :class="groupClasses">
     <label v-if="label" class="bj-label" :for="uploadId">{{ label }}</label>
-    <span v-if="hint" class="bj-hint">{{ hint }}</span>
+    <span v-if="hint" :id="hintId" class="bj-hint">{{ hint }}</span>
     <div
       :class="uploadClasses"
       role="button"
       tabindex="0"
+      :aria-label="text"
+      :aria-describedby="describedBy"
       @click="onClick"
       @keydown.enter="onClick"
+      @keydown.space.prevent="onClick"
       @dragover.prevent="dragging = true"
       @dragleave="dragging = false"
       @drop.prevent="onDrop"
@@ -97,13 +115,19 @@ function removeFile(index: number) {
         @change="handleFiles(($event.target as HTMLInputElement).files)"
       />
     </div>
-    <p v-if="message" class="bj-message" :class="error ? 'bj-message--error' : 'bj-message--info'">
+    <p
+      v-if="message"
+      :id="messageId"
+      class="bj-message"
+      :class="error ? 'bj-message--error' : 'bj-message--info'"
+      :role="error ? 'alert' : 'status'"
+    >
       {{ message }}
     </p>
     <div v-for="(file, i) in files" :key="i" class="bj-upload__file">
       <BjSvgIcon name="fileLine" />
       {{ file.name }}
-      <button type="button" class="bj-upload__file-remove" @click="removeFile(i)" aria-label="Retirer">
+      <button type="button" class="bj-upload__file-remove" @click="removeFile(i)" :aria-label="`${removeLabel} ${file.name}`">
         <BjSvgIcon name="closeLine" />
       </button>
     </div>

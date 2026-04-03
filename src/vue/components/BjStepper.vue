@@ -9,6 +9,7 @@ export interface BjStepperProps {
   current: number
   vertical?: boolean
   detail?: string
+  ariaLabel?: string
 }
 </script>
 
@@ -17,6 +18,7 @@ import { computed } from 'vue'
 
 const props = withDefaults(defineProps<BjStepperProps>(), {
   current: 0,
+  ariaLabel: 'Étapes',
 })
 
 const classes = computed(() => [
@@ -26,7 +28,7 @@ const classes = computed(() => [
 </script>
 
 <template>
-  <div :class="classes" role="navigation" aria-label="Étapes" v-bind="$attrs">
+  <div :class="classes" role="navigation" :aria-label="ariaLabel" v-bind="$attrs">
     <div class="bj-stepper__header">
       <h2 v-if="title" class="bj-stepper__title">{{ title }}</h2>
       <div class="bj-stepper__steps" role="list">

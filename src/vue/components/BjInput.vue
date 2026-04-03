@@ -1,4 +1,6 @@
 <script lang="ts">
+export type BjInputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search' | 'date' | 'time' | 'datetime-local'
+
 export interface BjInputProps {
   modelValue?: string
   label?: string
@@ -7,16 +9,20 @@ export interface BjInputProps {
   message?: string
   size?: 'sm' | 'md'
   disabled?: boolean
-  type?: string
+  required?: boolean
+  type?: BjInputType
   placeholder?: string
   textarea?: boolean
   rows?: number
   icon?: string
+  id?: string
 }
 </script>
 
 <script setup lang="ts">
 import { computed } from 'vue'
+
+let uid = 0
 
 const props = withDefaults(defineProps<BjInputProps>(), {
   modelValue: '',
@@ -41,14 +47,14 @@ const inputClasses = computed(() => [
   props.size === 'sm' && 'bj-input--sm',
 ])
 
-const inputId = computed(() => `bj-input-${Math.random().toString(36).slice(2, 9)}`)
-const hintId = computed(() => `${inputId.value}-hint`)
-const messageId = computed(() => `${inputId.value}-msg`)
+const inputId = props.id || `bj-input-${++uid}`
+const hintId = `${inputId}-hint`
+const messageId = `${inputId}-msg`
 
 const describedBy = computed(() => {
   const ids: string[] = []
-  if (props.hint) ids.push(hintId.value)
-  if (props.message) ids.push(messageId.value)
+  if (props.hint) ids.push(hintId)
+  if (props.message) ids.push(messageId)
   return ids.length ? ids.join(' ') : undefined
 })
 
@@ -70,8 +76,10 @@ function onInput(e: Event) {
         :value="modelValue"
         :placeholder="placeholder"
         :disabled="disabled"
+        :required="required || undefined"
+        :aria-required="required || undefined"
         :aria-describedby="describedBy"
-        :aria-invalid="state === 'error' ? 'true' : undefined"
+        :aria-invalid="state === 'error' || undefined"
         v-bind="$attrs"
         @input="onInput"
       />
@@ -84,8 +92,10 @@ function onInput(e: Event) {
       :rows="rows"
       :placeholder="placeholder"
       :disabled="disabled"
+      :required="required || undefined"
+      :aria-required="required || undefined"
       :aria-describedby="describedBy"
-      :aria-invalid="state === 'error' ? 'true' : undefined"
+      :aria-invalid="state === 'error' || undefined"
       v-bind="$attrs"
       @input="onInput"
     />
@@ -97,8 +107,10 @@ function onInput(e: Event) {
       :value="modelValue"
       :placeholder="placeholder"
       :disabled="disabled"
+      :required="required || undefined"
+      :aria-required="required || undefined"
       :aria-describedby="describedBy"
-      :aria-invalid="state === 'error' ? 'true' : undefined"
+      :aria-invalid="state === 'error' || undefined"
       v-bind="$attrs"
       @input="onInput"
     />

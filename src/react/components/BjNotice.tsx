@@ -12,11 +12,13 @@ function noticeIconName(icon: string): string {
   return name in iconPaths ? name : 'informationLine'
 }
 
-export interface BjNoticeProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'title'> {
+export interface BjNoticeProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'title' | 'role'> {
   variant?: 'default' | 'info' | 'warning' | 'alert'
   closable?: boolean
+  closeLabel?: string
   title?: string
   icon?: string
+  role?: 'alert' | 'status'
   onClose?: () => void
   children?: ReactNode
 }
@@ -24,14 +26,18 @@ export interface BjNoticeProps extends Omit<HTMLAttributes<HTMLDivElement>, 'chi
 export function BjNotice({
   variant = 'default',
   closable,
+  closeLabel = 'Fermer',
   title,
   icon,
+  role: roleProp,
   onClose,
   className,
   children,
   ...rest
 }: BjNoticeProps) {
   const [visible, setVisible] = useState(true)
+
+  const effectiveRole = roleProp ?? (variant === 'alert' || variant === 'warning' ? 'alert' : 'status')
 
   const cls = ['bj-notice', variant !== 'default' && `bj-notice--${variant}`, className]
     .filter(Boolean)
@@ -45,10 +51,11 @@ export function BjNotice({
   if (!visible) return null
 
   return (
-    <div className={cls} {...rest}>
+    <div className={cls} role={effectiveRole} {...rest}>
       {icon ? (
         <span
           className={['bj-notice__icon', classesWithoutRemixIcon(icon)].filter(Boolean).join(' ')}
+          aria-hidden="true"
         >
           <BjSvgIcon name={noticeIconName(icon)} />
         </span>
@@ -58,7 +65,7 @@ export function BjNotice({
         {children}
       </div>
       {closable ? (
-        <button type="button" className="bj-notice__close" aria-label="Fermer" onClick={close}>
+        <button type="button" className="bj-notice__close" aria-label={closeLabel} onClick={close}>
           <BjSvgIcon name="closeLine" />
         </button>
       ) : null}

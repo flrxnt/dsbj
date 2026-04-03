@@ -37,7 +37,37 @@ const { t } = useI18n({
       'section-accessibilite': 'Accessibilité',
       'th-class-attr': 'Classe / attribut',
       'th-description': 'Description',
-      'a11y-note': 'Utilisez <code>role="tree"</code> sur le conteneur racine, <code>role="treeitem"</code> sur chaque nœud et <code>role="group"</code> sur les sous-arbres. Les boutons toggle doivent porter <code>aria-expanded</code>. La navigation clavier (flèches, Entrée, Espace) est recommandée pour la conformité WCAG.',
+      'a11y-intro':
+        'Le script d’arborescence (balise <code>data-bj-tree</code> ou composants Vue/React) suit le modèle <strong>WAI-ARIA APG</strong> pour les arbres : navigation clavier complète, <code>tabindex</code> itinérant (un seul <code>treeitem</code> porte <code>tabindex="0"</code> à la fois), <code>aria-expanded</code> sur les parents qui se déploient, et <code>aria-label</code> sur les boutons d’expansion et les cases à cocher lorsque le libellé visible ne suffit pas.',
+      'a11y-roles-title': 'Rôles ARIA',
+      'th-a11y-role': 'Rôle',
+      'th-a11y-role-desc': 'Description',
+      'a11y-role-tree':
+        'Conteneur racine de l’arbre (<code>role="tree"</code> sur l’élément liste racine).',
+      'a11y-role-treeitem':
+        'Chaque nœud focusable du parcours linéaire (feuille ou parent).',
+      'a11y-role-group':
+        'Sous-arbre listant les enfants d’un parent (<code>role="group"</code> sur la liste imbriquée).',
+      'a11y-kbd-title': 'Raccourcis clavier',
+      'th-kbd-key': 'Touche',
+      'th-kbd-action': 'Action',
+      'kbd-arrow-down': 'Flèche bas',
+      'kbd-act-down': 'Aller à l’élément visible suivant (ordre linéaire aplati).',
+      'kbd-arrow-up': 'Flèche haut',
+      'kbd-act-up': 'Aller à l’élément visible précédent.',
+      'kbd-arrow-right': 'Flèche droite',
+      'kbd-act-right':
+        'Développer le nœud s’il est replié ; s’il est déjà développé, aller au premier enfant.',
+      'kbd-arrow-left': 'Flèche gauche',
+      'kbd-act-left':
+        'Replier le nœud s’il est développé ; sinon aller au parent (ou rien si racine).',
+      'kbd-home': 'Début (Home)',
+      'kbd-act-home': 'Aller au premier élément de l’arbre.',
+      'kbd-end': 'Fin (End)',
+      'kbd-act-end': 'Aller au dernier élément visible.',
+      'kbd-enter-space': 'Entrée ou Espace',
+      'kbd-act-enter-space':
+        'Sans cases à cocher : développer ou replier le nœud. En mode cases à cocher : activer ou désactiver la case du nœud courant.',
       'prop-bj-tree': 'Conteneur racine <code>&lt;ul&gt;</code> avec <code>role="tree"</code>.',
       'prop-bj-tree-item': 'Élément <code>&lt;li&gt;</code> avec <code>role="treeitem"</code>.',
       'prop-bj-tree-item-content': 'Ligne de contenu (toggle + label + icône).',
@@ -77,7 +107,37 @@ const { t } = useI18n({
       'section-accessibilite': 'Accessibility',
       'th-class-attr': 'Class / attribute',
       'th-description': 'Description',
-      'a11y-note': 'Use <code>role="tree"</code> on the root container, <code>role="treeitem"</code> on each node and <code>role="group"</code> on subtrees. Toggle buttons must carry <code>aria-expanded</code>. Keyboard navigation (arrows, Enter, Space) is recommended for WCAG compliance.',
+      'a11y-intro':
+        'The treeview script (<code>data-bj-tree</code> hook or Vue/React components) follows the <strong>WAI-ARIA APG</strong> tree pattern: full keyboard navigation, roving <code>tabindex</code> (only one <code>treeitem</code> has <code>tabindex="0"</code> at a time), <code>aria-expanded</code> on expandable parents, and <code>aria-label</code> on expand buttons and checkboxes when the visible label is not enough.',
+      'a11y-roles-title': 'ARIA roles',
+      'th-a11y-role': 'Role',
+      'th-a11y-role-desc': 'Purpose',
+      'a11y-role-tree':
+        'Root container for the hierarchy (<code>role="tree"</code> on the root list element).',
+      'a11y-role-treeitem':
+        'Each focusable node in the linear traversal (leaf or parent).',
+      'a11y-role-group':
+        'Subtree listing a parent’s children (<code>role="group"</code> on the nested list).',
+      'a11y-kbd-title': 'Keyboard shortcuts',
+      'th-kbd-key': 'Key',
+      'th-kbd-action': 'Action',
+      'kbd-arrow-down': 'Arrow Down',
+      'kbd-act-down': 'Move to the next visible item (flattened linear order).',
+      'kbd-arrow-up': 'Arrow Up',
+      'kbd-act-up': 'Move to the previous visible item.',
+      'kbd-arrow-right': 'Arrow Right',
+      'kbd-act-right':
+        'Expand a collapsed node; if already expanded, move to the first child.',
+      'kbd-arrow-left': 'Arrow Left',
+      'kbd-act-left':
+        'Collapse an expanded node; otherwise move to the parent (no-op at the root).',
+      'kbd-home': 'Home',
+      'kbd-act-home': 'Move to the first item in the tree.',
+      'kbd-end': 'End',
+      'kbd-act-end': 'Move to the last visible item.',
+      'kbd-enter-space': 'Enter or Space',
+      'kbd-act-enter-space':
+        'Without checkboxes: toggle expand/collapse. In checkbox mode: toggle the current item’s checkbox.',
       'prop-bj-tree': 'Root <code>&lt;ul&gt;</code> container with <code>role="tree"</code>.',
       'prop-bj-tree-item': '<code>&lt;li&gt;</code> element with <code>role="treeitem"</code>.',
       'prop-bj-tree-item-content': 'Content row (toggle + label + icon).',
@@ -250,6 +310,22 @@ const propsRows = computed(() => [
   { name: 'bj-tree__checkbox', description: t('prop-bj-tree-checkbox') },
   { name: 'bj-tree--checkbox', description: t('prop-bj-tree-checkbox-mod') },
   { name: 'bj-tree--compact', description: t('prop-bj-tree-compact') },
+])
+
+const a11yRoleRows = computed((): { role: string; description: string }[] => [
+  { role: 'tree', description: t('a11y-role-tree') },
+  { role: 'treeitem', description: t('a11y-role-treeitem') },
+  { role: 'group', description: t('a11y-role-group') },
+])
+
+const a11yKbdRows = computed((): { key: string; action: string }[] => [
+  { key: t('kbd-arrow-down'), action: t('kbd-act-down') },
+  { key: t('kbd-arrow-up'), action: t('kbd-act-up') },
+  { key: t('kbd-arrow-right'), action: t('kbd-act-right') },
+  { key: t('kbd-arrow-left'), action: t('kbd-act-left') },
+  { key: t('kbd-home'), action: t('kbd-act-home') },
+  { key: t('kbd-end'), action: t('kbd-act-end') },
+  { key: t('kbd-enter-space'), action: t('kbd-act-enter-space') },
 ])
 </script>
 
@@ -492,7 +568,63 @@ const propsRows = computed(() => [
 
   <DocsSection id="a11y-tree" :title="t('section-accessibilite')">
     <DocsA11yNote>
-      <span v-html="t('a11y-note')" />
+      <p
+        class="bj-text-md"
+        style="margin: 0"
+        v-html="t('a11y-intro')"
+      />
     </DocsA11yNote>
+
+    <h3
+      class="bj-h3"
+      style="margin-top: var(--bj-spacing-4v); margin-bottom: var(--bj-spacing-2v)"
+    >
+      {{ t('a11y-roles-title') }}
+    </h3>
+    <div style="overflow-x: auto">
+      <table class="docs-props">
+        <thead>
+          <tr>
+            <th scope="col">{{ t('th-a11y-role') }}</th>
+            <th scope="col">{{ t('th-a11y-role-desc') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in a11yRoleRows" :key="row.role">
+            <td>
+              <code>role="{{ row.role }}"</code>
+            </td>
+            <td>
+              <span v-html="row.description" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3
+      class="bj-h3"
+      style="margin-top: var(--bj-spacing-4v); margin-bottom: var(--bj-spacing-2v)"
+    >
+      {{ t('a11y-kbd-title') }}
+    </h3>
+    <div style="overflow-x: auto">
+      <table class="docs-props">
+        <thead>
+          <tr>
+            <th scope="col">{{ t('th-kbd-key') }}</th>
+            <th scope="col">{{ t('th-kbd-action') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(row, index) in a11yKbdRows" :key="index">
+            <td>
+              <kbd>{{ row.key }}</kbd>
+            </td>
+            <td>{{ row.action }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </DocsSection>
 </template>

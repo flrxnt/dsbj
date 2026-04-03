@@ -70,6 +70,7 @@ export function BjGallery({ images, cols = 3, className }: BjGalleryProps) {
         className="bj-lightbox"
         data-bj-expanded
         role="dialog"
+        aria-modal="true"
         aria-label="Visionneuse d'images"
         style={{ display: 'flex' }}
         onClick={e => {

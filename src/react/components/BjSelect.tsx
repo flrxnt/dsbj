@@ -22,6 +22,7 @@ export interface BjSelectProps
   disabled?: boolean
   placeholder?: string
   id?: string
+  required?: boolean
   children?: React.ReactNode
   searchable?: boolean
   searchPlaceholder?: string
@@ -43,6 +44,7 @@ export function BjSelect({
   className,
   children,
   searchable,
+  required,
   searchPlaceholder = 'Rechercher…',
   noResults = 'Aucun résultat',
   ...rest
@@ -67,6 +69,8 @@ export function BjSelect({
           className={selectClass}
           value={value}
           disabled={disabled}
+          required={required || undefined}
+          aria-required={required || undefined}
           aria-describedby={describedBy}
           aria-invalid={error ? true : undefined}
           onChange={(e) => { onChange?.(e); onValueChange?.(e.target.value) }}
@@ -202,6 +206,8 @@ function SearchableSelect({
     })
   }
 
+  const triggerBtnRef = useRef<HTMLButtonElement>(null)
+
   function onSearchKeyDown(e: React.KeyboardEvent) {
     const len = filtered.length
     switch (e.key) {
@@ -213,6 +219,16 @@ function SearchableSelect({
         e.preventDefault()
         setActiveIndex(prev => { const n = prev > 0 ? prev - 1 : len - 1; scrollToActive(n); return n })
         break
+      case 'Home':
+        e.preventDefault()
+        setActiveIndex(0)
+        scrollToActive(0)
+        break
+      case 'End':
+        e.preventDefault()
+        setActiveIndex(len - 1)
+        scrollToActive(len - 1)
+        break
       case 'Enter':
         e.preventDefault()
         if (activeIndex >= 0 && activeIndex < len) selectOption(filtered[activeIndex])
@@ -220,6 +236,7 @@ function SearchableSelect({
       case 'Escape':
         e.preventDefault()
         closePanel()
+        triggerBtnRef.current?.focus()
         break
     }
   }
@@ -240,6 +257,7 @@ function SearchableSelect({
 
       <div className={['bj-select-custom', isOpen && 'bj-select-custom--open'].filter(Boolean).join(' ')}>
         <button
+          ref={triggerBtnRef}
           id={`${selectId}-trigger`}
           type="button"
           className={['bj-select-custom__trigger', !value && 'bj-select-custom__trigger--placeholder'].filter(Boolean).join(' ')}
@@ -247,9 +265,9 @@ function SearchableSelect({
           role="combobox"
           aria-expanded={isOpen}
           aria-haspopup="listbox"
-          aria-controls={listboxId}
+          aria-controls={isOpen && filtered.length > 0 ? listboxId : undefined}
           aria-activedescendant={activeDescendant}
-          aria-invalid={error || undefined}
+          aria-invalid={error ? true : undefined}
           aria-describedby={describedBy}
           onClick={(e) => { e.stopPropagation(); togglePanel() }}
           onKeyDown={onTriggerKeyDown}

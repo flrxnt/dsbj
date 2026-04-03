@@ -6,11 +6,15 @@ export interface BjRadioProps {
   hint?: string
   disabled?: boolean
   name?: string
+  id?: string
+  invalid?: boolean
 }
 </script>
 
 <script setup lang="ts">
 import { computed } from 'vue'
+
+let uid = 0
 
 const props = defineProps<BjRadioProps>()
 
@@ -18,7 +22,13 @@ const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
 
-const radioId = computed(() => `bj-radio-${Math.random().toString(36).slice(2, 9)}`)
+const radioId = props.id || `bj-radio-${++uid}`
+const hintId = `${radioId}-hint`
+
+const describedBy = computed(() => {
+  if (props.hint) return hintId
+  return undefined
+})
 
 function onChange() {
   emit('update:modelValue', props.value)
@@ -34,12 +44,14 @@ function onChange() {
       :value="value"
       :disabled="disabled"
       :name="name"
+      :aria-describedby="describedBy"
+      :aria-invalid="invalid || undefined"
       v-bind="$attrs"
       @change="onChange"
     />
     <span class="bj-radio__label">
       <slot>{{ label }}</slot>
-      <span v-if="hint" class="bj-radio__hint">{{ hint }}</span>
+      <span v-if="hint" :id="hintId" class="bj-radio__hint">{{ hint }}</span>
     </span>
   </label>
 </template>

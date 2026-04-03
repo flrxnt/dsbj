@@ -1,10 +1,11 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 
-export interface BjQuoteProps extends Omit<HTMLAttributes<HTMLElement>, 'children'> {
+export interface BjQuoteProps extends Omit<HTMLAttributes<HTMLElement>, 'children' | 'cite'> {
   accent?: boolean
   text?: string
   author?: string
   source?: string
+  cite?: string
   image?: string
   children?: ReactNode
 }
@@ -14,6 +15,7 @@ export function BjQuote({
   text,
   author,
   source,
+  cite: citeProp,
   image,
   className,
   children,
@@ -24,11 +26,11 @@ export function BjQuote({
   return (
     <figure className={cls} {...rest}>
       {image ? <img className="bj-quote__image" src={image} alt="" /> : null}
-      <blockquote className="bj-quote__text">{children ?? text}</blockquote>
+      <blockquote className="bj-quote__text" cite={citeProp}>{children ?? text}</blockquote>
       {author || source ? (
         <figcaption>
           {author ? <span className="bj-quote__author">{author}</span> : null}
-          {source ? <span className="bj-quote__source">{source}</span> : null}
+          {source ? <cite className="bj-quote__source">{source}</cite> : null}
         </figcaption>
       ) : null}
     </figure>

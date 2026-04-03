@@ -8,16 +8,19 @@ export interface SidemenuLink {
 export interface BjSidemenuProps {
   title?: string
   links: SidemenuLink[]
+  ariaLabel?: string
 }
 </script>
 
 <script setup lang="ts">
 
-defineProps<BjSidemenuProps>()
+const props = withDefaults(defineProps<BjSidemenuProps>(), {
+  ariaLabel: 'Menu latéral',
+})
 </script>
 
 <template>
-  <nav class="bj-sidemenu" aria-label="Menu latéral" v-bind="$attrs">
+  <nav class="bj-sidemenu" :aria-label="ariaLabel" v-bind="$attrs">
     <p v-if="title" class="bj-sidemenu__title">{{ title }}</p>
     <ul class="bj-sidemenu__list">
       <li v-for="link in links" :key="link.to" class="bj-sidemenu__item">
@@ -35,6 +38,7 @@ defineProps<BjSidemenuProps>()
               class="bj-sidemenu__link"
               :class="{ 'bj-sidemenu__link--active': child.active }"
               :href="child.to"
+              :aria-current="child.active ? 'page' : undefined"
             >
               {{ child.label }}
             </a>

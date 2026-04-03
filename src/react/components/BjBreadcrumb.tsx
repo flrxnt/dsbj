@@ -7,13 +7,14 @@ export type BjBreadcrumbItem = {
 
 export type BjBreadcrumbProps = {
   items: BjBreadcrumbItem[]
+  ariaLabel?: string
 } & ComponentPropsWithoutRef<'nav'>
 
-export function BjBreadcrumb({ items, className, ...rest }: BjBreadcrumbProps) {
+export function BjBreadcrumb({ items, ariaLabel = "Fil d'Ariane", className, ...rest }: BjBreadcrumbProps) {
   return (
     <nav
       className={['bj-breadcrumb', className].filter(Boolean).join(' ')}
-      aria-label="Fil d'Ariane"
+      aria-label={ariaLabel}
       {...rest}
     >
       <ol className="bj-breadcrumb__list">

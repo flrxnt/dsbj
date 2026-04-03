@@ -30,7 +30,7 @@ const { t } = useI18n({
       'prop-checkbox-input':
         'Case\u00a0: <code>type="checkbox"</code>, <code>name</code>, <code>value</code>, <code>checked</code>, <code>disabled</code>.',
       'a11y-note':
-        'Pour plusieurs cases liées, préférez <code>fieldset</code> et <code>legend</code>.',
+        'Pour plusieurs cases liées, préférez <code>fieldset</code> et <code>legend</code>. La prop <code>indeterminate</code> active l’état natif « mixte » du <code>input</code>\u00a0: les technologies d’assistance peuvent l’annoncer comme partiellement coché. Le texte d’aide et le message sous la case sont reliés au champ avec <code>aria-describedby</code>\u00a0; en cas d’erreur, la prop <code>invalid</code> positionne <code>aria-invalid="true"</code> sur le <code>input</code> et le message est exposé en <code>role="alert"</code>.',
     },
     en: {
       title: 'Checkbox',
@@ -41,6 +41,10 @@ const { t } = useI18n({
         '<code>bj-checkbox__hint</code> to specify constraints or formats.',
       'section-css': 'CSS classes',
       'section-a11y': 'Accessibility',
+      'section-name-value':
+        '<code>name</code>, <code>value</code>, and checked state',
+      'section-name-value-body':
+        'Use <code>name</code> to group submissions; <code>value</code> identifies the box in the group. The visual checked state is the HTML <code>checked</code> attribute.',
       'prop-checkbox-group': 'Wrapper.',
       'prop-checkbox-legend': 'Group title.',
       'prop-checkbox': 'Wrapping label.',
@@ -49,7 +53,7 @@ const { t } = useI18n({
       'prop-checkbox-input':
         'Box: <code>type="checkbox"</code>, <code>name</code>, <code>value</code>, <code>checked</code>, <code>disabled</code>.',
       'a11y-note':
-        'For related checkboxes, prefer <code>fieldset</code> and <code>legend</code>.',
+        'For related checkboxes, prefer <code>fieldset</code> and <code>legend</code>. The <code>indeterminate</code> prop sets the native mixed state on the checkbox input so assistive technologies can announce a partially checked control. Hint text and the message below the field are linked with <code>aria-describedby</code>; when <code>invalid</code> is true, the input exposes <code>aria-invalid="true"</code> and the message uses <code>role="alert"</code>.',
     },
   },
 })

@@ -5,17 +5,22 @@ export interface BjDrawerProps {
   size?: 'default' | 'sm' | 'lg' | 'full'
   title?: string
   id?: string
+  closeLabel?: string
 }
 </script>
 
 <script setup lang="ts">
 import { computed, ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { BjSvgIcon } from '../icons'
+import { useFocusTrap } from '../composables/useFocusTrap'
+
+let drawerUid = 0
 
 const props = withDefaults(defineProps<BjDrawerProps>(), {
   modelValue: false,
   position: 'left',
   size: 'default',
+  closeLabel: 'Fermer',
 })
 
 const emit = defineEmits<{
@@ -25,13 +30,15 @@ const emit = defineEmits<{
 const drawerRef = ref<HTMLElement>()
 let previousFocus: HTMLElement | null = null
 
+useFocusTrap(drawerRef, () => props.modelValue)
+
 const classes = computed(() => [
   'bj-drawer',
   props.position === 'right' && 'bj-drawer--right',
   props.size !== 'default' && `bj-drawer--${props.size}`,
 ])
 
-const drawerId = computed(() => props.id || `bj-drawer-${Math.random().toString(36).slice(2, 9)}`)
+const drawerId = computed(() => props.id || `bj-drawer-${++drawerUid}`)
 const titleId = computed(() => `${drawerId.value}-title`)
 
 function open() {
@@ -86,7 +93,7 @@ defineExpose({ open, close })
         <slot name="header">
           <h2 :id="titleId" class="bj-drawer__title">{{ title }}</h2>
         </slot>
-        <button type="button" class="bj-drawer__close" aria-label="Fermer" @click="close">
+        <button type="button" class="bj-drawer__close" :aria-label="closeLabel" @click="close">
           <BjSvgIcon name="closeLine" />
         </button>
       </header>

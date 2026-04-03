@@ -1,4 +1,6 @@
 <script lang="ts">
+export type BjBannerHeadingLevel = 'h1' | 'h2' | 'h3'
+
 export interface BjBannerProps {
   size?: 'sm' | 'md' | 'lg'
   align?: 'left' | 'center' | 'right'
@@ -6,6 +8,8 @@ export interface BjBannerProps {
   image?: string
   title?: string
   text?: string
+  headingLevel?: BjBannerHeadingLevel
+  ariaLabel?: string
 }
 </script>
 
@@ -16,6 +20,7 @@ const props = withDefaults(defineProps<BjBannerProps>(), {
   size: 'md',
   align: 'left',
   theme: 'dark',
+  headingLevel: 'h1',
 })
 
 const classes = computed(() => [
@@ -27,16 +32,16 @@ const classes = computed(() => [
 </script>
 
 <template>
-  <div :class="classes" v-bind="$attrs">
-    <div v-if="image" class="bj-banner__img" :style="{ backgroundImage: `url(${image})` }" role="img" aria-hidden="true" />
+  <section :class="classes" :aria-label="ariaLabel || title || undefined" v-bind="$attrs">
+    <div v-if="image" class="bj-banner__img" :style="{ backgroundImage: `url(${image})` }" aria-hidden="true" />
     <div class="bj-banner__overlay" />
     <div class="bj-banner__body">
-      <h1 v-if="title" class="bj-banner__title">{{ title }}</h1>
+      <component :is="headingLevel" v-if="title" class="bj-banner__title">{{ title }}</component>
       <p v-if="text" class="bj-banner__text">{{ text }}</p>
       <div v-if="$slots.actions" class="bj-banner__actions">
         <slot name="actions" />
       </div>
       <slot />
     </div>
-  </div>
+  </section>
 </template>

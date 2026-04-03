@@ -11,7 +11,8 @@ const { t } = useI18n({
   messages: {
     fr: {
       title: "Tiroir (Drawer)",
-      desc: "Panneau latéral glissant depuis le bord de l'écran, idéal pour la navigation, les filtres ou le contenu complémentaire.",
+      desc:
+        "Panneau latéral glissant depuis le bord de l'écran, idéal pour la navigation, les filtres ou le contenu complémentaire. Overlay, fermeture Échap, piège de focus et restauration du focus sur l'élément déclencheur.",
       "section-exemples": "Exemples",
       "section-variantes": "Variantes",
       "section-positions": "Positions",
@@ -20,7 +21,7 @@ const { t } = useI18n({
       "section-classes-css": "Classes CSS",
       "section-accessibilite": "Accessibilité",
       "a11y-note":
-        'Le tiroir utilise <code>role="dialog"</code> et <code>aria-modal="true"</code>. Le focus est piégé à l\'intérieur lorsque le tiroir est ouvert. <code>aria-labelledby</code> pointe vers le titre du tiroir. La touche <code>Escape</code> ferme le tiroir.',
+        '<p>Le conteneur doit exposer <code>role="dialog"</code>, <code>aria-modal="true"</code> et <code>aria-labelledby</code> vers l\'identifiant du titre du tiroir, afin d\'associer un nom accessible au panneau.</p><p>Avec le script DSBJ ou les composants <code>BjDrawer</code> Vue/React, le focus est <strong>piégé</strong> dans le tiroir ouvert&nbsp;: <code>Tab</code> et <code>Maj+Tab</code> parcourent uniquement les éléments focalisables à l\'intérieur du panneau, sans retourner à la page de fond. À la fermeture, le focus est <strong>restauré</strong> sur l\'élément qui a ouvert le tiroir (sélecteur <code>data-bj-drawer-open</code> en HTML pur).</p><p>La touche <code>Échap</code> ferme le tiroir lorsque le comportement clavier est actif. Pour le bouton de fermeture à icône seule, fournissez un libellé accessible (<code>aria-label</code> en HTML)&nbsp;; les composants Vue et React exposent la prop <code>closeLabel</code> pour l\'internationalisation.</p><p class="bj-text-sm" style="margin-top: var(--bj-spacing-2v)"><strong>Raccourcis clavier</strong></p><ul class="bj-text-sm" style="margin: var(--bj-spacing-1v) 0 0; padding-left: 1.25rem"><li><code>Tab</code>&nbsp;: élément focalisable suivant dans le tiroir.</li><li><code>Maj+Tab</code>&nbsp;: élément focalisable précédent&nbsp;; le cycle reste dans le panneau.</li><li><code>Échap</code>&nbsp;: fermeture (script DSBJ ou composants).</li></ul>',
       "cls-base": "Conteneur principal du tiroir",
       "cls-overlay": "Fond semi-transparent derrière le panneau",
       "cls-panel": "Panneau glissant contenant le contenu",
@@ -36,7 +37,8 @@ const { t } = useI18n({
     },
     en: {
       title: "Drawer",
-      desc: "A sliding side panel from the edge of the screen, ideal for navigation, filters, or supplementary content.",
+      desc:
+        "A sliding side panel from the edge of the screen, ideal for navigation, filters, or supplementary content. Overlay, Escape to close, focus trap, and focus restoration to the opener.",
       "section-exemples": "Examples",
       "section-variantes": "Variants",
       "section-positions": "Positions",
@@ -45,7 +47,7 @@ const { t } = useI18n({
       "section-classes-css": "CSS Classes",
       "section-accessibilite": "Accessibility",
       "a11y-note":
-        'The drawer uses <code>role="dialog"</code> and <code>aria-modal="true"</code>. Focus is trapped inside when the drawer is open. <code>aria-labelledby</code> points to the drawer title. The <code>Escape</code> key closes the drawer.',
+        '<p>Use <code>role="dialog"</code>, <code>aria-modal="true"</code>, and <code>aria-labelledby</code> pointing at the drawer title id so assistive technologies get an accessible name for the panel.</p><p>With the DSBJ script or the Vue/React <code>BjDrawer</code> components, focus is <strong>trapped</strong> while the drawer is open: <code>Tab</code> and <code>Shift+Tab</code> move only among focusable elements inside the panel. On close, focus is <strong>restored</strong> to the element that opened the drawer (the <code>data-bj-drawer-open</code> control in plain HTML).</p><p>The <code>Escape</code> key dismisses the drawer when keyboard handling is active. For the icon-only close button, provide an accessible name (<code>aria-label</code> in HTML); Vue and React components offer a <code>closeLabel</code> prop for i18n.</p><p class="bj-text-sm" style="margin-top: var(--bj-spacing-2v)"><strong>Keyboard shortcuts</strong></p><ul class="bj-text-sm" style="margin: var(--bj-spacing-1v) 0 0; padding-left: 1.25rem"><li><code>Tab</code>: move focus to the next focusable control inside the drawer.</li><li><code>Shift+Tab</code>: move to the previous focusable control; focus stays within the panel.</li><li><code>Escape</code>: close the drawer (DSBJ script or components).</li></ul>',
       "cls-base": "Main drawer container",
       "cls-overlay": "Semi-transparent backdrop behind the panel",
       "cls-panel": "Sliding panel containing the content",
@@ -287,7 +289,7 @@ const propsRows = computed(() => [
 
   <DocsSection id="a11y-drawer" :title="t('section-accessibilite')">
     <DocsA11yNote>
-      <span v-html="t('a11y-note')" />
+      <div v-html="t('a11y-note')" />
     </DocsA11yNote>
   </DocsSection>
 </template>
