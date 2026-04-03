@@ -1,0 +1,87 @@
+.bj-draggable {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bj-spacing-2v);
+}
+
+.bj-draggable__item {
+  display: flex;
+  align-items: center;
+  gap: var(--bj-spacing-3v);
+  padding: var(--bj-spacing-3v) var(--bj-spacing-4v);
+  background-color: var(--bj-bg-default);
+  border: 1px solid var(--bj-border-subtle);
+  border-radius: var(--bj-radius-sm);
+  cursor: grab;
+  user-select: none;
+  transition:
+    box-shadow var(--bj-duration-fast) var(--bj-easing),
+    border-color var(--bj-duration-fast) var(--bj-easing),
+    opacity var(--bj-duration-fast) var(--bj-easing);
+
+  &:hover {
+    border-color: var(--bj-action-high);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--bj-action-high);
+    outline-offset: 2px;
+  }
+}
+
+.bj-draggable__handle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--bj-action-high);
+  cursor: grab;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 0.75rem;
+    height: 0.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M8.5 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0 6.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0 6.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm7 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0-6.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0-6.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+.bj-draggable__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.bj-draggable__item--dragging {
+  opacity: 0.5;
+  border-color: var(--bj-action-high);
+  box-shadow: var(--bj-shadow-md);
+  cursor: grabbing;
+
+  .bj-draggable__handle {
+    cursor: grabbing;
+  }
+}
+
+.bj-draggable__item--over {
+  border-color: var(--bj-action-high);
+  box-shadow: 0 -2px 0 0 var(--bj-action-high);
+}
+
+.bj-draggable--disabled {
+  .bj-draggable__item {
+    cursor: default;
+    opacity: 0.6;
+
+    &:hover {
+      border-color: var(--bj-border-subtle);
+    }
+  }
+
+  .bj-draggable__handle {
+    cursor: default;
+  }
+}

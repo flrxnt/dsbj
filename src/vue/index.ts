@@ -44,6 +44,7 @@ export { default as BjMarquee } from './components/BjMarquee.vue'
 export { default as BjTreeview } from './components/BjTreeview.vue'
 export { default as BjChatBubble } from './components/BjChatBubble.vue'
 export { default as BjDrawer } from './components/BjDrawer.vue'
+export { default as BjDraggable } from './components/BjDraggable.vue'
 
 // Navigation
 export { default as BjHeader } from './components/BjHeader.vue'

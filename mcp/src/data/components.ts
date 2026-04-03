@@ -896,4 +896,27 @@ export const COMPONENTS: ComponentData[] = [
   </div>
 </div>`,
   },
+  {
+    name: 'Glisser-déposer',
+    slug: 'draggable',
+    category: 'Interactifs',
+    description: 'Liste réordonnable par glisser-déposer avec support clavier.',
+    classes: ['bj-draggable', 'bj-draggable__item', 'bj-draggable__handle', 'bj-draggable__content', 'bj-draggable__item--dragging', 'bj-draggable__item--over', 'bj-draggable--disabled'],
+    aria: ['role="listitem"', 'aria-label', 'tabindex="0"'],
+    jsHooks: ['data-bj-draggable', 'data-bj-draggable-item', 'data-bj-draggable-handle', 'data-bj-draggable-disabled'],
+    markup: `<div class="bj-draggable" data-bj-draggable>
+  <div class="bj-draggable__item" data-bj-draggable-item tabindex="0" role="listitem" aria-label="Élément 1">
+    <span class="bj-draggable__handle" aria-hidden="true"></span>
+    <span class="bj-draggable__content">Élément 1</span>
+  </div>
+  <div class="bj-draggable__item" data-bj-draggable-item tabindex="0" role="listitem" aria-label="Élément 2">
+    <span class="bj-draggable__handle" aria-hidden="true"></span>
+    <span class="bj-draggable__content">Élément 2</span>
+  </div>
+  <div class="bj-draggable__item" data-bj-draggable-item tabindex="0" role="listitem" aria-label="Élément 3">
+    <span class="bj-draggable__handle" aria-hidden="true"></span>
+    <span class="bj-draggable__content">Élément 3</span>
+  </div>
+</div>`,
+  },
 ];

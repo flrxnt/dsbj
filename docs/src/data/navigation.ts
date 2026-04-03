@@ -128,6 +128,7 @@ export const sidebars: Record<string, SidebarGroup[]> = {
         { label: 'Arborescence', to: '/composants/treeview', i18nKey: 'link.treeview' },
         { label: 'Bulle de chat', to: '/composants/chat-bubble', i18nKey: 'link.chat-bubble' },
         { label: 'Tiroir', to: '/composants/drawer', i18nKey: 'link.drawer' },
+        { label: 'Glisser-déposer', to: '/composants/draggable', i18nKey: 'link.draggable' },
       ],
     },
     {
@@ -240,6 +241,7 @@ export const sidebars: Record<string, SidebarGroup[]> = {
         { label: 'BjTreeview', to: '/integrations/vue/treeview', i18nKey: 'link.treeview' },
         { label: 'BjChatBubble', to: '/integrations/vue/chat-bubble', i18nKey: 'link.chat-bubble' },
         { label: 'BjDrawer', to: '/integrations/vue/drawer', i18nKey: 'link.drawer' },
+        { label: 'BjDraggable', to: '/integrations/vue/draggable', i18nKey: 'link.draggable' },
       ],
     },
     {
@@ -344,6 +346,7 @@ export const sidebars: Record<string, SidebarGroup[]> = {
         { label: 'BjTreeview', to: '/integrations/react/treeview', i18nKey: 'link.treeview' },
         { label: 'BjChatBubble', to: '/integrations/react/chat-bubble', i18nKey: 'link.chat-bubble' },
         { label: 'BjDrawer', to: '/integrations/react/drawer', i18nKey: 'link.drawer' },
+        { label: 'BjDraggable', to: '/integrations/react/draggable', i18nKey: 'link.draggable' },
       ],
     },
     {

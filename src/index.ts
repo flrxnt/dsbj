@@ -17,12 +17,13 @@ import { initMarquee } from './js/marquee';
 import { initGallery } from './js/gallery';
 import { initTreeview } from './js/treeview';
 import { initDrawer } from './js/drawer';
+import { initDraggable } from './js/draggable';
 
 export {
   initAccordion, initModal, initTab, initHeader, initNavigation,
   initConsent, initToggle, initDatepicker, initTable,
   toast, initToast, initDropdown, initMarquee, initGallery, initTreeview,
-  initDrawer,
+  initDrawer, initDraggable,
 };
 
 export function initDSBJ(): void {
@@ -41,6 +42,7 @@ export function initDSBJ(): void {
   initGallery();
   initTreeview();
   initDrawer();
+  initDraggable();
 }
 
 if (typeof document !== 'undefined') {

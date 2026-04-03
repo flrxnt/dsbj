@@ -7,7 +7,7 @@ const { t } = useI18n({
     fr: {
       title: 'Composants',
       desc:
-        'Bibliothèque de 41 composants HTML/CSS du Design Système du Bénin : navigation, formulaires, contenu, éléments interactifs et blocs réglementaires. Chaque fiche détaille les variantes, les classes et les bonnes pratiques d’accessibilité.',
+        'Bibliothèque de 51 composants HTML/CSS du Design Système du Bénin : navigation, formulaires, contenu, éléments interactifs et blocs réglementaires. Chaque fiche détaille les variantes, les classes et les bonnes pratiques d’accessibilité.',
       'sec-nav': 'Navigation',
       'sec-base': 'Base',
       'sec-form': 'Formulaires',
@@ -117,6 +117,8 @@ const { t } = useI18n({
       'card-chat-bubble-desc': 'Bulle de message pour conversations.',
       'card-drawer-title': 'Tiroir',
       'card-drawer-desc': 'Panneau latéral glissant depuis le bord de l\'écran.',
+      'card-draggable-title': 'Glisser-déposer',
+      'card-draggable-desc': 'Liste réordonnable par glisser-déposer.',
       'card-consent-title': 'Consentement',
       'card-consent-desc':
         'Bandeau cookies et choix utilisateur.',
@@ -131,7 +133,7 @@ const { t } = useI18n({
     en: {
       title: 'Components',
       desc:
-        'A library of 41 HTML/CSS components from the Benin Design System: navigation, forms, content, interactive patterns and regulatory blocks. Each page covers variants, classes and accessibility guidance.',
+        'A library of 51 HTML/CSS components from the Benin Design System: navigation, forms, content, interactive patterns and regulatory blocks. Each page covers variants, classes and accessibility guidance.',
       'sec-nav': 'Navigation',
       'sec-base': 'Foundations',
       'sec-form': 'Forms',
@@ -228,6 +230,8 @@ const { t } = useI18n({
       'card-chat-bubble-desc': 'Message bubble for conversations.',
       'card-drawer-title': 'Drawer',
       'card-drawer-desc': 'Sliding side panel from the screen edge.',
+      'card-draggable-title': 'Draggable',
+      'card-draggable-desc': 'Drag-and-drop reorderable list.',
       'card-consent-title': 'Consent',
       'card-consent-desc': 'Cookie banner and user choices.',
       'sec-dashboard': 'Dashboard',
@@ -614,6 +618,12 @@ const { t } = useI18n({
       icon="ri-side-bar-line"
       :title="t('card-drawer-title')"
       :description="t('card-drawer-desc')"
+    />
+    <DocsCard
+      to="/composants/draggable"
+      icon="ri-drag-move-2-line"
+      :title="t('card-draggable-title')"
+      :description="t('card-draggable-desc')"
     />
   </div>
 

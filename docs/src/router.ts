@@ -347,6 +347,11 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('./pages/composants/DrawerPage.vue'),
     meta: { layout: 'docs', section: 'composants', titleKey: 'route.drawer', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.drawer' }] },
   },
+  {
+    path: '/composants/draggable',
+    component: () => import('./pages/composants/DraggablePage.vue'),
+    meta: { layout: 'docs', section: 'composants', titleKey: 'route.draggable', breadcrumb: [{ labelKey: 'breadcrumb.components', to: '/composants' }, { labelKey: 'breadcrumb.draggable' }] },
+  },
 
   // Intégrations
   {
@@ -620,6 +625,11 @@ export const routes: RouteRecordRaw[] = [
     meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-drawer', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.drawer' }] },
   },
   {
+    path: '/integrations/vue/draggable',
+    component: () => import('./pages/integrations/vue/DraggablePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-vue', titleKey: 'route.vue-draggable', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-vue', to: '/integrations/vue' }, { labelKey: 'breadcrumb.draggable' }] },
+  },
+  {
     path: '/integrations/react',
     component: () => import('./pages/integrations/react/IndexPage.vue'),
     meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.integrations-react', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react' }] },
@@ -883,6 +893,11 @@ export const routes: RouteRecordRaw[] = [
     path: '/integrations/react/drawer',
     component: () => import('./pages/integrations/react/DrawerPage.vue'),
     meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-drawer', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.drawer' }] },
+  },
+  {
+    path: '/integrations/react/draggable',
+    component: () => import('./pages/integrations/react/DraggablePage.vue'),
+    meta: { layout: 'docs', section: 'integrations-react', titleKey: 'route.react-draggable', breadcrumb: [{ labelKey: 'breadcrumb.integrations', to: '/integrations' }, { labelKey: 'breadcrumb.integrations-react', to: '/integrations/react' }, { labelKey: 'breadcrumb.draggable' }] },
   },
 
   // Showcases

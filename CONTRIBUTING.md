@@ -22,6 +22,7 @@ bun install
 |----------|-------------|
 | `bun run dev` | Serveur de développement (documentation avec hot-reload) |
 | `bun run build` | Build de la bibliothèque (`dist/`) |
+| `bun run build:docs` | Build du site de documentation (`site/`) |
 | `bun run test` | Lancer les tests Vitest |
 | `bun run test:watch` | Tests en mode watch |
 
@@ -32,25 +33,57 @@ src/
 ├── core/              # Fondamentaux (reset scopé, couleurs, typographie, grille…)
 ├── component/         # Composants SCSS (un dossier par composant)
 ├── utility/           # Classes utilitaires
-├── js/                # Modules TypeScript interactifs
+├── js/                # Modules TypeScript interactifs (vanilla)
+├── vue/               # Wrappers Vue 3
+│   ├── components/    # Composants Vue (BjButton.vue, BjModal.vue…)
+│   ├── composables/   # Composables Vue (useModal, useToast…)
+│   ├── icons/         # Icônes SVG en composants Vue
+│   └── index.ts       # Point d'entrée Vue
+├── react/             # Wrappers React
+│   ├── components/    # Composants React (BjButton.tsx, BjModal.tsx…)
+│   ├── hooks/         # Hooks React (useModal, useToast…)
+│   ├── icons/         # Icônes SVG en composants React
+│   └── index.ts       # Point d'entrée React
 ├── dsbj.scss          # Point d'entrée SCSS (styles scopés .bj-*)
 ├── dsbj-reset.scss    # Reset CSS global (opt-in, pour projets 100% DSBJ)
 └── index.ts           # Point d'entrée JS
 
 docs/                  # Site de documentation (Vue 3 + vite-ssg)
+├── src/
+│   ├── pages/         # Pages du site (composants/, integrations/, fondamentaux/…)
+│   ├── components/    # Composants UI de la documentation
+│   ├── data/          # Navigation, index de recherche, locales
+│   │   ├── navigation.ts
+│   │   ├── searchIndex.ts
+│   │   └── locales/   # fr.json, en.json
+│   └── router.ts      # Routes du site
+
+mcp/                   # Serveur MCP (@flrxnt/dsbj-mcp)
+├── src/data/
+│   └── components.ts  # Catalogue des composants pour l'IA
+
 tests/                 # Tests Vitest
+scripts/               # Scripts de build, release, SEO, PWA
 ```
 
 ## Ajouter un composant
 
-1. Créer le dossier `src/component/<nom>/style/_<nom>.scss`.
-2. Écrire les styles en suivant la convention BEM avec le préfixe `bj-` (ex. `.bj-<nom>`, `.bj-<nom>__element`, `.bj-<nom>--modificateur`).
-3. Utiliser les tokens CSS du design system : `var(--bj-spacing-*)`, `var(--bj-fs-*)`, `var(--bj-fw-*)`, `var(--bj-color-*)`, etc.
-4. Enregistrer le composant dans `src/dsbj.scss` : `@use 'component/<nom>/style/<nom>';`.
-5. Si le composant nécessite du JavaScript, créer `src/js/<nom>.ts`, l'exporter depuis `src/index.ts` et appeler `register('<nom>', init<Nom>)`.
-6. Créer la page de documentation `docs/src/pages/composants/<Nom>Page.vue` en suivant le pattern des pages existantes.
-7. Ajouter la route dans `docs/src/router.ts`.
-8. Ajouter la carte dans `docs/src/pages/composants/IndexPage.vue`.
+1. **SCSS** : créer `src/component/<nom>/style/_<nom>.scss` avec les styles BEM (`bj-<nom>`, `bj-<nom>__element`, `bj-<nom>--modificateur`).
+2. **Enregistrer le SCSS** dans `src/dsbj.scss` : `@use 'component/<nom>/style/<nom>';`.
+3. **JavaScript** (si interactif) : créer `src/js/<nom>.ts`, l'exporter depuis `src/index.ts` et appeler `register('<nom>', init<Nom>)`.
+4. **Vue** : créer `src/vue/components/Bj<Nom>.vue` et l'exporter depuis `src/vue/index.ts`.
+5. **React** : créer `src/react/components/Bj<Nom>.tsx` et l'exporter depuis `src/react/index.ts`.
+6. **Page doc composant** : créer `docs/src/pages/composants/<Nom>Page.vue` (HTML/CSS pur).
+7. **Page doc Vue** : créer `docs/src/pages/integrations/vue/<Nom>Page.vue`.
+8. **Page doc React** : créer `docs/src/pages/integrations/react/<Nom>Page.vue`.
+9. **Router** : ajouter les 3 routes dans `docs/src/router.ts`.
+10. **Navigation** : ajouter les liens dans `docs/src/data/navigation.ts` (sidebar composants + integrations-vue + integrations-react).
+11. **Index de recherche** : ajouter les entrées dans `docs/src/data/searchIndex.ts`.
+12. **Traductions** : ajouter les clés dans `docs/src/data/locales/fr.json` et `en.json` (sections `route`, `breadcrumb`, `link`).
+13. **Carte index** : ajouter une `DocsCard` dans `docs/src/pages/composants/IndexPage.vue`.
+14. **MCP** : ajouter les données dans `mcp/src/data/components.ts`.
+15. **Tests** : créer `tests/<nom>.test.ts`.
+16. **Vérifier** : `bun run test` et `bun run build`.
 
 ## Conventions CSS
 

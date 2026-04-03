@@ -80,6 +80,7 @@ export const searchIndex: SearchEntry[] = [
   { label: 'Arborescence', path: '/composants/treeview', section: 'Composants', keywords: ['treeview', 'arbre', 'hiérarchie', 'nœuds', 'bj-treeview'] },
   { label: 'Bulle de chat', path: '/composants/chat-bubble', section: 'Composants', keywords: ['chat-bubble', 'bulle', 'message', 'conversation', 'bj-chat-bubble'] },
   { label: 'Tiroir', path: '/composants/drawer', section: 'Composants', keywords: ['drawer', 'tiroir', 'panneau', 'latéral', 'sidebar', 'bj-drawer'] },
+  { label: 'Glisser-déposer', path: '/composants/draggable', section: 'Composants', keywords: ['draggable', 'glisser', 'déposer', 'réordonner', 'drag', 'drop', 'reorder', 'bj-draggable'] },
 
   // Composants - Éditeur riche
   { label: 'Éditeur riche', path: '/composants/rich-editor', section: 'Composants', keywords: ['rich-editor', 'wysiwyg', 'éditeur', 'contenteditable', 'formatage', 'bj-rich-editor'] },
@@ -117,6 +118,8 @@ export const searchIndex: SearchEntry[] = [
   { label: 'BjTreeview', path: '/integrations/vue/treeview', section: 'Vue', keywords: ['treeview', 'arbre', 'vue', 'BjTreeview'] },
   { label: 'BjChatBubble', path: '/integrations/vue/chat-bubble', section: 'Vue', keywords: ['chat-bubble', 'vue', 'BjChatBubble'] },
   { label: 'BjDrawer', path: '/integrations/vue/drawer', section: 'Vue', keywords: ['drawer', 'tiroir', 'vue', 'BjDrawer'] },
+  { label: 'BjDraggable', path: '/integrations/vue/draggable', section: 'Vue', keywords: ['draggable', 'glisser', 'déposer', 'vue', 'BjDraggable'] },
+  { label: 'BjContent', path: '/integrations/vue/content', section: 'Vue', keywords: ['content', 'éditorial', 'vue', 'BjContent'] },
   { label: 'BjConsent', path: '/integrations/vue/consent', section: 'Vue', keywords: ['consent', 'cookies', 'vue', 'BjConsent'] },
   { label: 'BjCard', path: '/integrations/vue/card', section: 'Vue', keywords: ['card', 'carte', 'vue', 'BjCard'] },
   { label: 'BjAlert', path: '/integrations/vue/alert', section: 'Vue', keywords: ['alert', 'vue', 'BjAlert'] },
@@ -170,6 +173,7 @@ export const searchIndex: SearchEntry[] = [
   { label: 'BjTreeview', path: '/integrations/react/treeview', section: 'React', keywords: ['treeview', 'arbre', 'react', 'BjTreeview'] },
   { label: 'BjChatBubble', path: '/integrations/react/chat-bubble', section: 'React', keywords: ['chat-bubble', 'react', 'BjChatBubble'] },
   { label: 'BjDrawer', path: '/integrations/react/drawer', section: 'React', keywords: ['drawer', 'tiroir', 'react', 'BjDrawer'] },
+  { label: 'BjDraggable', path: '/integrations/react/draggable', section: 'React', keywords: ['draggable', 'glisser', 'déposer', 'react', 'BjDraggable'] },
   { label: 'BjConsent', path: '/integrations/react/consent', section: 'React', keywords: ['consent', 'cookies', 'react', 'BjConsent'] },
   { label: 'BjAlert', path: '/integrations/react/alert', section: 'React', keywords: ['alert', 'react', 'BjAlert'] },
   { label: 'BjCard', path: '/integrations/react/card', section: 'React', keywords: ['card', 'carte', 'react', 'BjCard'] },
@@ -205,9 +209,9 @@ export const searchIndex: SearchEntry[] = [
 
   // Showcases
   { label: 'Showcases', path: '/showcases', section: 'Showcases', keywords: ['showcase', 'redesign', 'gouvernement', 'gouv', 'exemple'] },
-  { label: 'Portail gouv.bj', path: '/showcases/gouv-bj', section: 'Showcases', keywords: ['gouv', 'portail', 'banner', 'services'] },
-  { label: 'Ministère des Finances', path: '/showcases/finances-bj', section: 'Showcases', keywords: ['finances', 'impôts', 'tableau', 'fiscal'] },
-  { label: 'Ministère de la Santé', path: '/showcases/sante-gouv-bj', section: 'Showcases', keywords: ['santé', 'alerte', 'hôpital', 'CHD'] },
-  { label: 'Ministère de l\u2019Éducation', path: '/showcases/education-gouv-bj', section: 'Showcases', keywords: ['éducation', 'école', 'BAC', 'accordéon'] },
-  { label: 'Services publics', path: '/showcases/service-public-bj', section: 'Showcases', keywords: ['démarche', 'stepper', 'tuile', 'guichet'] },
+
+  // Pages légales
+  { label: 'Mentions légales', path: '/mentions-legales', section: 'Légal', keywords: ['mentions', 'légales', 'droit'] },
+  { label: 'Données personnelles', path: '/donnees-personnelles', section: 'Légal', keywords: ['données', 'personnelles', 'rgpd', 'vie privée'] },
+  { label: 'Accessibilité', path: '/accessibilite', section: 'Légal', keywords: ['accessibilité', 'wcag', 'conformité'] },
 ]
