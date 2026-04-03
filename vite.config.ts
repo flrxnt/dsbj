@@ -1,5 +1,6 @@
 import { defineConfig, type Plugin } from 'vite';
 import { resolve } from 'path';
+import dts from 'vite-plugin-dts';
 
 function injectCssImport(): Plugin {
   return {
@@ -22,12 +23,13 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: resolve(__dirname, 'src/auto-init.ts'),
       name: 'DSBJ',
       formats: ['es', 'umd'],
       fileName: (format) => `dsbj.${format}.js`,
     },
     cssFileName: 'dsbj',
+    cssMinify: true,
     outDir: 'dist',
     rollupOptions: {
       external: [],
@@ -36,5 +38,11 @@ export default defineConfig({
       },
     },
   },
-  plugins: [injectCssImport()],
+  plugins: [
+    dts({
+      include: ['src/**/*.ts'],
+      exclude: ['src/vue/**', 'src/react/**', 'tests/**'],
+    }),
+    injectCssImport(),
+  ],
 });

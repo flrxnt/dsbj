@@ -25,12 +25,17 @@
       "style": "./dist/dsbj.css"
     },
     "./vue": {
-      "import": "./dist/dsbj-vue.mjs",
-      "types": "./src/vue/index.ts"
+      "import": "./dist/vue/index.mjs",
+      "types": "./dist/vue/index.d.ts"
     },
     "./react": {
-      "import": "./dist/dsbj-react.mjs",
-      "types": "./src/react/index.ts"
+      "import": "./dist/react/index.mjs",
+      "types": "./dist/react/index.d.ts"
+    },
+    "./auto": {
+      "import": "./dist/dsbj.es.js",
+      "require": "./dist/dsbj.umd.js",
+      "types": "./dist/index.d.ts"
     },
     "./css": "./dist/dsbj.css",
     "./reset": "./dist/dsbj-reset.css",
@@ -39,16 +44,11 @@
   },
   "files": [
     "dist",
-    "src"
+    "src/**/*.scss"
   ],
   "sideEffects": [
     "**/*.css",
-    "**/*.scss",
-    "dist/dsbj.es.js",
-    "dist/dsbj-vue.mjs",
-    "dist/dsbj-react.mjs",
-    "src/index.ts",
-    "src/js/*.ts"
+    "**/*.scss"
   ],
   "workspaces": [
     "mcp"
@@ -66,6 +66,7 @@
     "test:watch": "vitest",
     "release:prepare": "bun scripts/release.ts",
     "release": "bun run test && bun run build && git push && git push --tags",
+    "size": "npm pack --dry-run 2>&1 | grep -E 'package size|unpacked size|total files'",
     "mcp:start": "bun run --cwd mcp start",
     "mcp:dev": "bun run --cwd mcp dev"
   },
@@ -78,6 +79,7 @@
     "shiki": "^4.0.2",
     "typescript": "^6.0.2",
     "vite": "^8.0.3",
+    "vite-plugin-dts": "^4.5.4",
     "vite-plugin-pwa": "^1.2.0",
     "vite-ssg": "^28.3.0",
     "vitest": "^4.1.2",
@@ -93,8 +95,8 @@
   ],
   "peerDependencies": {
     "vue": "^3.2.25",
-    "react": "latest",
-    "react-dom": "latest"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "overrides": {
     "serialize-javascript": "^7.0.5",

@@ -1,13 +1,14 @@
 import { defineConfig, type Plugin } from 'vite';
 import { resolve } from 'path';
+import dts from 'vite-plugin-dts';
 
 function injectCssImport(): Plugin {
   return {
     name: 'inject-css-import',
     generateBundle(_, bundle) {
       for (const chunk of Object.values(bundle)) {
-        if (chunk.type === 'chunk' && chunk.fileName.endsWith('.mjs')) {
-          chunk.code = `import './dsbj.css';\n${chunk.code}`;
+        if (chunk.type === 'chunk' && chunk.isEntry) {
+          chunk.code = `import '../dsbj.css';\n${chunk.code}`;
         }
       }
     },
@@ -15,7 +16,13 @@ function injectCssImport(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [injectCssImport()],
+  plugins: [
+    dts({
+      include: ['src/react/**/*.ts', 'src/react/**/*.tsx', 'src/shared/**/*.ts'],
+      outDir: 'dist',
+    }),
+    injectCssImport(),
+  ],
   esbuild: {
     jsx: 'automatic',
     jsxImportSource: 'react',
@@ -24,13 +31,15 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/react/index.ts'),
       formats: ['es'],
-      fileName: () => 'dsbj-react.mjs',
     },
     outDir: 'dist',
     emptyOutDir: false,
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+        entryFileNames: '[name].mjs',
         assetFileNames: '[name][extname]',
       },
     },

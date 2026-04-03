@@ -1,5 +1,3 @@
-import './dsbj.scss';
-
 export { register, boot, focusTrap, queryNew } from './js/core';
 
 import { initAccordion } from './js/accordion';
@@ -47,12 +45,4 @@ export function initDSBJ(): void {
   initDraggable();
   initCarousel();
   initTour();
-}
-
-if (typeof document !== 'undefined') {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initDSBJ);
-  } else {
-    initDSBJ();
-  }
 }
