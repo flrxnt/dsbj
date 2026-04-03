@@ -4,6 +4,21 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.6.0] - 2026-04-03
+
+### Ajouté
+
+- feat(docs): add Carousel and Tour components to documentation
+- feat(docs): add documentation for Draggable component and update navigation
+
+### Modifié
+
+- fix(dependencies): update lodash to version 4.18.1 for improved compatibility
+
+### Corrigé
+
+- fix(dependencies): downgrade lodash to 4.17.21 to resolve compatibility issues
+
 ## [1.5.1] - 2026-04-01
 
 ### Ajouté
