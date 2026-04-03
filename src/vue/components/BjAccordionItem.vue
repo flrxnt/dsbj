@@ -11,8 +11,7 @@ import { AccordionKey } from '../composables/useAccordion'
 
 const props = defineProps<BjAccordionItemProps>()
 
-const ctx = inject(AccordionKey)
-if (!ctx) throw new Error('BjAccordionItem must be inside BjAccordion')
+const ctx = inject(AccordionKey)!
 
 const isOpen = computed(() => ctx.openItems.value.has(props.id))
 const panelId = computed(() => `accordion-panel-${props.id}`)
@@ -29,7 +28,7 @@ function toggle() {
       :id="btnId"
       type="button"
       class="bj-accordion__btn"
-      :aria-expanded="String(isOpen)"
+      :aria-expanded="isOpen"
       :aria-controls="panelId"
       @click="toggle"
     >

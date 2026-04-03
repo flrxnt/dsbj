@@ -101,7 +101,7 @@ export function initTreeview(): void {
       const item = cb.closest('.bj-tree__item');
       if (!item) return;
 
-      setDescendants(item, cb.checked);
+      setDescendants(item as HTMLElement, cb.checked);
       updateParentCheckbox(cb);
     });
   });

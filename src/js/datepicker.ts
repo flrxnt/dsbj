@@ -31,7 +31,7 @@ function daysInMonth(year: number, month: number): number {
 }
 
 function buildCalendar(wrapper: HTMLElement): void {
-  const input = wrapper.querySelector<HTMLInputElement>('.bj-datepicker__input');
+  const input = wrapper.querySelector<HTMLInputElement>('.bj-datepicker__input')!;
   const trigger = wrapper.querySelector<HTMLButtonElement>('.bj-datepicker__trigger');
   if (!input) return;
 

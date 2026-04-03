@@ -40,7 +40,7 @@ defineExpose({ menuOpen, toggleMenu })
           <button
             type="button"
             class="bj-header__menu-btn"
-            :aria-expanded="String(menuOpen)"
+            :aria-expanded="menuOpen"
             data-bj-header-menu
             @click="toggleMenu"
           >

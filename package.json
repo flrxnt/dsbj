@@ -1,6 +1,6 @@
 {
   "name": "@flrxnt/dsbj",
-  "version": "1.6.0",
+  "version": "1.7.0-preview.1",
   "description": "Design Système du Bénin - Système de design gouvernemental de la République du Bénin",
   "author": "République du Bénin",
   "license": "MIT",
@@ -66,6 +66,8 @@
     "test:watch": "vitest",
     "release:prepare": "bun scripts/release.ts",
     "release": "bun run test && bun run build && git push && git push --tags",
+    "preview:prepare": "bun scripts/preview.ts",
+    "preview:publish": "npm publish --tag preview --access public",
     "size": "npm pack --dry-run 2>&1 | grep -E 'package size|unpacked size|total files'",
     "mcp:start": "bun run --cwd mcp start",
     "mcp:dev": "bun run --cwd mcp dev"

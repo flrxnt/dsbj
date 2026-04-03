@@ -46,7 +46,7 @@ export function BjHeader({
             <button
               type="button"
               className="bj-header__menu-btn"
-              aria-expanded={String(menuOpen)}
+              aria-expanded={menuOpen}
               data-bj-header-menu
               onClick={() => setMenuOpen((o) => !o)}
             >

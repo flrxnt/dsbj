@@ -16,7 +16,7 @@ function initSortableTable(wrapper: HTMLElement): void {
   const table = wrapper.querySelector<HTMLTableElement>('.bj-table');
   if (!table) return;
 
-  const tbody = table.querySelector('tbody');
+  const tbody = table.querySelector('tbody')!;
   if (!tbody) return;
 
   const filterInput = wrapper.querySelector<HTMLInputElement>('[data-bj-table-filter]');

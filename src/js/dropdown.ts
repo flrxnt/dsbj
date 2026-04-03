@@ -1,8 +1,8 @@
 import { register, queryNew } from './core';
 
 function initSingleDropdown(wrapper: HTMLElement): void {
-  const trigger = wrapper.querySelector<HTMLElement>('.bj-dropdown__trigger');
-  const menu = wrapper.querySelector<HTMLElement>('.bj-dropdown__menu');
+  const trigger = wrapper.querySelector<HTMLElement>('.bj-dropdown__trigger')!;
+  const menu = wrapper.querySelector<HTMLElement>('.bj-dropdown__menu')!;
   if (!trigger || !menu) return;
 
   trigger.setAttribute('aria-haspopup', 'true');
